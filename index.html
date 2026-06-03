@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Axe Connect | IT Support, PC Repairs &amp; Websites in Pretoria</title>
+<meta name="description" content="Axe Connect provides affordable laptop and computer repairs, IT support, and modern websites for startups and small businesses in Pretoria."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E8312B;
+  --red2:#c9271f;
+  --black:#111111;
+  --white:#ffffff;
+  --grey:#f5f5f5;
+  --grey2:#eeeeee;
+  --text:#111111;
+  --muted:#666666;
+  --light:#999;
+  --font:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:#fff;color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* ── HEADER ── */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;gap:1rem;
+  padding:0 5%;height:64px;
+  background:#fff;
+  box-shadow:0 1px 0 #e8e8e8;
+}
+.logo{display:flex;align-items:center;gap:0;flex-shrink:0;text-decoration:none}
+.logo-icon{display:flex;align-items:center;flex-shrink:0;line-height:0}
+.logo-icon svg{display:block}
+.logo span{display:none}
+.hdr-nav{display:flex;align-items:center;gap:0;margin-left:auto}
+.hdr-nav a{
+  padding:6px 18px;font-size:0.875rem;font-weight:500;color:var(--muted);
+  position:relative;transition:color .2s;
+}
+.hdr-nav a:hover{color:var(--black)}
+.hdr-nav a.active{color:var(--black);font-weight:600}
+.hdr-nav a.active::after{
+  content:'';position:absolute;bottom:-1px;left:18px;right:18px;
+  height:2px;background:var(--red);
+}
+.hdr-cta{
+  display:flex;align-items:center;gap:8px;
+  background:var(--red);color:#fff;
+  padding:9px 20px;border-radius:6px;
+  font-size:0.85rem;font-weight:700;white-space:nowrap;
+  transition:background .2s;margin-left:1rem;
+}
+.hdr-cta:hover{background:var(--red2)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;margin-left:auto;color:var(--black);padding:4px}
+
+/* ── HERO ── */
+.hero{
+  padding:100px 5% 60px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;
+  min-height:100vh;
+  background:#fff;
+  position:relative;overflow:hidden;
+}
+/* Red dot pattern top-right */
+.hero-dots{
+  position:absolute;top:60px;right:3%;
+  width:200px;height:200px;
+  background-image:radial-gradient(circle,#E8312B 1px,transparent 1px);
+  background-size:18px 18px;
+  opacity:0.18;pointer-events:none;
+}
+.hero-dots2{
+  position:absolute;bottom:60px;left:2%;
+  width:120px;height:120px;
+  background-image:radial-gradient(circle,#E8312B 1px,transparent 1px);
+  background-size:14px 14px;
+  opacity:0.12;pointer-events:none;
+}
+
+.hero-left{position:relative;z-index:2}
+.loc-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;border:none;
+  font-size:0.8rem;color:var(--muted);margin-bottom:1.25rem;
+}
+.loc-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block}
+.hero h1{
+  font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:900;
+  line-height:1.05;color:var(--black);margin-bottom:1.25rem;
+}
+.hero h1 span{color:var(--red)}
+.hero-sub{font-size:0.95rem;color:var(--muted);max-width:420px;margin-bottom:2rem;line-height:1.7}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-red{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--red);color:#fff;
+  padding:13px 26px;border-radius:7px;
+  font-weight:700;font-size:0.95rem;
+  transition:background .2s,transform .15s;
+  box-shadow:0 4px 16px rgba(232,49,43,0.3);
+}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:var(--black);
+  padding:13px 24px;border-radius:7px;
+  font-weight:600;font-size:0.95rem;
+  border:1.5px solid #ddd;
+  transition:border-color .2s,transform .15s;
+}
+.btn-outline:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+
+.trust-pills{display:flex;gap:10px;flex-wrap:wrap}
+.tp{
+  display:flex;align-items:center;gap:8px;
+  border:1.5px solid #e8e8e8;border-radius:8px;
+  padding:8px 14px;font-size:0.82rem;background:#fff;
+}
+.tp-icon{font-size:1rem}
+.tp b{font-weight:700;font-size:0.82rem;display:block;line-height:1.1}
+.tp small{font-size:0.7rem;color:var(--light);display:block}
+
+/* ── HERO RIGHT - DEVICE MOCKUPS ── */
+.hero-right{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  height:520px;
+}
+
+/* Monitor */
+.monitor-wrap{
+  position:absolute;top:0;right:0;
+  width:340px;
+}
+.monitor-frame{
+  background:#1a1a1a;border-radius:12px 12px 4px 4px;
+  padding:8px 8px 0;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+.mon-topbar{
+  background:#2a2a2a;border-radius:6px 6px 0 0;
+  padding:7px 10px;display:flex;align-items:center;gap:6px;
+  margin-bottom:0;
+}
+.mon-dot{width:8px;height:8px;border-radius:50%}
+.mon-dot:nth-child(1){background:#ff5f57}
+.mon-dot:nth-child(2){background:#fec22b}
+.mon-dot:nth-child(3){background:#28c840}
+.mon-search{
+  flex:1;margin-left:8px;background:rgba(255,255,255,0.1);
+  border-radius:4px;padding:3px 8px;font-size:0.6rem;color:#888;
+}
+.mon-screen{
+  background:#0f0f0f;padding:10px;border-radius:0 0 2px 2px;
+  min-height:200px;
+}
+.dash-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:8px;
+}
+.dash-logo{
+  display:flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:800;color:#fff;
+}
+.dash-logo-icon{
+  width:16px;height:16px;background:var(--red);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:0.45rem;font-weight:900;
+}
+.dash-title{font-size:0.65rem;font-weight:700;color:#fff}
+.dash-icons{display:flex;gap:4px}
+.dash-icons span{width:14px;height:14px;background:rgba(255,255,255,0.1);border-radius:3px;display:block}
+
+.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+.ds{background:#1a1a1a;border-radius:6px;padding:7px}
+.ds small{font-size:0.5rem;color:#888;display:block}
+.ds b{font-size:0.8rem;font-weight:800;color:#fff;display:block}
+.ds em{font-size:0.48rem;font-style:normal}
+.ds em.g{color:#22c55e}
+.ds em.r{color:var(--red)}
+.ds-chart{margin-top:4px;height:20px}
+.ds-chart svg{width:100%;height:20px}
+.ds-chart svg polyline{fill:none;stroke-width:1.5}
+.donut-wrap{display:flex;justify-content:center;margin-top:4px}
+.donut-circle{
+  width:30px;height:30px;border-radius:50%;
+  border:3px solid var(--red);border-top-color:transparent;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.42rem;font-weight:700;color:var(--red);
+  animation:spin 3s linear infinite;
+}
+.dash-activity{background:#1a1a1a;border-radius:6px;padding:7px}
+.dash-activity strong{font-size:0.48rem;color:#888;display:block;margin-bottom:5px;letter-spacing:.08em}
+.act-row{display:flex;align-items:center;gap:5px;padding:2.5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.act-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.act-dot.red{background:var(--red)}
+.act-dot.grn{background:#22c55e}
+.act-row span{font-size:0.52rem;color:#ccc;flex:1}
+.act-row time{font-size:0.48rem;color:#888}
+
+/* monitor stand */
+.mon-stand{
+  width:60px;height:14px;background:#2a2a2a;
+  margin:0 auto;border-radius:0 0 4px 4px;
+}
+.mon-base{width:120px;height:6px;background:#222;margin:0 auto;border-radius:3px}
+
+/* Laptop */
+.laptop-wrap{
+  position:absolute;bottom:20px;left:-20px;
+  width:260px;
+}
+.laptop-frame{
+  background:#1c1c1c;border-radius:10px 10px 0 0;
+  padding:6px 6px 0;
+  box-shadow:0 16px 50px rgba(0,0,0,0.3);
+}
+.lap-topbar{
+  background:#2a2a2a;border-radius:5px 5px 0 0;
+  padding:5px 8px;display:flex;align-items:center;gap:4px;
+}
+.lap-dot{width:6px;height:6px;border-radius:50%}
+.lap-dot:nth-child(1){background:#ff5f57}
+.lap-dot:nth-child(2){background:#fec22b}
+.lap-dot:nth-child(3){background:#28c840}
+.lap-brand{flex:1;text-align:center;font-size:0.55rem;font-weight:800;color:#fff;margin-left:-18px}
+.lap-brand span{color:var(--red)}
+.lap-nav-links{font-size:0.42rem;color:#999;margin-left:4px}
+.lap-screen{
+  background:#fff;min-height:130px;padding:14px;
+}
+.lap-screen h3{font-size:0.9rem;font-weight:900;color:#111;line-height:1.2;margin-bottom:6px}
+.lap-screen p{font-size:0.6rem;color:#666;margin-bottom:10px;line-height:1.4}
+.lap-btn{
+  display:inline-block;background:var(--red);color:#fff;
+  padding:5px 12px;border-radius:4px;font-size:0.6rem;font-weight:700;
+}
+.laptop-base{
+  background:#222;height:8px;border-radius:0 0 2px 2px;
+}
+.laptop-bottom{
+  background:#1a1a1a;height:12px;border-radius:0 0 8px 8px;
+  width:100%;
+}
+.laptop-hinge{height:3px;background:#333;width:100%}
+
+/* PC Tower */
+.pc-tower{
+  position:absolute;right:-30px;top:80px;
+  width:80px;background:#1a1a1a;border-radius:8px;
+  padding:10px 8px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.pc-fan{
+  width:50px;height:50px;border-radius:50%;
+  border:3px solid #E8312B;border-top-color:transparent;
+  background:radial-gradient(circle,#2a0a0a 40%,transparent 70%);
+  animation:spin 2s linear infinite;
+}
+.pc-fan2{
+  width:40px;height:40px;border-radius:50%;
+  border:2px solid rgba(232,49,43,0.5);border-top-color:transparent;
+  animation:spin 3s linear infinite reverse;
+}
+.pc-glow{width:30px;height:4px;background:var(--red);border-radius:2px;box-shadow:0 0 8px var(--red)}
+.pc-strip{width:40px;height:6px;background:linear-gradient(90deg,var(--red),#ff6b6b,var(--red));border-radius:3px;animation:pulse 2s infinite}
+
+/* Keyboard */
+.keyboard-wrap{
+  position:absolute;bottom:0;left:60px;
+  width:200px;height:24px;
+  background:#2a2a2a;border-radius:4px;
+  display:grid;grid-template-columns:repeat(14,1fr);gap:2px;padding:4px 6px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.key{background:#333;border-radius:2px;height:100%}
+.key:nth-child(1){grid-column:span 2}
+.key:nth-child(8){grid-column:span 2}
+.key:nth-child(14){grid-column:span 1}
+
+/* Mouse */
+.mouse-wrap{
+  position:absolute;bottom:8px;right:50px;
+  width:28px;height:40px;
+  background:#2a2a2a;border-radius:14px 14px 10px 10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.mouse-wrap::after{
+  content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:1px;height:12px;background:#444;
+}
+
+/* Plant */
+.plant-wrap{
+  position:absolute;bottom:24px;right:20px;
+  font-size:2.2rem;line-height:1;
+}
+
+/* ── SERVICES ── */
+.services{background:#fff;padding:80px 5%;border-top:1px solid #f0f0f0}
+.sec-label{font-size:0.72rem;font-weight:700;color:var(--red);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:8px}
+.sec-h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:var(--black)}
+.sec-head{text-align:center;margin-bottom:3.5rem}
+.sec-head .sec-h2::after{
+  content:'';display:block;width:50px;height:3px;background:var(--red);
+  margin:12px auto 0;border-radius:2px;
+}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;border:1px solid #f0f0f0;border-radius:12px;overflow:hidden}
+/* Last row: 3 cards centred when 7 total */
+.svc-card:nth-child(5){grid-column:1}
+.svc-card:nth-child(6){grid-column:2}
+.svc-card:nth-child(7){grid-column:3}
+.svc-card{
+  background:#fff;padding:28px 18px 22px;text-align:center;
+  transition:box-shadow .2s,transform .2s;
+  position:relative;
+}
+.svc-card:hover{transform:translateY(-3px);z-index:2;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
+.svc-icon-wrap{
+  width:56px;height:56px;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  border:1px solid #eee;border-radius:12px;
+  transition:background .2s;
+}
+.svc-card:hover .svc-icon-wrap{background:#fff5f5;border-color:rgba(232,49,43,0.2)}
+.svc-card h3{font-size:0.82rem;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3}
+.svc-card p{font-size:0.75rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.svc-card-line{width:24px;height:3px;background:var(--red);margin:0 auto;border-radius:2px}
+
+/* ── ABOUT ── */
+.about-sec{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:400px;
+}
+.about-img{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1a1a1a 0%,#2d1010 100%);
+}
+.about-img-inner{
+  width:100%;height:100%;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23111"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="14" fill="%23444" font-family="Arial">Pretoria, Gauteng</text></svg>') center/cover;
+  min-height:400px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px;
+}
+/* Pretoria skyline SVG */
+.skyline-svg{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.about-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.7) 100%);
+}
+.about-city-text{
+  position:relative;z-index:2;color:#fff;
+  font-size:0.8rem;opacity:0.7;text-align:center;
+  margin-top:auto;padding:20px;
+}
+.red-accent-box{
+  position:absolute;top:0;left:0;
+  width:100px;height:100px;
+  background:var(--red);opacity:0.9;
+  clip-path:polygon(0 0,100% 0,0 100%);
+  z-index:3;
+}
+.dot-grid{
+  position:absolute;bottom:24px;right:24px;z-index:3;
+  display:grid;grid-template-columns:repeat(7,8px);grid-template-rows:repeat(7,8px);gap:4px;
+}
+.dg-dot{width:4px;height:4px;background:#E8312B;border-radius:50%;opacity:.6}
+
+.about-content{
+  padding:60px 5% 60px 4%;
+  background:#fff;
+}
+.about-content h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--black);margin-bottom:1.25rem;line-height:1.1}
+.about-content h2 em{color:var(--red);font-style:normal}
+.about-content p{font-size:0.9rem;color:var(--muted);line-height:1.75;margin-bottom:0.85rem}
+.about-points{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap}
+.ap{text-align:center}
+.ap-icon{font-size:1.5rem;margin-bottom:6px}
+.ap b{font-size:0.85rem;font-weight:700;color:var(--black);display:block}
+.ap small{font-size:0.72rem;color:var(--muted)}
+
+/* ── PROCESS ── */
+.process{background:#fff;padding:80px 5%;border-top:1px solid #f0f0f0}
+.proc-grid{
+  display:grid;grid-template-columns:1fr 80px 1fr 80px 1fr;
+  align-items:center;gap:0;
+  max-width:900px;margin:0 auto;
+}
+.proc-arrow{text-align:center;color:#ccc;font-size:1.5rem}
+.proc-step{text-align:center}
+.proc-num{
+  width:36px;height:36px;background:var(--red);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.8rem;font-weight:900;color:#fff;margin:0 auto 12px;
+}
+.proc-icon-wrap{
+  width:70px;height:70px;border-radius:50%;background:#f5f5f5;border:1px solid #eee;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  margin:0 auto 14px;
+}
+.proc-step h3{font-size:0.85rem;font-weight:700;color:var(--black);margin-bottom:6px;line-height:1.3}
+.proc-step p{font-size:0.78rem;color:var(--muted);line-height:1.5}
+
+/* ── WEBSITES ── */
+.websites-sec{padding:80px 5%;background:#fff;border-top:1px solid #f0f0f0}
+.websites-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;align-items:center}
+.web-devices{position:relative;height:300px}
+
+/* laptop preview in websites */
+.web-laptop{
+  position:absolute;bottom:0;left:0;
+  width:240px;
+  background:#1a1a1a;border-radius:10px 10px 0 0;
+  padding:6px 6px 0;
+  box-shadow:0 16px 50px rgba(0,0,0,0.2);
+}
+.wl-bar{background:#2a2a2a;border-radius:6px 6px 0 0;padding:5px 8px;display:flex;align-items:center;gap:4px}
+.wl-dot{width:6px;height:6px;border-radius:50%}
+.wl-dot:nth-child(1){background:#ff5f57}
+.wl-dot:nth-child(2){background:#fec22b}
+.wl-dot:nth-child(3){background:#28c840}
+.wl-title{flex:1;text-align:center;font-size:0.5rem;font-weight:800;color:#fff}
+.wl-title span{color:var(--red)}
+.wl-nav{font-size:0.4rem;color:#888}
+.wl-screen{background:#fff;padding:14px;min-height:120px}
+.wl-screen h4{font-size:0.85rem;font-weight:900;color:#111;margin-bottom:6px;line-height:1.2}
+.wl-screen p{font-size:0.6rem;color:#666;line-height:1.4;margin-bottom:8px}
+.wl-btn{display:inline-block;background:var(--red);color:#fff;padding:4px 10px;border-radius:3px;font-size:0.55rem;font-weight:700}
+.wl-base{background:#222;height:8px;border-radius:0 0 2px 2px}
+.wl-bottom{background:#1a1a1a;height:10px;border-radius:0 0 8px 8px}
+
+/* phone preview */
+.web-phone{
+  position:absolute;top:0;right:0;
+  width:90px;height:160px;
+  background:#1a1a1a;border-radius:16px;
+  padding:8px 6px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.25);
+}
+.ph-notch{width:24px;height:5px;background:#000;border-radius:3px;margin:0 auto 6px}
+.ph-screen{background:#fff;border-radius:6px;padding:6px;height:calc(100% - 20px)}
+.ph-screen .ph-logo{font-size:0.42rem;font-weight:800;color:var(--red);margin-bottom:3px}
+.ph-screen h5{font-size:0.5rem;font-weight:900;color:#111;line-height:1.2;margin-bottom:3px}
+.ph-screen p{font-size:0.38rem;color:#666;line-height:1.3;margin-bottom:5px}
+.ph-btn{display:inline-block;background:var(--red);color:#fff;padding:2px 5px;border-radius:2px;font-size:0.38rem;font-weight:700}
+
+.web-copy h2{font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:900;color:var(--black);line-height:1.15;margin-bottom:1rem}
+.web-copy h2 em{color:var(--red);font-style:normal}
+.web-copy p{font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.web-feats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.wf{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-size:0.7rem;color:var(--muted);text-align:center;
+  width:58px;
+}
+.wf-ico{font-size:1.2rem;margin-bottom:2px}
+.wf b{font-size:0.7rem;color:var(--black);font-weight:700}
+.wf small{font-size:0.6rem;color:var(--muted)}
+
+.web-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.web-list li{font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.web-list li::before{content:'✓';color:var(--red);font-weight:700;font-size:0.9rem}
+
+/* ── CTA BAND ── */
+.cta-band{
+  background:var(--red);
+  padding:60px 5%;
+  display:grid;grid-template-columns:1fr 1fr auto;
+  gap:2rem;align-items:center;
+}
+.cta-col{display:flex;align-items:center;gap:16px}
+.cta-ico{
+  width:56px;height:56px;background:rgba(255,255,255,0.2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;
+}
+.cta-col h2{font-size:1.1rem;font-weight:800;color:#fff;line-height:1.25}
+.cta-col p{font-size:0.8rem;color:rgba(255,255,255,0.8);margin-top:4px}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:var(--red);
+  padding:14px 28px;border-radius:8px;
+  font-weight:800;font-size:0.95rem;
+  white-space:nowrap;
+  transition:transform .2s,box-shadow .2s;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+
+/* ── FOOTER ── */
+footer{background:#111;padding:50px 5% 24px}
+.foot-grid{
+  display:grid;grid-template-columns:2fr 1fr 1.2fr 1fr;
+  gap:3rem;margin-bottom:2.5rem;
+}
+.foot-logo{display:flex;align-items:center;gap:0;margin-bottom:14px;line-height:0}
+.foot-logo .logo-icon{display:flex;align-items:center}
+
+.foot-about p{font-size:0.8rem;color:#888;line-height:1.65;margin-bottom:18px;max-width:240px}
+.socials{display:flex;gap:8px}
+.soc{
+  width:32px;height:32px;border-radius:6px;background:#1e1e1e;
+  border:1px solid #2e2e2e;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;color:#888;transition:all .2s;
+}
+.soc:hover{background:var(--red);border-color:var(--red);color:#fff}
+.foot-col h3{font-size:0.82rem;font-weight:700;color:#fff;margin-bottom:14px}
+.foot-col a,.foot-col p{display:block;font-size:0.78rem;color:#888;margin-bottom:7px;transition:color .2s}
+.foot-col a:hover{color:var(--red)}
+.foot-col .fi{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#888;margin-bottom:8px}
+.fi-icon{color:var(--red);font-size:0.9rem;flex-shrink:0}
+.copyright{
+  border-top:1px solid #1e1e1e;padding-top:20px;
+  font-size:0.75rem;color:#555;text-align:center;
+}
+.foot-skyline{
+  position:relative;height:40px;overflow:hidden;margin-top:16px;opacity:.15;
+}
+.foot-skyline svg{width:100%;height:40px}
+
+/* ── ANIMATIONS ── */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .svc-card:nth-child(5),.svc-card:nth-child(6),.svc-card:nth-child(7){grid-column:auto}
+  .cta-band{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .cta-btn{grid-column:1/-1;justify-self:center}
+}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:90px}
+  .hero-right{display:none}
+  .about-sec{grid-template-columns:1fr}
+  .about-img{min-height:300px}
+  .websites-inner{grid-template-columns:1fr}
+  .web-devices{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr;gap:1.5rem}
+  .proc-arrow{display:none}
+}
+@media(max-width:640px){
+  .hdr-nav{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:1rem;z-index:100}
+  .hdr-nav.open{display:flex}
+  .hdr-nav a{padding:12px 16px;width:100%;border-bottom:1px solid #f5f5f5}
+  .hdr-nav a.active::after{display:none}
+  .nav-toggle{display:block}
+  .hdr-cta{display:none}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .cta-band{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .about-points{gap:1.5rem}
+  .web-feats{gap:8px}
+  .trust-pills{gap:6px}
+  .tp{padding:6px 10px}
+}
+
+/* ── DEPARTMENT SECTIONS ── */
+.dept-section{padding:0 0 0}
+.dept-header{padding:60px 5% 50px;position:relative;overflow:hidden;}
+.it-dept{background:linear-gradient(135deg,#111 0%,#1e0a0a 100%)}
+.web-dept{background:linear-gradient(135deg,#0a0a1e 0%,#111 100%)}
+.dept-header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(232,49,43,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
+.dept-header-inner{position:relative;z-index:2;max-width:680px}
+.dept-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,49,43,0.15);border:1px solid rgba(232,49,43,0.3);color:#E8312B;padding:7px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:.1em;margin-bottom:1.25rem;}
+.dept-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:1rem;}
+.dept-header h2 span{color:#E8312B}
+.dept-header p{font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:2rem;max-width:540px}
+.btn-white-red{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E8312B;padding:12px 26px;border-radius:7px;font-weight:700;font-size:0.92rem;transition:all .2s;}
+.btn-white-red:hover{background:#E8312B;color:#fff;transform:translateY(-2px)}
+.dept-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid #E8312B;}
+.dept-card{background:#fff;padding:32px 28px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;position:relative;transition:box-shadow .2s,transform .2s;}
+.dept-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,49,43,0.1);z-index:2}
+.dept-card:nth-child(3n){border-right:none}
+.dc-icon{font-size:2rem;margin-bottom:16px}
+.dept-card h3{font-size:1rem;font-weight:800;color:#111;margin-bottom:10px;line-height:1.3}
+.dept-card>p{font-size:0.85rem;color:#666;line-height:1.65;margin-bottom:14px}
+.dc-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.dc-list li{font-size:0.8rem;color:#555;display:flex;align-items:center;gap:7px}
+.dc-list li::before{content:"\2192";color:#E8312B;font-size:0.7rem;font-weight:700;flex-shrink:0}
+.card-highlight{background:#fffafa;border-top:2px solid #E8312B}
+.card-new-badge{position:absolute;top:16px;right:16px;background:#E8312B;color:#fff;font-size:0.6rem;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:100px;}
+@media(max-width:900px){.dept-cards{grid-template-columns:1fr 1fr}.dept-card:nth-child(3n){border-right:1px solid #f0f0f0}.dept-card:nth-child(2n){border-right:none}}
+@media(max-width:600px){.dept-cards{grid-template-columns:1fr}.dept-card,.dept-card:nth-child(3n),.dept-card:nth-child(2n){border-right:none}}
+
+
+/* ── CONTACT MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:16px;
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:#fff;border-radius:18px;width:100%;max-width:560px;
+  max-height:92vh;overflow-y:auto;
+  box-shadow:0 32px 80px rgba(0,0,0,0.3);
+  animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
+  position:relative;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(30px)}to{opacity:1;transform:none}}
+.modal-head{
+  background:var(--red);padding:28px 32px 22px;
+  border-radius:18px 18px 0 0;
+}
+.modal-head h2{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:4px}
+.modal-head p{font-size:0.85rem;color:rgba(255,255,255,.8)}
+.modal-close{
+  position:absolute;top:16px;right:18px;
+  background:rgba(255,255,255,.2);border:none;
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:#fff;cursor:pointer;
+  transition:background .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.35)}
+.modal-body{padding:28px 32px 32px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group label{font-size:0.78rem;font-weight:700;color:#333;letter-spacing:.04em;text-transform:uppercase}
+.form-group input,.form-group select,.form-group textarea{
+  border:1.5px solid #e0e0e0;border-radius:9px;
+  padding:11px 14px;font-size:0.9rem;font-family:var(--font);
+  color:var(--black);background:#fafafa;
+  transition:border-color .2s,box-shadow .2s;outline:none;
+  appearance:none;-webkit-appearance:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--red);box-shadow:0 0 0 3px rgba(232,49,43,.1);background:#fff;
+}
+.form-group select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;cursor:pointer;
+}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-submit{
+  width:100%;background:var(--red);color:#fff;border:none;
+  padding:14px;border-radius:10px;font-size:1rem;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .15s;
+  font-family:var(--font);
+}
+.form-submit:hover{background:var(--red2);transform:translateY(-1px)}
+.form-submit:active{transform:none}
+.form-note{font-size:0.72rem;color:#999;text-align:center;margin-top:10px}
+.form-success{
+  display:none;text-align:center;padding:20px 0 8px;
+}
+.form-success .fs-icon{font-size:2.5rem;margin-bottom:8px}
+.form-success h3{font-size:1.1rem;font-weight:800;color:var(--black);margin-bottom:6px}
+.form-success p{font-size:0.85rem;color:var(--muted)}
+
+/* ── CALL MODAL ── */
+.call-modal-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:16px;
+}
+.call-modal-overlay.open{display:flex}
+.call-modal-box{
+  background:#fff;border-radius:18px;width:100%;max-width:400px;
+  box-shadow:0 32px 80px rgba(0,0,0,0.3);
+  animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
+  position:relative;overflow:hidden;
+}
+.call-modal-head{
+  background:var(--black);padding:24px 28px 18px;
+}
+.call-modal-head h2{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:4px}
+.call-modal-head p{font-size:0.82rem;color:#aaa}
+.call-close{
+  position:absolute;top:14px;right:16px;
+  background:rgba(255,255,255,.1);border:none;
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:#fff;cursor:pointer;transition:background .2s;
+}
+.call-close:hover{background:rgba(255,255,255,.2)}
+.call-options{padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px}
+.call-option{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 18px;border-radius:12px;border:1.5px solid #e8e8e8;
+  cursor:pointer;transition:border-color .2s,background .2s,transform .15s;
+  text-decoration:none;
+}
+.call-option:hover{border-color:var(--red);background:#fff5f5;transform:translateY(-2px)}
+.call-option .co-icon{
+  width:46px;height:46px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+}
+.co-phone .co-icon{background:#e8f5e9}
+.co-teams .co-icon{background:#e8eeff}
+.call-option .co-text b{font-size:0.92rem;font-weight:700;color:var(--black);display:block;margin-bottom:2px}
+.call-option .co-text small{font-size:0.74rem;color:var(--muted)}
+.co-teams{display:none}/* shown via JS if non-mobile */
+
+/* ── UPDATED CTA BAND ── */
+.cta-band-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:1.5rem}
+.cta-band-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;border-radius:9px;font-weight:700;font-size:0.92rem;cursor:pointer;border:none;
+  transition:all .2s;font-family:var(--font);
+}
+.cta-btn-white{background:#fff;color:var(--red)}
+.cta-btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.cta-btn-outline-w{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
+.cta-btn-outline-w:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+@media(max-width:480px){
+  .form-row{grid-template-columns:1fr}
+  .modal-body{padding:20px 18px 24px}
+  .modal-head{padding:22px 18px 16px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+  <a class="logo" href="#home" aria-label="Axe Connect">
+    <div class="logo-icon"><svg width="130" height="44" viewBox="-2 0 134 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- Red left leg / axe blade body of A -->
+  <path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E8312B"/>
+  <!-- Axe blade curved head -->
+  <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E8312B"/>
+  <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+  <!-- Dark right leg of A -->
+  <path d="M30 8 L44 8 L30 56 L23 56 Z" fill="#222"/>
+  <!-- A crossbar -->
+  <path d="M13 37 L31 37 L33 43 L11 43 Z" fill="#E8312B"/>
+  <!-- Circuit lines right -->
+  <line x1="38" y1="14" x2="48" y2="14" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="48" y1="14" x2="53" y2="20" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="20" x2="68" y2="20" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="68" cy="20" r="2.5" fill="none" stroke="#E8312B" stroke-width="1.8"/>
+  <line x1="40" y1="26" x2="52" y2="26" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="52" y1="26" x2="57" y2="32" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="57" y1="32" x2="72" y2="32" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="72" cy="32" r="2.5" fill="none" stroke="#222" stroke-width="1.8"/>
+  <line x1="40" y1="36" x2="53" y2="36" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="36" x2="58" y2="42" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="58" y1="42" x2="72" y2="42" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="72" cy="42" r="2.5" fill="none" stroke="#999" stroke-width="1.8"/>
+  <line x1="36" y1="46" x2="48" y2="46" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="48" y1="46" x2="53" y2="52" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="52" x2="68" y2="52" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="68" cy="52" r="2.5" fill="none" stroke="#E8312B" stroke-width="1.8"/>
+  <line x1="32" y1="56" x2="44" y2="56" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="44" y1="56" x2="49" y2="62" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="49" y1="62" x2="64" y2="62" stroke="#222" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="64" cy="62" r="2.5" fill="none" stroke="#222" stroke-width="1.8"/>
+  <!-- AXE CONNECT text -->
+  <text x="0" y="78" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="12" fill="#E8312B" letter-spacing="2">AXE</text>
+  <text x="38" y="78" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="12" fill="#222" letter-spacing="1.5"> CONNECT</text>
+  <!-- Decorative line below text -->
+  <line x1="0" y1="82" x2="28" y2="82" stroke="#E8312B" stroke-width="1.2"/>
+  <circle cx="30" cy="82" r="1.5" fill="#E8312B"/>
+  <line x1="33" y1="82" x2="68" y2="82" stroke="#555" stroke-width="1.2"/>
+  <circle cx="70" cy="82" r="1.5" fill="#555"/>
+  <line x1="73" y1="82" x2="102" y2="82" stroke="#555" stroke-width="1.2"/>
+</svg></div>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  <nav class="hdr-nav" id="mainNav">
+    <a href="#home" class="active">Home</a>
+    <a href="#it-support">IT Support</a>
+    <a href="#web-dev">Web &amp; Design</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="hdr-cta" href="tel:0607950837">&#128222; 060 795 0837</a>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-dots2" aria-hidden="true"></div>
+  <div class="hero-left">
+    <div class="loc-pill"><span class="loc-dot"></span> Proudly Based in Pretoria</div>
+    <h1>We Fix. We Build.<br>We <span>Connect.</span></h1>
+    <p class="hero-sub">Axe Connect offers expert IT support &amp; repairs, modern web development, and creative design services — logos, posters &amp; more. Affordable. Reliable. Pretoria-based.</p>
+    <div class="hero-btns">
+      <a class="btn-red" href="mailto:carvenmaceke9@gmail.com?subject=Quote%20Request">&#8594; Get a Quote</a>
+      <a class="btn-outline" href="#it-support">View Services</a>
+    </div>
+    <div class="trust-pills">
+      <div class="tp"><span class="tp-icon">&#128737;</span><div><b>Reliable</b><small>Service</small></div></div>
+      <div class="tp"><span class="tp-icon">&#128176;</span><div><b>Affordable</b><small>Pricing</small></div></div>
+      <div class="tp"><span class="tp-icon">&#9889;</span><div><b>Fast</b><small>Turnaround</small></div></div>
+      <div class="tp"><span class="tp-icon">&#127911;</span><div><b>Expert</b><small>Support</small></div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="monitor-wrap">
+      <div class="monitor-frame">
+        <div class="mon-topbar"><div class="mon-dot"></div><div class="mon-dot"></div><div class="mon-dot"></div><div class="mon-search">axeconnect.co.za</div></div>
+        <div class="mon-screen">
+          <div class="dash-header">
+            <div class="dash-logo"><div class="dash-logo-icon"><svg viewBox="0 0 20 20" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2 16 L8 2 L10 2 L5 16Z" fill="#E8312B"/><path d="M2 10 Q-1 6 0 1 Q5 5 7 9Z" fill="#E8312B"/><path d="M10 2 L14 2 L9 16 L7 16Z" fill="#fff" opacity=".8"/><path d="M4 11 L10 11 L11 13 L3 13Z" fill="#E8312B"/></svg></div><span>Axe Connect</span></div>
+            <div class="dash-title">Dashboard</div>
+            <div class="dash-icons"><span></span><span></span><span></span></div>
+          </div>
+          <div class="dash-stats">
+            <div class="ds"><small>Total Repairs</small><b>12,840</b><em class="r">+12.5%</em><div class="ds-chart"><svg viewBox="0 0 80 20"><polyline points="0,16 13,10 26,14 40,4 55,8 80,2" style="stroke:#E8312B"/></svg></div></div>
+            <div class="ds"><small>Page Views</small><b>25,430</b><em class="g">+18.2%</em><div class="ds-chart"><svg viewBox="0 0 80 20"><polyline points="0,15 14,8 28,12 43,5 58,9 80,2" style="stroke:#22c55e"/></svg></div></div>
+            <div class="ds"><small>Happy Clients</small><b>3,921</b><div class="donut-wrap"><div class="donut-circle">58%</div></div></div>
+          </div>
+          <div class="dash-activity">
+            <strong>RECENT ACTIVITY</strong>
+            <div class="act-row"><div class="act-dot red"></div><span>Laptop repaired</span><time>2h ago</time></div>
+            <div class="act-row"><div class="act-dot grn"></div><span>Website launched</span><time>5h ago</time></div>
+            <div class="act-row"><div class="act-dot red"></div><span>Logo designed</span><time>1d ago</time></div>
+          </div>
+        </div>
+      </div>
+      <div class="mon-stand"></div><div class="mon-base"></div>
+    </div>
+    <div class="laptop-wrap">
+      <div class="laptop-frame">
+        <div class="lap-topbar"><div class="lap-dot"></div><div class="lap-dot"></div><div class="lap-dot"></div><div class="lap-brand"><svg viewBox="-2 0 80 18" width="70" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2 14 L7 2 L9 2 L5 14Z" fill="#E8312B"/><path d="M2 8 Q-1 5 0 1 Q4 4 6 7Z" fill="#E8312B"/><path d="M9 2 L13 2 L9 14 L7 14Z" fill="#fff" opacity=".7"/><path d="M3 9 L8 9 L9 11 L2 11Z" fill="#E8312B"/><text x="15" y="11" font-family="Arial Black,Arial" font-weight="900" font-size="6" fill="#E8312B">AXE</text><text x="31" y="11" font-family="Arial Black,Arial" font-weight="900" font-size="6" fill="#fff"> CONNECT</text></svg></div><div class="lap-nav-links">IT Web Design</div></div>
+        <div class="lap-screen"><h3>Build Your<br>Brand Online</h3><p>Websites, logos &amp; posters.</p><a class="lap-btn" href="#web-dev">Get Started</a></div>
+      </div>
+      <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="laptop-bottom"></div>
+    </div>
+    <div class="pc-tower"><div class="pc-fan"></div><div class="pc-fan2"></div><div class="pc-glow"></div><div class="pc-strip"></div></div>
+    <div class="keyboard-wrap"><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div></div>
+    <div class="mouse-wrap"></div>
+    <div class="plant-wrap">&#127807;</div>
+  </div>
+</section>
+
+<!-- IT SUPPORT & REPAIRS -->
+<section id="it-support" class="dept-section">
+  <div class="dept-header it-dept reveal">
+    <div class="dept-header-inner">
+      <div class="dept-tag">&#128187; IT SUPPORT &amp; REPAIRS</div>
+      <h2>Technical Problems?<br><span>We've Got You Covered.</span></h2>
+      <p>From broken screens to slow PCs — fast, affordable on-site and remote tech support for homes and businesses across Pretoria.</p>
+      <a class="btn-red" href="tel:0607950837">Call Us Now &#8594;</a>
+    </div>
+  </div>
+  <div class="dept-cards">
+    <div class="dept-card reveal d1">
+      <div class="dc-icon">&#128187;</div>
+      <h3>Laptop &amp; Computer Repairs</h3>
+      <p>Screen replacements, hardware repairs, keyboard fixes, and general maintenance to get your device running like new.</p>
+      <ul class="dc-list"><li>Screen replacements</li><li>Hardware repairs</li><li>Keyboard &amp; trackpad fixes</li><li>Battery replacements</li></ul>
+    </div>
+    <div class="dept-card reveal d2">
+      <div class="dc-icon">&#127911;</div>
+      <h3>IT Support &amp; Troubleshooting</h3>
+      <p>Remote or on-site technical support for homes and businesses. Quick, reliable, no-jargon advice and fixes.</p>
+      <ul class="dc-list"><li>Remote support</li><li>On-site visits</li><li>Network setup</li><li>Email &amp; printer config</li></ul>
+    </div>
+    <div class="dept-card reveal d3">
+      <div class="dc-icon">&#9881;&#65039;</div>
+      <h3>Software Installation &amp; Updates</h3>
+      <p>Install, configure, and update your software to keep your systems current, secure, and optimised.</p>
+      <ul class="dc-list"><li>OS installations</li><li>Software setup</li><li>Driver updates</li><li>System optimisation</li></ul>
+    </div>
+    <div class="dept-card reveal d1">
+      <div class="dc-icon">&#128737;&#65039;</div>
+      <h3>Virus &amp; Performance Fixes</h3>
+      <p>Remove malware, eliminate threats, and restore your PC to peak speed and performance.</p>
+      <ul class="dc-list"><li>Malware removal</li><li>Antivirus setup</li><li>PC speed boost</li><li>Data recovery</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- WEB DEVELOPMENT & DESIGN -->
+<section id="web-dev" class="dept-section">
+  <div class="dept-header web-dept reveal">
+    <div class="dept-header-inner">
+      <div class="dept-tag">&#127760; WEB DEVELOPMENT &amp; CREATIVE DESIGN</div>
+      <h2>Build Your Brand.<br><span>Stand Out Online.</span></h2>
+      <p>From stunning websites to eye-catching logos and posters — we create everything your business needs to look professional and grow.</p>
+      <a class="btn-white-red" href="mailto:carvenmaceke9@gmail.com?subject=Design%20Enquiry">Get a Quote &#8594;</a>
+    </div>
+  </div>
+  <div class="dept-cards">
+    <div class="dept-card reveal d1">
+      <div class="dc-icon">&#127760;</div>
+      <h3>Website Design &amp; Development</h3>
+      <p>Modern, mobile-friendly, SEO-ready websites that help you attract customers and grow your brand online.</p>
+      <ul class="dc-list"><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li></ul>
+    </div>
+    <div class="dept-card reveal d2">
+      <div class="dc-icon">&#128640;</div>
+      <h3>Startup Business Websites</h3>
+      <p>Perfect websites for new businesses ready to launch — affordable, fast, and built to impress from day one.</p>
+      <ul class="dc-list"><li>Affordable packages</li><li>Domain &amp; hosting setup</li><li>Mobile responsive</li><li>Fast turnaround</li></ul>
+    </div>
+    <div class="dept-card reveal d3">
+      <div class="dc-icon">&#128295;</div>
+      <h3>Website Maintenance &amp; Updates</h3>
+      <p>We keep your existing website fresh, secure, and up to date — so you can focus on running your business.</p>
+      <ul class="dc-list"><li>Content updates</li><li>Security patches</li><li>Performance tuning</li><li>Monthly support plans</li></ul>
+    </div>
+    <div class="dept-card reveal d1 card-highlight">
+      <div class="card-new-badge">NEW</div>
+      <div class="dc-icon">&#127775;</div>
+      <h3>Logo Design</h3>
+      <p>Professional, unique logos that capture your brand identity and make a lasting first impression on every customer.</p>
+      <ul class="dc-list"><li>Custom logo concepts</li><li>Multiple revisions</li><li>PNG, SVG &amp; PDF files</li><li>Brand colour palette</li></ul>
+    </div>
+    <div class="dept-card reveal d2 card-highlight">
+      <div class="card-new-badge">NEW</div>
+      <div class="dc-icon">&#128444;&#65039;</div>
+      <h3>Poster &amp; Flyer Design</h3>
+      <p>Eye-catching posters, flyers, and promotional material designed to grab attention and drive real results.</p>
+      <ul class="dc-list"><li>Event posters</li><li>Business flyers</li><li>Social media graphics</li><li>Print-ready files</li></ul>
+    </div>
+    <div class="dept-card reveal d3 card-highlight">
+      <div class="card-new-badge">NEW</div>
+      <div class="dc-icon">&#9999;&#65039;</div>
+      <h3>Brand Identity &amp; Graphics</h3>
+      <p>Complete brand packages — logo, colours, fonts and templates — so your business always looks consistent and polished.</p>
+      <ul class="dc-list"><li>Brand style guide</li><li>Business card design</li><li>Letterhead &amp; templates</li><li>Social media kit</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-sec">
+  <div class="about-img">
+    <svg class="skyline-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a0a00"/><stop offset="60%" stop-color="#3d1c0a"/><stop offset="100%" stop-color="#8b3a1a"/></linearGradient>
+        <linearGradient id="horiz" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e85d1a" stop-opacity=".6"/><stop offset="100%" stop-color="#E8312B" stop-opacity=".3"/></linearGradient>
+      </defs>
+      <rect width="600" height="400" fill="url(#sky)"/>
+      <ellipse cx="300" cy="380" rx="300" ry="80" fill="url(#horiz)" opacity=".7"/>
+      <circle cx="50" cy="30" r="1.5" fill="white" opacity=".8"/><circle cx="120" cy="15" r="1" fill="white" opacity=".6"/><circle cx="200" cy="25" r="1.2" fill="white" opacity=".7"/><circle cx="290" cy="10" r="1.5" fill="white" opacity=".5"/><circle cx="380" cy="20" r="1" fill="white" opacity=".8"/>
+      <rect x="0" y="220" width="50" height="180" fill="#1a0f08"/><rect x="55" y="240" width="35" height="160" fill="#150c06"/><rect x="95" y="200" width="55" height="200" fill="#1e1008"/><rect x="155" y="230" width="40" height="170" fill="#1a0f08"/>
+      <rect x="270" y="80" width="60" height="320" fill="#1e1008"/><rect x="265" y="72" width="70" height="14" fill="#251410"/><rect x="272" y="60" width="56" height="14" fill="#1e1008"/><rect x="290" y="30" width="20" height="12" fill="#E8312B" opacity=".8"/><rect x="295" y="20" width="10" height="12" fill="#E8312B"/>
+      <rect x="340" y="210" width="45" height="190" fill="#1a0f08"/><rect x="435" y="220" width="55" height="180" fill="#1e1008"/><rect x="535" y="230" width="65" height="170" fill="#150c06"/>
+      <rect x="10" y="230" width="5" height="5" fill="#E8312B" opacity=".7" rx="1"/><rect x="105" y="210" width="5" height="5" fill="#E8312B" opacity=".6" rx="1"/><rect x="443" y="228" width="5" height="5" fill="#E8312B" opacity=".6" rx="1"/>
+      <rect x="0" y="395" width="600" height="5" fill="#E8312B" opacity=".4"/>
+    </svg>
+    <div class="about-overlay"></div>
+    <div class="red-accent-box"></div>
+    <div class="dot-grid"><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div></div>
+  </div>
+  <div class="about-content reveal d2">
+    <span class="sec-label">ABOUT US</span>
+    <h2>About <em>Axe</em> Connect</h2>
+    <p>We're a Pretoria-based IT support, web development, and creative design company passionate about helping people and businesses stay connected, productive, and visible online.</p>
+    <p>From fixing your PC to building a website or designing a stunning logo and poster — we deliver honest advice, quality work, and affordable solutions you can trust.</p>
+    <div class="about-points">
+      <div class="ap"><div class="ap-icon">&#128101;</div><b>Local &amp; Trusted</b><small>Proudly based in Pretoria</small></div>
+      <div class="ap"><div class="ap-icon">&#9989;</div><b>Customer Focused</b><small>Your success is our priority</small></div>
+      <div class="ap"><div class="ap-icon">&#11088;</div><b>Quality Guaranteed</b><small>Reliable solutions that last</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="sec-head reveal">
+    <span class="sec-label">HOW IT WORKS</span>
+    <h2 class="sec-h2">Simple. Fast. Effective.</h2>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-step reveal d1">
+      <div class="proc-num">1</div>
+      <div class="proc-icon-wrap">&#128222;</div>
+      <h3>Get in Touch</h3>
+      <p>Call, WhatsApp, or email us. Tell us what you need — repairs, a website, a logo, or a poster.</p>
+    </div>
+    <div class="proc-arrow reveal">&#8594;</div>
+    <div class="proc-step reveal d2">
+      <div class="proc-num">2</div>
+      <div class="proc-icon-wrap">&#128269;</div>
+      <h3>We Assess &amp; Quote</h3>
+      <p>We check the issue or review your project and give honest recommendations with a clear, upfront price.</p>
+    </div>
+    <div class="proc-arrow reveal">&#8594;</div>
+    <div class="proc-step reveal d3">
+      <div class="proc-num">3</div>
+      <div class="proc-icon-wrap">&#9989;</div>
+      <h3>Done &amp; Delivered</h3>
+      <p>We fix your device, launch your site, or deliver your design — on time and within budget. Always.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="contact" class="cta-band">
+  <div style="text-align:center;max-width:700px;margin:0 auto;position:relative;z-index:2">
+    <h2 style="font-family:var(--font);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#fff;margin-bottom:.75rem;line-height:1.15">
+      Ready to Fix, Build, or Create?
+    </h2>
+    <p style="font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:0">
+      Call us, send a message, or fill in the contact form — we'll get back to you fast.
+    </p>
+    <div class="cta-band-btns">
+      <button class="cta-band-btn cta-btn-white" onclick="openContactModal()">📋 Send Us a Message</button>
+      <button class="cta-band-btn cta-btn-outline-w" onclick="openCallModal()">📞 Call Us Now</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-about">
+      <div class="foot-logo"><div class="logo-icon"><svg width="130" height="44" viewBox="-2 0 134 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- Red left leg / axe blade body of A -->
+  <path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E8312B"/>
+  <!-- Axe blade curved head -->
+  <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E8312B"/>
+  <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+  <!-- Dark right leg of A -->
+  <path d="M30 8 L44 8 L30 56 L23 56 Z" fill="#ffffff"/>
+  <!-- A crossbar -->
+  <path d="M13 37 L31 37 L33 43 L11 43 Z" fill="#E8312B"/>
+  <!-- Circuit lines right -->
+  <line x1="38" y1="14" x2="48" y2="14" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="48" y1="14" x2="53" y2="20" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="20" x2="68" y2="20" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="68" cy="20" r="2.5" fill="none" stroke="#E8312B" stroke-width="1.8"/>
+  <line x1="40" y1="26" x2="52" y2="26" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="52" y1="26" x2="57" y2="32" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="57" y1="32" x2="72" y2="32" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="72" cy="32" r="2.5" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+  <line x1="40" y1="36" x2="53" y2="36" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="36" x2="58" y2="42" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="58" y1="42" x2="72" y2="42" stroke="#999" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="72" cy="42" r="2.5" fill="none" stroke="#999" stroke-width="1.8"/>
+  <line x1="36" y1="46" x2="48" y2="46" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="48" y1="46" x2="53" y2="52" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="53" y1="52" x2="68" y2="52" stroke="#E8312B" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="68" cy="52" r="2.5" fill="none" stroke="#E8312B" stroke-width="1.8"/>
+  <line x1="32" y1="56" x2="44" y2="56" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="44" y1="56" x2="49" y2="62" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="49" y1="62" x2="64" y2="62" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="64" cy="62" r="2.5" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+  <!-- AXE CONNECT text -->
+  <text x="0" y="78" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="12" fill="#E8312B" letter-spacing="2">AXE</text>
+  <text x="38" y="78" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="12" fill="#ffffff" letter-spacing="1.5"> CONNECT</text>
+  <!-- Decorative line below text -->
+  <line x1="0" y1="82" x2="28" y2="82" stroke="#E8312B" stroke-width="1.2"/>
+  <circle cx="30" cy="82" r="1.5" fill="#E8312B"/>
+  <line x1="33" y1="82" x2="68" y2="82" stroke="#aaa" stroke-width="1.2"/>
+  <circle cx="70" cy="82" r="1.5" fill="#aaa"/>
+  <line x1="73" y1="82" x2="102" y2="82" stroke="#aaa" stroke-width="1.2"/>
+</svg></div></div>
+      <p>IT support, PC repairs, web development, logo design, and creative services for businesses in Pretoria.</p>
+      <div class="socials">
+        <a class="soc" href="#" aria-label="Facebook">f</a>
+        <a class="soc" href="#" aria-label="Instagram">&#9676;</a>
+        <a class="soc" href="https://wa.me/270607950837" aria-label="WhatsApp">&#9742;</a>
+        <a class="soc" href="#" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h3>IT Support &amp; Repairs</h3>
+      <a href="#it-support">Laptop &amp; Computer Repairs</a>
+      <a href="#it-support">IT Support &amp; Troubleshooting</a>
+      <a href="#it-support">Software Installation</a>
+      <a href="#it-support">Virus &amp; Performance Fixes</a>
+    </div>
+    <div class="foot-col">
+      <h3>Web &amp; Creative Design</h3>
+      <a href="#web-dev">Website Design &amp; Development</a>
+      <a href="#web-dev">Startup Business Websites</a>
+      <a href="#web-dev">Website Maintenance</a>
+      <a href="#web-dev">Logo Design</a>
+      <a href="#web-dev">Poster &amp; Flyer Design</a>
+      <a href="#web-dev">Brand Identity &amp; Graphics</a>
+    </div>
+    <div class="foot-col">
+      <h3>Contact Us</h3>
+      <div class="fi"><span class="fi-icon">&#128222;</span><a href="tel:0607950837">060 795 0837</a></div>
+      <div class="fi"><span class="fi-icon">&#9993;</span><a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a></div>
+      <div class="fi"><span class="fi-icon">&#128172;</span><a href="https://wa.me/270607950837">WhatsApp Us</a></div>
+      <div class="fi"><span class="fi-icon">&#128205;</span><span>Pretoria, Gauteng</span></div>
+      <div class="fi"><span class="fi-icon">&#128336;</span><span>Mon &#8211; Fri: 08:30 &#8211; 17:00</span></div>
+    </div>
+  </div>
+  <p class="copyright">&#169; <span id="yr"></span> Axe Connect. All rights reserved. | Pretoria, Gauteng</p>
+</footer>
+
+<!-- CONTACT FORM MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="closeOnOverlay(event,'contactModal')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close">✕</button>
+      <h2 id="contactModalTitle">Get in Touch</h2>
+      <p>Fill in the form and we'll get back to you within the hour.</p>
+    </div>
+    <div class="modal-body">
+      <div id="contactFormWrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Full Name</label>
+            <input type="text" id="cf-name" placeholder="John Doe" required/>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone Number</label>
+            <input type="tel" id="cf-phone" placeholder="060 123 4567"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-email">Email Address</label>
+          <input type="email" id="cf-email" placeholder="john@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label for="cf-service">What do you need?</label>
+          <select id="cf-service" required>
+            <option value="" disabled selected>— Select a service —</option>
+            <optgroup label="🖥 IT Support &amp; Repairs">
+              <option value="Laptop & Computer Repair">Laptop &amp; Computer Repair</option>
+              <option value="IT Support & Troubleshooting">IT Support &amp; Troubleshooting</option>
+              <option value="Software Installation & Updates">Software Installation &amp; Updates</option>
+              <option value="Virus & Performance Fix">Virus &amp; Performance Fix</option>
+            </optgroup>
+            <optgroup label="🌐 Web Development">
+              <option value="New Business Website">New Business Website</option>
+              <option value="Startup Website Package">Startup Website Package</option>
+              <option value="E-commerce Store">E-commerce Store</option>
+              <option value="Website Maintenance & Updates">Website Maintenance &amp; Updates</option>
+            </optgroup>
+            <optgroup label="🎨 Creative Design">
+              <option value="Logo Design">Logo Design</option>
+              <option value="Poster & Flyer Design">Poster &amp; Flyer Design</option>
+              <option value="Brand Identity Package">Brand Identity Package</option>
+            </optgroup>
+            <option value="Other / General Enquiry">Other / General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" placeholder="Tell us a bit more about what you need..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitContactForm()">Send Message →</button>
+        <p class="form-note">📧 Your message goes directly to carvenmaceke9@gmail.com</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="fs-icon">✅</div>
+        <h3>Message Sent!</h3>
+        <p>Thanks! We'll be in touch with you shortly.<br>Check your email for confirmation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALL MODAL -->
+<div class="call-modal-overlay" id="callModal" onclick="closeOnOverlay(event,'callModal')">
+  <div class="call-modal-box" role="dialog" aria-modal="true">
+    <div class="call-modal-head">
+      <button class="call-close" onclick="closeModal('callModal')" aria-label="Close">✕</button>
+      <h2>📞 Call Axe Connect</h2>
+      <p>Choose how you'd like to reach us</p>
+    </div>
+    <div class="call-options">
+      <!-- Direct call (always shown) -->
+      <a class="call-option co-phone" href="tel:0607950837">
+        <div class="co-icon">📱</div>
+        <div class="co-text">
+          <b>Call 060 795 0837</b>
+          <small>Tap to call directly — works on all devices</small>
+        </div>
+      </a>
+      <!-- WhatsApp (always shown) -->
+      <a class="call-option co-phone" href="https://wa.me/27607950837?text=Hi%20Axe%20Connect!%20I%27d%20like%20to%20enquire%20about%20your%20services." target="_blank">
+        <div class="co-icon">💬</div>
+        <div class="co-text">
+          <b>WhatsApp Us</b>
+          <small>Chat on WhatsApp — quick and easy</small>
+        </div>
+      </a>
+      <!-- Teams (shown on desktop) -->
+      <a class="call-option co-teams" id="teamsOption" href="msteams://call?phone=+27607950837" target="_blank">
+        <div class="co-icon" style="background:#e8eeff;font-size:1.1rem">🟦</div>
+        <div class="co-text">
+          <b>Call via Microsoft Teams</b>
+          <small>Recommended if you're on a laptop / PC</small>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// Year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Mobile nav
+const toggle = document.getElementById('navToggle');
+const nav = document.getElementById('mainNav');
+toggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.textContent = open ? '✕' : '☰';
+  toggle.setAttribute('aria-expanded', open);
+});
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open'); toggle.textContent = '☰';
+}));
+
+// Header shadow on scroll
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  hdr.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 #e8e8e8';
+});
+
+// Active nav
+const secs = document.querySelectorAll('section[id], main[id]');
+const links = document.querySelectorAll('.hdr-nav a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting)
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id));
+  });
+}, { threshold: 0.3 });
+secs.forEach(s => io.observe(s));
+
+// Scroll reveal
+const revs = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }});
+}, { threshold: 0.08 });
+revs.forEach(r => ro.observe(r));
+
+// Show Teams option on non-mobile
+if (window.innerWidth >= 768) {
+  const t = document.getElementById('teamsOption');
+  if (t) t.style.display = 'flex';
+}
+
+// Modal open/close
+function openContactModal() {
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openCallModal() {
+  document.getElementById('callModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e, id) {
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal('contactModal');
+    closeModal('callModal');
+  }
+});
+
+// Also wire up any "Contact" nav/button to open modal
+document.querySelectorAll('a[href="#contact"]').forEach(a => {
+  a.addEventListener('click', e => {
+    // Only intercept if NOT the CTA section itself
+    const target = document.getElementById('contact');
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      // If section is far away, just scroll — otherwise open modal
+    }
+  });
+});
+
+// Contact form submission via mailto
+function submitContactForm() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const phone   = document.getElementById('cf-phone').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const service = document.getElementById('cf-service').value;
+  const msg     = document.getElementById('cf-msg').value.trim();
+
+  if (!name || !email || !service) {
+    alert('Please fill in your name, email, and select a service.');
+    return;
+  }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  const subject = encodeURIComponent('Axe Connect Enquiry: ' + service);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Phone: ' + (phone || 'Not provided') + '\n' +
+    'Email: ' + email + '\n' +
+    'Service Needed: ' + service + '\n\n' +
+    'Message:\n' + (msg || 'No additional message.')
+  );
+
+  // Open mailto
+  window.location.href = 'mailto:carvenmaceke9@gmail.com?subject=' + subject + '&body=' + body;
+
+  // Show success state
+  setTimeout(() => {
+    document.getElementById('contactFormWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    setTimeout(() => {
+      closeModal('contactModal');
+      document.getElementById('contactFormWrap').style.display = 'block';
+      document.getElementById('formSuccess').style.display = 'none';
+      // Reset form
+      ['cf-name','cf-phone','cf-email','cf-msg'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('cf-service').selectedIndex = 0;
+    }, 4000);
+  }, 800);
+}
+</script>
+</body>
+</html>
