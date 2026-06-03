@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Axe Connect | IT Support, PC Repairs &amp; Websites in Pretoria</title>
-<meta name="description" content="Axe Connect provides affordable laptop and computer repairs, IT support, and modern websites for startups and small businesses in Pretoria."/>
+<title>Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria</title>
+<meta name="description" content="Axe Connect helps individuals, startups, small businesses and companies with IT support, computer repairs, website development, website maintenance, logos, posters and creative design services in Pretoria."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -88,12 +88,29 @@ img{max-width:100%;display:block}
 }
 
 .hero-left{position:relative;z-index:2}
+.loc-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1.25rem}
 .loc-pill{
   display:inline-flex;align-items:center;gap:7px;
   background:transparent;border:none;
-  font-size:0.8rem;color:var(--muted);margin-bottom:1.25rem;
+  font-size:0.8rem;color:var(--muted);margin-bottom:0;
 }
 .loc-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block}
+.brand-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 14px;border-radius:999px;
+  background:linear-gradient(135deg,#fff7f7 0%,#ffffff 100%);
+  border:1px solid rgba(232,49,43,.18);
+  box-shadow:0 8px 24px rgba(232,49,43,.10);
+}
+.brand-chip-mark{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(232,49,43,.12);color:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.8rem;
+}
+.brand-chip-copy{display:flex;flex-direction:column;line-height:1.05}
+.brand-chip-copy strong{font-size:0.82rem;color:var(--black);font-weight:800}
+.brand-chip-copy small{font-size:0.64rem;color:var(--red);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 .hero h1{
   font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:900;
   line-height:1.05;color:var(--black);margin-bottom:1.25rem;
@@ -108,6 +125,7 @@ img{max-width:100%;display:block}
   font-weight:700;font-size:0.95rem;
   transition:background .2s,transform .15s;
   box-shadow:0 4px 16px rgba(232,49,43,0.3);
+  border:none;cursor:pointer;font-family:var(--font);
 }
 .btn-red:hover{background:var(--red2);transform:translateY(-2px)}
 .btn-outline{
@@ -181,32 +199,37 @@ img{max-width:100%;display:block}
 .dash-icons{display:flex;gap:4px}
 .dash-icons span{width:14px;height:14px;background:rgba(255,255,255,0.1);border-radius:3px;display:block}
 
-.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
-.ds{background:#1a1a1a;border-radius:6px;padding:7px}
-.ds small{font-size:0.5rem;color:#888;display:block}
-.ds b{font-size:0.8rem;font-weight:800;color:#fff;display:block}
-.ds em{font-size:0.48rem;font-style:normal}
-.ds em.g{color:#22c55e}
-.ds em.r{color:var(--red)}
-.ds-chart{margin-top:4px;height:20px}
-.ds-chart svg{width:100%;height:20px}
-.ds-chart svg polyline{fill:none;stroke-width:1.5}
-.donut-wrap{display:flex;justify-content:center;margin-top:4px}
-.donut-circle{
-  width:30px;height:30px;border-radius:50%;
-  border:3px solid var(--red);border-top-color:transparent;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.42rem;font-weight:700;color:var(--red);
-  animation:spin 3s linear infinite;
-}
-.dash-activity{background:#1a1a1a;border-radius:6px;padding:7px}
-.dash-activity strong{font-size:0.48rem;color:#888;display:block;margin-bottom:5px;letter-spacing:.08em}
-.act-row{display:flex;align-items:center;gap:5px;padding:2.5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.act-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.act-dot.red{background:var(--red)}
-.act-dot.grn{background:#22c55e}
-.act-row span{font-size:0.52rem;color:#ccc;flex:1}
-.act-row time{font-size:0.48rem;color:#888}
+.showcase-panel{display:grid;grid-template-columns:1.15fr .85fr;gap:8px;margin-bottom:8px}
+.showcase-copy,
+.showcase-visual,
+.monitor-services .ms-card,
+.monitor-note{background:#161616;border-radius:8px}
+.showcase-copy{padding:10px}
+.showcase-copy small{display:block;font-size:0.46rem;color:#9a9a9a;letter-spacing:.14em;margin-bottom:5px}
+.showcase-copy h4{font-size:0.95rem;line-height:1.08;color:#fff;font-weight:900;margin-bottom:5px}
+.showcase-copy p{font-size:0.52rem;line-height:1.45;color:#b8b8b8}
+.showcase-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.showcase-tags span{font-size:0.44rem;font-weight:700;padding:3px 6px;border-radius:999px;background:rgba(232,49,43,.14);color:#ff6a63;border:1px solid rgba(232,49,43,.18)}
+.showcase-visual{position:relative;overflow:hidden;min-height:104px;background:radial-gradient(circle at top right,rgba(232,49,43,.2),transparent 35%),linear-gradient(135deg,#141414 0%,#0e0e0e 100%)}
+.visual-ring{position:absolute;border-radius:50%;border:3px solid var(--red);border-top-color:transparent;opacity:.9}
+.visual-ring.r1{width:48px;height:48px;top:14px;right:16px}
+.visual-ring.r2{width:32px;height:32px;bottom:18px;right:34px;border-width:2px;opacity:.7}
+.visual-line{position:absolute;height:6px;border-radius:999px;background:var(--red);box-shadow:0 0 14px rgba(232,49,43,.45)}
+.visual-line.l1{width:48px;bottom:18px;left:14px}
+.visual-line.l2{width:28px;bottom:30px;left:14px;opacity:.5}
+.visual-grid{position:absolute;inset:14px auto auto 14px;display:grid;grid-template-columns:repeat(4,6px);gap:6px;opacity:.55}
+.visual-grid span{width:3px;height:3px;border-radius:50%;background:#ff574f}
+.visual-brand{position:absolute;left:14px;top:16px;font-size:0.5rem;color:#fff;font-weight:800;letter-spacing:.08em}
+.visual-brand strong{color:var(--red)}
+.monitor-services{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
+.ms-card{padding:8px 7px;min-height:74px}
+.ms-card .ms-icon{font-size:.82rem;display:block;margin-bottom:5px}
+.ms-card b{display:block;font-size:.56rem;line-height:1.2;color:#fff;margin-bottom:3px}
+.ms-card p{font-size:.46rem;line-height:1.35;color:#a8a8a8}
+.monitor-note{padding:8px 10px}
+.monitor-note strong{font-size:0.48rem;color:#8e8e8e;display:block;margin-bottom:6px;letter-spacing:.1em}
+.monitor-note p{font-size:0.52rem;color:#d0d0d0;line-height:1.5}
+.monitor-note p span{color:#ff655e;font-weight:700}
 
 /* monitor stand */
 .mon-stand{
@@ -587,7 +610,7 @@ footer{background:#111;padding:50px 5% 24px}
 .dept-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:1rem;}
 .dept-header h2 span{color:#E8312B}
 .dept-header p{font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:2rem;max-width:540px}
-.btn-white-red{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E8312B;padding:12px 26px;border-radius:7px;font-weight:700;font-size:0.92rem;transition:all .2s;}
+.btn-white-red{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E8312B;padding:12px 26px;border-radius:7px;font-weight:700;font-size:0.92rem;transition:all .2s;border:none;cursor:pointer;font-family:var(--font);}
 .btn-white-red:hover{background:#E8312B;color:#fff;transform:translateY(-2px)}
 .dept-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid #E8312B;}
 .dept-card{background:#fff;padding:32px 28px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;position:relative;transition:box-shadow .2s,transform .2s;}
@@ -786,6 +809,7 @@ footer{background:#111;padding:50px 5% 24px}
   <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
   <nav class="hdr-nav" id="mainNav">
     <a href="#home" class="active">Home</a>
+    <a href="#outsourcing">Services</a>
     <a href="#it-support">IT Support</a>
     <a href="#web-dev">Web &amp; Design</a>
     <a href="#about">About</a>
@@ -799,18 +823,24 @@ footer{background:#111;padding:50px 5% 24px}
   <div class="hero-dots" aria-hidden="true"></div>
   <div class="hero-dots2" aria-hidden="true"></div>
   <div class="hero-left">
-    <div class="loc-pill"><span class="loc-dot"></span> Proudly Based in Pretoria</div>
-    <h1>We Fix. We Build.<br>We <span>Connect.</span></h1>
-    <p class="hero-sub">Axe Connect offers expert IT support &amp; repairs, modern web development, and creative design services — logos, posters &amp; more. Affordable. Reliable. Pretoria-based.</p>
+    <div class="loc-row">
+      <div class="loc-pill"><span class="loc-dot"></span> Proudly Based in Pretoria</div>
+      <div class="brand-chip">
+        <span class="brand-chip-mark">A</span>
+        <span class="brand-chip-copy"><small>Your trusted partner</small><strong>Axe Connect</strong></span>
+      </div>
+    </div>
+    <h1>Tech Support &amp; Websites.<br>For <span>People and Businesses.</span></h1>
+    <p class="hero-sub">Axe Connect helps individuals, startups, small businesses, and companies with PC repairs, IT support, websites, maintenance, logos, posters, and creative design — all from one trusted place.</p>
     <div class="hero-btns">
-      <a class="btn-red" href="mailto:carvenmaceke9@gmail.com?subject=Quote%20Request">&#8594; Get a Quote</a>
+      <button type="button" class="btn-red" onclick="openQuoteModal()">&#8594; Get a Quote</button>
       <a class="btn-outline" href="#it-support">View Services</a>
     </div>
     <div class="trust-pills">
-      <div class="tp"><span class="tp-icon">&#128737;</span><div><b>Reliable</b><small>Service</small></div></div>
-      <div class="tp"><span class="tp-icon">&#128176;</span><div><b>Affordable</b><small>Pricing</small></div></div>
-      <div class="tp"><span class="tp-icon">&#9889;</span><div><b>Fast</b><small>Turnaround</small></div></div>
-      <div class="tp"><span class="tp-icon">&#127911;</span><div><b>Expert</b><small>Support</small></div></div>
+      <div class="tp"><span class="tp-icon">&#128737;</span><div><b>IT</b><small>Support</small></div></div>
+      <div class="tp"><span class="tp-icon">&#128187;</span><div><b>PC</b><small>Repairs</small></div></div>
+      <div class="tp"><span class="tp-icon">&#9889;</span><div><b>Fast</b><small>Response</small></div></div>
+      <div class="tp"><span class="tp-icon">&#127760;</span><div><b>Web</b><small>Solutions</small></div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -820,19 +850,35 @@ footer{background:#111;padding:50px 5% 24px}
         <div class="mon-screen">
           <div class="dash-header">
             <div class="dash-logo"><div class="dash-logo-icon"><svg viewBox="0 0 20 20" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2 16 L8 2 L10 2 L5 16Z" fill="#E8312B"/><path d="M2 10 Q-1 6 0 1 Q5 5 7 9Z" fill="#E8312B"/><path d="M10 2 L14 2 L9 16 L7 16Z" fill="#fff" opacity=".8"/><path d="M4 11 L10 11 L11 13 L3 13Z" fill="#E8312B"/></svg></div><span>Axe Connect</span></div>
-            <div class="dash-title">Dashboard</div>
+            <div class="dash-title">Services</div>
             <div class="dash-icons"><span></span><span></span><span></span></div>
           </div>
-          <div class="dash-stats">
-            <div class="ds"><small>Total Repairs</small><b>12,840</b><em class="r">+12.5%</em><div class="ds-chart"><svg viewBox="0 0 80 20"><polyline points="0,16 13,10 26,14 40,4 55,8 80,2" style="stroke:#E8312B"/></svg></div></div>
-            <div class="ds"><small>Page Views</small><b>25,430</b><em class="g">+18.2%</em><div class="ds-chart"><svg viewBox="0 0 80 20"><polyline points="0,15 14,8 28,12 43,5 58,9 80,2" style="stroke:#22c55e"/></svg></div></div>
-            <div class="ds"><small>Happy Clients</small><b>3,921</b><div class="donut-wrap"><div class="donut-circle">58%</div></div></div>
+          <div class="showcase-panel">
+            <div class="showcase-copy">
+              <small>ONE TEAM. MULTIPLE SOLUTIONS.</small>
+              <h4>Reliable support for homes, startups &amp; businesses.</h4>
+              <p>We fix devices, support users, build websites, and keep brands looking professional.</p>
+              <div class="showcase-tags">
+                <span>IT Support</span><span>PC Repairs</span><span>Websites</span><span>Design</span>
+              </div>
+            </div>
+            <div class="showcase-visual">
+              <div class="visual-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="visual-brand"><strong>AXE</strong> CONNECT</div>
+              <div class="visual-ring r1"></div>
+              <div class="visual-ring r2"></div>
+              <div class="visual-line l1"></div>
+              <div class="visual-line l2"></div>
+            </div>
           </div>
-          <div class="dash-activity">
-            <strong>RECENT ACTIVITY</strong>
-            <div class="act-row"><div class="act-dot red"></div><span>Laptop repaired</span><time>2h ago</time></div>
-            <div class="act-row"><div class="act-dot grn"></div><span>Website launched</span><time>5h ago</time></div>
-            <div class="act-row"><div class="act-dot red"></div><span>Logo designed</span><time>1d ago</time></div>
+          <div class="monitor-services">
+            <div class="ms-card"><span class="ms-icon">&#128187;</span><b>IT Support</b><p>Remote and on-site help for everyday tech problems.</p></div>
+            <div class="ms-card"><span class="ms-icon">&#127760;</span><b>Websites</b><p>Modern sites for startups, businesses and personal brands.</p></div>
+            <div class="ms-card"><span class="ms-icon">&#127912;</span><b>Creative Design</b><p>Logos, posters and brand visuals that look professional.</p></div>
+          </div>
+          <div class="monitor-note">
+            <strong>WHY CLIENTS CHOOSE US</strong>
+            <p><span>Affordable.</span> Fast response, honest service, and one place for support, websites and creative design.</p>
           </div>
         </div>
       </div>
@@ -841,7 +887,7 @@ footer{background:#111;padding:50px 5% 24px}
     <div class="laptop-wrap">
       <div class="laptop-frame">
         <div class="lap-topbar"><div class="lap-dot"></div><div class="lap-dot"></div><div class="lap-dot"></div><div class="lap-brand"><svg viewBox="-2 0 80 18" width="70" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2 14 L7 2 L9 2 L5 14Z" fill="#E8312B"/><path d="M2 8 Q-1 5 0 1 Q4 4 6 7Z" fill="#E8312B"/><path d="M9 2 L13 2 L9 14 L7 14Z" fill="#fff" opacity=".7"/><path d="M3 9 L8 9 L9 11 L2 11Z" fill="#E8312B"/><text x="15" y="11" font-family="Arial Black,Arial" font-weight="900" font-size="6" fill="#E8312B">AXE</text><text x="31" y="11" font-family="Arial Black,Arial" font-weight="900" font-size="6" fill="#fff"> CONNECT</text></svg></div><div class="lap-nav-links">IT Web Design</div></div>
-        <div class="lap-screen"><h3>Build Your<br>Brand Online</h3><p>Websites, logos &amp; posters.</p><a class="lap-btn" href="#web-dev">Get Started</a></div>
+        <div class="lap-screen"><h3>Fix. Build.<br>Grow Online</h3><p>IT support, websites &amp; design.</p><a class="lap-btn" href="#outsourcing">Get Started</a></div>
       </div>
       <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="laptop-bottom"></div>
     </div>
@@ -852,39 +898,73 @@ footer{background:#111;padding:50px 5% 24px}
   </div>
 </section>
 
+<!-- SERVICES OVERVIEW -->
+<section id="outsourcing" class="services">
+  <div class="sec-head reveal">
+    <span class="sec-label">SERVICES FOR EVERYONE</span>
+    <h2 class="sec-h2">Simple Support for Individuals, Startups &amp; Companies</h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal d1">
+      <div class="svc-icon-wrap">&#128187;</div>
+      <h3>1. IT Support &amp; PC Repairs</h3>
+      <p>For individuals and businesses: laptop repairs, slow PCs, software problems, virus removal, email setup, printers, and general tech support.</p>
+      <div class="svc-card-line"></div>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-icon-wrap">&#127970;</div>
+      <h3>2. Business &amp; Office Support</h3>
+      <p>For small businesses and companies that need reliable outsourced support for staff devices, office systems, emails, networks, and maintenance.</p>
+      <div class="svc-card-line"></div>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-icon-wrap">&#127760;</div>
+      <h3>3. Websites &amp; Maintenance</h3>
+      <p>For individuals, startups, and companies: business websites, landing pages, portfolios, e-commerce stores, redesigns, and monthly website updates.</p>
+      <div class="svc-card-line"></div>
+    </div>
+    <div class="svc-card reveal d4">
+      <div class="svc-icon-wrap">&#128444;&#65039;</div>
+      <h3>4. Logo, Poster &amp; Brand Design</h3>
+      <p>For personal brands and businesses: logos, posters, flyers, social media graphics, business cards, and brand identity material.</p>
+      <div class="svc-card-line"></div>
+    </div>
+  </div>
+</section>
+
 <!-- IT SUPPORT & REPAIRS -->
 <section id="it-support" class="dept-section">
   <div class="dept-header it-dept reveal">
     <div class="dept-header-inner">
       <div class="dept-tag">&#128187; IT SUPPORT &amp; REPAIRS</div>
       <h2>Technical Problems?<br><span>We've Got You Covered.</span></h2>
-      <p>From broken screens to slow PCs — fast, affordable on-site and remote tech support for homes and businesses across Pretoria.</p>
-      <a class="btn-red" href="tel:0607950837">Call Us Now &#8594;</a>
+      <p>Whether it is your personal laptop, home computer, startup setup, or office devices, Axe Connect helps with repairs, troubleshooting, software, email, printers, networks, and performance problems.</p>
+      <button type="button" class="btn-red" onclick="openCallModal()" style="border:none;font-family:var(--font);cursor:pointer;">Call or WhatsApp Us &#8594;</button>
     </div>
   </div>
   <div class="dept-cards">
     <div class="dept-card reveal d1">
       <div class="dc-icon">&#128187;</div>
       <h3>Laptop &amp; Computer Repairs</h3>
-      <p>Screen replacements, hardware repairs, keyboard fixes, and general maintenance to get your device running like new.</p>
+      <p>Repairs for personal and business laptops/desktops, including hardware faults, performance issues, screens, batteries, and general maintenance.</p>
       <ul class="dc-list"><li>Screen replacements</li><li>Hardware repairs</li><li>Keyboard &amp; trackpad fixes</li><li>Battery replacements</li></ul>
     </div>
     <div class="dept-card reveal d2">
       <div class="dc-icon">&#127911;</div>
       <h3>IT Support &amp; Troubleshooting</h3>
-      <p>Remote or on-site technical support for homes and businesses. Quick, reliable, no-jargon advice and fixes.</p>
+      <p>Remote or on-site support for individuals, homes, startups, and businesses that need reliable technical help.</p>
       <ul class="dc-list"><li>Remote support</li><li>On-site visits</li><li>Network setup</li><li>Email &amp; printer config</li></ul>
     </div>
     <div class="dept-card reveal d3">
       <div class="dc-icon">&#9881;&#65039;</div>
-      <h3>Software Installation &amp; Updates</h3>
-      <p>Install, configure, and update your software to keep your systems current, secure, and optimised.</p>
+      <h3>Software Setup &amp; Updates</h3>
+      <p>We install, configure, update, and optimise software so your device or business system can run securely and without delays.</p>
       <ul class="dc-list"><li>OS installations</li><li>Software setup</li><li>Driver updates</li><li>System optimisation</li></ul>
     </div>
     <div class="dept-card reveal d1">
       <div class="dc-icon">&#128737;&#65039;</div>
-      <h3>Virus &amp; Performance Fixes</h3>
-      <p>Remove malware, eliminate threats, and restore your PC to peak speed and performance.</p>
+      <h3>Virus Removal &amp; Performance Fixes</h3>
+      <p>Malware removal, system clean-up, data recovery support, antivirus setup, and PC speed optimisation for personal and business devices.</p>
       <ul class="dc-list"><li>Malware removal</li><li>Antivirus setup</li><li>PC speed boost</li><li>Data recovery</li></ul>
     </div>
   </div>
@@ -895,49 +975,49 @@ footer{background:#111;padding:50px 5% 24px}
   <div class="dept-header web-dept reveal">
     <div class="dept-header-inner">
       <div class="dept-tag">&#127760; WEB DEVELOPMENT &amp; CREATIVE DESIGN</div>
-      <h2>Build Your Brand.<br><span>Stand Out Online.</span></h2>
-      <p>From stunning websites to eye-catching logos and posters — we create everything your business needs to look professional and grow.</p>
-      <a class="btn-white-red" href="mailto:carvenmaceke9@gmail.com?subject=Design%20Enquiry">Get a Quote &#8594;</a>
+      <h2>Build Your Website.<br><span>Stand Out Online.</span></h2>
+      <p>Individuals, startups, small businesses, and companies can get websites, maintenance, logo design, posters, and brand graphics from Axe Connect.</p>
+      <button type="button" class="btn-white-red" onclick="openQuoteModal()">Get Website Quote &#8594;</button>
     </div>
   </div>
   <div class="dept-cards">
     <div class="dept-card reveal d1">
       <div class="dc-icon">&#127760;</div>
       <h3>Website Design &amp; Development</h3>
-      <p>Modern, mobile-friendly, SEO-ready websites that help you attract customers and grow your brand online.</p>
+      <p>Modern, mobile-friendly, SEO-ready websites that help individuals, startups, and companies attract customers and look professional online.</p>
       <ul class="dc-list"><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li></ul>
     </div>
     <div class="dept-card reveal d2">
       <div class="dc-icon">&#128640;</div>
-      <h3>Startup Business Websites</h3>
-      <p>Perfect websites for new businesses ready to launch — affordable, fast, and built to impress from day one.</p>
+      <h3>Personal, Business &amp; Startup Websites</h3>
+      <p>Affordable websites for personal brands, startups, small businesses, and growing companies that need a strong online presence.</p>
       <ul class="dc-list"><li>Affordable packages</li><li>Domain &amp; hosting setup</li><li>Mobile responsive</li><li>Fast turnaround</li></ul>
     </div>
     <div class="dept-card reveal d3">
       <div class="dc-icon">&#128295;</div>
       <h3>Website Maintenance &amp; Updates</h3>
-      <p>We keep your existing website fresh, secure, and up to date — so you can focus on running your business.</p>
+      <p>Website updates, content changes, security checks, and monthly maintenance so your site stays professional.</p>
       <ul class="dc-list"><li>Content updates</li><li>Security patches</li><li>Performance tuning</li><li>Monthly support plans</li></ul>
     </div>
     <div class="dept-card reveal d1 card-highlight">
       <div class="card-new-badge">NEW</div>
       <div class="dc-icon">&#127775;</div>
       <h3>Logo Design</h3>
-      <p>Professional, unique logos that capture your brand identity and make a lasting first impression on every customer.</p>
+      <p>Professional logo creation for personal brands, startups, and companies that need a clean, memorable, and credible identity.</p>
       <ul class="dc-list"><li>Custom logo concepts</li><li>Multiple revisions</li><li>PNG, SVG &amp; PDF files</li><li>Brand colour palette</li></ul>
     </div>
     <div class="dept-card reveal d2 card-highlight">
       <div class="card-new-badge">NEW</div>
       <div class="dc-icon">&#128444;&#65039;</div>
       <h3>Poster &amp; Flyer Design</h3>
-      <p>Eye-catching posters, flyers, and promotional material designed to grab attention and drive real results.</p>
+      <p>Posters, flyers, and promotional graphics for events, campaigns, adverts, businesses, personal brands, and social media.</p>
       <ul class="dc-list"><li>Event posters</li><li>Business flyers</li><li>Social media graphics</li><li>Print-ready files</li></ul>
     </div>
     <div class="dept-card reveal d3 card-highlight">
       <div class="card-new-badge">NEW</div>
       <div class="dc-icon">&#9999;&#65039;</div>
       <h3>Brand Identity &amp; Graphics</h3>
-      <p>Complete brand packages — logo, colours, fonts and templates — so your business always looks consistent and polished.</p>
+      <p>Brand identity packages — logo, colours, fonts, business cards, and templates — for a consistent personal or business image.</p>
       <ul class="dc-list"><li>Brand style guide</li><li>Business card design</li><li>Letterhead &amp; templates</li><li>Social media kit</li></ul>
     </div>
   </div>
@@ -967,12 +1047,12 @@ footer{background:#111;padding:50px 5% 24px}
   <div class="about-content reveal d2">
     <span class="sec-label">ABOUT US</span>
     <h2>About <em>Axe</em> Connect</h2>
-    <p>We're a Pretoria-based IT support, web development, and creative design company passionate about helping people and businesses stay connected, productive, and visible online.</p>
-    <p>From fixing your PC to building a website or designing a stunning logo and poster — we deliver honest advice, quality work, and affordable solutions you can trust.</p>
+    <p>We're a Pretoria-based tech and digital services provider helping individuals, startups, small businesses, and companies with IT support, computer repairs, web development, website maintenance, and creative design services.</p>
+    <p>Whether you need a personal laptop fixed, a business website, monthly support, or design work, Axe Connect gives you practical and affordable help from one place.</p>
     <div class="about-points">
-      <div class="ap"><div class="ap-icon">&#128101;</div><b>Local &amp; Trusted</b><small>Proudly based in Pretoria</small></div>
-      <div class="ap"><div class="ap-icon">&#9989;</div><b>Customer Focused</b><small>Your success is our priority</small></div>
-      <div class="ap"><div class="ap-icon">&#11088;</div><b>Quality Guaranteed</b><small>Reliable solutions that last</small></div>
+      <div class="ap"><div class="ap-icon">&#128101;</div><b>For Everyone</b><small>Individuals and companies</small></div>
+      <div class="ap"><div class="ap-icon">&#9989;</div><b>One Place</b><small>IT, websites and design</small></div>
+      <div class="ap"><div class="ap-icon">&#11088;</div><b>Reliable Delivery</b><small>Clear quotes and updates</small></div>
     </div>
   </div>
 </section>
@@ -981,28 +1061,28 @@ footer{background:#111;padding:50px 5% 24px}
 <section class="process">
   <div class="sec-head reveal">
     <span class="sec-label">HOW IT WORKS</span>
-    <h2 class="sec-h2">Simple. Fast. Effective.</h2>
+    <h2 class="sec-h2">Request. Assess. Deliver.</h2>
   </div>
   <div class="proc-grid">
     <div class="proc-step reveal d1">
       <div class="proc-num">1</div>
       <div class="proc-icon-wrap">&#128222;</div>
       <h3>Get in Touch</h3>
-      <p>Call, WhatsApp, or email us. Tell us what you need — repairs, a website, a logo, or a poster.</p>
+      <p>Call, WhatsApp, or send a quote request. Tell us what you need — IT support, repairs, website work, maintenance, logo design, posters, or branding.</p>
     </div>
     <div class="proc-arrow reveal">&#8594;</div>
     <div class="proc-step reveal d2">
       <div class="proc-num">2</div>
       <div class="proc-icon-wrap">&#128269;</div>
       <h3>We Assess &amp; Quote</h3>
-      <p>We check the issue or review your project and give honest recommendations with a clear, upfront price.</p>
+      <p>We assess the problem or project scope and give you clear recommendations, timelines, and pricing.</p>
     </div>
     <div class="proc-arrow reveal">&#8594;</div>
     <div class="proc-step reveal d3">
       <div class="proc-num">3</div>
       <div class="proc-icon-wrap">&#9989;</div>
       <h3>Done &amp; Delivered</h3>
-      <p>We fix your device, launch your site, or deliver your design — on time and within budget. Always.</p>
+      <p>We do the work, keep you updated, and deliver practical results you can use immediately.</p>
     </div>
   </div>
 </section>
@@ -1011,13 +1091,13 @@ footer{background:#111;padding:50px 5% 24px}
 <section id="contact" class="cta-band">
   <div style="text-align:center;max-width:700px;margin:0 auto;position:relative;z-index:2">
     <h2 style="font-family:var(--font);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#fff;margin-bottom:.75rem;line-height:1.15">
-      Ready to Fix, Build, or Create?
+      Need IT Help, a Website, or Design Work?
     </h2>
     <p style="font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:0">
-      Call us, send a message, or fill in the contact form — we'll get back to you fast.
+      Tell us what you need. We help individuals, startups, small businesses, and companies with IT problems, repairs, websites, maintenance, and design work.
     </p>
     <div class="cta-band-btns">
-      <button class="cta-band-btn cta-btn-white" onclick="openContactModal()">📋 Send Us a Message</button>
+      <button class="cta-band-btn cta-btn-white" onclick="openQuoteModal()">📋 Request a Quote</button>
       <button class="cta-band-btn cta-btn-outline-w" onclick="openCallModal()">📞 Call Us Now</button>
     </div>
   </div>
@@ -1069,7 +1149,7 @@ footer{background:#111;padding:50px 5% 24px}
   <circle cx="70" cy="82" r="1.5" fill="#aaa"/>
   <line x1="73" y1="82" x2="102" y2="82" stroke="#aaa" stroke-width="1.2"/>
 </svg></div></div>
-      <p>IT support, PC repairs, web development, logo design, and creative services for businesses in Pretoria.</p>
+      <p>IT support, PC repairs, web development, website maintenance, logo design, posters, and creative services for individuals and businesses in Pretoria.</p>
       <div class="socials">
         <a class="soc" href="#" aria-label="Facebook">f</a>
         <a class="soc" href="#" aria-label="Instagram">&#9676;</a>
@@ -1169,6 +1249,142 @@ footer{background:#111;padding:50px 5% 24px}
   </div>
 </div>
 
+
+<!-- SERVICE QUOTE FORM MODAL -->
+<div class="modal-overlay" id="quoteModal" onclick="closeOnOverlay(event,'quoteModal')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal('quoteModal')" aria-label="Close">✕</button>
+      <h2 id="quoteModalTitle">Request a Quote</h2>
+      <p>Tell us what you need help with and we'll send you a proper quote.</p>
+    </div>
+    <div class="modal-body">
+      <div id="quoteFormWrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qf-name">Full Name</label>
+            <input type="text" id="qf-name" placeholder="Your full name" required/>
+          </div>
+          <div class="form-group">
+            <label for="qf-phone">Phone Number</label>
+            <input type="tel" id="qf-phone" placeholder="060 123 4567" required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="qf-email">Email Address</label>
+          <input type="email" id="qf-email" placeholder="you@example.com" required/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qf-service-category">Service Category</label>
+            <select id="qf-service-category" required>
+              <option value="" disabled selected>— Select service category —</option>
+              <option value="IT Support & Repairs">IT Support & Repairs</option>
+              <option value="Web Development & Creative Design">Web Development & Creative Design</option>
+              <option value="Monthly Business / Individual Support">Monthly Business / Individual Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="qf-service-needed">Specific Service</label>
+            <select id="qf-service-needed" required>
+              <option value="" disabled selected>— Select specific service —</option>
+              <option value="Laptop / Computer Repairs">Laptop / Computer Repairs</option>
+              <option value="Monthly IT Support">Monthly IT Support</option>
+              <option value="IT Support & Troubleshooting">IT Support & Troubleshooting</option>
+              <option value="Software Installation & Updates">Software Installation & Updates</option>
+              <option value="Virus Removal & Performance Fixes">Virus Removal & Performance Fixes</option>
+              <option value="Website Design & Development">Website Design & Development</option>
+              <option value="Startup Business Website">Startup Business Website</option>
+              <option value="Website Maintenance & Updates">Website Maintenance & Updates</option>
+              <option value="Company Website Support">Company Website Support</option>
+              <option value="Logo Design">Logo Design</option>
+              <option value="Poster / Flyer Design">Poster / Flyer Design</option>
+              <option value="Brand Identity & Graphics">Brand Identity & Graphics</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qf-business">Business / Project Name</label>
+            <input type="text" id="qf-business" placeholder="Business/project name or Not Applicable"/>
+          </div>
+          <div class="form-group">
+            <label for="qf-website-type">Type of Website / Device</label>
+            <select id="qf-website-type" required>
+              <option value="" disabled selected>— Select option —</option>
+              <option value="Business Website">Business Website</option>
+              <option value="Startup Website">Startup Website</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="E-commerce Store">E-commerce Store</option>
+              <option value="Portfolio Website">Portfolio Website</option>
+              <option value="Website Redesign">Website Redesign</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Desktop Computer">Desktop Computer</option>
+              <option value="Printer / Network / Email Setup">Printer / Network / Email Setup</option>
+              <option value="Logo / Poster / Brand Design">Logo / Poster / Brand Design</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qf-pages">Pages / Quantity</label>
+            <select id="qf-pages" required>
+              <option value="" disabled selected>— Select pages/quantity —</option>
+              <option value="1 page / 1 item">1 page / 1 item</option>
+              <option value="2 - 4 pages/items">2 - 4 pages/items</option>
+              <option value="5 - 8 pages/items">5 - 8 pages/items</option>
+              <option value="9+ pages/items">9+ pages/items</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="qf-budget">Budget</label>
+            <select id="qf-budget" required>
+              <option value="" disabled selected>— Select budget —</option>
+              <option value="Below R1,500">Below R1,500</option>
+              <option value="R1,500 - R3,000">R1,500 - R3,000</option>
+              <option value="R3,000 - R5,000">R3,000 - R5,000</option>
+              <option value="R5,000 - R10,000">R5,000 - R10,000</option>
+              <option value="R10,000+">R10,000+</option>
+              <option value="Need advice">Need advice</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qf-features">Features / Problem</label>
+            <input type="text" id="qf-features" placeholder="Booking, WhatsApp, payments, slow PC, broken screen..." required/>
+          </div>
+          <div class="form-group">
+            <label for="qf-deadline">Deadline</label>
+            <input type="text" id="qf-deadline" placeholder="Example: urgent / 2 weeks / end of month" required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="qf-msg">Extra Message</label>
+          <textarea id="qf-msg" placeholder="Tell us what you need. For websites: what must it do? For IT support: what problem must we fix?"></textarea>
+        </div>
+
+        <button type="button" class="form-submit" id="quoteSubmitBtn" onclick="submitQuoteForm()">Send Quote Request →</button>
+        <p class="form-note">📧 Your quote request goes directly to carvenmaceke9@gmail.com</p>
+      </div>
+
+      <div class="form-success" id="quoteFormSuccess">
+        <div class="fs-icon">✅</div>
+        <h3>Quote Request Sent!</h3>
+        <p>Thanks! We'll review your details and contact you shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CALL MODAL -->
 <div class="call-modal-overlay" id="callModal" onclick="closeOnOverlay(event,'callModal')">
   <div class="call-modal-box" role="dialog" aria-modal="true">
@@ -1194,14 +1410,7 @@ footer{background:#111;padding:50px 5% 24px}
           <small>Chat on WhatsApp — quick and easy</small>
         </div>
       </a>
-      <!-- Teams (shown on desktop) -->
-      <a class="call-option co-teams" id="teamsOption" href="msteams://call?phone=+27607950837" target="_blank">
-        <div class="co-icon" style="background:#e8eeff;font-size:1.1rem">🟦</div>
-        <div class="co-text">
-          <b>Call via Microsoft Teams</b>
-          <small>Recommended if you're on a laptop / PC</small>
-        </div>
-      </a>
+
     </div>
   </div>
 </div>
@@ -1260,6 +1469,10 @@ function openContactModal() {
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+function openQuoteModal() {
+  document.getElementById('quoteModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 function openCallModal() {
   document.getElementById('callModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1274,6 +1487,7 @@ function closeOnOverlay(e, id) {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal('contactModal');
+    closeModal('quoteModal');
     closeModal('callModal');
   }
 });
@@ -1388,6 +1602,130 @@ function submitContactForm() {
       }
     });
 }
+
+function submitQuoteForm() {
+  const name = document.getElementById('qf-name').value.trim();
+  const phone = document.getElementById('qf-phone').value.trim();
+  const email = document.getElementById('qf-email').value.trim();
+  const serviceCategory = document.getElementById('qf-service-category').value;
+  const serviceNeeded = document.getElementById('qf-service-needed').value;
+  const business = document.getElementById('qf-business').value.trim();
+  const websiteType = document.getElementById('qf-website-type').value;
+  const pages = document.getElementById('qf-pages').value;
+  const features = document.getElementById('qf-features').value.trim();
+  const budget = document.getElementById('qf-budget').value;
+  const deadline = document.getElementById('qf-deadline').value.trim();
+  const extraMsg = document.getElementById('qf-msg').value.trim();
+
+  if (!name || !phone || !email || !serviceCategory || !serviceNeeded || !business || !websiteType || !pages || !features || !budget || !deadline) {
+    alert('Please fill in all required quote fields.');
+    return;
+  }
+
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  if (!window.emailjs) {
+    alert('Email service failed to load. Please refresh the page and try again.');
+    return;
+  }
+
+  const submitBtn = document.getElementById('quoteSubmitBtn');
+  const originalBtnText = submitBtn ? submitBtn.innerText : 'Send Quote Request →';
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Sending...';
+  }
+
+  const fullMessage =
+    'AXE CONNECT QUOTE REQUEST\n\n' +
+    'Customer Details:\n' +
+    'Name: ' + name + '\n' +
+    'Phone: ' + phone + '\n' +
+    'Email: ' + email + '\n\n' +
+    'Service Details:\n' +
+    'Service Category: ' + serviceCategory + '\n' +
+    'Specific Service: ' + serviceNeeded + '\n' +
+    'Business / Project Name: ' + (business || 'Not applicable') + '\n' +
+    'Type of Website / Device: ' + websiteType + '\n\n' +
+    'Project Scope:\n' +
+    'Pages / Quantity: ' + pages + '\n' +
+    'Features / Problem: ' + features + '\n' +
+    'Budget: ' + budget + '\n' +
+    'Deadline: ' + deadline + '\n\n' +
+    'Extra Message:\n' +
+    (extraMsg || 'No extra message provided.');
+
+  const templateParams = {
+    subject: 'Axe Connect Quote Request: ' + serviceNeeded,
+    name: name,
+    phone: phone,
+    email: email,
+    service: serviceCategory + ' - ' + serviceNeeded,
+    msg: fullMessage,
+    to_email: 'carvenmaceke9@gmail.com'
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(function () {
+      document.getElementById('quoteFormWrap').style.display = 'none';
+      document.getElementById('quoteFormSuccess').style.display = 'block';
+
+      ['qf-name', 'qf-phone', 'qf-email', 'qf-business', 'qf-features', 'qf-deadline', 'qf-msg'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+
+      document.getElementById('qf-service-category').selectedIndex = 0;
+      document.getElementById('qf-service-needed').selectedIndex = 0;
+      document.getElementById('qf-website-type').selectedIndex = 0;
+      document.getElementById('qf-pages').selectedIndex = 0;
+      document.getElementById('qf-budget').selectedIndex = 0;
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
+      }
+
+      setTimeout(function () {
+        closeModal('quoteModal');
+        document.getElementById('quoteFormWrap').style.display = 'block';
+        document.getElementById('quoteFormSuccess').style.display = 'none';
+      }, 3000);
+    })
+    .catch(function (error) {
+      console.error('EmailJS Quote Error:', error);
+
+      let errorMessage = 'Outsourcing request failed to send. ';
+
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' ||
+          EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' ||
+          EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+        errorMessage += 'You still need to replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your real EmailJS values.';
+      } else if (error && error.text) {
+        errorMessage += error.text;
+      } else if (error && error.message) {
+        errorMessage += error.message;
+      } else {
+        errorMessage += 'Please check your EmailJS service, template and public key.';
+      }
+
+      alert(errorMessage);
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
+      }
+    });
+}
+
+// Backwards compatibility if any old button still calls the old function name
+function submitWebsiteQuoteForm() {
+  submitQuoteForm();
+}
+
 </script>
 </body>
 </html>
