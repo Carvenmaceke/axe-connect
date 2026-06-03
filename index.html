@@ -1157,7 +1157,7 @@ footer{background:#111;padding:50px 5% 24px}
           <label for="cf-msg">Message</label>
           <textarea id="cf-msg" placeholder="Tell us a bit more about what you need..."></textarea>
         </div>
-        <button class="form-submit" onclick="submitContactForm()">Send Message →</button>
+        <button type="button" class="form-submit" onclick="submitContactForm()">Send Message →</button>
         <p class="form-note">📧 Your message goes directly to carvenmaceke9@gmail.com</p>
       </div>
       <div class="form-success" id="formSuccess">
@@ -1205,6 +1205,9 @@ footer{background:#111;padding:50px 5% 24px}
     </div>
   </div>
 </div>
+
+<!-- EmailJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 // Year
@@ -1287,81 +1290,89 @@ document.querySelectorAll('a[href="#contact"]').forEach(a => {
   });
 });
 
-// Contact form submission via mailto
-<!-- EmailJS Library -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+// Contact form submission via EmailJS
+// 1) Create a free EmailJS account
+// 2) Replace the 3 values below with your real EmailJS keys
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 
-<script>
-  // Replace YOUR_PUBLIC_KEY with your real EmailJS Public Key
-  emailjs.init("YOUR_PUBLIC_KEY");
+if (window.emailjs) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
-  function submitContactForm() {
-    const name    = document.getElementById('cf-name').value.trim();
-    const phone   = document.getElementById('cf-phone').value.trim();
-    const email   = document.getElementById('cf-email').value.trim();
-    const service = document.getElementById('cf-service').value;
-    const msg     = document.getElementById('cf-msg').value.trim();
+function submitContactForm() {
+  const name = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const service = document.getElementById('cf-service').value;
+  const msg = document.getElementById('cf-msg').value.trim();
 
-    if (!name || !email || !service) {
-      alert('Please fill in your name, email, and select a service.');
-      return;
-    }
-
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    const submitBtn = document.querySelector('#contactModal button[type="button"]');
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Sending...';
-    }
-
-    const templateParams = {
-      subject: 'Axe Connect Enquiry: ' + service,
-      name: name,
-      phone: phone || 'Not provided',
-      email: email,
-      service: service,
-      msg: msg || 'No additional message.',
-      to_email: 'carvenmaceke9@gmail.com'
-    };
-
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
-      .then(function () {
-        document.getElementById('contactFormWrap').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-
-        setTimeout(() => {
-          closeModal('contactModal');
-
-          document.getElementById('contactFormWrap').style.display = 'block';
-          document.getElementById('formSuccess').style.display = 'none';
-
-          document.getElementById('cf-name').value = '';
-          document.getElementById('cf-phone').value = '';
-          document.getElementById('cf-email').value = '';
-          document.getElementById('cf-msg').value = '';
-          document.getElementById('cf-service').selectedIndex = 0;
-
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Submit';
-          }
-        }, 4000);
-      })
-      .catch(function (error) {
-        console.error('EmailJS Error:', error);
-        alert('Message failed to send. Please try again.');
-
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = 'Submit';
-        }
-      });
+  if (!name || !email || !service) {
+    alert('Please fill in your name, email, and select a service.');
+    return;
   }
+
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  if (!window.emailjs) {
+    alert('Email service failed to load. Please refresh the page and try again.');
+    return;
+  }
+
+  const submitBtn = document.querySelector('.form-submit');
+  const originalBtnText = submitBtn ? submitBtn.innerText : 'Send Message →';
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Sending...';
+  }
+
+  const templateParams = {
+    subject: 'Axe Connect Enquiry: ' + service,
+    name: name,
+    phone: phone || 'Not provided',
+    email: email,
+    service: service,
+    msg: msg || 'No additional message.',
+    to_email: 'carvenmaceke9@gmail.com'
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(function () {
+      document.getElementById('contactFormWrap').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+
+      document.getElementById('cf-name').value = '';
+      document.getElementById('cf-phone').value = '';
+      document.getElementById('cf-email').value = '';
+      document.getElementById('cf-msg').value = '';
+      document.getElementById('cf-service').selectedIndex = 0;
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
+      }
+
+      setTimeout(function () {
+        closeModal('contactModal');
+        document.getElementById('contactFormWrap').style.display = 'block';
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 3000);
+    })
+    .catch(function (error) {
+      console.error('EmailJS Error:', error);
+      alert('Message failed to send. Please check your EmailJS keys and try again.');
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
+      }
+    });
+}
 </script>
 </body>
 </html>
