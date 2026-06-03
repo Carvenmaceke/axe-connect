@@ -1365,7 +1365,22 @@ function submitContactForm() {
     })
     .catch(function (error) {
       console.error('EmailJS Error:', error);
-      alert('Message failed to send. Please check your EmailJS keys and try again.');
+
+      let errorMessage = 'Message failed to send. ';
+
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' ||
+          EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' ||
+          EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+        errorMessage += 'You still need to replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your real EmailJS values.';
+      } else if (error && error.text) {
+        errorMessage += error.text;
+      } else if (error && error.message) {
+        errorMessage += error.message;
+      } else {
+        errorMessage += 'Please check your EmailJS service, template and public key.';
+      }
+
+      alert(errorMessage);
 
       if (submitBtn) {
         submitBtn.disabled = false;
