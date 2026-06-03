@@ -1150,12 +1150,14 @@ footer{background:#111;padding:50px 5% 24px}
   <line x1="73" y1="82" x2="102" y2="82" stroke="#aaa" stroke-width="1.2"/>
 </svg></div></div>
       <p>IT support, PC repairs, web development, website maintenance, logo design, posters, and creative services for individuals and businesses in Pretoria.</p>
-      <div class="socials">
-        <a class="soc" href="#" aria-label="Facebook">f</a>
-        <a class="soc" href="#" aria-label="Instagram">&#9676;</a>
-        <a class="soc" href="https://wa.me/270607950837" aria-label="WhatsApp">&#9742;</a>
-        <a class="soc" href="#" aria-label="LinkedIn">in</a>
-      </div>
+     <!--
+<div class="socials">
+  <a class="soc" href="#" aria-label="Facebook">f</a>
+  <a class="soc" href="#" aria-label="Instagram">&#9676;</a>
+  <a class="soc" href="https://wa.me/270607950837" aria-label="WhatsApp">&#9742;</a>
+  <a class="soc" href="#" aria-label="LinkedIn">in</a>
+</div>
+-->
     </div>
     <div class="foot-col">
       <h3>IT Support &amp; Repairs</h3>
@@ -1507,10 +1509,12 @@ document.querySelectorAll('a[href="#contact"]').forEach(a => {
 // Contact form submission via EmailJS
 // 1) Create a free EmailJS account
 // 2) Replace the 3 values below with your real EmailJS keys
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "nJMvGm2Mt1K241-P3";
+const EMAILJS_SERVICE_ID = "service_1tguu9f";
+const EMAILJS_TEMPLATE_ID = "template_y8ztvs4";
 
+
+   
 if (window.emailjs) {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 }
@@ -1581,10 +1585,10 @@ function submitContactForm() {
       console.error('EmailJS Error:', error);
 
       let errorMessage = 'Message failed to send. ';
-
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' ||
-          EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' ||
-          EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+ 
+      if (EMAILJS_PUBLIC_KEY === 'nJMvGm2Mt1K241-P3' ||
+          EMAILJS_SERVICE_ID === 'service_1tguu9f' ||
+          EMAILJS_TEMPLATE_ID === 'template_y8ztvs4') {
         errorMessage += 'You still need to replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your real EmailJS values.';
       } else if (error && error.text) {
         errorMessage += error.text;
