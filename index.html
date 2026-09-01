@@ -5,62 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria</title>
 <meta name="description" content="Axe Connect helps individuals, startups, small businesses and companies with IT support, computer repairs, website development, website maintenance, logos, posters and creative design services in Pretoria."/>
+<meta name="keywords" content="IT support Pretoria, PC repairs Pretoria, laptop repairs, website design South Africa, web development Pretoria, logo design, poster design, brand identity, monthly IT support, business IT support"/>
+<meta name="author" content="Axe Connect"/>
+<meta name="robots" content="index, follow"/>
+<meta name="theme-color" content="#E23524" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#15130F" media="(prefers-color-scheme: dark)"/>
+
+<!-- Replace with your real live URL once hosted -->
+<link rel="canonical" href="https://axeconnect.co.za/"/>
+
+<!-- Open Graph / Facebook / WhatsApp / LinkedIn preview -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Axe Connect"/>
+<meta property="og:title" content="Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria"/>
+<meta property="og:description" content="IT support, PC repairs, websites, maintenance, logos, posters and brand design — all from one trusted place in Pretoria."/>
+<meta property="og:url" content="https://axeconnect.co.za/"/>
+<!-- Replace og-image.jpg with a real 1200x630px image uploaded alongside index.html -->
+<meta property="og:image" content="https://axeconnect.co.za/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_ZA"/>
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria"/>
+<meta name="twitter:description" content="IT support, PC repairs, websites, maintenance, logos, posters and brand design — all from one trusted place in Pretoria."/>
+<meta name="twitter:image" content="https://axeconnect.co.za/og-image.jpg"/>
+
+<!-- Favicon (inline SVG — the Axe Connect blade mark, no separate file needed) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 56'%3E%3Cpath d='M8 56 L24 8 L30 8 L16 56 Z' fill='%23E23524'/%3E%3Cpath d='M8 32 Q-2 20 0 6 Q12 14 20 28 Z' fill='%23E23524'/%3E%3Cpath d='M30 8 L44 8 L30 56 L23 56 Z' fill='%23191510'/%3E%3Cpath d='M13 37 L31 37 L33 43 L11 43 Z' fill='%23E23524'/%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 56'%3E%3Crect width='48' height='56' fill='%23191510'/%3E%3Cpath d='M8 56 L24 8 L30 8 L16 56 Z' fill='%23E23524'/%3E%3Cpath d='M8 32 Q-2 20 0 6 Q12 14 20 28 Z' fill='%23E23524'/%3E%3Cpath d='M30 8 L44 8 L30 56 L23 56 Z' fill='%23fff'/%3E%3Cpath d='M13 37 L31 37 L33 43 L11 43 Z' fill='%23E23524'/%3E%3C/svg%3E"/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#E8312B;
-  --red2:#c9271f;
-  --black:#111111;
+  --red:#E23524;
+  --red2:#c02a1c;
+  --ember:#FF7A3D;
+  --accent2:#1D7A6E;
+  --accent3:#3A6EA8;
+  --black:#191510;
   --white:#ffffff;
-  --grey:#f5f5f5;
-  --grey2:#eeeeee;
-  --text:#111111;
-  --muted:#666666;
-  --light:#999;
+  --paper:#FCFAF7;
+  --surface:#ffffff;
+  --grey:#F5F2EC;
+  --grey2:#EDE9E1;
+  --text:#191510;
+  --muted:#6C665C;
+  --light:#a19a8d;
+  --line:#E7E1D6;
   --font:'Inter',sans-serif;
+  --font-display:'Space Grotesk',var(--font);
+  --cut:14px;
+  color-scheme:light;
+  transition:background-color .25s ease,color .25s ease;
+}
+html.dark{
+  --black:#F3EFE6;
+  --white:#0f0e0b;
+  --paper:#15130F;
+  --surface:#1C1A15;
+  --grey:#201D17;
+  --grey2:#26221A;
+  --text:#E4DFD3;
+  --muted:#9A9384;
+  --light:#6b6558;
+  --line:#332E24;
+  --accent2:#3FA89A;
+  --accent3:#6C9EDB;
+  color-scheme:dark;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font);background:#fff;color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:var(--font);background:var(--paper);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background-color .3s ease,color .3s ease}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--red)}
+h1,h2,h3,h4,h5{font-family:var(--font-display);letter-spacing:-.01em}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}.reveal{opacity:1 !important;transform:none !important}}
 
 /* ── HEADER ── */
 .hdr{
   position:fixed;top:0;left:0;right:0;z-index:999;
   display:flex;align-items:center;gap:1rem;
   padding:0 5%;height:64px;
-  background:#fff;
-  box-shadow:0 1px 0 #e8e8e8;
+  background:var(--surface);
+  box-shadow:0 1px 0 var(--line);
+  transition:background-color .25s ease,box-shadow .2s;
 }
 .logo{display:flex;align-items:center;gap:0;flex-shrink:0;text-decoration:none}
 .logo-icon{display:flex;align-items:center;flex-shrink:0;line-height:0}
 .logo-icon svg{display:block}
 .logo span{display:none}
-.hdr-nav{display:flex;align-items:center;gap:0;margin-left:auto}
+.hdr-nav{position:relative;display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-indicator{position:absolute;z-index:1;background:var(--red);clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);transition:left .28s cubic-bezier(.4,0,.2,1),width .28s cubic-bezier(.4,0,.2,1);left:0;width:0;top:0;height:0}
 .hdr-nav a{
-  padding:6px 18px;font-size:0.875rem;font-weight:500;color:var(--muted);
-  position:relative;transition:color .2s;
+  position:relative;z-index:2;padding:8px 18px;font-size:0.875rem;font-weight:500;color:var(--muted);
+  border-radius:2px;transition:color .2s;
 }
 .hdr-nav a:hover{color:var(--black)}
-.hdr-nav a.active{color:var(--black);font-weight:600}
-.hdr-nav a.active::after{
-  content:'';position:absolute;bottom:-1px;left:18px;right:18px;
-  height:2px;background:var(--red);
+.hdr-nav a.active{color:#fff;font-weight:600}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--ember));z-index:1000;transition:width .1s linear}
+.mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;grid-template-columns:1fr 1fr 1fr;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,0)}
+.mb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 4px;font-family:var(--font);font-size:0.68rem;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer}
+.mb-item .icon{width:19px;height:19px}
+.mb-item+.mb-item{border-left:1px solid var(--line)}
+.mb-quote{color:var(--red)}
+
+.quick-help{position:fixed;right:22px;bottom:26px;z-index:950;font-family:var(--font)}
+.qh-toggle{width:58px;height:58px;border-radius:50%;background:var(--red);color:#fff;border:none;box-shadow:0 10px 28px rgba(226,53,36,.35);cursor:pointer;position:relative;transition:transform .2s,background-color .2s}
+.qh-toggle:hover{transform:scale(1.06);background:var(--red2)}
+.qh-toggle .icon{width:24px;height:24px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .25s,transform .3s}
+.qh-toggle .icon-close{opacity:0;transform:translate(-50%,-50%) rotate(-45deg) scale(.5)}
+.quick-help.open .qh-toggle .icon-chat{opacity:0;transform:translate(-50%,-50%) rotate(45deg) scale(.5)}
+.quick-help.open .qh-toggle .icon-close{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1)}
+.qh-panel{position:absolute;right:0;bottom:74px;width:320px;max-width:calc(100vw - 40px);background:var(--surface);border-radius:18px;box-shadow:0 24px 60px rgba(20,15,8,.22);border:1px solid var(--line);overflow:hidden;opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;transition:opacity .2s ease,transform .2s ease;transform-origin:bottom right}
+.quick-help.open .qh-panel{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.qh-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:18px 18px 14px;background:linear-gradient(135deg,var(--red),var(--ember));color:#fff}
+.qh-head strong{display:block;font-family:var(--font-display);font-size:1rem}
+.qh-head span{display:block;font-size:0.72rem;opacity:.85;margin-top:2px}
+.qh-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.qh-close .icon{width:13px;height:13px}
+.qh-body{padding:16px 16px 4px;max-height:320px;overflow-y:auto}
+.qh-intro{font-size:0.8rem;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.qh-questions{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.qh-q{text-align:left;background:var(--grey);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:0.78rem;font-weight:600;color:var(--text);cursor:pointer;font-family:var(--font);transition:background-color .15s,border-color .15s}
+.qh-q:hover{border-color:var(--red)}
+.qh-q.open{background:var(--surface);border-color:var(--red);border-bottom-left-radius:0;border-bottom-right-radius:0}
+.qh-a{font-size:0.78rem;color:var(--muted);line-height:1.55;padding:10px 12px;margin-top:-6px;background:var(--surface);border:1px solid var(--red);border-top:none;border-radius:0 0 10px 10px;display:none}
+.qh-a.open{display:block}
+.qh-footer{display:flex;gap:8px;padding:14px 16px 18px;border-top:1px solid var(--line)}
+.qh-cta{flex:1;text-align:center;background:var(--red);color:#fff;padding:10px;border-radius:9px;font-weight:700;font-size:0.8rem;border:none;cursor:pointer;font-family:var(--font);transition:background-color .2s}
+.qh-cta-outline{background:none;border:1.5px solid var(--line);color:var(--black)}
+.qh-cta:hover{background:var(--red2)}
+@media(max-width:640px){
+  .quick-help{right:14px;bottom:80px}
+  .qh-panel{width:calc(100vw - 28px)}
 }
-.hdr-cta{
-  display:flex;align-items:center;gap:8px;
-  background:var(--red);color:#fff;
-  padding:9px 20px;border-radius:6px;
-  font-size:0.85rem;font-weight:700;white-space:nowrap;
-  transition:background .2s;margin-left:1rem;
-}
-.hdr-cta:hover{background:var(--red2)}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;margin-left:auto;color:var(--black);padding:4px}
+.theme-toggle{position:relative;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--black);cursor:pointer;flex-shrink:0;margin-left:.5rem;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background-color .2s}
+.theme-toggle:hover{border-color:var(--red)}
+.theme-toggle .icon{width:17px;height:17px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(0deg) scale(1);transition:opacity .25s,transform .35s}
+.theme-toggle .icon-moon{opacity:0;transform:translate(-50%,-50%) rotate(-60deg) scale(.5)}
+html.dark .theme-toggle .icon-sun{opacity:0;transform:translate(-50%,-50%) rotate(60deg) scale(.5)}
+html.dark .theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rotate(0deg) scale(1)}
+.nav-toggle{position:relative;width:32px;height:32px;display:none;background:none;border:none;cursor:pointer;margin-left:auto;color:var(--black);padding:4px}
 
 /* ── HERO ── */
 .hero{
@@ -68,7 +160,7 @@ img{max-width:100%;display:block}
   display:grid;grid-template-columns:1fr 1fr;
   gap:3rem;align-items:center;
   min-height:100vh;
-  background:#fff;
+  background:var(--paper);
   position:relative;overflow:hidden;
 }
 /* Red dot pattern top-right */
@@ -86,6 +178,15 @@ img{max-width:100%;display:block}
   background-size:14px 14px;
   opacity:0.12;pointer-events:none;
 }
+.hero-blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;opacity:.35}
+.hero-blob-1{width:420px;height:420px;top:-140px;right:-80px;background:radial-gradient(circle,var(--red),transparent 70%);animation:blobFloat1 18s ease-in-out infinite}
+.hero-blob-2{width:340px;height:340px;bottom:-100px;left:-60px;background:radial-gradient(circle,var(--accent2),transparent 70%);opacity:.22;animation:blobFloat2 22s ease-in-out infinite}
+.hero-blob-3{width:280px;height:280px;top:40%;left:38%;background:radial-gradient(circle,var(--ember),transparent 70%);opacity:.16;animation:blobFloat3 16s ease-in-out infinite}
+@keyframes blobFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,40px) scale(1.08)}}
+@keyframes blobFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.1)}}
+@keyframes blobFloat3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-25px,-25px) scale(.94)}}
+@media(prefers-reduced-motion:reduce){.hero-blob{animation:none}}
+
 
 .hero-left{position:relative;z-index:2}
 .loc-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1.25rem}
@@ -121,16 +222,18 @@ img{max-width:100%;display:block}
 .btn-red{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--red);color:#fff;
-  padding:13px 26px;border-radius:7px;
+  padding:14px 28px 14px 22px;
+  clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut));
   font-weight:700;font-size:0.95rem;
   transition:background .2s,transform .15s;
-  box-shadow:0 4px 16px rgba(232,49,43,0.3);
+  box-shadow:0 4px 16px rgba(226,53,36,0.3);
   border:none;cursor:pointer;font-family:var(--font);
 }
 .btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-red:focus-visible{outline-offset:5px}
 .btn-outline{
   display:inline-flex;align-items:center;gap:8px;
-  background:#fff;color:var(--black);
+  background:var(--surface);color:var(--black);
   padding:13px 24px;border-radius:7px;
   font-weight:600;font-size:0.95rem;
   border:1.5px solid #ddd;
@@ -140,11 +243,22 @@ img{max-width:100%;display:block}
 
 .trust-pills{display:flex;gap:10px;flex-wrap:wrap}
 .tp{
-  display:flex;align-items:center;gap:8px;
-  border:1.5px solid #e8e8e8;border-radius:8px;
-  padding:8px 14px;font-size:0.82rem;background:#fff;
+  display:flex;align-items:center;gap:10px;
+  border:1.5px solid var(--line);border-radius:10px;
+  padding:8px 14px 8px 8px;font-size:0.82rem;background:var(--surface);
+  transition:transform .2s,box-shadow .2s;
 }
-.tp-icon{font-size:1rem}
+.tp:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,15,8,.08)}
+.tp-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tp-icon .icon{width:16px;height:16px}
+.trust-pills .tp:nth-child(1) .tp-icon{background:rgba(226,53,36,.13)}
+.trust-pills .tp:nth-child(1) .tp-icon .icon{color:var(--red)}
+.trust-pills .tp:nth-child(2) .tp-icon{background:rgba(255,122,61,.16)}
+.trust-pills .tp:nth-child(2) .tp-icon .icon{color:var(--ember)}
+.trust-pills .tp:nth-child(3) .tp-icon{background:rgba(29,122,110,.15)}
+.trust-pills .tp:nth-child(3) .tp-icon .icon{color:var(--accent2)}
+.trust-pills .tp:nth-child(4) .tp-icon{background:rgba(58,110,168,.15)}
+.trust-pills .tp:nth-child(4) .tp-icon .icon{color:var(--accent3)}
 .tp b{font-weight:700;font-size:0.82rem;display:block;line-height:1.1}
 .tp small{font-size:0.7rem;color:var(--light);display:block}
 
@@ -331,8 +445,9 @@ img{max-width:100%;display:block}
 }
 
 /* ── SERVICES ── */
-.services{background:#fff;padding:80px 5%;border-top:1px solid #f0f0f0}
-.sec-label{font-size:0.72rem;font-weight:700;color:var(--red);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:8px}
+.services{background:var(--paper);padding:80px 5%;border-top:1px solid var(--line)}
+.sec-label{font-size:0.85rem;font-weight:600;color:var(--red);display:flex;align-items:center;gap:8px;margin-bottom:10px;font-family:var(--font-display)}
+.sec-label::before{content:'';width:9px;height:9px;background:var(--red);clip-path:polygon(30% 0,100% 0,70% 100%,0 100%)}
 .sec-h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:var(--black)}
 .sec-head{text-align:center;margin-bottom:3.5rem}
 .sec-head .sec-h2::after{
@@ -340,28 +455,32 @@ img{max-width:100%;display:block}
   margin:12px auto 0;border-radius:2px;
 }
 
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;border:1px solid #f0f0f0;border-radius:12px;overflow:hidden}
-/* Last row: 3 cards centred when 7 total */
-.svc-card:nth-child(5){grid-column:1}
-.svc-card:nth-child(6){grid-column:2}
-.svc-card:nth-child(7){grid-column:3}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .svc-card{
-  background:#fff;padding:28px 18px 22px;text-align:center;
-  transition:box-shadow .2s,transform .2s;
-  position:relative;
+  display:block;background:var(--surface);padding:30px 24px 26px;text-align:left;
+  border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
-.svc-card:hover{transform:translateY(-3px);z-index:2;box-shadow:0 8px 30px rgba(0,0,0,0.1)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(20,15,8,.1);border-color:transparent}
+.svc-num{
+  position:absolute;top:6px;right:14px;font-family:var(--font-display);font-weight:700;
+  font-size:3rem;line-height:1;color:var(--line);opacity:.8;transition:color .25s ease;pointer-events:none;
+}
+.svc-card:hover .svc-num{color:rgba(226,53,36,.18)}
 .svc-icon-wrap{
-  width:56px;height:56px;margin:0 auto 16px;
+  width:52px;height:52px;margin-bottom:20px;position:relative;z-index:1;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;
-  border:1px solid #eee;border-radius:12px;
-  transition:background .2s;
+  background:var(--grey);clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px);
+  transition:background-color .2s ease;
 }
-.svc-card:hover .svc-icon-wrap{background:#fff5f5;border-color:rgba(232,49,43,0.2)}
-.svc-card h3{font-size:0.82rem;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3}
-.svc-card p{font-size:0.75rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
-.svc-card-line{width:24px;height:3px;background:var(--red);margin:0 auto;border-radius:2px}
+.svc-icon-wrap .icon{width:23px;height:23px;color:var(--red);transition:color .2s ease}
+.svc-card:hover .svc-icon-wrap{background:var(--red)}
+.svc-card:hover .svc-icon-wrap .icon{color:#fff}
+.svc-card h3{position:relative;z-index:1;font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--black);margin-bottom:10px;line-height:1.3}
+.svc-card p{position:relative;z-index:1;font-size:0.83rem;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.svc-more{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:700;color:var(--red)}
+.svc-more .icon{width:14px;height:14px;transition:transform .2s ease}
+.svc-card:hover .svc-more .icon{transform:translateX(3px)}
 
 /* ── ABOUT ── */
 .about-sec{
@@ -405,7 +524,7 @@ img{max-width:100%;display:block}
 
 .about-content{
   padding:60px 5% 60px 4%;
-  background:#fff;
+  background:var(--paper);
 }
 .about-content h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--black);margin-bottom:1.25rem;line-height:1.1}
 .about-content h2 em{color:var(--red);font-style:normal}
@@ -417,7 +536,7 @@ img{max-width:100%;display:block}
 .ap small{font-size:0.72rem;color:var(--muted)}
 
 /* ── PROCESS ── */
-.process{background:#fff;padding:80px 5%;border-top:1px solid #f0f0f0}
+.process{background:var(--paper);padding:80px 5%;border-top:1px solid var(--line)}
 .proc-grid{
   display:grid;grid-template-columns:1fr 80px 1fr 80px 1fr;
   align-items:center;gap:0;
@@ -439,7 +558,7 @@ img{max-width:100%;display:block}
 .proc-step p{font-size:0.78rem;color:var(--muted);line-height:1.5}
 
 /* ── WEBSITES ── */
-.websites-sec{padding:80px 5%;background:#fff;border-top:1px solid #f0f0f0}
+.websites-sec{padding:80px 5%;background:#fff;border-top:1px solid var(--line)}
 .websites-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;align-items:center}
 .web-devices{position:relative;height:300px}
 
@@ -500,7 +619,7 @@ img{max-width:100%;display:block}
 
 /* ── CTA BAND ── */
 .cta-band{
-  background:var(--red);
+  background:linear-gradient(115deg,var(--red) 0%,var(--red) 55%,var(--ember) 130%);
   padding:60px 5%;
   display:grid;grid-template-columns:1fr 1fr auto;
   gap:2rem;align-items:center;
@@ -549,6 +668,13 @@ footer{background:#111;padding:50px 5% 24px}
   border-top:1px solid #1e1e1e;padding-top:20px;
   font-size:0.75rem;color:#555;text-align:center;
 }
+.built-by{
+  font-size:0.72rem;color:#555;text-align:center;margin-top:8px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.built-by a{color:var(--accent2);font-weight:700;transition:color .2s}
+.built-by a:hover{color:#fff}
+.built-by .icon{width:12px;height:12px;color:#555}
 .foot-skyline{
   position:relative;height:40px;overflow:hidden;margin-top:16px;opacity:.15;
 }
@@ -566,8 +692,7 @@ footer{background:#111;padding:50px 5% 24px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
-  .svc-grid{grid-template-columns:repeat(3,1fr)}
-  .svc-card:nth-child(5),.svc-card:nth-child(6),.svc-card:nth-child(7){grid-column:auto}
+  .svc-grid{grid-template-columns:1fr 1fr}
   .cta-band{grid-template-columns:1fr 1fr;gap:1.5rem}
   .cta-btn{grid-column:1/-1;justify-self:center}
 }
@@ -584,13 +709,15 @@ footer{background:#111;padding:50px 5% 24px}
   .proc-arrow{display:none}
 }
 @media(max-width:640px){
-  .hdr-nav{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:1rem;z-index:100}
+  .hdr-nav{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--surface);box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:1rem;z-index:100}
   .hdr-nav.open{display:flex}
   .hdr-nav a{padding:12px 16px;width:100%;border-bottom:1px solid #f5f5f5}
-  .hdr-nav a.active::after{display:none}
+  .hdr-nav a.active{color:var(--black);border-left:3px solid var(--red);padding-left:13px}
+  .nav-indicator{display:none}
   .nav-toggle{display:block}
-  .hdr-cta{display:none}
-  .svc-grid{grid-template-columns:1fr 1fr}
+  body{padding-bottom:64px}
+  .mobile-bar{display:grid}
+  .svc-grid{grid-template-columns:1fr}
   .cta-band{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .about-points{gap:1.5rem}
@@ -606,26 +733,43 @@ footer{background:#111;padding:50px 5% 24px}
 .web-dept{background:linear-gradient(135deg,#0a0a1e 0%,#111 100%)}
 .dept-header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(232,49,43,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
 .dept-header-inner{position:relative;z-index:2;max-width:680px}
-.dept-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,49,43,0.15);border:1px solid rgba(232,49,43,0.3);color:#E8312B;padding:7px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:.1em;margin-bottom:1.25rem;}
+.dept-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(226,53,36,0.15);border:1px solid rgba(226,53,36,0.3);color:var(--ember);padding:7px 16px 7px 14px;font-size:0.82rem;font-weight:600;margin-bottom:1.25rem;clip-path:polygon(9px 0,100% 0,100% 100%,0 100%,0 9px);}
 .dept-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:1rem;}
 .dept-header h2 span{color:#E8312B}
 .dept-header p{font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:2rem;max-width:540px}
-.btn-white-red{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E8312B;padding:12px 26px;border-radius:7px;font-weight:700;font-size:0.92rem;transition:all .2s;border:none;cursor:pointer;font-family:var(--font);}
-.btn-white-red:hover{background:#E8312B;color:#fff;transform:translateY(-2px)}
-.dept-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid #E8312B;}
-.dept-card{background:#fff;padding:32px 28px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;position:relative;transition:box-shadow .2s,transform .2s;}
-.dept-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,49,43,0.1);z-index:2}
-.dept-card:nth-child(3n){border-right:none}
-.dc-icon{font-size:2rem;margin-bottom:16px}
-.dept-card h3{font-size:1rem;font-weight:800;color:#111;margin-bottom:10px;line-height:1.3}
-.dept-card>p{font-size:0.85rem;color:#666;line-height:1.65;margin-bottom:14px}
-.dc-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.dc-list li{font-size:0.8rem;color:#555;display:flex;align-items:center;gap:7px}
-.dc-list li::before{content:"\2192";color:#E8312B;font-size:0.7rem;font-weight:700;flex-shrink:0}
-.card-highlight{background:#fffafa;border-top:2px solid #E8312B}
-.card-new-badge{position:absolute;top:16px;right:16px;background:#E8312B;color:#fff;font-size:0.6rem;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:100px;}
-@media(max-width:900px){.dept-cards{grid-template-columns:1fr 1fr}.dept-card:nth-child(3n){border-right:1px solid #f0f0f0}.dept-card:nth-child(2n){border-right:none}}
-@media(max-width:600px){.dept-cards{grid-template-columns:1fr}.dept-card,.dept-card:nth-child(3n),.dept-card:nth-child(2n){border-right:none}}
+.btn-white-red{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--red);padding:13px 27px 13px 21px;clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut));font-weight:700;font-size:0.92rem;transition:all .2s;border:none;cursor:pointer;font-family:var(--font);}
+.btn-white-red:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+.dept-tabs{display:grid;grid-template-columns:300px 1fr;background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(20,15,8,.09);border:1px solid var(--line);min-height:380px}
+.dept-tab-list{position:relative;display:flex;flex-direction:column;gap:3px;background:var(--grey);padding:10px}
+.dept-tab-indicator{position:absolute;left:10px;right:10px;top:10px;height:0;background:var(--surface);border-radius:11px;box-shadow:0 6px 18px rgba(20,15,8,.09);transition:top .28s cubic-bezier(.4,0,.2,1),height .28s cubic-bezier(.4,0,.2,1);z-index:0}
+.dept-tab{position:relative;z-index:1;display:flex;align-items:center;gap:13px;text-align:left;width:100%;padding:14px 16px;background:none;border:none;border-radius:11px;cursor:pointer;font-family:var(--font);font-size:0.85rem;font-weight:600;color:var(--muted);transition:color .2s}
+.dept-tab .icon{width:18px;height:18px;flex-shrink:0;color:var(--light);transition:color .2s}
+.dept-tab:hover{color:var(--black)}
+.dept-tab.active{color:var(--black)}
+.dept-tab.active .icon{color:var(--red)}
+.dept-tab-panels{position:relative;padding:46px 46px}
+.dept-panel{display:none}
+.dept-panel.active{display:block;animation:panelIn .3s ease both}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dept-panel .dc-icon{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--red),var(--ember));display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 12px 26px rgba(226,53,36,.28)}
+.dept-panel .dc-icon .icon{width:27px;height:27px;color:#fff}
+.dept-panel h3{font-size:1.5rem;font-weight:800;color:var(--black);margin-bottom:12px;line-height:1.25}
+.dept-panel>p{font-size:0.92rem;color:var(--muted);line-height:1.7;margin-bottom:22px;max-width:480px}
+.dc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.dc-list li{font-size:0.85rem;color:var(--text);display:flex;align-items:center;gap:10px}
+.dc-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.dept-panel-cta{margin-top:28px;display:inline-flex;align-items:center;gap:8px;background:var(--grey);color:var(--red);padding:12px 20px 12px 17px;border-radius:10px;font-weight:700;font-size:0.82rem;border:1px solid var(--line);transition:background .2s,color .2s,border-color .2s;cursor:pointer;font-family:var(--font)}
+.dept-panel-cta:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.dept-panel-cta .icon{width:15px;height:15px}
+@media(max-width:900px){
+  .dept-tabs{grid-template-columns:1fr;min-height:0;border-radius:16px}
+  .dept-tab-list{flex-direction:row;overflow-x:auto;background:var(--grey);-webkit-overflow-scrolling:touch}
+  .dept-tab-indicator{display:none}
+  .dept-tab.active{background:var(--surface)}
+  .dept-tab{flex-direction:column;gap:6px;text-align:center;white-space:nowrap;padding:12px 16px;font-size:0.76rem}
+  .dept-tab-panels{padding:30px 24px}
+  .dc-list{grid-template-columns:1fr}
+}
 
 
 /* ── CONTACT MODAL ── */
@@ -636,7 +780,7 @@ footer{background:#111;padding:50px 5% 24px}
 }
 .modal-overlay.open{display:flex}
 .modal-box{
-  background:#fff;border-radius:18px;width:100%;max-width:560px;
+  background:var(--surface);border-radius:18px;width:100%;max-width:560px;
   max-height:92vh;overflow-y:auto;
   box-shadow:0 32px 80px rgba(0,0,0,0.3);
   animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
@@ -661,23 +805,29 @@ footer{background:#111;padding:50px 5% 24px}
 .modal-body{padding:28px 32px 32px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.form-group label{font-size:0.78rem;font-weight:700;color:#333;letter-spacing:.04em;text-transform:uppercase}
+.form-group label{font-size:0.78rem;font-weight:700;color:var(--text);letter-spacing:.04em;text-transform:uppercase}
 .form-group input,.form-group select,.form-group textarea{
-  border:1.5px solid #e0e0e0;border-radius:9px;
+  border:1.5px solid var(--line);border-radius:9px;
   padding:11px 14px;font-size:0.9rem;font-family:var(--font);
-  color:var(--black);background:#fafafa;
-  transition:border-color .2s,box-shadow .2s;outline:none;
+  color:var(--text);background:var(--grey);
+  transition:border-color .2s,box-shadow .2s,background-color .2s;outline:none;
   appearance:none;-webkit-appearance:none;
 }
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
-  border-color:var(--red);box-shadow:0 0 0 3px rgba(232,49,43,.1);background:#fff;
+  border-color:var(--red);box-shadow:0 0 0 3px rgba(226,53,36,.15);background:var(--surface);
 }
+.form-group input.invalid,.form-group select.invalid,.form-group textarea.invalid{border-color:var(--red);background:rgba(226,53,36,.05)}
+.field-error{display:block;font-size:0.72rem;color:var(--red);margin-top:5px;font-weight:600}
+.form-alert{display:none;align-items:flex-start;gap:10px;background:rgba(226,53,36,.08);border:1px solid rgba(226,53,36,.3);color:var(--red2);border-radius:9px;padding:12px 14px;font-size:0.82rem;line-height:1.5;margin-bottom:16px}
+.form-alert.show{display:flex}
+.form-alert .icon{width:17px;height:17px;flex-shrink:0;margin-top:1px}
 .form-group select{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 14px center;
   padding-right:36px;cursor:pointer;
 }
 .form-group textarea{resize:vertical;min-height:90px}
+.form-group select:disabled{opacity:.5;cursor:not-allowed}
 .form-submit{
   width:100%;background:var(--red);color:#fff;border:none;
   padding:14px;border-radius:10px;font-size:1rem;font-weight:700;
@@ -702,7 +852,7 @@ footer{background:#111;padding:50px 5% 24px}
 }
 .call-modal-overlay.open{display:flex}
 .call-modal-box{
-  background:#fff;border-radius:18px;width:100%;max-width:400px;
+  background:var(--surface);border-radius:18px;width:100%;max-width:400px;
   box-shadow:0 32px 80px rgba(0,0,0,0.3);
   animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
   position:relative;overflow:hidden;
@@ -723,7 +873,7 @@ footer{background:#111;padding:50px 5% 24px}
 .call-options{padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px}
 .call-option{
   display:flex;align-items:center;gap:16px;
-  padding:16px 18px;border-radius:12px;border:1.5px solid #e8e8e8;
+  padding:16px 18px;border-radius:12px;border:1.5px solid var(--line);
   cursor:pointer;transition:border-color .2s,background .2s,transform .15s;
   text-decoration:none;
 }
@@ -746,7 +896,7 @@ footer{background:#111;padding:50px 5% 24px}
   padding:13px 24px;border-radius:9px;font-weight:700;font-size:0.92rem;cursor:pointer;border:none;
   transition:all .2s;font-family:var(--font);
 }
-.cta-btn-white{background:#fff;color:var(--red)}
+.cta-btn-white{background:#fff;color:var(--red);clip-path:polygon(11px 0,100% 0,100% 100%,0 100%,0 11px)}
 .cta-btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
 .cta-btn-outline-w{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
 .cta-btn-outline-w:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
@@ -757,11 +907,79 @@ footer{background:#111;padding:50px 5% 24px}
   .modal-head{padding:22px 18px 16px}
 }
 
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.15em;flex-shrink:0}
+.nav-toggle .icon{width:22px;height:22px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .15s,transform .15s}
+.nav-toggle .icon-close{opacity:0;transform:translate(-50%,-50%) rotate(-90deg)}
+.nav-toggle.open .icon-menu{opacity:0;transform:translate(-50%,-50%) rotate(90deg)}
+.nav-toggle.open .icon-close{opacity:1;transform:translate(-50%,-50%) rotate(0)}
+.plant-wrap .icon{color:#3f7a4e}
+.proc-arrow .icon{color:inherit}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Axe Connect",
+  "description": "IT support, PC repairs, website development, website maintenance, logo design, poster design and brand identity services for individuals, startups, small businesses and companies.",
+  "telephone": "+27607950837",
+  "email": "carvenmaceke9@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pretoria",
+    "addressRegion": "Gauteng",
+    "addressCountry": "ZA"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "08:30",
+    "closes": "17:00"
+  },
+  "url": "https://axeconnect.co.za/",
+  "priceRange": "R"
+}
+</script>
 </head>
 <body>
+<svg style="display:none" aria-hidden="true">
+<defs>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2"/><line x1="11" y1="18.3" x2="13" y2="18.3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.8-3 8.7-7 10-4-1.3-7-5.2-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="11.5" rx="1.3"/><path d="M2 20h20l-1.8-3.5H3.8L2 20z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.4 2.5 3.8 5.7 3.8 9s-1.4 6.5-3.8 9c-2.4-2.5-3.8-5.7-3.8-9s1.4-6.5 3.8-9z"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="8.3" y1="7.5" x2="8.3" y2="7.5"/><line x1="15.7" y1="7.5" x2="15.7" y2="7.5"/><line x1="8.3" y1="11.5" x2="8.3" y2="11.5"/><line x1="15.7" y1="11.5" x2="15.7" y2="11.5"/><line x1="10" y1="21" x2="10" y2="17"/><line x1="14" y1="21" x2="14" y2="17"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.7" cy="9.7" r="1.7"/><path d="M21 16l-5.7-5.7a1 1 0 0 0-1.4 0L4 20"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 .5 18h.7a2 2 0 0 0 2-2v-.4a1.6 1.6 0 0 1 1.6-1.6h1.5a3 3 0 0 0 3-3V12a9 9 0 0 0-9-9z"/><circle cx="7.5" cy="10.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.6" cy="6.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="7.2" r="1.1" fill="currentColor" stroke="none"/><circle cx="16.8" cy="11.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5v-1.7a8 8 0 0 1 16 0v1.7"/><rect x="2.3" y="13" width="4" height="6.3" rx="1.5"/><rect x="17.7" y="13" width="4" height="6.3" rx="1.5"/><path d="M20 19.3v.7a3 3 0 0 1-3 3h-3"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2.5 12h3M18.5 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3c3.4 1.3 5.7 4.9 5.7 8.9 0 1.9-.5 3.7-1.5 5.2l-1.6-.7c.8-1.3 1.2-2.8 1.2-4.5 0-3.1-1.6-5.8-3.8-7-2.2 1.2-3.8 3.9-3.8 7 0 1.7.4 3.2 1.2 4.5l-1.6.7c-1-1.5-1.5-3.3-1.5-5.2 0-4 2.3-7.6 5.7-8.9z"/><circle cx="12" cy="10.2" r="1.5"/><path d="M9.2 17.8l-1.4 3M14.8 17.8l1.4 3M10.6 19h2.8"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.2 4.2 0 0 0-5.4 5.5L3.6 17.5a1.7 1.7 0 0 0 2.4 2.4l5.7-5.7a4.2 4.2 0 0 0 5.5-5.4l-2.8 2.8-2.1-.5-.5-2.1 2.9-2.7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.8l2.8 5.9 6.4.6-4.8 4.3 1.4 6.3L12 16.7l-5.8 3.2 1.4-6.3-4.8-4.3 6.4-.6L12 2.8z"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4.3 1L4 15.7 16.5 3.5z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.3"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.2" cy="9.3" r="2.6"/><path d="M15.3 13.6c2.6.5 4.6 2.5 5 5"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.3 12.4l2.5 2.4 5-5.2"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.2" r="5"/><path d="M8.6 12.7L7 21l5-2.6L17 21l-1.6-8.3"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.3" cy="10.3" r="6.5"/><line x1="20" y1="20" x2="15" y2="15"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.6 6.5 12 13 20.4 6.5"/></symbol>
+<symbol id="i-message-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3.1 6.3L4 20l1.4-3.8A7.9 7.9 0 0 1 4 12z"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s7-6.4 7-12.3a7 7 0 1 0-14 0c0 5.9 7 12.3 7 12.3z"/><circle cx="12" cy="9.3" r="2.4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.3v5l3.3 2"/></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="1.5"/><rect x="9" y="2.3" width="6" height="3" rx="1"/><line x1="9" y1="11.5" x2="15" y2="11.5"/><line x1="9" y1="15.2" x2="15" y2="15.2"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c9 0 14-5 14-14 0-1-.1-2-.3-3C10 4 5 9 5 18c0 1 0 1.4 0 2z"/><path d="M5 20c2-5.5 5.3-9.5 9.5-12.3"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"/></symbol>
+</defs>
+</svg>
+
 
 <!-- HEADER -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <a class="logo" href="#home" aria-label="Axe Connect">
     <div class="logo-icon"><svg width="130" height="44" viewBox="-2 0 134 90" xmlns="http://www.w3.org/2000/svg">
@@ -806,8 +1024,9 @@ footer{background:#111;padding:50px 5% 24px}
   <line x1="73" y1="82" x2="102" y2="82" stroke="#555" stroke-width="1.2"/>
 </svg></div>
   </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg><svg class="icon icon-close" aria-hidden="true"><use href="#i-x"/></svg></button>
   <nav class="hdr-nav" id="mainNav">
+    <span class="nav-indicator" aria-hidden="true"></span>
     <a href="#home" class="active">Home</a>
     <a href="#outsourcing">Services</a>
     <a href="#it-support">IT Support</a>
@@ -815,11 +1034,17 @@ footer{background:#111;padding:50px 5% 24px}
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="hdr-cta" href="tel:0607950837">&#128222; 060 795 0837</a>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+  </button>
 </header>
 
 <main id="home">
 <section class="hero">
+  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
   <div class="hero-dots" aria-hidden="true"></div>
   <div class="hero-dots2" aria-hidden="true"></div>
   <div class="hero-left">
@@ -833,14 +1058,14 @@ footer{background:#111;padding:50px 5% 24px}
     <h1>Tech Support &amp; Websites.<br>For <span>People and Businesses.</span></h1>
     <p class="hero-sub">Axe Connect helps individuals, startups, small businesses, and companies with PC repairs, IT support, websites, maintenance, logos, posters, and creative design — all from one trusted place.</p>
     <div class="hero-btns">
-      <button type="button" class="btn-red" onclick="openQuoteModal()">&#8594; Get a Quote</button>
+      <button type="button" class="btn-red" onclick="openQuoteModal()">Get a Quote</button>
       <a class="btn-outline" href="#it-support">View Services</a>
     </div>
     <div class="trust-pills">
-      <div class="tp"><span class="tp-icon">&#128737;</span><div><b>IT</b><small>Support</small></div></div>
-      <div class="tp"><span class="tp-icon">&#128187;</span><div><b>PC</b><small>Repairs</small></div></div>
-      <div class="tp"><span class="tp-icon">&#9889;</span><div><b>Fast</b><small>Response</small></div></div>
-      <div class="tp"><span class="tp-icon">&#127760;</span><div><b>Web</b><small>Solutions</small></div></div>
+      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div><b>IT</b><small>Support</small></div></div>
+      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><b>PC</b><small>Repairs</small></div></div>
+      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span><div><b>Fast</b><small>Response</small></div></div>
+      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span><div><b>Web</b><small>Solutions</small></div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -872,9 +1097,9 @@ footer{background:#111;padding:50px 5% 24px}
             </div>
           </div>
           <div class="monitor-services">
-            <div class="ms-card"><span class="ms-icon">&#128187;</span><b>IT Support</b><p>Remote and on-site help for everyday tech problems.</p></div>
-            <div class="ms-card"><span class="ms-icon">&#127760;</span><b>Websites</b><p>Modern sites for startups, businesses and personal brands.</p></div>
-            <div class="ms-card"><span class="ms-icon">&#127912;</span><b>Creative Design</b><p>Logos, posters and brand visuals that look professional.</p></div>
+            <div class="ms-card"><span class="ms-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><b>IT Support</b><p>Remote and on-site help for everyday tech problems.</p></div>
+            <div class="ms-card"><span class="ms-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span><b>Websites</b><p>Modern sites for startups, businesses and personal brands.</p></div>
+            <div class="ms-card"><span class="ms-icon"><svg class="icon" aria-hidden="true"><use href="#i-palette"/></svg></span><b>Creative Design</b><p>Logos, posters and brand visuals that look professional.</p></div>
           </div>
           <div class="monitor-note">
             <strong>WHY CLIENTS CHOOSE US</strong>
@@ -894,41 +1119,45 @@ footer{background:#111;padding:50px 5% 24px}
     <div class="pc-tower"><div class="pc-fan"></div><div class="pc-fan2"></div><div class="pc-glow"></div><div class="pc-strip"></div></div>
     <div class="keyboard-wrap"><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div></div>
     <div class="mouse-wrap"></div>
-    <div class="plant-wrap">&#127807;</div>
+    <div class="plant-wrap"><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg></div>
   </div>
 </section>
 
 <!-- SERVICES OVERVIEW -->
 <section id="outsourcing" class="services">
   <div class="sec-head reveal">
-    <span class="sec-label">SERVICES FOR EVERYONE</span>
+    <span class="sec-label">Services for everyone</span>
     <h2 class="sec-h2">Simple Support for Individuals, Startups &amp; Companies</h2>
   </div>
   <div class="svc-grid">
-    <div class="svc-card reveal d1">
-      <div class="svc-icon-wrap">&#128187;</div>
-      <h3>1. IT Support &amp; PC Repairs</h3>
+    <a href="#it-support" class="svc-card reveal d1">
+      <span class="svc-num">01</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></div>
+      <h3>IT Support &amp; PC Repairs</h3>
       <p>For individuals and businesses: laptop repairs, slow PCs, software problems, virus removal, email setup, printers, and general tech support.</p>
-      <div class="svc-card-line"></div>
-    </div>
-    <div class="svc-card reveal d2">
-      <div class="svc-icon-wrap">&#127970;</div>
-      <h3>2. Business &amp; Office Support</h3>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
+    <a href="#it-support" class="svc-card reveal d2">
+      <span class="svc-num">02</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg></div>
+      <h3>Business &amp; Office Support</h3>
       <p>For small businesses and companies that need reliable outsourced support for staff devices, office systems, emails, networks, and maintenance.</p>
-      <div class="svc-card-line"></div>
-    </div>
-    <div class="svc-card reveal d3">
-      <div class="svc-icon-wrap">&#127760;</div>
-      <h3>3. Websites &amp; Maintenance</h3>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
+    <a href="#web-dev" class="svc-card reveal d3">
+      <span class="svc-num">03</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+      <h3>Websites &amp; Maintenance</h3>
       <p>For individuals, startups, and companies: business websites, landing pages, portfolios, e-commerce stores, redesigns, and monthly website updates.</p>
-      <div class="svc-card-line"></div>
-    </div>
-    <div class="svc-card reveal d4">
-      <div class="svc-icon-wrap">&#128444;&#65039;</div>
-      <h3>4. Logo, Poster &amp; Brand Design</h3>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
+    <a href="#web-dev" class="svc-card reveal d4">
+      <span class="svc-num">04</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg></div>
+      <h3>Logo, Poster &amp; Brand Design</h3>
       <p>For personal brands and businesses: logos, posters, flyers, social media graphics, business cards, and brand identity material.</p>
-      <div class="svc-card-line"></div>
-    </div>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
   </div>
 </section>
 
@@ -936,36 +1165,57 @@ footer{background:#111;padding:50px 5% 24px}
 <section id="it-support" class="dept-section">
   <div class="dept-header it-dept reveal">
     <div class="dept-header-inner">
-      <div class="dept-tag">&#128187; IT SUPPORT &amp; REPAIRS</div>
+      <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg> IT Support &amp; Repairs</div>
       <h2>Technical Problems?<br><span>We've Got You Covered.</span></h2>
       <p>Whether it is your personal laptop, home computer, startup setup, or office devices, Axe Connect helps with repairs, troubleshooting, software, email, printers, networks, and performance problems.</p>
-      <button type="button" class="btn-red" onclick="openCallModal()" style="border:none;font-family:var(--font);cursor:pointer;">Call or WhatsApp Us &#8594;</button>
+      <button type="button" class="btn-red" onclick="openCallModal()" style="border:none;font-family:var(--font);cursor:pointer;">Call or WhatsApp Us</button>
     </div>
   </div>
-  <div class="dept-cards">
-    <div class="dept-card reveal d1">
-      <div class="dc-icon">&#128187;</div>
-      <h3>Laptop &amp; Computer Repairs</h3>
-      <p>Repairs for personal and business laptops/desktops, including hardware faults, performance issues, screens, batteries, and general maintenance.</p>
-      <ul class="dc-list"><li>Screen replacements</li><li>Hardware repairs</li><li>Keyboard &amp; trackpad fixes</li><li>Battery replacements</li></ul>
+  <div class="dept-tabs" data-tabgroup>
+    <div class="dept-tab-list" role="tablist" aria-label="IT support services">
+      <span class="dept-tab-indicator" aria-hidden="true"></span>
+      <button class="dept-tab active" role="tab" aria-selected="true" aria-controls="it-panel-0" id="it-tab-0" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg><span>Laptop &amp; Computer Repairs</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="it-panel-1" id="it-tab-1" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span>IT Support &amp; Troubleshooting</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="it-panel-2" id="it-tab-2" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span>Software Setup &amp; Updates</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="it-panel-3" id="it-tab-3" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Virus Removal &amp; Performance</span>
+      </button>
     </div>
-    <div class="dept-card reveal d2">
-      <div class="dc-icon">&#127911;</div>
-      <h3>IT Support &amp; Troubleshooting</h3>
-      <p>Remote or on-site support for individuals, homes, startups, and businesses that need reliable technical help.</p>
-      <ul class="dc-list"><li>Remote support</li><li>On-site visits</li><li>Network setup</li><li>Email &amp; printer config</li></ul>
-    </div>
-    <div class="dept-card reveal d3">
-      <div class="dc-icon">&#9881;&#65039;</div>
-      <h3>Software Setup &amp; Updates</h3>
-      <p>We install, configure, update, and optimise software so your device or business system can run securely and without delays.</p>
-      <ul class="dc-list"><li>OS installations</li><li>Software setup</li><li>Driver updates</li><li>System optimisation</li></ul>
-    </div>
-    <div class="dept-card reveal d1">
-      <div class="dc-icon">&#128737;&#65039;</div>
-      <h3>Virus Removal &amp; Performance Fixes</h3>
-      <p>Malware removal, system clean-up, data recovery support, antivirus setup, and PC speed optimisation for personal and business devices.</p>
-      <ul class="dc-list"><li>Malware removal</li><li>Antivirus setup</li><li>PC speed boost</li><li>Data recovery</li></ul>
+    <div class="dept-tab-panels">
+      <div class="dept-panel active" role="tabpanel" id="it-panel-0" aria-labelledby="it-tab-0">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></div>
+        <h3>Laptop &amp; Computer Repairs</h3>
+        <p>Repairs for personal and business laptops/desktops, including hardware faults, performance issues, screens, batteries, and general maintenance.</p>
+        <ul class="dc-list"><li>Screen replacements</li><li>Hardware repairs</li><li>Keyboard &amp; trackpad fixes</li><li>Battery replacements</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('IT Support &amp; Repairs')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="it-panel-1" aria-labelledby="it-tab-1">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg></div>
+        <h3>IT Support &amp; Troubleshooting</h3>
+        <p>Remote or on-site support for individuals, homes, startups, and businesses that need reliable technical help.</p>
+        <ul class="dc-list"><li>Remote support</li><li>On-site visits</li><li>Network setup</li><li>Email &amp; printer config</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('IT Support &amp; Repairs')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="it-panel-2" aria-labelledby="it-tab-2">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg></div>
+        <h3>Software Setup &amp; Updates</h3>
+        <p>We install, configure, update, and optimise software so your device or business system can run securely and without delays.</p>
+        <ul class="dc-list"><li>OS installations</li><li>Software setup</li><li>Driver updates</li><li>System optimisation</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('IT Support &amp; Repairs')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="it-panel-3" aria-labelledby="it-tab-3">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
+        <h3>Virus Removal &amp; Performance Fixes</h3>
+        <p>Malware removal, system clean-up, data recovery support, antivirus setup, and PC speed optimisation for personal and business devices.</p>
+        <ul class="dc-list"><li>Malware removal</li><li>Antivirus setup</li><li>PC speed boost</li><li>Data recovery</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('IT Support &amp; Repairs')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
     </div>
   </div>
 </section>
@@ -974,51 +1224,77 @@ footer{background:#111;padding:50px 5% 24px}
 <section id="web-dev" class="dept-section">
   <div class="dept-header web-dept reveal">
     <div class="dept-header-inner">
-      <div class="dept-tag">&#127760; WEB DEVELOPMENT &amp; CREATIVE DESIGN</div>
+      <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg> Web Development &amp; Creative Design</div>
       <h2>Build Your Website.<br><span>Stand Out Online.</span></h2>
       <p>Individuals, startups, small businesses, and companies can get websites, maintenance, logo design, posters, and brand graphics from Axe Connect.</p>
-      <button type="button" class="btn-white-red" onclick="openQuoteModal()">Get Website Quote &#8594;</button>
+      <button type="button" class="btn-white-red" onclick="openQuoteModal('Web Development')">Get Website Quote</button>
     </div>
   </div>
-  <div class="dept-cards">
-    <div class="dept-card reveal d1">
-      <div class="dc-icon">&#127760;</div>
-      <h3>Website Design &amp; Development</h3>
-      <p>Modern, mobile-friendly, SEO-ready websites that help individuals, startups, and companies attract customers and look professional online.</p>
-      <ul class="dc-list"><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li></ul>
+  <div class="dept-tabs" data-tabgroup>
+    <div class="dept-tab-list" role="tablist" aria-label="Web and design services">
+      <span class="dept-tab-indicator" aria-hidden="true"></span>
+      <button class="dept-tab active" role="tab" aria-selected="true" aria-controls="wd-panel-0" id="wd-tab-0" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span>Website Design &amp; Development</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="wd-panel-1" id="wd-tab-1" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg><span>Personal, Business &amp; Startup Sites</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="wd-panel-2" id="wd-tab-2" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg><span>Website Maintenance &amp; Updates</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="wd-panel-3" id="wd-tab-3" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span>Logo Design</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="wd-panel-4" id="wd-tab-4" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Poster &amp; Flyer Design</span>
+      </button>
+      <button class="dept-tab" role="tab" aria-selected="false" aria-controls="wd-panel-5" id="wd-tab-5" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg><span>Brand Identity &amp; Graphics</span>
+      </button>
     </div>
-    <div class="dept-card reveal d2">
-      <div class="dc-icon">&#128640;</div>
-      <h3>Personal, Business &amp; Startup Websites</h3>
-      <p>Affordable websites for personal brands, startups, small businesses, and growing companies that need a strong online presence.</p>
-      <ul class="dc-list"><li>Affordable packages</li><li>Domain &amp; hosting setup</li><li>Mobile responsive</li><li>Fast turnaround</li></ul>
-    </div>
-    <div class="dept-card reveal d3">
-      <div class="dc-icon">&#128295;</div>
-      <h3>Website Maintenance &amp; Updates</h3>
-      <p>Website updates, content changes, security checks, and monthly maintenance so your site stays professional.</p>
-      <ul class="dc-list"><li>Content updates</li><li>Security patches</li><li>Performance tuning</li><li>Monthly support plans</li></ul>
-    </div>
-    <div class="dept-card reveal d1 card-highlight">
-      <div class="card-new-badge">NEW</div>
-      <div class="dc-icon">&#127775;</div>
-      <h3>Logo Design</h3>
-      <p>Professional logo creation for personal brands, startups, and companies that need a clean, memorable, and credible identity.</p>
-      <ul class="dc-list"><li>Custom logo concepts</li><li>Multiple revisions</li><li>PNG, SVG &amp; PDF files</li><li>Brand colour palette</li></ul>
-    </div>
-    <div class="dept-card reveal d2 card-highlight">
-      <div class="card-new-badge">NEW</div>
-      <div class="dc-icon">&#128444;&#65039;</div>
-      <h3>Poster &amp; Flyer Design</h3>
-      <p>Posters, flyers, and promotional graphics for events, campaigns, adverts, businesses, personal brands, and social media.</p>
-      <ul class="dc-list"><li>Event posters</li><li>Business flyers</li><li>Social media graphics</li><li>Print-ready files</li></ul>
-    </div>
-    <div class="dept-card reveal d3 card-highlight">
-      <div class="card-new-badge">NEW</div>
-      <div class="dc-icon">&#9999;&#65039;</div>
-      <h3>Brand Identity &amp; Graphics</h3>
-      <p>Brand identity packages — logo, colours, fonts, business cards, and templates — for a consistent personal or business image.</p>
-      <ul class="dc-list"><li>Brand style guide</li><li>Business card design</li><li>Letterhead &amp; templates</li><li>Social media kit</li></ul>
+    <div class="dept-tab-panels">
+      <div class="dept-panel active" role="tabpanel" id="wd-panel-0" aria-labelledby="wd-tab-0">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+        <h3>Website Design &amp; Development</h3>
+        <p>Modern, mobile-friendly, SEO-ready websites that help individuals, startups, and companies attract customers and look professional online.</p>
+        <ul class="dc-list"><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="wd-panel-1" aria-labelledby="wd-tab-1">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg></div>
+        <h3>Personal, Business &amp; Startup Websites</h3>
+        <p>Affordable websites for personal brands, startups, small businesses, and growing companies that need a strong online presence.</p>
+        <ul class="dc-list"><li>Affordable packages</li><li>Domain &amp; hosting setup</li><li>Mobile responsive</li><li>Fast turnaround</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="wd-panel-2" aria-labelledby="wd-tab-2">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></div>
+        <h3>Website Maintenance &amp; Updates</h3>
+        <p>Website updates, content changes, security checks, and monthly maintenance so your site stays professional.</p>
+        <ul class="dc-list"><li>Content updates</li><li>Security patches</li><li>Performance tuning</li><li>Monthly support plans</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="wd-panel-3" aria-labelledby="wd-tab-3">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <h3>Logo Design</h3>
+        <p>Professional logo creation for personal brands, startups, and companies that need a clean, memorable, and credible identity.</p>
+        <ul class="dc-list"><li>Custom logo concepts</li><li>Multiple revisions</li><li>PNG, SVG &amp; PDF files</li><li>Brand colour palette</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="wd-panel-4" aria-labelledby="wd-tab-4">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg></div>
+        <h3>Poster &amp; Flyer Design</h3>
+        <p>Posters, flyers, and promotional graphics for events, campaigns, adverts, businesses, personal brands, and social media.</p>
+        <ul class="dc-list"><li>Event posters</li><li>Business flyers</li><li>Social media graphics</li><li>Print-ready files</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
+      <div class="dept-panel" role="tabpanel" id="wd-panel-5" aria-labelledby="wd-tab-5">
+        <div class="dc-icon"><svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg></div>
+        <h3>Brand Identity &amp; Graphics</h3>
+        <p>Brand identity packages — logo, colours, fonts, business cards, and templates — for a consistent personal or business image.</p>
+        <ul class="dc-list"><li>Brand style guide</li><li>Business card design</li><li>Letterhead &amp; templates</li><li>Social media kit</li></ul>
+        <button type="button" class="dept-panel-cta" onclick="openQuoteModal('Web Development')"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Get a Quote for This</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1045,14 +1321,14 @@ footer{background:#111;padding:50px 5% 24px}
     <div class="dot-grid"><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div><div class="dg-dot"></div></div>
   </div>
   <div class="about-content reveal d2">
-    <span class="sec-label">ABOUT US</span>
+    <span class="sec-label">About us</span>
     <h2>About <em>Axe</em> Connect</h2>
     <p>We're a Pretoria-based tech and digital services provider helping individuals, startups, small businesses, and companies with IT support, computer repairs, web development, website maintenance, and creative design services.</p>
     <p>Whether you need a personal laptop fixed, a business website, monthly support, or design work, Axe Connect gives you practical and affordable help from one place.</p>
     <div class="about-points">
-      <div class="ap"><div class="ap-icon">&#128101;</div><b>For Everyone</b><small>Individuals and companies</small></div>
-      <div class="ap"><div class="ap-icon">&#9989;</div><b>One Place</b><small>IT, websites and design</small></div>
-      <div class="ap"><div class="ap-icon">&#11088;</div><b>Reliable Delivery</b><small>Clear quotes and updates</small></div>
+      <div class="ap"><div class="ap-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></div><b>For Everyone</b><small>Individuals and companies</small></div>
+      <div class="ap"><div class="ap-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div><b>One Place</b><small>IT, websites and design</small></div>
+      <div class="ap"><div class="ap-icon"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg></div><b>Reliable Delivery</b><small>Clear quotes and updates</small></div>
     </div>
   </div>
 </section>
@@ -1060,27 +1336,27 @@ footer{background:#111;padding:50px 5% 24px}
 <!-- PROCESS -->
 <section class="process">
   <div class="sec-head reveal">
-    <span class="sec-label">HOW IT WORKS</span>
+    <span class="sec-label">How it works</span>
     <h2 class="sec-h2">Request. Assess. Deliver.</h2>
   </div>
   <div class="proc-grid">
     <div class="proc-step reveal d1">
       <div class="proc-num">1</div>
-      <div class="proc-icon-wrap">&#128222;</div>
+      <div class="proc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div>
       <h3>Get in Touch</h3>
       <p>Call, WhatsApp, or send a quote request. Tell us what you need — IT support, repairs, website work, maintenance, logo design, posters, or branding.</p>
     </div>
-    <div class="proc-arrow reveal">&#8594;</div>
+    <div class="proc-arrow reveal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></div>
     <div class="proc-step reveal d2">
       <div class="proc-num">2</div>
-      <div class="proc-icon-wrap">&#128269;</div>
+      <div class="proc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></div>
       <h3>We Assess &amp; Quote</h3>
       <p>We assess the problem or project scope and give you clear recommendations, timelines, and pricing.</p>
     </div>
-    <div class="proc-arrow reveal">&#8594;</div>
+    <div class="proc-arrow reveal"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></div>
     <div class="proc-step reveal d3">
       <div class="proc-num">3</div>
-      <div class="proc-icon-wrap">&#9989;</div>
+      <div class="proc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
       <h3>Done &amp; Delivered</h3>
       <p>We do the work, keep you updated, and deliver practical results you can use immediately.</p>
     </div>
@@ -1097,8 +1373,8 @@ footer{background:#111;padding:50px 5% 24px}
       Tell us what you need. We help individuals, startups, small businesses, and companies with IT problems, repairs, websites, maintenance, and design work.
     </p>
     <div class="cta-band-btns">
-      <button class="cta-band-btn cta-btn-white" onclick="openQuoteModal()">📋 Request a Quote</button>
-      <button class="cta-band-btn cta-btn-outline-w" onclick="openCallModal()">📞 Call Us Now</button>
+      <button class="cta-band-btn cta-btn-white" onclick="openQuoteModal()"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Request a Quote</button>
+      <button class="cta-band-btn cta-btn-outline-w" onclick="openCallModal()"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Call Us Now</button>
     </div>
   </div>
 </section>
@@ -1177,26 +1453,28 @@ footer{background:#111;padding:50px 5% 24px}
     </div>
     <div class="foot-col">
       <h3>Contact Us</h3>
-      <div class="fi"><span class="fi-icon">&#128222;</span><a href="tel:0607950837">060 795 0837</a></div>
-      <div class="fi"><span class="fi-icon">&#9993;</span><a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a></div>
-      <div class="fi"><span class="fi-icon">&#128172;</span><a href="https://wa.me/270607950837">WhatsApp Us</a></div>
-      <div class="fi"><span class="fi-icon">&#128205;</span><span>Pretoria, Gauteng</span></div>
-      <div class="fi"><span class="fi-icon">&#128336;</span><span>Mon &#8211; Fri: 08:30 &#8211; 17:00</span></div>
+      <div class="fi"><span class="fi-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><a href="tel:0607950837">060 795 0837</a></div>
+      <div class="fi"><span class="fi-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span><a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a></div>
+      <div class="fi"><span class="fi-icon"><svg class="icon" aria-hidden="true"><use href="#i-message-circle"/></svg></span><a href="https://wa.me/270607950837">WhatsApp Us</a></div>
+      <div class="fi"><span class="fi-icon"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span><span>Pretoria, Gauteng</span></div>
+      <div class="fi"><span class="fi-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><span>Mon &#8211; Fri: 08:30 &#8211; 17:00</span></div>
     </div>
   </div>
   <p class="copyright">&#169; <span id="yr"></span> Axe Connect. All rights reserved. | Pretoria, Gauteng</p>
+  <p class="built-by">Designed &amp; built by <a href="https://carven.netlify.app/" target="_blank" rel="noopener">Carven Maceke</a> <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg></p>
 </footer>
 
 <!-- CONTACT FORM MODAL -->
 <div class="modal-overlay" id="contactModal" onclick="closeOnOverlay(event,'contactModal')">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
     <div class="modal-head">
-      <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close">✕</button>
+      <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
       <h2 id="contactModalTitle">Get in Touch</h2>
       <p>Fill in the form and we'll get back to you within the hour.</p>
     </div>
     <div class="modal-body">
       <div id="contactFormWrap">
+        <div class="form-alert" id="contactFormAlert" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span></span></div>
         <div class="form-row">
           <div class="form-group">
             <label for="cf-name">Full Name</label>
@@ -1215,19 +1493,19 @@ footer{background:#111;padding:50px 5% 24px}
           <label for="cf-service">What do you need?</label>
           <select id="cf-service" required>
             <option value="" disabled selected>— Select a service —</option>
-            <optgroup label="🖥 IT Support &amp; Repairs">
+            <optgroup label="IT Support &amp; Repairs">
               <option value="Laptop & Computer Repair">Laptop &amp; Computer Repair</option>
               <option value="IT Support & Troubleshooting">IT Support &amp; Troubleshooting</option>
               <option value="Software Installation & Updates">Software Installation &amp; Updates</option>
               <option value="Virus & Performance Fix">Virus &amp; Performance Fix</option>
             </optgroup>
-            <optgroup label="🌐 Web Development">
+            <optgroup label="Web Development">
               <option value="New Business Website">New Business Website</option>
               <option value="Startup Website Package">Startup Website Package</option>
               <option value="E-commerce Store">E-commerce Store</option>
               <option value="Website Maintenance & Updates">Website Maintenance &amp; Updates</option>
             </optgroup>
-            <optgroup label="🎨 Creative Design">
+            <optgroup label="Creative Design">
               <option value="Logo Design">Logo Design</option>
               <option value="Poster & Flyer Design">Poster &amp; Flyer Design</option>
               <option value="Brand Identity Package">Brand Identity Package</option>
@@ -1239,11 +1517,11 @@ footer{background:#111;padding:50px 5% 24px}
           <label for="cf-msg">Message</label>
           <textarea id="cf-msg" placeholder="Tell us a bit more about what you need..."></textarea>
         </div>
-        <button type="button" class="form-submit" onclick="submitContactForm()">Send Message →</button>
-        <p class="form-note">📧 Your message goes directly to carvenmaceke9@gmail.com</p>
+        <button type="button" class="form-submit" onclick="submitContactForm()">Send Message</button>
+        <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your message goes directly to carvenmaceke9@gmail.com</p>
       </div>
       <div class="form-success" id="formSuccess">
-        <div class="fs-icon">✅</div>
+        <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
         <h3>Message Sent!</h3>
         <p>Thanks! We'll be in touch with you shortly.<br>Check your email for confirmation.</p>
       </div>
@@ -1256,12 +1534,13 @@ footer{background:#111;padding:50px 5% 24px}
 <div class="modal-overlay" id="quoteModal" onclick="closeOnOverlay(event,'quoteModal')">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle">
     <div class="modal-head">
-      <button class="modal-close" onclick="closeModal('quoteModal')" aria-label="Close">✕</button>
+      <button class="modal-close" onclick="closeModal('quoteModal')" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
       <h2 id="quoteModalTitle">Request a Quote</h2>
       <p>Tell us what you need help with and we'll send you a proper quote.</p>
     </div>
     <div class="modal-body">
       <div id="quoteFormWrap">
+        <div class="form-alert" id="quoteFormAlert" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span></span></div>
         <div class="form-row">
           <div class="form-group">
             <label for="qf-name">Full Name</label>
@@ -1283,27 +1562,15 @@ footer{background:#111;padding:50px 5% 24px}
             <label for="qf-service-category">Service Category</label>
             <select id="qf-service-category" required>
               <option value="" disabled selected>— Select service category —</option>
-              <option value="IT Support & Repairs">IT Support & Repairs</option>
-              <option value="Web Development & Creative Design">Web Development & Creative Design</option>
-              <option value="Monthly Business / Individual Support">Monthly Business / Individual Support</option>
+              <option value="Web Development">Web Development</option>
+              <option value="IT Support &amp; Repairs">IT Support &amp; Repairs</option>
+              <option value="Monthly Business Support">Monthly Business Support</option>
             </select>
           </div>
           <div class="form-group">
             <label for="qf-service-needed">Specific Service</label>
-            <select id="qf-service-needed" required>
-              <option value="" disabled selected>— Select specific service —</option>
-              <option value="Laptop / Computer Repairs">Laptop / Computer Repairs</option>
-              <option value="Monthly IT Support">Monthly IT Support</option>
-              <option value="IT Support & Troubleshooting">IT Support & Troubleshooting</option>
-              <option value="Software Installation & Updates">Software Installation & Updates</option>
-              <option value="Virus Removal & Performance Fixes">Virus Removal & Performance Fixes</option>
-              <option value="Website Design & Development">Website Design & Development</option>
-              <option value="Startup Business Website">Startup Business Website</option>
-              <option value="Website Maintenance & Updates">Website Maintenance & Updates</option>
-              <option value="Company Website Support">Company Website Support</option>
-              <option value="Logo Design">Logo Design</option>
-              <option value="Poster / Flyer Design">Poster / Flyer Design</option>
-              <option value="Brand Identity & Graphics">Brand Identity & Graphics</option>
+            <select id="qf-service-needed" required disabled>
+              <option value="" disabled selected>— Select a category first —</option>
             </select>
           </div>
         </div>
@@ -1314,20 +1581,9 @@ footer{background:#111;padding:50px 5% 24px}
             <input type="text" id="qf-business" placeholder="Business/project name or Not Applicable"/>
           </div>
           <div class="form-group">
-            <label for="qf-website-type">Type of Website / Device</label>
-            <select id="qf-website-type" required>
-              <option value="" disabled selected>— Select option —</option>
-              <option value="Business Website">Business Website</option>
-              <option value="Startup Website">Startup Website</option>
-              <option value="Landing Page">Landing Page</option>
-              <option value="E-commerce Store">E-commerce Store</option>
-              <option value="Portfolio Website">Portfolio Website</option>
-              <option value="Website Redesign">Website Redesign</option>
-              <option value="Laptop">Laptop</option>
-              <option value="Desktop Computer">Desktop Computer</option>
-              <option value="Printer / Network / Email Setup">Printer / Network / Email Setup</option>
-              <option value="Logo / Poster / Brand Design">Logo / Poster / Brand Design</option>
-              <option value="Other">Other</option>
+            <label for="qf-website-type" id="qf-website-type-label">Type of Website / Device</label>
+            <select id="qf-website-type" required disabled>
+              <option value="" disabled selected>— Select a category first —</option>
             </select>
           </div>
         </div>
@@ -1360,8 +1616,8 @@ footer{background:#111;padding:50px 5% 24px}
 
         <div class="form-row">
           <div class="form-group">
-            <label for="qf-features">Features / Problem</label>
-            <input type="text" id="qf-features" placeholder="Booking, WhatsApp, payments, slow PC, broken screen..." required/>
+            <label for="qf-features" id="qf-features-label">Features / Problem</label>
+            <input type="text" id="qf-features" placeholder="Select a category above first..." required/>
           </div>
           <div class="form-group">
             <label for="qf-deadline">Deadline</label>
@@ -1374,12 +1630,12 @@ footer{background:#111;padding:50px 5% 24px}
           <textarea id="qf-msg" placeholder="Tell us what you need. For websites: what must it do? For IT support: what problem must we fix?"></textarea>
         </div>
 
-        <button type="button" class="form-submit" id="quoteSubmitBtn" onclick="submitQuoteForm()">Send Quote Request →</button>
-        <p class="form-note">📧 Your quote request goes directly to carvenmaceke9@gmail.com</p>
+        <button type="button" class="form-submit" id="quoteSubmitBtn" onclick="submitQuoteForm()">Send Quote Request</button>
+        <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your quote request goes directly to carvenmaceke9@gmail.com</p>
       </div>
 
       <div class="form-success" id="quoteFormSuccess">
-        <div class="fs-icon">✅</div>
+        <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
         <h3>Quote Request Sent!</h3>
         <p>Thanks! We'll review your details and contact you shortly.</p>
       </div>
@@ -1391,14 +1647,14 @@ footer{background:#111;padding:50px 5% 24px}
 <div class="call-modal-overlay" id="callModal" onclick="closeOnOverlay(event,'callModal')">
   <div class="call-modal-box" role="dialog" aria-modal="true">
     <div class="call-modal-head">
-      <button class="call-close" onclick="closeModal('callModal')" aria-label="Close">✕</button>
-      <h2>📞 Call Axe Connect</h2>
+      <button class="call-close" onclick="closeModal('callModal')" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <h2><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Call Axe Connect</h2>
       <p>Choose how you'd like to reach us</p>
     </div>
     <div class="call-options">
       <!-- Direct call (always shown) -->
       <a class="call-option co-phone" href="tel:0607950837">
-        <div class="co-icon">📱</div>
+        <div class="co-icon"><svg class="icon" aria-hidden="true"><use href="#i-smartphone"/></svg></div>
         <div class="co-text">
           <b>Call 060 795 0837</b>
           <small>Tap to call directly — works on all devices</small>
@@ -1406,7 +1662,7 @@ footer{background:#111;padding:50px 5% 24px}
       </a>
       <!-- WhatsApp (always shown) -->
       <a class="call-option co-phone" href="https://wa.me/27607950837?text=Hi%20Axe%20Connect!%20I%27d%20like%20to%20enquire%20about%20your%20services." target="_blank">
-        <div class="co-icon">💬</div>
+        <div class="co-icon"><svg class="icon" aria-hidden="true"><use href="#i-message-circle"/></svg></div>
         <div class="co-text">
           <b>WhatsApp Us</b>
           <small>Chat on WhatsApp — quick and easy</small>
@@ -1417,10 +1673,83 @@ footer{background:#111;padding:50px 5% 24px}
   </div>
 </div>
 
+<!-- MOBILE STICKY ACTION BAR -->
+<div class="mobile-bar" role="navigation" aria-label="Quick actions">
+  <a href="tel:0607950837" class="mb-item">
+    <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span>Call</span>
+  </a>
+  <a href="https://wa.me/27607950837?text=Hi%20Axe%20Connect!%20I%27d%20like%20to%20enquire%20about%20your%20services." target="_blank" class="mb-item">
+    <svg class="icon" aria-hidden="true"><use href="#i-message-circle"/></svg><span>WhatsApp</span>
+  </a>
+  <button type="button" class="mb-item mb-quote" onclick="openQuoteModal()">
+    <svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg><span>Quote</span>
+  </button>
+</div>
+
+<!-- QUICK QUESTIONS WIDGET -->
+<div class="quick-help" id="quickHelp">
+  <div class="qh-panel" id="qhPanel" role="dialog" aria-label="Quick questions" aria-hidden="true">
+    <div class="qh-head">
+      <div>
+        <strong>Quick Questions</strong>
+        <span>Usually replies within a day</span>
+      </div>
+      <button type="button" class="qh-close" id="qhClose" aria-label="Close quick questions">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="qh-body">
+      <p class="qh-intro">👋 Tap a question for a quick answer, or reach out directly below.</p>
+      <div class="qh-questions">
+        <button type="button" class="qh-q" data-a="Pricing depends on scope — a simple landing page costs less than a full e-commerce store. Tap &quot;Get a Quote&quot; below and pick Web Development for an accurate estimate.">How much does a website cost?</button>
+        <button type="button" class="qh-q" data-a="Yes — screen repairs, slow PCs, virus removal, hardware fixes and more, for individuals. Call or WhatsApp us directly for the fastest turnaround on repairs.">Do you fix laptops &amp; PCs?</button>
+        <button type="button" class="qh-q" data-a="Yes — office network setup, staff device management, and ongoing monthly support plans for businesses. Pick Monthly Business Support when requesting a quote.">Do you support businesses monthly?</button>
+        <button type="button" class="qh-q" data-a="It depends on scope, but most small business sites are delivered within a few weeks. You'll get a clear timeline in your quote.">How fast can you deliver a website?</button>
+        <button type="button" class="qh-q" data-a="Yes — logos, posters, flyers, and full brand identity packages, all under the Web Development quote category.">Do you design logos &amp; branding?</button>
+      </div>
+    </div>
+    <div class="qh-footer">
+      <button type="button" class="qh-cta" onclick="openQuoteModal()">Get a Quote</button>
+      <a class="qh-cta qh-cta-outline" href="tel:0607950837">Call Us</a>
+    </div>
+  </div>
+  <button type="button" class="qh-toggle" id="qhToggle" aria-label="Quick questions" aria-expanded="false">
+    <svg class="icon icon-chat" aria-hidden="true"><use href="#i-message-circle"/></svg>
+    <svg class="icon icon-close" aria-hidden="true"><use href="#i-x"/></svg>
+  </button>
+</div>
+
 <!-- EmailJS Library -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
+// Theme (dark/light) — respects saved choice, else system preference
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(mode) {
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+  themeToggle.setAttribute('aria-pressed', mode === 'dark');
+  themeToggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
+const savedTheme = localStorage.getItem('axeconnect-theme');
+const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme || (systemDark ? 'dark' : 'light'));
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem('axeconnect-theme', next);
+});
+
+// Scroll progress bar
+const scrollProgress = document.getElementById('scrollProgress');
+function updateScrollProgress() {
+  const h = document.documentElement;
+  const scrolled = h.scrollTop || document.body.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  scrollProgress.style.width = max > 0 ? (scrolled / max * 100) + '%' : '0%';
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+updateScrollProgress();
+
 // Year
 document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -1429,29 +1758,104 @@ const toggle = document.getElementById('navToggle');
 const nav = document.getElementById('mainNav');
 toggle.addEventListener('click', () => {
   const open = nav.classList.toggle('open');
-  toggle.textContent = open ? '✕' : '☰';
+  toggle.classList.toggle('open', open);
   toggle.setAttribute('aria-expanded', open);
 });
 nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  nav.classList.remove('open'); toggle.textContent = '☰';
+  nav.classList.remove('open'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded', false);
 }));
 
 // Header shadow on scroll
 const hdr = document.getElementById('hdr');
 window.addEventListener('scroll', () => {
-  hdr.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 #e8e8e8';
+  hdr.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 var(--line)';
 });
 
 // Active nav
 const secs = document.querySelectorAll('section[id], main[id]');
 const links = document.querySelectorAll('.hdr-nav a');
+const navIndicator = document.querySelector('.nav-indicator');
+function moveNavIndicator(link) {
+  if (!link || !navIndicator || window.innerWidth < 641) return;
+  navIndicator.style.left = link.offsetLeft + 'px';
+  navIndicator.style.top = link.offsetTop + 'px';
+  navIndicator.style.width = link.offsetWidth + 'px';
+  navIndicator.style.height = link.offsetHeight + 'px';
+}
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting)
+    if (e.isIntersecting) {
       links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id));
+      moveNavIndicator(document.querySelector('.hdr-nav a.active'));
+    }
   });
 }, { threshold: 0.3 });
 secs.forEach(s => io.observe(s));
+links.forEach(l => l.addEventListener('click', () => moveNavIndicator(l)));
+window.addEventListener('resize', () => moveNavIndicator(document.querySelector('.hdr-nav a.active')));
+window.addEventListener('load', () => moveNavIndicator(document.querySelector('.hdr-nav a.active')));
+moveNavIndicator(document.querySelector('.hdr-nav a.active'));
+
+// Quick Questions floating widget
+const qh = document.getElementById('quickHelp');
+const qhToggle = document.getElementById('qhToggle');
+const qhClose = document.getElementById('qhClose');
+const qhPanel = document.getElementById('qhPanel');
+function setQhOpen(open) {
+  qh.classList.toggle('open', open);
+  qhToggle.setAttribute('aria-expanded', open);
+  qhPanel.setAttribute('aria-hidden', !open);
+}
+qhToggle.addEventListener('click', () => setQhOpen(!qh.classList.contains('open')));
+qhClose.addEventListener('click', () => setQhOpen(false));
+document.addEventListener('click', e => {
+  if (qh.classList.contains('open') && !qh.contains(e.target)) setQhOpen(false);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setQhOpen(false); });
+document.querySelectorAll('.qh-q').forEach(btn => {
+  const answer = document.createElement('p');
+  answer.className = 'qh-a';
+  answer.textContent = btn.getAttribute('data-a');
+  btn.insertAdjacentElement('afterend', answer);
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.qh-q.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+    if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+  });
+});
+
+// Interactive department tabs (IT Support / Web & Design)
+document.querySelectorAll('.dept-tabs').forEach(group => {
+  const tabs = Array.from(group.querySelectorAll('.dept-tab'));
+  const panels = Array.from(group.querySelectorAll('.dept-panel'));
+  const indicator = group.querySelector('.dept-tab-indicator');
+  function moveIndicator(tab) {
+    if (!indicator || !tab || window.innerWidth <= 900) return;
+    indicator.style.top = tab.offsetTop + 'px';
+    indicator.style.height = tab.offsetHeight + 'px';
+  }
+  function activate(i) {
+    tabs.forEach((t, idx) => {
+      const on = idx === i;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panels[idx].classList.toggle('active', on);
+    });
+    moveIndicator(tabs[i]);
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(i));
+    tab.addEventListener('keydown', e => {
+      if (['ArrowRight','ArrowDown'].includes(e.key)) { e.preventDefault(); const n=(i+1)%tabs.length; tabs[n].focus(); activate(n); }
+      if (['ArrowLeft','ArrowUp'].includes(e.key)) { e.preventDefault(); const n=(i-1+tabs.length)%tabs.length; tabs[n].focus(); activate(n); }
+    });
+  });
+  const initialActive = tabs.find(t => t.classList.contains('active')) || tabs[0];
+  moveIndicator(initialActive);
+  window.addEventListener('resize', () => moveIndicator(group.querySelector('.dept-tab.active')));
+  window.addEventListener('load', () => moveIndicator(group.querySelector('.dept-tab.active')));
+});
 
 // Scroll reveal
 const revs = document.querySelectorAll('.reveal');
@@ -1470,10 +1874,25 @@ if (window.innerWidth >= 768) {
 function openContactModal() {
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  clearFieldErrors(['cf-name','cf-email','cf-service']);
+  showFormAlert('contactFormAlert', '');
 }
-function openQuoteModal() {
+function openQuoteModal(lockCategory) {
   document.getElementById('quoteModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  clearFieldErrors(['qf-name','qf-phone','qf-email','qf-service-category','qf-service-needed','qf-business','qf-website-type','qf-pages','qf-budget','qf-features','qf-deadline']);
+  showFormAlert('quoteFormAlert', '');
+  const categorySelect = document.getElementById('qf-service-category');
+  if (lockCategory) {
+    categorySelect.value = lockCategory;
+    categorySelect.disabled = true;
+  } else {
+    categorySelect.disabled = false;
+    categorySelect.selectedIndex = 0;
+  }
+  populateQuoteServices(lockCategory || '');
+  populateQuoteType(lockCategory || '');
+  updateQuoteFeaturesField(lockCategory || '');
 }
 function openCallModal() {
   document.getElementById('callModal').classList.add('open');
@@ -1519,6 +1938,142 @@ if (window.emailjs) {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
+// Quote form: category -> specific service cascading
+const QUOTE_SERVICE_MAP = {
+  'Web Development': [
+    'Website Design & Development',
+    'Startup Business Website',
+    'Website Maintenance & Updates',
+    'Company Website Support',
+    'Logo Design',
+    'Poster / Flyer Design',
+    'Brand Identity & Graphics'
+  ],
+  'Monthly Business Support': [
+    'Monthly IT Support Plan',
+    'Company Workspace / Office Setup',
+    'Office Network & Systems Support',
+    'Staff Devices & Email Management'
+  ],
+  'IT Support & Repairs': [
+    'Laptop / Computer Repairs',
+    'IT Support & Troubleshooting',
+    'Software Installation & Updates',
+    'Virus Removal & Performance Fixes'
+  ]
+};
+function populateQuoteServices(category) {
+  const sel = document.getElementById('qf-service-needed');
+  if (!sel) return;
+  sel.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  if (!category || !QUOTE_SERVICE_MAP[category]) {
+    placeholder.textContent = '— Select a category first —';
+    sel.appendChild(placeholder);
+    sel.disabled = true;
+    return;
+  }
+  placeholder.textContent = '— Select specific service —';
+  sel.appendChild(placeholder);
+  QUOTE_SERVICE_MAP[category].forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  sel.disabled = false;
+}
+const QUOTE_TYPE_MAP = {
+  'Web Development': ['Business Website','Startup Website','Landing Page','E-commerce Store','Portfolio Website','Website Redesign','Logo / Poster / Brand Design','Other'],
+  'Monthly Business Support': ['New Office / Workspace Setup','Existing Office Network Support','Staff Devices & Email Systems','Multiple Locations / Branches','Other'],
+  'IT Support & Repairs': ['Laptop','Desktop Computer','Printer / Network / Email Setup','Other']
+};
+const QUOTE_TYPE_LABEL = {
+  'Web Development': 'Type of Website',
+  'Monthly Business Support': 'Type of Business Support',
+  'IT Support & Repairs': 'Type of Device'
+};
+function populateQuoteType(category) {
+  const sel = document.getElementById('qf-website-type');
+  const label = document.getElementById('qf-website-type-label');
+  if (!sel) return;
+  sel.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  if (!category || !QUOTE_TYPE_MAP[category]) {
+    placeholder.textContent = '— Select a category first —';
+    sel.appendChild(placeholder);
+    sel.disabled = true;
+    if (label) label.textContent = 'Type of Website / Device';
+    return;
+  }
+  placeholder.textContent = '— Select option —';
+  sel.appendChild(placeholder);
+  QUOTE_TYPE_MAP[category].forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  sel.disabled = false;
+  if (label) label.textContent = QUOTE_TYPE_LABEL[category];
+}
+const QUOTE_FEATURES_META = {
+  'Web Development': { label: 'Features You Need', placeholder: 'Booking, WhatsApp button, online payments, gallery, blog...' },
+  'Monthly Business Support': { label: 'What Support Does Your Business Need', placeholder: 'Office network setup, staff onboarding, business email systems, ongoing maintenance plan...' },
+  'IT Support & Repairs': { label: 'Describe the Problem', placeholder: 'Slow PC, broken screen, won\'t turn on, virus, email not working...' }
+};
+function updateQuoteFeaturesField(category) {
+  const input = document.getElementById('qf-features');
+  const label = document.getElementById('qf-features-label');
+  const meta = QUOTE_FEATURES_META[category];
+  if (!input) return;
+  if (meta) {
+    input.placeholder = meta.placeholder;
+    if (label) label.textContent = meta.label;
+  } else {
+    input.placeholder = 'Select a category above first...';
+    if (label) label.textContent = 'Features / Problem';
+  }
+}
+const qfCategorySelect = document.getElementById('qf-service-category');
+if (qfCategorySelect) {
+  qfCategorySelect.addEventListener('change', e => {
+    populateQuoteServices(e.target.value);
+    populateQuoteType(e.target.value);
+    updateQuoteFeaturesField(e.target.value);
+    fieldError('qf-service-needed', '');
+    fieldError('qf-website-type', '');
+  });
+}
+
+function fieldError(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const group = el.closest('.form-group');
+  el.classList.toggle('invalid', !!msg);
+  if (!group) return;
+  let err = group.querySelector('.field-error');
+  if (msg) {
+    if (!err) { err = document.createElement('small'); err.className = 'field-error'; group.appendChild(err); }
+    err.textContent = msg;
+  } else if (err) {
+    err.remove();
+  }
+}
+function clearFieldErrors(ids) { ids.forEach(id => fieldError(id, '')); }
+function showFormAlert(alertId, msg) {
+  const el = document.getElementById(alertId);
+  if (!el) return;
+  el.querySelector('span').textContent = msg;
+  el.classList.toggle('show', !!msg);
+}
+
 function submitContactForm() {
   const name = document.getElementById('cf-name').value.trim();
   const phone = document.getElementById('cf-phone').value.trim();
@@ -1527,17 +2082,25 @@ function submitContactForm() {
   const msg = document.getElementById('cf-msg').value.trim();
 
   if (!name || !email || !service) {
-    alert('Please fill in your name, email, and select a service.');
+    clearFieldErrors(['cf-name','cf-email','cf-service']);
+    showFormAlert('contactFormAlert', '');
+    if (!name) fieldError('cf-name', 'Please enter your name.');
+    if (!email) fieldError('cf-email', 'Please enter your email.');
+    if (!service) fieldError('cf-service', 'Please select a service.');
+    showFormAlert('contactFormAlert', 'Please fill in the highlighted fields below.');
     return;
   }
+  clearFieldErrors(['cf-name','cf-email','cf-service']);
+  showFormAlert('contactFormAlert', '');
 
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert('Please enter a valid email address.');
+    fieldError('cf-email', 'Please enter a valid email address.');
+    showFormAlert('contactFormAlert', 'Please enter a valid email address.');
     return;
   }
 
   if (!window.emailjs) {
-    alert('Email service failed to load. Please refresh the page and try again.');
+    showFormAlert('contactFormAlert', 'Email service failed to load. Please refresh the page and try again.');
     return;
   }
 
@@ -1598,7 +2161,7 @@ function submitContactForm() {
         errorMessage += 'Please check your EmailJS service, template and public key.';
       }
 
-      alert(errorMessage);
+      showFormAlert('contactFormAlert', errorMessage);
 
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -1622,17 +2185,33 @@ function submitQuoteForm() {
   const extraMsg = document.getElementById('qf-msg').value.trim();
 
   if (!name || !phone || !email || !serviceCategory || !serviceNeeded || !business || !websiteType || !pages || !features || !budget || !deadline) {
-    alert('Please fill in all required quote fields.');
+    clearFieldErrors(['qf-name','qf-phone','qf-email','qf-service-category','qf-service-needed','qf-business','qf-website-type','qf-pages','qf-budget','qf-features','qf-deadline']);
+    showFormAlert('quoteFormAlert', '');
+    if (!name) fieldError('qf-name', 'Required');
+    if (!phone) fieldError('qf-phone', 'Required');
+    if (!email) fieldError('qf-email', 'Required');
+    if (!serviceCategory) fieldError('qf-service-category', 'Please select one');
+    if (!serviceNeeded) fieldError('qf-service-needed', 'Please select one');
+    if (!business) fieldError('qf-business', 'Required (or "Not Applicable")');
+    if (!websiteType) fieldError('qf-website-type', 'Please select one');
+    if (!pages) fieldError('qf-pages', 'Please select one');
+    if (!budget) fieldError('qf-budget', 'Please select one');
+    if (!features) fieldError('qf-features', 'Required');
+    if (!deadline) fieldError('qf-deadline', 'Required');
+    showFormAlert('quoteFormAlert', 'Please fill in the highlighted fields below.');
     return;
   }
+  clearFieldErrors(['qf-name','qf-phone','qf-email','qf-service-category','qf-service-needed','qf-business','qf-website-type','qf-pages','qf-budget','qf-features','qf-deadline']);
+  showFormAlert('quoteFormAlert', '');
 
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert('Please enter a valid email address.');
+    fieldError('qf-email', 'Please enter a valid email address.');
+    showFormAlert('quoteFormAlert', 'Please enter a valid email address.');
     return;
   }
 
   if (!window.emailjs) {
-    alert('Email service failed to load. Please refresh the page and try again.');
+    showFormAlert('quoteFormAlert', 'Email service failed to load. Please refresh the page and try again.');
     return;
   }
 
@@ -1682,8 +2261,12 @@ function submitQuoteForm() {
         document.getElementById(id).value = '';
       });
 
-      document.getElementById('qf-service-category').selectedIndex = 0;
-      document.getElementById('qf-service-needed').selectedIndex = 0;
+      const qfCatSel = document.getElementById('qf-service-category');
+      qfCatSel.disabled = false;
+      qfCatSel.selectedIndex = 0;
+      populateQuoteServices('');
+      populateQuoteType('');
+      updateQuoteFeaturesField('');
       document.getElementById('qf-website-type').selectedIndex = 0;
       document.getElementById('qf-pages').selectedIndex = 0;
       document.getElementById('qf-budget').selectedIndex = 0;
@@ -1716,7 +2299,7 @@ function submitQuoteForm() {
         errorMessage += 'Please check your EmailJS service, template and public key.';
       }
 
-      alert(errorMessage);
+      showFormAlert('quoteFormAlert', errorMessage);
 
       if (submitBtn) {
         submitBtn.disabled = false;
