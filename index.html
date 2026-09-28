@@ -407,8 +407,6 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rf-stars.invalid label{color:var(--red-soft)}
 .rf-stars-word{margin-left:10px;font-weight:700;color:var(--muted);font-size:.9rem}
 .rf-thanks{color:var(--muted);margin-bottom:18px}
-.rf-google{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px;margin-bottom:16px;border:1px dashed var(--line);border-radius:14px}
-.rf-google p{font-size:.9rem;color:var(--muted);flex:1;min-width:200px}
 #reviewForm .form-submit{margin-top:4px}
 #reviewForm .form-legal{margin-top:10px}
 .rf-step2{text-align:left}
@@ -1539,17 +1537,16 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <strong id="rvAvg">5.0</strong>
         <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
       </div>
-      <a class="btn btn-primary" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Write a review</a>
+      <a class="btn btn-primary" href="#reviews" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Write a review</a>
     </div>
     <div class="rv-grid" id="rvGrid">
       <div class="rv-empty" id="rvEmpty">
         <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
         <h3>Be one of our first reviewers</h3>
         <p>Tell others how your website, software, design work or repair went. It takes less than a minute.</p>
-        <a class="btn btn-ghost" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-    <p class="rv-source" id="rvSource" hidden>Reviews from Google</p>
   </div>
 </section>
 
@@ -1644,7 +1641,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       <div class="foot-col">
         <h3>Contact</h3>
         <a href="#newsletter">Newsletter sign-up</a>
-        <a href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open>Leave a review</a>
+        <a href="#reviews" data-review-open>Leave a review</a>
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
@@ -1895,10 +1892,6 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
         <h3>Thank you for your review!</h3>
         <p class="rf-thanks">We've received it and it will appear on our website once it has been approved.</p>
-        <div class="rf-google">
-          <p>Want to help us even more? You can also post it on Google.</p>
-          <a class="btn btn-ghost" id="rfOpenGoogle" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Also post on Google</a>
-        </div>
         <button type="button" class="form-submit" onclick="closeModal('reviewModal')">Done</button>
       </div>
     </div>
@@ -2678,12 +2671,7 @@ function submitQuoteForm() {
 }
 
 // ── Reviews ──
-// Option A (automatic): show your latest Google reviews. In Google Cloud, create an API key with
-// "Maps JavaScript API" and "Places API (New)" enabled, restrict it to axeconnect.co.za, then paste the
-// key and your Place ID (find it at developers.google.com/maps/documentation/places/web-service/place-id).
-const GOOGLE_MAPS_API_KEY = '';
-const GOOGLE_PLACE_ID = '';
-// Option B (manual): paste real reviews you've received, newest first. Example:
+// Optional fallback list, used only if reviews.json is empty. Approved reviews normally go in reviews.json. Example:
 // { name: 'Thandi M.', rating: 5, text: 'Built our salon website in two weeks...', date: 'September 2026' }
 const REVIEWS = [];
 
@@ -2692,7 +2680,7 @@ function starsHTML(rating) {
   for (let i = 1; i <= 5; i++) out += '<svg class="icon' + (i <= Math.round(rating) ? '' : ' off') + '"><use href="#i-star"/></svg>';
   return out;
 }
-function renderReviews(list, summary, fromGoogle) {
+function renderReviews(list) {
   const grid = document.getElementById('rvGrid');
   if (!grid || !list.length) return;
   grid.innerHTML = '';
@@ -2719,42 +2707,15 @@ function renderReviews(list, summary, fromGoogle) {
     card.append(who);
     grid.appendChild(card);
   });
-  const avg = summary && summary.rating ? summary.rating : list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
-  const count = summary && summary.count ? summary.count : list.length;
+  const avg = list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
+  const count = list.length;
   document.getElementById('rvAvg').textContent = avg.toFixed(1);
   document.getElementById('rvAvgStars').innerHTML = starsHTML(avg);
-  document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews') + (fromGoogle ? ' on Google' : '');
+  document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews');
   document.getElementById('rvSummary').hidden = false;
-  document.getElementById('rvSource').hidden = !fromGoogle;
 }
-if (GOOGLE_MAPS_API_KEY && GOOGLE_PLACE_ID) {
-  window.__axeLoadReviews = async function () {
-    try {
-      const { Place } = await google.maps.importLibrary('places');
-      const place = new Place({ id: GOOGLE_PLACE_ID });
-      await place.fetchFields({ fields: ['rating', 'userRatingCount', 'reviews'] });
-      const list = (place.reviews || []).map(r => ({
-        name: r.authorAttribution ? r.authorAttribution.displayName : 'Google user',
-        photo: r.authorAttribution ? r.authorAttribution.photoURI : '',
-        rating: r.rating || 5,
-        text: typeof r.text === 'string' ? r.text : (r.text && r.text.text) || '',
-        date: r.relativePublishTimeDescription || ''
-      }));
-      if (list.length) renderReviews(list, { rating: place.rating, count: place.userRatingCount }, true);
-      else if (REVIEWS.length) renderReviews(REVIEWS);
-    } catch (err) {
-      console.error('Google reviews failed to load:', err);
-      if (REVIEWS.length) renderReviews(REVIEWS);
-    }
-  };
-  const gm = document.createElement('script');
-  gm.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(GOOGLE_MAPS_API_KEY) + '&v=weekly&loading=async&callback=__axeLoadReviews';
-  gm.async = true;
-  gm.onerror = () => { if (REVIEWS.length) renderReviews(REVIEWS); };
-  document.head.appendChild(gm);
-} else {
-  // Approved reviews live in reviews.json (edit it on GitHub to publish a review)
-  fetch('reviews.json', { cache: 'no-store' })
+// Approved reviews live in reviews.json (edit it on GitHub to publish a review)
+fetch('reviews.json', { cache: 'no-store' })
     .then(r => r.ok ? r.json() : [])
     .then(list => {
       const approved = (Array.isArray(list) ? list : []).filter(r => r && r.name && r.text && r.rating >= 1 && r.rating <= 5);
@@ -2762,10 +2723,8 @@ if (GOOGLE_MAPS_API_KEY && GOOGLE_PLACE_ID) {
       else if (REVIEWS.length) renderReviews(REVIEWS);
     })
     .catch(() => { if (REVIEWS.length) renderReviews(REVIEWS); });
-}
 
-// ── Review popup: write on our site, then post to Google in a small window ──
-const GOOGLE_REVIEW_URL = 'https://g.page/r/CRoZR2mD81AZEAI/review';
+// ── Review popup: reviews are emailed to us, then published from reviews.json ──
 const STAR_WORDS = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
 const REVIEWS_EDIT_URL = 'https://github.com/Carvenmaceke/axe-connect/edit/main/reviews.json';
 const reviewForm = document.getElementById('reviewForm');
@@ -2790,12 +2749,6 @@ function openReviewModal() {
   document.body.style.overflow = 'hidden';
 }
 document.querySelectorAll('[data-review-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openReviewModal(); }));
-function openGoogleReviewWindow() {
-  const w = 520, h = 720;
-  const left = Math.max(0, (window.screenX || 0) + (window.outerWidth - w) / 2);
-  const top = Math.max(0, (window.screenY || 0) + (window.outerHeight - h) / 2);
-  return window.open(GOOGLE_REVIEW_URL, 'axeGoogleReview', 'popup=yes,width=' + w + ',height=' + h + ',left=' + left + ',top=' + top);
-}
 reviewForm.addEventListener('submit', e => {
   e.preventDefault();
   if (document.getElementById('rf-company').value) return; // bot filled the hidden field
@@ -2840,9 +2793,6 @@ reviewForm.addEventListener('submit', e => {
     console.error('EmailJS Review Error:', err);
     showFormAlert('reviewFormAlert', 'Your review failed to send. Please try again, or WhatsApp it to us on 060 795 0837.');
   }).finally(() => { btn.disabled = false; btn.textContent = 'Submit review'; });
-});
-document.getElementById('rfOpenGoogle').addEventListener('click', e => {
-  if (openGoogleReviewWindow()) e.preventDefault();
 });
 
 // Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
