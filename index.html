@@ -101,7 +101,7 @@ html.dark,:root[data-theme="dark"]{
 /* ── BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
-body{font-family:var(--f-body);font-size:16px;line-height:1.6;background:var(--bg);color:var(--text);padding-top:var(--top);overflow-x:hidden;transition:background-color .25s,color .25s}
+body{font-family:var(--f-body);font-size:16px;line-height:1.6;background:var(--bg);color:var(--text);padding-top:var(--top);transition:background-color .25s,color .25s}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 button{font:inherit;color:inherit}
@@ -110,6 +110,7 @@ em{font-style:normal;color:var(--red)}
 .icon{width:1em;height:1em;display:inline-block;flex-shrink:0;vertical-align:-.15em}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
 section[id]{scroll-margin-top:calc(var(--top) + 12px)}
+main,footer{overflow-x:clip}
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
 .mono{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em}
@@ -362,6 +363,58 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .foot-bottom a{color:var(--ink);font-weight:600}
 .foot-bottom a:hover{color:var(--red)}
 
+/* ── REVIEWS ── */
+.reviews{background:var(--surface);border-block:1px solid var(--line)}
+.rv-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}
+.rv-summary{display:flex;align-items:center;gap:16px}
+.rv-summary[hidden]{display:none}
+.rv-summary strong{font-family:var(--f-display);font-size:3.2rem;font-weight:800;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.rv-summary div{display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--muted)}
+.rv-stars{display:inline-flex;gap:2px;color:#F5B301}
+.rv-stars .icon{width:18px;height:18px}
+.rv-stars .off{color:var(--line)}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rv-card{display:flex;flex-direction:column;gap:14px;padding:26px;background:var(--bg);border:1px solid var(--line);border-radius:20px;animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.rv-card:nth-child(2){animation-delay:.08s}.rv-card:nth-child(3){animation-delay:.16s}.rv-card:nth-child(4){animation-delay:.24s}.rv-card:nth-child(5){animation-delay:.32s}
+.rv-card blockquote{color:var(--text);font-size:.97rem;line-height:1.65;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rv-card.open blockquote{display:block}
+.rv-more{align-self:flex-start;background:none;border:none;padding:0;color:var(--red);font-weight:700;font-size:.85rem;cursor:pointer}
+.rv-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.rv-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--red-soft);color:var(--red);font-weight:800;overflow:hidden}
+.rv-avatar img{width:100%;height:100%;object-fit:cover}
+.rv-who b{display:block;color:var(--ink);font-size:.93rem}
+.rv-who small{color:var(--muted);font-size:.8rem}
+.rv-empty{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:44px 24px;border:1.5px dashed var(--line);border-radius:22px}
+.rv-empty-stars{display:flex;gap:4px;color:#F5B301}
+.rv-empty-stars .icon{width:26px;height:26px;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
+.rv-empty-stars .icon:nth-child(2){animation-delay:.08s}.rv-empty-stars .icon:nth-child(3){animation-delay:.16s}.rv-empty-stars .icon:nth-child(4){animation-delay:.24s}.rv-empty-stars .icon:nth-child(5){animation-delay:.32s}
+.rv-empty h3{font-size:1.4rem}
+.rv-empty p{color:var(--muted);max-width:46ch}
+.rv-source{margin-top:18px;font-size:.8rem;color:var(--muted)}
+.rv-source[hidden]{display:none}
+@media(max-width:1020px){.rv-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.rv-grid{grid-template-columns:1fr}.rv-top .btn{width:100%}}
+
+/* ── NEWSLETTER ── */
+.sr-only,.hp{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.news{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;align-items:center;padding:36px;margin-bottom:56px;background:var(--bg);border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden}
+.news::after{content:'';position:absolute;right:-120px;top:-140px;width:360px;height:360px;background:radial-gradient(circle,var(--red-soft),transparent 65%);pointer-events:none}
+.news>*{position:relative;z-index:1}
+.news-copy{display:flex;flex-direction:column;gap:10px}
+.news-copy h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800}
+.news-copy p{color:var(--muted);max-width:46ch}
+.news-row{display:flex;gap:10px}
+.news-row input{flex:1;min-width:0;padding:14px 16px;font:inherit;font-size:.98rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;outline:none;transition:border-color .2s,box-shadow .2s}
+.news-row input:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
+.news-row input.invalid{border-color:var(--red)}
+.news-msg{min-height:1.4em;margin-top:10px;font-size:.88rem;font-weight:600;color:var(--muted)}
+.news-msg.ok{color:var(--ok)}.news-msg.err{color:var(--red)}
+.news-legal{font-size:.78rem;color:var(--muted)}
+.news-legal a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.news.done .news-row{display:none}
+@media(max-width:900px){.news{grid-template-columns:1fr;padding:28px 22px}}
+@media(max-width:480px){.news-row{flex-direction:column}.news-row .btn{width:100%}}
+
 /* ── MOBILE ACTION BAR ── */
 .mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;grid-template-columns:1fr 1fr 1fr;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
 .mb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 4px;font-size:.72rem;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer}
@@ -427,6 +480,9 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .form-submit:hover{background:var(--red-ink)}
 .form-submit:disabled{opacity:.7;cursor:wait}
 .form-note{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:.78rem;color:var(--muted);text-align:center}
+.form-legal{margin-top:6px;font-size:.76rem;color:var(--muted);text-align:center}
+.form-legal a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.form-legal a:hover{color:var(--red)}
 .form-success{display:none;text-align:center;padding:24px 0 8px}
 .fs-icon{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;background:var(--ok-soft);color:var(--ok);display:flex;align-items:center;justify-content:center}
 .fs-icon .icon{width:30px;height:30px}
@@ -1447,6 +1503,35 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section id="reviews" class="sec reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2>What clients say.</h2>
+      </div>
+      <p>Worked with Axe Connect on a website, software, design or a repair? A quick Google review helps other people and businesses find us.</p>
+    </div>
+    <div class="rv-top">
+      <div class="rv-summary" id="rvSummary" hidden>
+        <strong id="rvAvg">5.0</strong>
+        <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
+      </div>
+      <a class="btn btn-primary" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Review us on Google</a>
+    </div>
+    <div class="rv-grid" id="rvGrid">
+      <div class="rv-empty" id="rvEmpty">
+        <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
+        <h3>Be one of our first reviewers</h3>
+        <p>Tell others how your website, software, design work or repair went. It takes less than a minute on Google.</p>
+        <a class="btn btn-ghost" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <p class="rv-source" id="rvSource" hidden>Reviews from Google</p>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about" class="sec">
   <div class="wrap about-grid">
@@ -1489,6 +1574,24 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
+    <!-- NEWSLETTER -->
+    <div class="news" id="newsletter">
+      <div class="news-copy">
+        <span class="eyebrow">Newsletter</span>
+        <h2>Hear about deals first.</h2>
+        <p>Sales, special prices on websites and repairs, and new services. Only occasional emails, and you can unsubscribe any time.</p>
+      </div>
+      <form class="news-form" id="newsForm" novalidate>
+        <label class="sr-only" for="nl-email">Email address</label>
+        <div class="news-row">
+          <input type="email" id="nl-email" name="email" placeholder="you@example.com" autocomplete="email" required/>
+          <button type="submit" class="btn btn-primary" id="nlSubmit">Subscribe</button>
+        </div>
+        <input type="text" id="nl-company" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+        <p class="news-msg" id="nlMsg" role="status" aria-live="polite"></p>
+        <p class="news-legal">By subscribing you agree to receive occasional emails from Axe Connect. See our <a href="privacy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
     <div class="foot-grid">
       <div class="foot-about">
         <a class="logo" href="#home" aria-label="Axe Connect home">
@@ -1519,6 +1622,8 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       </div>
       <div class="foot-col">
         <h3>Contact</h3>
+        <a href="#newsletter">Newsletter sign-up</a>
+        <a href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Leave a Google review</a>
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
@@ -1528,7 +1633,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       </div>
     </div>
     <div class="foot-bottom">
-      <p>&#169; <span id="yr"></span> Axe Connect. All rights reserved.</p>
+      <p>&#169; <span id="yr"></span> Axe Connect. All rights reserved. · <a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a></p>
       <p>Designed &amp; built by <a href="https://carven.netlify.app/" target="_blank" rel="noopener">Carven Maceke</a></p>
     </div>
   </div>
@@ -1591,6 +1696,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         </div>
         <button type="button" class="form-submit" onclick="submitContactForm()">Send Message</button>
         <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your message goes directly to carvenmaceke9@gmail.com</p>
+        <p class="form-legal">By sending this you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
@@ -1704,6 +1810,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 
         <button type="button" class="form-submit" id="quoteSubmitBtn" onclick="submitQuoteForm()">Send Quote Request</button>
         <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your quote request goes directly to carvenmaceke9@gmail.com</p>
+        <p class="form-legal">By sending this you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       </div>
 
       <div class="form-success" id="quoteFormSuccess">
@@ -1980,6 +2087,8 @@ const revealPlan = [
   ['.about-copy', 'left'], ['.facts', 'right'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.cta-panel', 'zoom'],
+  ['.rv-top', 'right'], ['.rv-empty', 'zoom'],
+  ['.news', 'zoom'],
   ['.foot-grid > *', 'up']
 ];
 const revealIO = ('IntersectionObserver' in window && !reduceMotion) ? new IntersectionObserver(entries => {
@@ -2482,6 +2591,127 @@ function submitQuoteForm() {
         submitBtn.innerText = originalBtnText;
       }
     });
+}
+
+// ── Reviews ──
+// Option A (automatic): show your latest Google reviews. In Google Cloud, create an API key with
+// "Maps JavaScript API" and "Places API (New)" enabled, restrict it to axeconnect.co.za, then paste the
+// key and your Place ID (find it at developers.google.com/maps/documentation/places/web-service/place-id).
+const GOOGLE_MAPS_API_KEY = '';
+const GOOGLE_PLACE_ID = '';
+// Option B (manual): paste real reviews you've received, newest first. Example:
+// { name: 'Thandi M.', rating: 5, text: 'Built our salon website in two weeks...', date: 'September 2026' }
+const REVIEWS = [];
+
+function starsHTML(rating) {
+  let out = '';
+  for (let i = 1; i <= 5; i++) out += '<svg class="icon' + (i <= Math.round(rating) ? '' : ' off') + '"><use href="#i-star"/></svg>';
+  return out;
+}
+function renderReviews(list, summary, fromGoogle) {
+  const grid = document.getElementById('rvGrid');
+  if (!grid || !list.length) return;
+  grid.innerHTML = '';
+  list.slice(0, 6).forEach(r => {
+    const card = document.createElement('article');
+    card.className = 'rv-card';
+    const stars = document.createElement('span');
+    stars.className = 'rv-stars'; stars.setAttribute('aria-label', r.rating + ' out of 5 stars'); stars.innerHTML = starsHTML(r.rating);
+    const quote = document.createElement('blockquote'); quote.textContent = r.text || '';
+    const who = document.createElement('div'); who.className = 'rv-who';
+    const av = document.createElement('span'); av.className = 'rv-avatar';
+    if (r.photo) { const img = document.createElement('img'); img.src = r.photo; img.alt = ''; img.referrerPolicy = 'no-referrer'; av.appendChild(img); }
+    else av.textContent = (r.name || '?').trim().charAt(0).toUpperCase();
+    const meta = document.createElement('div');
+    const b = document.createElement('b'); b.textContent = r.name || 'Google user';
+    const sm = document.createElement('small'); sm.textContent = r.date || '';
+    meta.append(b, sm); who.append(av, meta);
+    card.append(stars, quote);
+    if ((r.text || '').length > 320) {
+      const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more';
+      more.addEventListener('click', () => { const open = card.classList.toggle('open'); more.textContent = open ? 'Show less' : 'Read more'; });
+      card.append(more);
+    }
+    card.append(who);
+    grid.appendChild(card);
+  });
+  const avg = summary && summary.rating ? summary.rating : list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
+  const count = summary && summary.count ? summary.count : list.length;
+  document.getElementById('rvAvg').textContent = avg.toFixed(1);
+  document.getElementById('rvAvgStars').innerHTML = starsHTML(avg);
+  document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews') + (fromGoogle ? ' on Google' : '');
+  document.getElementById('rvSummary').hidden = false;
+  document.getElementById('rvSource').hidden = !fromGoogle;
+}
+if (GOOGLE_MAPS_API_KEY && GOOGLE_PLACE_ID) {
+  window.__axeLoadReviews = async function () {
+    try {
+      const { Place } = await google.maps.importLibrary('places');
+      const place = new Place({ id: GOOGLE_PLACE_ID });
+      await place.fetchFields({ fields: ['rating', 'userRatingCount', 'reviews'] });
+      const list = (place.reviews || []).map(r => ({
+        name: r.authorAttribution ? r.authorAttribution.displayName : 'Google user',
+        photo: r.authorAttribution ? r.authorAttribution.photoURI : '',
+        rating: r.rating || 5,
+        text: typeof r.text === 'string' ? r.text : (r.text && r.text.text) || '',
+        date: r.relativePublishTimeDescription || ''
+      }));
+      if (list.length) renderReviews(list, { rating: place.rating, count: place.userRatingCount }, true);
+      else if (REVIEWS.length) renderReviews(REVIEWS);
+    } catch (err) {
+      console.error('Google reviews failed to load:', err);
+      if (REVIEWS.length) renderReviews(REVIEWS);
+    }
+  };
+  const gm = document.createElement('script');
+  gm.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(GOOGLE_MAPS_API_KEY) + '&v=weekly&loading=async&callback=__axeLoadReviews';
+  gm.async = true;
+  gm.onerror = () => { if (REVIEWS.length) renderReviews(REVIEWS); };
+  document.head.appendChild(gm);
+} else if (REVIEWS.length) {
+  renderReviews(REVIEWS);
+}
+
+// Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
+const newsForm = document.getElementById('newsForm');
+if (newsForm) {
+  newsForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const input = document.getElementById('nl-email');
+    const msg = document.getElementById('nlMsg');
+    const btn = document.getElementById('nlSubmit');
+    const email = input.value.trim();
+    const setMsg = (text, kind) => { msg.textContent = text; msg.className = 'news-msg' + (kind ? ' ' + kind : ''); };
+    if (document.getElementById('nl-company').value) return; // bot filled the hidden field
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      input.classList.add('invalid');
+      setMsg('Enter a valid email address, like you@example.com.', 'err');
+      input.focus();
+      return;
+    }
+    input.classList.remove('invalid');
+    if (!window.emailjs) { setMsg('Sign-up is unavailable right now. Please refresh the page and try again.', 'err'); return; }
+    btn.disabled = true; btn.textContent = 'Subscribing...'; setMsg('');
+    const when = new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' });
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      subject: 'New newsletter subscriber: ' + email,
+      name: 'Newsletter subscriber',
+      phone: 'Not provided',
+      email: email,
+      service: 'Newsletter sign-up',
+      msg: 'NEW NEWSLETTER SUBSCRIBER\n\nEmail: ' + email + '\nSigned up: ' + when + ' (SAST)\nPage: ' + location.href + '\n\nAdd this address to your newsletter list.',
+      to_email: 'carvenmaceke9@gmail.com'
+    }).then(function () {
+      newsForm.closest('.news').classList.add('done');
+      setMsg("You're subscribed. We'll email " + email + ' when there is a deal.', 'ok');
+      newsForm.reset();
+    }).catch(function (error) {
+      console.error('EmailJS Newsletter Error:', error);
+      setMsg('Sign-up failed to send. Please try again, or WhatsApp us on 060 795 0837.', 'err');
+    }).finally(function () {
+      btn.disabled = false; btn.textContent = 'Subscribe';
+    });
+  });
 }
 
 // Backwards compatibility if any old button still calls the old function name
