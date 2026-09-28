@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="web">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria</title>
-<meta name="description" content="Axe Connect helps individuals, startups, small businesses and companies with IT support, computer repairs, website development, website maintenance, logos, posters and creative design services in Pretoria."/>
-<meta name="keywords" content="IT support Pretoria, PC repairs Pretoria, laptop repairs, website design South Africa, web development Pretoria, logo design, poster design, brand identity, monthly IT support, business IT support"/>
+<title>Axe Connect | Web Developer · Design · IT Support</title>
+<meta name="description" content="Axe Connect is a Pretoria web developer and designer building modern websites, logos, posters and brand identity — plus IT support and computer repairs for individuals, startups and businesses."/>
+<meta name="keywords" content="web developer Pretoria, web development Pretoria, website design South Africa, IT support Pretoria, PC repairs Pretoria, laptop repairs, logo design, poster design, brand identity, monthly IT support, business IT support"/>
 <meta name="author" content="Axe Connect"/>
 <meta name="robots" content="index, follow"/>
 <meta name="theme-color" content="#E23524" media="(prefers-color-scheme: light)"/>
@@ -17,8 +17,8 @@
 <!-- Open Graph / Facebook / WhatsApp / LinkedIn preview -->
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Axe Connect"/>
-<meta property="og:title" content="Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria"/>
-<meta property="og:description" content="IT support, PC repairs, websites, maintenance, logos, posters and brand design — all from one trusted place in Pretoria."/>
+<meta property="og:title" content="Axe Connect | Web Developer · Design · IT Support"/>
+<meta property="og:description" content="Websites, web development, logos, posters and brand design — plus IT support and PC repairs — from one trusted place in Pretoria."/>
 <meta property="og:url" content="https://axeconnect.co.za/"/>
 <!-- Replace og-image.jpg with a real 1200x630px image uploaded alongside index.html -->
 <meta property="og:image" content="https://axeconnect.co.za/og-image.jpg"/>
@@ -28,14 +28,20 @@
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Axe Connect | IT Support, PC Repairs, Websites &amp; Design in Pretoria"/>
-<meta name="twitter:description" content="IT support, PC repairs, websites, maintenance, logos, posters and brand design — all from one trusted place in Pretoria."/>
+<meta name="twitter:title" content="Axe Connect | Web Developer · Design · IT Support"/>
+<meta name="twitter:description" content="Websites, web development, logos, posters and brand design — plus IT support and PC repairs — from one trusted place in Pretoria."/>
 <meta name="twitter:image" content="https://axeconnect.co.za/og-image.jpg"/>
 
 <!-- Favicon (inline SVG — the Axe Connect blade mark, no separate file needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 56'%3E%3Cpath d='M8 56 L24 8 L30 8 L16 56 Z' fill='%23E23524'/%3E%3Cpath d='M8 32 Q-2 20 0 6 Q12 14 20 28 Z' fill='%23E23524'/%3E%3Cpath d='M30 8 L44 8 L30 56 L23 56 Z' fill='%23191510'/%3E%3Cpath d='M13 37 L31 37 L33 43 L11 43 Z' fill='%23E23524'/%3E%3C/svg%3E"/>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 56'%3E%3Crect width='48' height='56' fill='%23191510'/%3E%3Cpath d='M8 56 L24 8 L30 8 L16 56 Z' fill='%23E23524'/%3E%3Cpath d='M8 32 Q-2 20 0 6 Q12 14 20 28 Z' fill='%23E23524'/%3E%3Cpath d='M30 8 L44 8 L30 56 L23 56 Z' fill='%23fff'/%3E%3Cpath d='M13 37 L31 37 L33 43 L11 43 Z' fill='%23E23524'/%3E%3C/svg%3E"/>
 
+<script>
+// Service mode (web / it): URL hash wins, then saved choice, else web
+(function(){var m='web';try{m=localStorage.getItem('axeconnect-mode')||m}catch(e){}
+if(location.hash==='#it-support')m='it';else if(location.hash==='#web-dev')m='web';
+document.documentElement.setAttribute('data-mode',m==='it'?'it':'web');})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -455,7 +461,7 @@ html.dark .theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rota
   margin:12px auto 0;border-radius:2px;
 }
 
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:960px;margin:0 auto}
 .svc-card{
   display:block;background:var(--surface);padding:30px 24px 26px;text-align:left;
   border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;
@@ -726,6 +732,29 @@ footer{background:#111;padding:50px 5% 24px}
   .tp{padding:6px 10px}
 }
 
+/* ── SERVICE MODE SWITCH (Web Dev / IT Support) ── */
+html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
+.mode-label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mode-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--grey);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:1.5rem;box-shadow:0 10px 26px rgba(20,15,8,.06)}
+.mode-thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);background:var(--red);border-radius:10px;box-shadow:0 8px 20px rgba(226,53,36,.3);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:0}
+html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
+.mode-btn{position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:11px 20px 11px 16px;background:none;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);text-align:left;color:var(--muted);transition:color .25s}
+.mode-btn .icon{width:20px;height:20px;flex-shrink:0;color:var(--red);transition:color .25s}
+.mode-btn b{display:block;font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--black);line-height:1.2;transition:color .25s}
+.mode-btn small{display:block;font-size:0.7rem;line-height:1.3;transition:color .25s}
+.mode-btn:not([aria-pressed="true"]):hover b{color:var(--red)}
+.mode-btn[aria-pressed="true"],.mode-btn[aria-pressed="true"] b,.mode-btn[aria-pressed="true"] .icon{color:#fff}
+.mode-btn[aria-pressed="true"] small{color:rgba(255,255,255,.85)}
+.mode-swap{display:inline-flex;align-items:center;gap:6px;margin-left:14px;background:none;border:none;color:rgba(255,255,255,.75);font-family:var(--font);font-size:0.84rem;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.mode-swap:hover{color:#fff}
+.mode-swap .icon{width:14px;height:14px}
+@media(max-width:640px){
+  .mode-switch{display:grid;width:100%}
+  .mode-btn{padding:10px 10px;gap:8px}
+  .mode-btn small{display:none}
+  .mode-swap{margin:14px 0 0;display:flex}
+}
+
 /* ── DEPARTMENT SECTIONS ── */
 .dept-section{padding:0 0 0}
 .dept-header{padding:60px 5% 50px;position:relative;overflow:hidden;}
@@ -921,7 +950,7 @@ footer{background:#111;padding:50px 5% 24px}
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Axe Connect",
-  "description": "IT support, PC repairs, website development, website maintenance, logo design, poster design and brand identity services for individuals, startups, small businesses and companies.",
+  "description": "Web development, website design, website maintenance, logo design, poster design, brand identity, IT support and PC repair services for individuals, startups, small businesses and companies.",
   "telephone": "+27607950837",
   "email": "carvenmaceke9@gmail.com",
   "address": {
@@ -1029,8 +1058,8 @@ footer{background:#111;padding:50px 5% 24px}
     <span class="nav-indicator" aria-hidden="true"></span>
     <a href="#home" class="active">Home</a>
     <a href="#outsourcing">Services</a>
-    <a href="#it-support">IT Support</a>
     <a href="#web-dev">Web &amp; Design</a>
+    <a href="#it-support">IT Support</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -1055,17 +1084,43 @@ footer{background:#111;padding:50px 5% 24px}
         <span class="brand-chip-copy"><small>Your trusted partner</small><strong>Axe Connect</strong></span>
       </div>
     </div>
-    <h1>Tech Support &amp; Websites.<br>For <span>People and Businesses.</span></h1>
-    <p class="hero-sub">Axe Connect helps individuals, startups, small businesses, and companies with PC repairs, IT support, websites, maintenance, logos, posters, and creative design — all from one trusted place.</p>
-    <div class="hero-btns">
-      <button type="button" class="btn-red" onclick="openQuoteModal()">Get a Quote</button>
-      <a class="btn-outline" href="#it-support">View Services</a>
+    <span class="mode-label" id="modeLabel">What do you need help with?</span>
+    <div class="mode-switch" role="group" aria-labelledby="modeLabel">
+      <span class="mode-thumb" aria-hidden="true"></span>
+      <button type="button" class="mode-btn" data-set-mode="web" aria-pressed="true">
+        <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span><b>Web Dev &amp; Design</b><small>Websites · Logos · Branding</small></span>
+      </button>
+      <button type="button" class="mode-btn" data-set-mode="it" aria-pressed="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span><b>IT Support</b><small>Repairs · Setup · Networks</small></span>
+      </button>
     </div>
-    <div class="trust-pills">
-      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div><b>IT</b><small>Support</small></div></div>
-      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><b>PC</b><small>Repairs</small></div></div>
-      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span><div><b>Fast</b><small>Response</small></div></div>
-      <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span><div><b>Web</b><small>Solutions</small></div></div>
+    <div data-for="web">
+      <h1>Websites &amp; Design.<br>Built to <span>Grow Your Brand.</span></h1>
+      <p class="hero-sub">Axe Connect designs and builds modern, mobile-friendly websites, landing pages, and online stores — plus logos, posters, and brand identity — for individuals, startups, and companies.</p>
+      <div class="hero-btns">
+        <button type="button" class="btn-red" onclick="openQuoteModal('Web Development')">Get a Website Quote</button>
+        <a class="btn-outline" href="#web-dev">View Web Services</a>
+      </div>
+      <div class="trust-pills">
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span><div><b>Web</b><small>Development</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-palette"/></svg></span><div><b>Creative</b><small>Design</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-smartphone"/></svg></span><div><b>Mobile</b><small>Ready</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span><div><b>Ongoing</b><small>Maintenance</small></div></div>
+      </div>
+    </div>
+    <div data-for="it">
+      <h1>Tech Support &amp; Repairs.<br>For <span>People and Businesses.</span></h1>
+      <p class="hero-sub">Axe Connect helps individuals, startups, small businesses, and companies with PC repairs, troubleshooting, software, email, printers, networks, and monthly office IT support.</p>
+      <div class="hero-btns">
+        <button type="button" class="btn-red" onclick="openQuoteModal('IT Support &amp; Repairs')">Get an IT Support Quote</button>
+        <a class="btn-outline" href="#it-support">View IT Services</a>
+      </div>
+      <div class="trust-pills">
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div><b>IT</b><small>Support</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><b>PC</b><small>Repairs</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span><div><b>Fast</b><small>Response</small></div></div>
+        <div class="tp"><span class="tp-icon"><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg></span><div><b>Office</b><small>Support</small></div></div>
+      </div>
     </div>
   </div>
   <div class="hero-right">
@@ -1127,48 +1182,50 @@ footer{background:#111;padding:50px 5% 24px}
 <section id="outsourcing" class="services">
   <div class="sec-head reveal">
     <span class="sec-label">Services for everyone</span>
-    <h2 class="sec-h2">Simple Support for Individuals, Startups &amp; Companies</h2>
+    <h2 class="sec-h2" data-for="web">Websites &amp; Design for Individuals, Startups &amp; Companies</h2>
+    <h2 class="sec-h2" data-for="it">Simple IT Support for Individuals, Startups &amp; Companies</h2>
   </div>
   <div class="svc-grid">
-    <a href="#it-support" class="svc-card reveal d1">
+    <a data-for="web" href="#web-dev" class="svc-card reveal d1">
+      <span class="svc-num">01</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+      <h3>Websites &amp; Maintenance</h3>
+      <p>For individuals, startups, and companies: business websites, landing pages, portfolios, e-commerce stores, redesigns, and monthly website updates.</p>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
+    <a data-for="web" href="#web-dev" class="svc-card reveal d2">
+      <span class="svc-num">02</span>
+      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg></div>
+      <h3>Logo, Poster &amp; Brand Design</h3>
+      <p>For personal brands and businesses: logos, posters, flyers, social media graphics, business cards, and brand identity material.</p>
+      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+    </a>
+    <a data-for="it" href="#it-support" class="svc-card reveal d1">
       <span class="svc-num">01</span>
       <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></div>
       <h3>IT Support &amp; PC Repairs</h3>
       <p>For individuals and businesses: laptop repairs, slow PCs, software problems, virus removal, email setup, printers, and general tech support.</p>
       <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
     </a>
-    <a href="#it-support" class="svc-card reveal d2">
+    <a data-for="it" href="#it-support" class="svc-card reveal d2">
       <span class="svc-num">02</span>
       <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg></div>
       <h3>Business &amp; Office Support</h3>
       <p>For small businesses and companies that need reliable outsourced support for staff devices, office systems, emails, networks, and maintenance.</p>
       <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
     </a>
-    <a href="#web-dev" class="svc-card reveal d3">
-      <span class="svc-num">03</span>
-      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
-      <h3>Websites &amp; Maintenance</h3>
-      <p>For individuals, startups, and companies: business websites, landing pages, portfolios, e-commerce stores, redesigns, and monthly website updates.</p>
-      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
-    </a>
-    <a href="#web-dev" class="svc-card reveal d4">
-      <span class="svc-num">04</span>
-      <div class="svc-icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg></div>
-      <h3>Logo, Poster &amp; Brand Design</h3>
-      <p>For personal brands and businesses: logos, posters, flyers, social media graphics, business cards, and brand identity material.</p>
-      <span class="svc-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
-    </a>
   </div>
 </section>
 
 <!-- IT SUPPORT & REPAIRS -->
-<section id="it-support" class="dept-section">
+<section id="it-support" class="dept-section" data-for="it">
   <div class="dept-header it-dept reveal">
     <div class="dept-header-inner">
       <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg> IT Support &amp; Repairs</div>
       <h2>Technical Problems?<br><span>We've Got You Covered.</span></h2>
       <p>Whether it is your personal laptop, home computer, startup setup, or office devices, Axe Connect helps with repairs, troubleshooting, software, email, printers, networks, and performance problems.</p>
       <button type="button" class="btn-red" onclick="openCallModal()" style="border:none;font-family:var(--font);cursor:pointer;">Call or WhatsApp Us</button>
+      <button type="button" class="mode-swap" data-set-mode="web" data-scroll="#web-dev">Need a website or design instead? <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
     </div>
   </div>
   <div class="dept-tabs" data-tabgroup>
@@ -1221,13 +1278,14 @@ footer{background:#111;padding:50px 5% 24px}
 </section>
 
 <!-- WEB DEVELOPMENT & DESIGN -->
-<section id="web-dev" class="dept-section">
+<section id="web-dev" class="dept-section" data-for="web">
   <div class="dept-header web-dept reveal">
     <div class="dept-header-inner">
       <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg> Web Development &amp; Creative Design</div>
       <h2>Build Your Website.<br><span>Stand Out Online.</span></h2>
       <p>Individuals, startups, small businesses, and companies can get websites, maintenance, logo design, posters, and brand graphics from Axe Connect.</p>
       <button type="button" class="btn-white-red" onclick="openQuoteModal('Web Development')">Get Website Quote</button>
+      <button type="button" class="mode-swap" data-set-mode="it" data-scroll="#it-support">Need IT support instead? <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
     </div>
   </div>
   <div class="dept-tabs" data-tabgroup>
@@ -1823,6 +1881,26 @@ document.querySelectorAll('.qh-q').forEach(btn => {
     if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
   });
 });
+
+// Service mode switch (Web Dev & Design / IT Support)
+function setMode(mode) {
+  mode = mode === 'it' ? 'it' : 'web';
+  document.documentElement.setAttribute('data-mode', mode);
+  document.querySelectorAll('.mode-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.setMode === mode));
+  try { localStorage.setItem('axeconnect-mode', mode); } catch (e) {}
+  // Newly shown tab groups / nav need their sliding indicators re-measured
+  requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+}
+setMode(document.documentElement.getAttribute('data-mode'));
+document.querySelectorAll('[data-set-mode]').forEach(btn => btn.addEventListener('click', () => {
+  setMode(btn.dataset.setMode);
+  const target = btn.dataset.scroll && document.querySelector(btn.dataset.scroll);
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+}));
+// Any link to a service section switches to that mode first, so the section is visible before the jump
+document.querySelectorAll('a[href="#web-dev"], a[href="#it-support"]').forEach(a => a.addEventListener('click', () => {
+  setMode(a.getAttribute('href') === '#it-support' ? 'it' : 'web');
+}));
 
 // Interactive department tabs (IT Support / Web & Design)
 document.querySelectorAll('.dept-tabs').forEach(group => {
