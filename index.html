@@ -66,6 +66,7 @@ document.documentElement.setAttribute('data-mode',m==='it'?'it':'web');})();
   --font:'Inter',sans-serif;
   --font-display:'Space Grotesk',var(--font);
   --cut:14px;
+  --bar-h:72px;
   color-scheme:light;
   transition:background-color .25s ease,color .25s ease;
 }
@@ -96,7 +97,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 /* ── HEADER ── */
 .hdr{
-  position:fixed;top:0;left:0;right:0;z-index:999;
+  position:fixed;top:var(--bar-h);left:0;right:0;z-index:999;
   display:flex;align-items:center;gap:1rem;
   padding:0 5%;height:64px;
   background:var(--surface);
@@ -115,7 +116,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 .hdr-nav a:hover{color:var(--black)}
 .hdr-nav a.active{color:#fff;font-weight:600}
-.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--ember));z-index:1000;transition:width .1s linear}
+.scroll-progress{position:fixed;top:calc(var(--bar-h) + 64px);left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--ember));z-index:1000;transition:width .1s linear}
 .mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;grid-template-columns:1fr 1fr 1fr;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,0)}
 .mb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 4px;font-family:var(--font);font-size:0.68rem;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer}
 .mb-item .icon{width:19px;height:19px}
@@ -734,10 +735,10 @@ footer{background:#111;padding:50px 5% 24px}
 
 /* ── SERVICE MODE SWITCH (Web Dev / IT Support) ── */
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
-.mode-bar{position:fixed;top:64px;left:0;right:0;z-index:998;display:flex;align-items:center;justify-content:center;gap:18px;padding:8px 5%;background:var(--surface);box-shadow:0 1px 0 var(--line);transition:background-color .25s ease,box-shadow .2s}
+.mode-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--bar-h);display:flex;align-items:center;justify-content:center;gap:18px;padding:0 5%;background:var(--grey);box-shadow:0 1px 0 var(--line);transition:background-color .25s ease,box-shadow .2s}
 .mode-label{font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 section[id]{scroll-margin-top:136px}
-.mode-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--grey);border:1px solid var(--line);border-radius:14px;padding:4px}
+.mode-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px}
 .mode-thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--red);border-radius:10px;box-shadow:0 8px 20px rgba(226,53,36,.3);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:0}
 html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
 .mode-btn{position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:7px 22px 7px 16px;background:none;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);text-align:left;color:var(--muted);transition:color .25s}
@@ -751,7 +752,8 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
 .mode-swap:hover{color:#fff}
 .mode-swap .icon{width:14px;height:14px}
 @media(max-width:640px){
-  .mode-bar{padding:8px 16px}
+  :root{--bar-h:60px}
+  .mode-bar{padding:0 16px}
   .mode-label{display:none}
   .mode-switch{display:grid;width:100%}
   .mode-btn{padding:9px 10px;gap:8px;justify-content:center}
@@ -1014,6 +1016,19 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
 
 
 <!-- HEADER -->
+<!-- SERVICE MODE BAR: first choice on the page, pinned above the header -->
+<div class="mode-bar" id="modeBar">
+  <span class="mode-label" id="modeLabel">What do you need help with?</span>
+  <div class="mode-switch" role="group" aria-labelledby="modeLabel">
+    <span class="mode-thumb" aria-hidden="true"></span>
+    <button type="button" class="mode-btn" data-set-mode="web" aria-pressed="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span><b>Web Dev &amp; Design</b><small>Websites · Logos · Branding</small></span>
+    </button>
+    <button type="button" class="mode-btn" data-set-mode="it" aria-pressed="false">
+      <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span><b>IT Support</b><small>Repairs · Setup · Networks</small></span>
+    </button>
+  </div>
+</div>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <a class="logo" href="#home" aria-label="Axe Connect">
@@ -1075,19 +1090,6 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
   </button>
 </header>
 
-<!-- SERVICE MODE BAR: first choice on the page, pinned under the header -->
-<div class="mode-bar" id="modeBar">
-  <span class="mode-label" id="modeLabel">What do you need help with?</span>
-  <div class="mode-switch" role="group" aria-labelledby="modeLabel">
-    <span class="mode-thumb" aria-hidden="true"></span>
-    <button type="button" class="mode-btn" data-set-mode="web" aria-pressed="true">
-      <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span><b>Web Dev &amp; Design</b><small>Websites · Logos · Branding</small></span>
-    </button>
-    <button type="button" class="mode-btn" data-set-mode="it" aria-pressed="false">
-      <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span><b>IT Support</b><small>Repairs · Setup · Networks</small></span>
-    </button>
-  </div>
-</div>
 
 <main id="home">
 <section class="hero">
@@ -1836,7 +1838,7 @@ nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 // Header shadow on scroll
 const hdr = document.getElementById('hdr');
 window.addEventListener('scroll', () => {
-  document.getElementById('modeBar').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 var(--line)';
+  hdr.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 var(--line)';
 });
 
 // Active nav
