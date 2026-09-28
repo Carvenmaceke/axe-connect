@@ -247,13 +247,25 @@ html.dark .theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rota
 .f-device .icon{color:#8BD5B4}
 
 /* ── TICKER ── */
-.ticker{border-block:1px solid var(--line);background:var(--surface);overflow:hidden}
-.ticker-track{display:flex;width:max-content;animation:tick 40s linear infinite}
-.ticker ul{display:flex;list-style:none}
-.ticker li{display:flex;align-items:center;gap:22px;padding:18px 22px 18px 0;font-family:var(--f-display);font-size:1.05rem;font-weight:600;color:var(--ink);white-space:nowrap}
-.ticker li::after{content:'';width:7px;height:7px;background:var(--red);transform:rotate(45deg)}
-@keyframes tick{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+.tapes{position:relative;overflow:hidden;padding-block:34px 40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tape{position:relative;display:flex;overflow:hidden;white-space:nowrap;margin-inline:-4%}
+.tape-a{z-index:2;padding-block:18px;background:var(--panel);transform:rotate(-1.3deg);box-shadow:0 18px 40px -20px rgba(15,17,21,.6)}
+.tape-b{z-index:1;padding-block:12px;margin-top:8px;background:var(--red);transform:rotate(.9deg)}
+.tape-track{display:flex;width:max-content;animation:tapeMove 42s linear infinite}
+.tape-b .tape-track{animation-duration:34s;animation-direction:reverse}
+.tape:hover .tape-track{animation-play-state:paused}
+.tape ul{display:flex;list-style:none}
+.tape li{display:flex;align-items:center;gap:26px;padding-right:26px}
+.tape-a li span{font-family:var(--f-display);font-weight:800;font-size:clamp(1.35rem,2.6vw,2.1rem);letter-spacing:-.02em;line-height:1.1;color:#fff;transition:color .3s}
+.tape-a li:nth-child(even) span{color:transparent;-webkit-text-stroke:1.3px rgba(255,255,255,.9)}
+.tape-a li:hover span{color:var(--red);-webkit-text-stroke:0}
+.tape-b li span{font-family:var(--f-mono);font-weight:500;font-size:clamp(.82rem,1.3vw,1rem);letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.tape .sep{width:22px;height:22px;flex-shrink:0;color:var(--red);animation:sepSpin 8s linear infinite}
+.tape-b .sep{width:14px;height:14px;color:#fff;animation-direction:reverse}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+@keyframes sepSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.tape-track,.tape .sep{animation:none}}
+@media(max-width:640px){.tapes{padding-block:24px 30px}.tape-a{padding-block:14px}.tape li{gap:18px;padding-right:18px}.tape .sep{width:16px;height:16px}}
 
 /* ── SECTION HEADS ── */
 .sec{padding-block:104px}
@@ -376,8 +388,9 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .rv-card{display:flex;flex-direction:column;gap:14px;padding:26px;background:var(--bg);border:1px solid var(--line);border-radius:20px;animation:up .6s cubic-bezier(.2,.7,.2,1) both}
 .rv-card:nth-child(2){animation-delay:.08s}.rv-card:nth-child(3){animation-delay:.16s}.rv-card:nth-child(4){animation-delay:.24s}.rv-card:nth-child(5){animation-delay:.32s}
-.rv-card blockquote{color:var(--text);font-size:.97rem;line-height:1.65;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rv-card blockquote{white-space:pre-line;color:var(--text);font-size:.97rem;line-height:1.65;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
 .rv-card.open blockquote{display:block}
+.rv-more[hidden]{display:none}
 .rv-more{align-self:flex-start;background:none;border:none;padding:0;color:var(--red);font-weight:700;font-size:.85rem;cursor:pointer}
 .rv-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
 .rv-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--red-soft);color:var(--red);font-weight:800;overflow:hidden}
@@ -390,10 +403,45 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rv-empty-stars .icon:nth-child(2){animation-delay:.08s}.rv-empty-stars .icon:nth-child(3){animation-delay:.16s}.rv-empty-stars .icon:nth-child(4){animation-delay:.24s}.rv-empty-stars .icon:nth-child(5){animation-delay:.32s}
 .rv-empty h3{font-size:1.4rem}
 .rv-empty p{color:var(--muted);max-width:46ch}
+.rv-grid.is-carousel{display:block}
+.rv-viewport{overflow:hidden;margin:-14px;padding:14px;touch-action:pan-y}
+.rv-track{display:flex;align-items:stretch;gap:16px;transition:transform .7s cubic-bezier(.65,0,.35,1);will-change:transform}
+.rv-track .rv-card{flex:0 0 calc((100% - 32px) / 3);animation:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.rv-track .rv-card:not(.is-front){opacity:.35;transform:scale(.94)}
+.rv-track .rv-card.is-front{box-shadow:var(--shadow)}
+.rv-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:26px}
+.rv-controls[hidden]{display:none}
+.rv-nav{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background-color .2s,color .2s,transform .2s}
+.rv-nav:hover{background:var(--red);border-color:var(--red);color:#fff;transform:scale(1.06)}
+.rv-nav .icon{width:18px;height:18px}
+.rv-dots{display:flex;gap:8px}
+.rv-dots button{width:9px;height:9px;padding:0;border:none;border-radius:999px;background:var(--line);cursor:pointer;transition:width .35s cubic-bezier(.2,.7,.2,1),background-color .35s}
+.rv-dots button[aria-current="true"]{width:28px;background:var(--red)}
+@media(max-width:1020px){.rv-track .rv-card{flex-basis:calc((100% - 16px) / 2)}}
+@media(max-width:640px){.rv-track .rv-card{flex-basis:100%}.rv-viewport{margin:-10px;padding:10px}}
 .rv-source{margin-top:18px;font-size:.8rem;color:var(--muted)}
 .rv-source[hidden]{display:none}
 @media(max-width:1020px){.rv-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.rv-grid{grid-template-columns:1fr}.rv-top .btn{width:100%}}
+
+/* ── REVIEW MODAL ── */
+.rf-label{font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rf-stars{display:flex;align-items:center;gap:4px;flex-direction:row}
+.rf-stars input[type="radio"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;margin:0;border:0;pointer-events:none}
+.rf-stars label{cursor:pointer;color:var(--line);padding:2px;border-radius:8px;transition:color .15s,transform .15s}
+.rf-stars label .icon{width:34px;height:34px}
+.rf-stars label:hover{transform:scale(1.12)}
+.rf-stars label.on{color:#F5B301}
+.rf-stars input:focus-visible+label{outline:2px solid var(--red);outline-offset:2px}
+.rf-stars.invalid label{color:var(--red-soft)}
+.rf-stars-word{margin-left:10px;font-weight:700;color:var(--muted);font-size:.9rem}
+.rf-thanks{color:var(--muted);margin-bottom:18px}
+#reviewForm .form-submit{margin-top:4px}
+#reviewForm .form-legal{margin-top:10px}
+.rf-step2{text-align:left}
+.rf-step2[hidden]{display:none}
+.rf-step2 .fs-icon{margin:0 0 12px}
+.rf-step2 h3{font-size:1.3rem;margin-bottom:12px}
 
 /* ── NEWSLETTER ── */
 .sr-only,.hp{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -631,7 +679,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .f-remote{--d:1.1s}.f-device{--d:2s}
 
 /* content swapped by the switch eases in */
-.bento[data-for],.dept-section,.sec-head [data-for],.cta-panel [data-for],.ticker-track{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.bento[data-for],.dept-section,.sec-head [data-for],.cta-panel [data-for]{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
 
 /* scroll reveal: only applied by script to things below the fold, so the page is complete without it.
    Each kind of block gets its own entrance (data-anim). */
@@ -689,7 +737,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .hero-visual{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
 
 /* switch swaps: different entrance per block */
-.ticker-track{animation:blurIn .7s ease both}
+.tapes{animation:blurIn .7s ease both}
 @keyframes blurIn{from{opacity:0;filter:blur(10px)}to{opacity:1;filter:none}}
 .cta-panel h2[data-for]{animation:slideL .6s cubic-bezier(.2,.7,.2,1) both}
 .sec-head p[data-for]{animation:slideR .6s cubic-bezier(.2,.7,.2,1) both}
@@ -705,6 +753,102 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .btn-primary::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(-120%);transition:transform .7s ease}
 .btn-primary:hover::after{transform:translateX(120%)}
 .mode-thumb{transition:transform .45s cubic-bezier(.7,-0.3,.3,1.3)}
+
+/* ── SERVICE TABS v2: numbered list with auto-play progress, spotlight panel ── */
+.dept-tabs{grid-template-columns:340px 1fr;border-radius:28px;box-shadow:var(--shadow)}
+.dept-tab-list{counter-reset:dt;padding:14px;gap:6px;background:var(--bg)}
+.dept-tab{counter-increment:dt;overflow:hidden;padding:16px 16px 18px;gap:12px;border-radius:16px}
+.dept-tab::before{content:counter(dt,decimal-leading-zero);font-family:var(--f-mono);font-size:.72rem;font-weight:500;color:var(--muted);min-width:18px;transition:color .25s}
+.dept-tab.active::before{color:var(--red)}
+.dept-tab .icon{transition:color .2s,transform .3s cubic-bezier(.3,1.5,.5,1)}
+.dept-tab:hover .icon{transform:scale(1.15) rotate(-6deg)}
+.dept-tab::after{content:'';position:absolute;left:16px;right:16px;bottom:7px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--red),#FF8A4C);transform:scaleX(0);transform-origin:left;opacity:0}
+.dept-tabs.autoplay .dept-tab.active::after{opacity:1;animation:tabProgress 6s linear forwards}
+.dept-tabs.autoplay.paused .dept-tab.active::after{animation-play-state:paused}
+@keyframes tabProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.dept-tab-indicator{border-radius:16px}
+.dept-tab-indicator::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--red)}
+.dept-tab-panels{position:relative;overflow:hidden;padding:52px 56px}
+.dept-tab-panels::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 55% 65% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(ellipse 55% 65% at 100% 0%,#000,transparent 70%);pointer-events:none}
+.dept-tab-panels::after{content:'';position:absolute;right:-140px;top:-140px;width:400px;height:400px;background:radial-gradient(circle,var(--red-soft),transparent 65%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.dept-panel{position:relative;z-index:1}
+.dept-panel::before{content:attr(data-num);position:absolute;right:-6px;top:-34px;z-index:-1;font-family:var(--f-display);font-weight:800;font-size:clamp(6rem,11vw,10rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--line);pointer-events:none}
+.dept-panel.active::before{animation:numIn .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes numIn{from{opacity:0;transform:translateY(40px) scale(.9)}to{opacity:1;transform:none}}
+.dp-count{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:-6px}
+.dept-panel.active .dp-count{animation:slideL .5s cubic-bezier(.2,.7,.2,1) .1s both}
+.dc-icon{position:relative}
+.dc-icon::after{content:'';position:absolute;inset:-8px;border-radius:22px;border:1.5px dashed rgba(229,55,43,.45);animation:sepSpin 16s linear infinite}
+@keyframes clipIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.dept-panel.active h3{animation:clipIn .8s cubic-bezier(.65,0,.35,1) .12s both}
+.dept-panel.active>p{animation:up .6s cubic-bezier(.2,.7,.2,1) .25s both}
+.dc-list li{background:var(--surface);transition:border-color .2s,transform .2s,box-shadow .2s}
+.dc-list li:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--shadow)}
+.dc-list li::before{content:'\2713';width:22px;height:22px;border-radius:50%;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-size:.72rem;font-weight:800;transform:none}
+.dept-panel-cta::after{content:'\2192';margin-left:2px;transition:transform .2s}
+.dept-panel-cta:hover::after{transform:translateX(4px)}
+@media(max-width:900px){
+  .dept-tabs{grid-template-columns:1fr}
+  .dept-tab{padding:12px 14px 16px}
+  .dept-tab::before{display:none}
+  .dept-tab::after{left:12px;right:12px;bottom:5px}
+  .dept-tab-panels{padding:34px 24px}
+  .dept-panel::before{top:-20px;font-size:6rem}
+}
+@media(prefers-reduced-motion:reduce){.dc-icon::after,.dept-tab-panels::after{animation:none}}
+
+/* ── TOP BAR v2: connected switch + floating menu ── */
+:root{--bar-h:58px;--hdr-h:80px}
+.mode-bar{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;background:
+  radial-gradient(600px 120px at 50% 120%,rgba(229,55,43,.35),transparent 70%),
+  linear-gradient(90deg,#0B0C0F,#15171C 50%,#0B0C0F)}
+.mode-bar::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+.mode-label{justify-self:end;display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.92)}
+.mode-label::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(229,55,43,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(229,55,43,0)}100%{box-shadow:0 0 0 0 rgba(229,55,43,0)}}
+.mode-switch{gap:0;padding:4px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.mode-thumb{top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:linear-gradient(180deg,#F04A3E,#D52C20);box-shadow:0 6px 20px -4px rgba(229,55,43,.75),inset 0 1px 0 rgba(255,255,255,.25)}
+html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
+.mode-btn{padding:8px 22px;background:transparent;border:none;color:rgba(255,255,255,.9)}
+.mode-btn b{font-size:.92rem}
+.mode-btn:hover{background:rgba(255,255,255,.06);color:#fff}
+.mode-btn[aria-pressed="true"],.mode-btn[aria-pressed="true"]:hover{background:transparent;color:#fff}
+.mode-avail{justify-self:end;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);font-family:var(--f-mono);font-size:.72rem;color:rgba(255,255,255,.8);white-space:nowrap}
+.mode-avail i{width:7px;height:7px;border-radius:50%;background:#2BC48A;box-shadow:0 0 0 3px rgba(43,196,138,.2)}
+
+/* floating menu island */
+.hdr{background:transparent;border-bottom:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:10px 16px 0;pointer-events:none}
+.hdr.scrolled{box-shadow:none}
+.hdr-in{pointer-events:auto;height:calc(var(--hdr-h) - 10px);max-width:calc(var(--wrap) + 32px);padding-inline:14px 10px;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border:1px solid var(--line);border-radius:20px;box-shadow:0 1px 2px rgba(15,17,21,.04),0 14px 34px -20px rgba(15,17,21,.3);transition:box-shadow .3s,border-color .3s}
+.hdr.scrolled .hdr-in{box-shadow:0 2px 6px rgba(15,17,21,.06),0 22px 44px -18px rgba(15,17,21,.4)}
+.logo{padding:6px 10px 6px 4px;border-radius:12px}
+.hdr-nav{margin-inline:auto}
+.hdr-nav a{padding:10px 16px;border-radius:12px;color:var(--muted)}
+.hdr-nav a:hover{color:var(--ink);background:var(--surface-2)}
+.hdr-nav a.active{color:var(--ink)}
+.nav-indicator{background:transparent;border-radius:0}
+.nav-indicator::after{content:'';position:absolute;left:16px;right:16px;bottom:5px;height:2.5px;border-radius:2px;background:var(--red)}
+.hdr-cta{padding:12px 18px;border-radius:14px}
+.hdr-cta .icon{width:15px;height:15px;transition:transform .2s}
+.hdr-cta:hover .icon{transform:translateX(3px)}
+.theme-toggle,.nav-toggle{border-radius:14px}
+.scroll-progress{top:calc(var(--bar-h) + env(safe-area-inset-top,0px) - 2px);height:2px;background:linear-gradient(90deg,var(--red),#FF8A4C)}
+@media(max-width:900px){
+  .hdr-nav{top:calc(var(--hdr-h) - 2px);left:16px;right:16px;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 50px -20px rgba(0,0,0,.35);pointer-events:auto}
+  .hdr-nav a:hover{background:transparent}
+}
+@media(max-width:760px){
+  .mode-bar{grid-template-columns:1fr;justify-items:center}
+  .mode-label,.mode-avail{display:none}
+}
+@media(max-width:640px){
+  :root{--bar-h:56px;--hdr-h:70px}
+  .hdr{padding:8px 10px 0}
+  .hdr-in{height:calc(var(--hdr-h) - 8px);border-radius:16px;padding-inline:10px 8px}
+  .hdr-nav{left:10px;right:10px}
+  .mode-switch{width:100%}
+  .mode-btn{padding:9px 8px}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -1063,6 +1207,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"/></symbol>
 <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.5 5.2 2.3 8 10.5 10.5-8.2 2.5-10 5.3-10.5 10.5C11.5 17.3 9.7 14.5 1.5 12 9.7 9.5 11.5 6.7 12 1.5z"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </defs>
 </svg>
@@ -1079,6 +1224,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><b>IT Support</b>
     </button>
   </div>
+  <span class="mode-avail"><i></i>Available 24/7</span>
 </div>
 
 <!-- HEADER -->
@@ -1107,8 +1253,8 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
         <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
       </button>
-      <button type="button" class="btn btn-primary hdr-cta" data-for="web" onclick="openQuoteModal('Web Development')">Get a quote</button>
-      <button type="button" class="btn btn-primary hdr-cta" data-for="it" onclick="openQuoteModal('IT Support &amp; Repairs')">Get a quote</button>
+      <button type="button" class="btn btn-primary hdr-cta" data-for="web" onclick="openQuoteModal('Web Development')">Get a quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button type="button" class="btn btn-primary hdr-cta" data-for="it" onclick="openQuoteModal('IT Support &amp; Repairs')">Get a quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" type="button"><svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg><svg class="icon icon-close" aria-hidden="true"><use href="#i-x"/></svg></button>
     </div>
   </div>
@@ -1190,15 +1336,15 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" data-for="web">
-    <ul><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li><li>Logo design</li><li>Posters &amp; flyers</li><li>Brand identity</li><li>Website maintenance</li></ul>
-    <ul><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li><li>Logo design</li><li>Posters &amp; flyers</li><li>Brand identity</li><li>Website maintenance</li></ul>
+<!-- TICKER: two crossing tapes -->
+<div class="tapes" aria-hidden="true">
+  <div class="tape tape-a">
+      <div class="tape-track" data-for="web"><ul><li><span>Custom software</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Web applications</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Business websites</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Landing pages</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>E-commerce stores</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website redesigns</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Logo design</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Posters &amp; flyers</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Brand identity</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website maintenance</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Custom software</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Web applications</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Business websites</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Landing pages</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>E-commerce stores</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website redesigns</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Logo design</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Posters &amp; flyers</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Brand identity</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website maintenance</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
+      <div class="tape-track" data-for="it"><ul><li><span>Laptop repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Screen &amp; battery replacements</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Virus removal</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Software installs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Email &amp; printer setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Office networks</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote support</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly IT plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Laptop repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Screen &amp; battery replacements</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Virus removal</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Software installs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Email &amp; printer setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Office networks</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote support</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly IT plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
   </div>
-  <div class="ticker-track" data-for="it">
-    <ul><li>Laptop repairs</li><li>Screen &amp; battery replacements</li><li>Virus removal</li><li>Software installs</li><li>Email &amp; printer setup</li><li>Office networks</li><li>Remote support</li><li>Monthly IT plans</li></ul>
-    <ul><li>Laptop repairs</li><li>Screen &amp; battery replacements</li><li>Virus removal</li><li>Software installs</li><li>Email &amp; printer setup</li><li>Office networks</li><li>Remote support</li><li>Monthly IT plans</li></ul>
+  <div class="tape tape-b">
+      <div class="tape-track" data-for="web"><ul><li><span>Mobile-first</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>SEO-ready</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote, clients anywhere</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Domain &amp; hosting setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Ongoing support</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Mobile-first</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>SEO-ready</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote, clients anywhere</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Domain &amp; hosting setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Ongoing support</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
+      <div class="tape-track" data-for="it"><ul><li><span>Remote &amp; on-site</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>3-month repair warranty</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Homes &amp; offices</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Data-safe repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly business plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Remote &amp; on-site</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>3-month repair warranty</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Homes &amp; offices</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Data-safe repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly business plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
   </div>
 </div>
 
@@ -1511,24 +1657,23 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <span class="eyebrow">Reviews</span>
         <h2>What clients say.</h2>
       </div>
-      <p>Worked with Axe Connect on a website, software, design or a repair? A quick Google review helps other people and businesses find us.</p>
+      <p>Worked with Axe Connect on a website, software, design or a repair? Leave a quick review right here. It helps other people and businesses choose us.</p>
     </div>
     <div class="rv-top">
       <div class="rv-summary" id="rvSummary" hidden>
         <strong id="rvAvg">5.0</strong>
         <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
       </div>
-      <a class="btn btn-primary" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Review us on Google</a>
+      <a class="btn btn-primary" href="#reviews" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Write a review</a>
     </div>
     <div class="rv-grid" id="rvGrid">
       <div class="rv-empty" id="rvEmpty">
         <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
         <h3>Be one of our first reviewers</h3>
-        <p>Tell others how your website, software, design work or repair went. It takes less than a minute on Google.</p>
-        <a class="btn btn-ghost" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p>Tell others how your website, software, design work or repair went. It takes less than a minute.</p>
+        <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-    <p class="rv-source" id="rvSource" hidden>Reviews from Google</p>
   </div>
 </section>
 
@@ -1623,7 +1768,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       <div class="foot-col">
         <h3>Contact</h3>
         <a href="#newsletter">Newsletter sign-up</a>
-        <a href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Leave a Google review</a>
+        <a href="#reviews" data-review-open>Leave a review</a>
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
@@ -1817,6 +1962,64 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
         <h3>Quote Request Sent!</h3>
         <p>Thanks! We'll review your details and contact you shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div class="modal-overlay" id="reviewModal" onclick="closeOnOverlay(event,'reviewModal')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="modal-head">
+      <button class="modal-close" type="button" onclick="closeModal('reviewModal')" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <h2 id="reviewModalTitle">Write a review</h2>
+      <p>Tell us how it went. Reviews appear on this website once we have checked them.</p>
+    </div>
+    <div class="modal-body">
+      <form id="reviewForm" novalidate>
+        <div class="form-alert" id="reviewFormAlert" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span></span></div>
+        <div class="form-group">
+          <span class="rf-label" id="rf-stars-label">Your rating</span>
+          <div class="rf-stars" role="radiogroup" aria-labelledby="rf-stars-label" id="rf-stars">
+            <input type="radio" name="rf-rating" id="rf-r1" value="1"/><label for="rf-r1" title="1 star"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">1 star</span></label>
+            <input type="radio" name="rf-rating" id="rf-r2" value="2"/><label for="rf-r2" title="2 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">2 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r3" value="3"/><label for="rf-r3" title="3 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">3 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r4" value="4"/><label for="rf-r4" title="4 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">4 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r5" value="5"/><label for="rf-r5" title="5 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">5 stars</span></label>
+            <span class="rf-stars-word" id="rf-stars-word" aria-hidden="true">Tap a star</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rf-name">Your name</label>
+            <input type="text" id="rf-name" placeholder="Thandi M." autocomplete="name" required/>
+          </div>
+          <div class="form-group">
+            <label for="rf-service">Service</label>
+            <select id="rf-service">
+              <option value="">Choose (optional)</option>
+              <option>Website</option>
+              <option>Custom software / web app</option>
+              <option>Logo / design</option>
+              <option>IT support</option>
+              <option>Laptop / PC repair</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rf-text">Your review</label>
+          <textarea id="rf-text" placeholder="What did we help you with, and how did it go?" required></textarea>
+        </div>
+        <input type="text" id="rf-company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+        <button type="submit" class="form-submit" id="reviewSubmitBtn">Submit review</button>
+        <p class="form-legal">Your review, first name and rating will be shown on axeconnect.co.za after approval. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+      </form>
+      <div class="rf-step2" id="reviewStep2" hidden>
+        <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
+        <h3>Thank you for your review!</h3>
+        <p class="rf-thanks">We've received it and it will appear on our website once it has been approved.</p>
+        <button type="button" class="form-submit" onclick="closeModal('reviewModal')">Done</button>
       </div>
     </div>
   </div>
@@ -2132,6 +2335,37 @@ if (heroEl && heroVisual && !reduceMotion && matchMedia('(pointer: fine)').match
   heroEl.addEventListener('pointerleave', () => { heroVisual.style.setProperty('--ry', '0deg'); heroVisual.style.setProperty('--rx', '0deg'); });
 }
 
+// Service tabs: number the panels and auto-play through the services while in view
+document.querySelectorAll('.dept-tabs').forEach(group => {
+  const tabs = Array.from(group.querySelectorAll('.dept-tab'));
+  const total = String(tabs.length).padStart(2, '0');
+  group.querySelectorAll('.dept-panel').forEach(panel => {
+    const i = tabs.findIndex(t => t.getAttribute('aria-controls') === panel.id);
+    panel.dataset.num = String(i + 1).padStart(2, '0');
+    const count = document.createElement('span');
+    count.className = 'dp-count';
+    count.textContent = 'Service ' + panel.dataset.num + ' / ' + total;
+    const h = panel.querySelector('h3');
+    if (h) h.before(count);
+  });
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  let stopped = false;
+  const stop = () => { stopped = true; group.classList.remove('autoplay'); };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', e => { if (e.isTrusted) stop(); });
+    tab.addEventListener('keydown', stop);
+    tab.addEventListener('animationend', e => {
+      if (e.animationName !== 'tabProgress' || stopped) return;
+      tabs[(i + 1) % tabs.length].click();
+    });
+  });
+  group.addEventListener('mouseenter', () => group.classList.add('paused'));
+  group.addEventListener('mouseleave', () => group.classList.remove('paused'));
+  new IntersectionObserver(entries => entries.forEach(en => {
+    if (!stopped) group.classList.toggle('autoplay', en.isIntersecting);
+  }), { threshold: 0.35 }).observe(group);
+});
+
 // Motion: cursor spotlight on service cards
 document.querySelectorAll('.b-card').forEach(card => {
   card.addEventListener('pointermove', e => {
@@ -2194,6 +2428,7 @@ document.addEventListener('keydown', e => {
     closeModal('contactModal');
     closeModal('quoteModal');
     closeModal('callModal');
+    closeModal('reviewModal');
   }
 });
 
@@ -2594,12 +2829,7 @@ function submitQuoteForm() {
 }
 
 // ── Reviews ──
-// Option A (automatic): show your latest Google reviews. In Google Cloud, create an API key with
-// "Maps JavaScript API" and "Places API (New)" enabled, restrict it to axeconnect.co.za, then paste the
-// key and your Place ID (find it at developers.google.com/maps/documentation/places/web-service/place-id).
-const GOOGLE_MAPS_API_KEY = '';
-const GOOGLE_PLACE_ID = '';
-// Option B (manual): paste real reviews you've received, newest first. Example:
+// Optional fallback list, used only if reviews.json is empty. Approved reviews normally go in reviews.json. Example:
 // { name: 'Thandi M.', rating: 5, text: 'Built our salon website in two weeks...', date: 'September 2026' }
 const REVIEWS = [];
 
@@ -2608,11 +2838,19 @@ function starsHTML(rating) {
   for (let i = 1; i <= 5; i++) out += '<svg class="icon' + (i <= Math.round(rating) ? '' : ' off') + '"><use href="#i-star"/></svg>';
   return out;
 }
-function renderReviews(list, summary, fromGoogle) {
+// Show "Read more" only on reviews whose text is actually cut off
+function checkReviewClamp() {
+  document.querySelectorAll('.rv-card').forEach(card => {
+    const q = card.querySelector('blockquote'), more = card.querySelector('.rv-more');
+    if (!q || !more || card.classList.contains('open')) return;
+    more.hidden = !(q.scrollHeight > q.clientHeight + 2);
+  });
+}
+window.addEventListener('resize', () => requestAnimationFrame(checkReviewClamp));
+function renderReviews(list) {
   const grid = document.getElementById('rvGrid');
   if (!grid || !list.length) return;
-  grid.innerHTML = '';
-  list.slice(0, 6).forEach(r => {
+  const cards = list.map(r => {
     const card = document.createElement('article');
     card.className = 'rv-card';
     const stars = document.createElement('span');
@@ -2623,54 +2861,203 @@ function renderReviews(list, summary, fromGoogle) {
     if (r.photo) { const img = document.createElement('img'); img.src = r.photo; img.alt = ''; img.referrerPolicy = 'no-referrer'; av.appendChild(img); }
     else av.textContent = (r.name || '?').trim().charAt(0).toUpperCase();
     const meta = document.createElement('div');
-    const b = document.createElement('b'); b.textContent = r.name || 'Google user';
+    const b = document.createElement('b'); b.textContent = r.name || 'Client';
     const sm = document.createElement('small'); sm.textContent = r.date || '';
     meta.append(b, sm); who.append(av, meta);
-    card.append(stars, quote);
-    if ((r.text || '').length > 320) {
-      const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more';
-      more.addEventListener('click', () => { const open = card.classList.toggle('open'); more.textContent = open ? 'Show less' : 'Read more'; });
-      card.append(more);
-    }
-    card.append(who);
-    grid.appendChild(card);
+    const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more'; more.hidden = true;
+    card.append(stars, quote, more, who);
+    return card;
   });
-  const avg = summary && summary.rating ? summary.rating : list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
-  const count = summary && summary.count ? summary.count : list.length;
+  buildReviewCarousel(grid, cards);
+  const avg = list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
+  const count = list.length;
   document.getElementById('rvAvg').textContent = avg.toFixed(1);
   document.getElementById('rvAvgStars').innerHTML = starsHTML(avg);
-  document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews') + (fromGoogle ? ' on Google' : '');
+  document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews');
   document.getElementById('rvSummary').hidden = false;
-  document.getElementById('rvSource').hidden = !fromGoogle;
+  requestAnimationFrame(checkReviewClamp);
 }
-if (GOOGLE_MAPS_API_KEY && GOOGLE_PLACE_ID) {
-  window.__axeLoadReviews = async function () {
-    try {
-      const { Place } = await google.maps.importLibrary('places');
-      const place = new Place({ id: GOOGLE_PLACE_ID });
-      await place.fetchFields({ fields: ['rating', 'userRatingCount', 'reviews'] });
-      const list = (place.reviews || []).map(r => ({
-        name: r.authorAttribution ? r.authorAttribution.displayName : 'Google user',
-        photo: r.authorAttribution ? r.authorAttribution.photoURI : '',
-        rating: r.rating || 5,
-        text: typeof r.text === 'string' ? r.text : (r.text && r.text.text) || '',
-        date: r.relativePublishTimeDescription || ''
-      }));
-      if (list.length) renderReviews(list, { rating: place.rating, count: place.userRatingCount }, true);
-      else if (REVIEWS.length) renderReviews(REVIEWS);
-    } catch (err) {
-      console.error('Google reviews failed to load:', err);
-      if (REVIEWS.length) renderReviews(REVIEWS);
+
+// Reviews slider: one row, moves one review at a time and loops
+function buildReviewCarousel(grid, cards) {
+  const n = cards.length;
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  grid.innerHTML = '';
+  grid.classList.add('is-carousel');
+  const viewport = document.createElement('div'); viewport.className = 'rv-viewport';
+  viewport.setAttribute('role', 'region'); viewport.setAttribute('aria-roledescription', 'carousel'); viewport.setAttribute('aria-label', 'Client reviews');
+  const track = document.createElement('div'); track.className = 'rv-track';
+  cards.forEach((c, i) => { c.setAttribute('aria-roledescription', 'slide'); c.setAttribute('aria-label', (i + 1) + ' of ' + n); track.appendChild(c); });
+  viewport.appendChild(track);
+  const controls = document.createElement('div'); controls.className = 'rv-controls';
+  const prevBtn = document.createElement('button'); prevBtn.type = 'button'; prevBtn.className = 'rv-nav'; prevBtn.setAttribute('aria-label', 'Previous review');
+  prevBtn.innerHTML = '<svg class="icon" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>';
+  const nextBtn = document.createElement('button'); nextBtn.type = 'button'; nextBtn.className = 'rv-nav'; nextBtn.setAttribute('aria-label', 'Next review');
+  nextBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>';
+  const dots = document.createElement('div'); dots.className = 'rv-dots';
+  const dotBtns = cards.map((_, i) => {
+    const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Show review ' + (i + 1));
+    d.addEventListener('click', () => { index = i; go(true); restart(); });
+    dots.appendChild(d); return d;
+  });
+  controls.append(prevBtn, dots, nextBtn);
+  grid.append(viewport, controls);
+
+  let index = 0, clones = [], timer = null, paused = false, busy = false;
+  const perView = () => window.innerWidth <= 640 ? 1 : window.innerWidth <= 1020 ? 2 : 3;
+  const canSlide = () => n > perView();
+  function setupClones() {
+    clones.forEach(c => c.remove()); clones = [];
+    if (!canSlide()) return;
+    for (let i = 0; i < perView(); i++) {
+      const c = cards[i].cloneNode(true);
+      c.classList.add('rv-clone'); c.classList.remove('open'); c.setAttribute('aria-hidden', 'true');
+      c.querySelectorAll('button').forEach(b => { b.tabIndex = -1; });
+      track.appendChild(c); clones.push(c);
     }
-  };
-  const gm = document.createElement('script');
-  gm.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(GOOGLE_MAPS_API_KEY) + '&v=weekly&loading=async&callback=__axeLoadReviews';
-  gm.async = true;
-  gm.onerror = () => { if (REVIEWS.length) renderReviews(REVIEWS); };
-  document.head.appendChild(gm);
-} else if (REVIEWS.length) {
-  renderReviews(REVIEWS);
+  }
+  function step() {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+  function go(animate) {
+    track.style.transition = animate ? '' : 'none';
+    track.style.transform = 'translateX(' + (-index * step()) + 'px)';
+    const active = index % n;
+    dotBtns.forEach((d, i) => d.setAttribute('aria-current', i === active ? 'true' : 'false'));
+    [...track.children].forEach((c, i) => c.classList.toggle('is-front', i >= index && i < index + perView()));
+    if (!animate) { track.getBoundingClientRect(); track.style.transition = ''; }
+  }
+  function next() {
+    if (!canSlide() || busy) return;
+    index++; busy = true; go(true);
+  }
+  function prev() {
+    if (!canSlide() || busy) return;
+    if (index === 0) { index = n; go(false); }
+    index--; busy = true; go(true);
+  }
+  track.addEventListener('transitionend', e => {
+    if (e.target !== track) return;
+    busy = false;
+    if (index >= n) { index = 0; go(false); }
+  });
+  function stop() { clearInterval(timer); timer = null; }
+  function start() { stop(); if (!reduce && canSlide()) timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4500); }
+  function restart() { start(); }
+  prevBtn.addEventListener('click', () => { prev(); restart(); });
+  nextBtn.addEventListener('click', () => { next(); restart(); });
+  grid.addEventListener('mouseenter', () => { paused = true; });
+  grid.addEventListener('mouseleave', () => { paused = !!track.querySelector('.rv-card.open'); });
+  grid.addEventListener('focusin', () => { paused = true; });
+  grid.addEventListener('focusout', e => { if (!grid.contains(e.relatedTarget)) paused = !!track.querySelector('.rv-card.open'); });
+  // Read more (delegated so clones work too); an open review pauses the slider
+  track.addEventListener('click', e => {
+    const btn = e.target.closest('.rv-more'); if (!btn) return;
+    const card = btn.closest('.rv-card');
+    const open = card.classList.toggle('open');
+    btn.textContent = open ? 'Show less' : 'Read more';
+    paused = !!track.querySelector('.rv-card.open');
+    requestAnimationFrame(checkReviewClamp);
+  });
+  // Swipe on touch screens
+  let sx = null, sy = null;
+  viewport.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') { sx = e.clientX; sy = e.clientY; } });
+  viewport.addEventListener('pointerup', e => {
+    if (sx === null) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prev(); restart(); }
+  });
+  function layout() {
+    setupClones();
+    controls.hidden = !canSlide();
+    if (index >= n) index = 0;
+    busy = false; go(false);
+    requestAnimationFrame(checkReviewClamp);
+  }
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); start(); }, 150); });
+  layout(); start();
 }
+// Approved reviews live in reviews.json (edit it on GitHub to publish a review)
+fetch('reviews.json', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : [])
+    .then(list => {
+      const approved = (Array.isArray(list) ? list : []).filter(r => r && r.name && r.text && r.rating >= 1 && r.rating <= 5);
+      if (approved.length) renderReviews(approved.map(r => ({ ...r, date: [r.service, r.date].filter(Boolean).join(' · ') })));
+      else if (REVIEWS.length) renderReviews(REVIEWS);
+    })
+    .catch(() => { if (REVIEWS.length) renderReviews(REVIEWS); });
+
+// ── Review popup: reviews are emailed to us, then published from reviews.json ──
+const STAR_WORDS = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+const REVIEWS_EDIT_URL = 'https://github.com/Carvenmaceke/axe-connect/edit/main/reviews.json';
+const reviewForm = document.getElementById('reviewForm');
+const rfStars = document.getElementById('rf-stars');
+function paintStars(n) {
+  rfStars.querySelectorAll('label').forEach((l, i) => l.classList.toggle('on', i < n));
+  document.getElementById('rf-stars-word').textContent = n ? STAR_WORDS[n] : 'Tap a star';
+}
+function currentRating() { const c = rfStars.querySelector('input:checked'); return c ? +c.value : 0; }
+rfStars.querySelectorAll('label').forEach((l, i) => {
+  l.addEventListener('mouseenter', () => paintStars(i + 1));
+});
+rfStars.addEventListener('mouseleave', () => paintStars(currentRating()));
+rfStars.addEventListener('change', () => { rfStars.classList.remove('invalid'); paintStars(currentRating()); });
+function openReviewModal() {
+  reviewForm.hidden = false;
+  document.getElementById('reviewStep2').hidden = true;
+  rfStars.classList.remove('invalid');
+  showFormAlert('reviewFormAlert', '');
+  clearFieldErrors(['rf-name', 'rf-text']);
+  document.getElementById('reviewModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.querySelectorAll('[data-review-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openReviewModal(); }));
+reviewForm.addEventListener('submit', e => {
+  e.preventDefault();
+  if (document.getElementById('rf-company').value) return; // bot filled the hidden field
+  const rating = currentRating();
+  const name = document.getElementById('rf-name').value.trim();
+  const text = document.getElementById('rf-text').value.trim();
+  const service = document.getElementById('rf-service').value;
+  clearFieldErrors(['rf-name', 'rf-text']);
+  if (!rating || !name || text.length < 10) {
+    if (!rating) rfStars.classList.add('invalid');
+    if (!name) fieldError('rf-name', 'Please enter your name.');
+    if (text.length < 10) fieldError('rf-text', 'Please write at least a sentence about your experience.');
+    showFormAlert('reviewFormAlert', !rating ? 'Choose a star rating, then fill in the highlighted fields.' : 'Please fill in the highlighted fields.');
+    return;
+  }
+  showFormAlert('reviewFormAlert', '');
+  if (!window.emailjs) { showFormAlert('reviewFormAlert', 'Reviews could not be sent right now. Please refresh the page and try again.'); return; }
+  const btn = document.getElementById('reviewSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  const date = new Date().toLocaleDateString('en-ZA', { month: 'long', year: 'numeric', timeZone: 'Africa/Johannesburg' });
+  const entry = { name: name, rating: rating, service: service, text: text, date: date };
+  const snippet = JSON.stringify(entry, null, 2);
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    subject: 'New review (' + rating + '/5) from ' + name + ': approve to publish',
+    name: name,
+    phone: 'Not provided',
+    email: 'Not provided',
+    service: 'Website review' + (service ? ' - ' + service : ''),
+    msg: 'NEW REVIEW FROM AXECONNECT.CO.ZA\n\n' +
+      'Rating: ' + rating + '/5 (' + STAR_WORDS[rating] + ')\nName: ' + name + '\nService: ' + (service || 'Not given') + '\nDate: ' + date + '\n\nReview:\n' + text +
+      '\n\n----------------------------------------\nTO PUBLISH IT ON THE WEBSITE\n' +
+      '1. Open: ' + REVIEWS_EDIT_URL + '\n' +
+      '2. Paste the block below right after the opening [  (put a comma after it if other reviews follow).\n' +
+      '3. Click "Commit changes". It shows on the site within a few minutes.\n\n' +
+      snippet + '\n----------------------------------------\nTo reject it, just ignore this email.',
+    to_email: 'carvenmaceke9@gmail.com'
+  }).then(() => {
+    reviewForm.hidden = true;
+    document.getElementById('reviewStep2').hidden = false;
+    reviewForm.reset(); paintStars(0);
+  }).catch(err => {
+    console.error('EmailJS Review Error:', err);
+    showFormAlert('reviewFormAlert', 'Your review failed to send. Please try again, or WhatsApp it to us on 060 795 0837.');
+  }).finally(() => { btn.disabled = false; btn.textContent = 'Submit review'; });
+});
 
 // Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
 const newsForm = document.getElementById('newsForm');
