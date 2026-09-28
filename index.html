@@ -247,13 +247,25 @@ html.dark .theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rota
 .f-device .icon{color:#8BD5B4}
 
 /* ── TICKER ── */
-.ticker{border-block:1px solid var(--line);background:var(--surface);overflow:hidden}
-.ticker-track{display:flex;width:max-content;animation:tick 40s linear infinite}
-.ticker ul{display:flex;list-style:none}
-.ticker li{display:flex;align-items:center;gap:22px;padding:18px 22px 18px 0;font-family:var(--f-display);font-size:1.05rem;font-weight:600;color:var(--ink);white-space:nowrap}
-.ticker li::after{content:'';width:7px;height:7px;background:var(--red);transform:rotate(45deg)}
-@keyframes tick{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+.tapes{position:relative;overflow:hidden;padding-block:34px 40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tape{position:relative;display:flex;overflow:hidden;white-space:nowrap;margin-inline:-4%}
+.tape-a{z-index:2;padding-block:18px;background:var(--panel);transform:rotate(-1.3deg);box-shadow:0 18px 40px -20px rgba(15,17,21,.6)}
+.tape-b{z-index:1;padding-block:12px;margin-top:8px;background:var(--red);transform:rotate(.9deg)}
+.tape-track{display:flex;width:max-content;animation:tapeMove 42s linear infinite}
+.tape-b .tape-track{animation-duration:34s;animation-direction:reverse}
+.tape:hover .tape-track{animation-play-state:paused}
+.tape ul{display:flex;list-style:none}
+.tape li{display:flex;align-items:center;gap:26px;padding-right:26px}
+.tape-a li span{font-family:var(--f-display);font-weight:800;font-size:clamp(1.35rem,2.6vw,2.1rem);letter-spacing:-.02em;line-height:1.1;color:#fff;transition:color .3s}
+.tape-a li:nth-child(even) span{color:transparent;-webkit-text-stroke:1.3px rgba(255,255,255,.9)}
+.tape-a li:hover span{color:var(--red);-webkit-text-stroke:0}
+.tape-b li span{font-family:var(--f-mono);font-weight:500;font-size:clamp(.82rem,1.3vw,1rem);letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.tape .sep{width:22px;height:22px;flex-shrink:0;color:var(--red);animation:sepSpin 8s linear infinite}
+.tape-b .sep{width:14px;height:14px;color:#fff;animation-direction:reverse}
+@keyframes tapeMove{to{transform:translateX(-50%)}}
+@keyframes sepSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.tape-track,.tape .sep{animation:none}}
+@media(max-width:640px){.tapes{padding-block:24px 30px}.tape-a{padding-block:14px}.tape li{gap:18px;padding-right:18px}.tape .sep{width:16px;height:16px}}
 
 /* ── SECTION HEADS ── */
 .sec{padding-block:104px}
@@ -667,7 +679,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .f-remote{--d:1.1s}.f-device{--d:2s}
 
 /* content swapped by the switch eases in */
-.bento[data-for],.dept-section,.sec-head [data-for],.cta-panel [data-for],.ticker-track{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.bento[data-for],.dept-section,.sec-head [data-for],.cta-panel [data-for]{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
 
 /* scroll reveal: only applied by script to things below the fold, so the page is complete without it.
    Each kind of block gets its own entrance (data-anim). */
@@ -725,7 +737,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .hero-visual{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
 
 /* switch swaps: different entrance per block */
-.ticker-track{animation:blurIn .7s ease both}
+.tapes{animation:blurIn .7s ease both}
 @keyframes blurIn{from{opacity:0;filter:blur(10px)}to{opacity:1;filter:none}}
 .cta-panel h2[data-for]{animation:slideL .6s cubic-bezier(.2,.7,.2,1) both}
 .sec-head p[data-for]{animation:slideR .6s cubic-bezier(.2,.7,.2,1) both}
@@ -1152,6 +1164,7 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
 <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"/></symbol>
 <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.5 5.2 2.3 8 10.5 10.5-8.2 2.5-10 5.3-10.5 10.5C11.5 17.3 9.7 14.5 1.5 12 9.7 9.5 11.5 6.7 12 1.5z"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </defs>
 </svg>
@@ -1280,15 +1293,15 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" data-for="web">
-    <ul><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li><li>Logo design</li><li>Posters &amp; flyers</li><li>Brand identity</li><li>Website maintenance</li></ul>
-    <ul><li>Business websites</li><li>Landing pages</li><li>E-commerce stores</li><li>Website redesigns</li><li>Logo design</li><li>Posters &amp; flyers</li><li>Brand identity</li><li>Website maintenance</li></ul>
+<!-- TICKER: two crossing tapes -->
+<div class="tapes" aria-hidden="true">
+  <div class="tape tape-a">
+      <div class="tape-track" data-for="web"><ul><li><span>Custom software</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Web applications</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Business websites</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Landing pages</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>E-commerce stores</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website redesigns</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Logo design</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Posters &amp; flyers</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Brand identity</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website maintenance</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Custom software</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Web applications</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Business websites</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Landing pages</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>E-commerce stores</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website redesigns</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Logo design</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Posters &amp; flyers</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Brand identity</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Website maintenance</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
+      <div class="tape-track" data-for="it"><ul><li><span>Laptop repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Screen &amp; battery replacements</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Virus removal</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Software installs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Email &amp; printer setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Office networks</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote support</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly IT plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Laptop repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Screen &amp; battery replacements</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Virus removal</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Software installs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Email &amp; printer setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Office networks</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote support</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly IT plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
   </div>
-  <div class="ticker-track" data-for="it">
-    <ul><li>Laptop repairs</li><li>Screen &amp; battery replacements</li><li>Virus removal</li><li>Software installs</li><li>Email &amp; printer setup</li><li>Office networks</li><li>Remote support</li><li>Monthly IT plans</li></ul>
-    <ul><li>Laptop repairs</li><li>Screen &amp; battery replacements</li><li>Virus removal</li><li>Software installs</li><li>Email &amp; printer setup</li><li>Office networks</li><li>Remote support</li><li>Monthly IT plans</li></ul>
+  <div class="tape tape-b">
+      <div class="tape-track" data-for="web"><ul><li><span>Mobile-first</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>SEO-ready</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote, clients anywhere</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Domain &amp; hosting setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Ongoing support</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Mobile-first</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>SEO-ready</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Remote, clients anywhere</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Domain &amp; hosting setup</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Ongoing support</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
+      <div class="tape-track" data-for="it"><ul><li><span>Remote &amp; on-site</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>3-month repair warranty</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Homes &amp; offices</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Data-safe repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly business plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul><ul><li><span>Remote &amp; on-site</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Fast turnaround</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>3-month repair warranty</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Available 24/7</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Homes &amp; offices</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Clear quotes</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Data-safe repairs</span><svg class="sep"><use href="#i-spark"/></svg></li><li><span>Monthly business plans</span><svg class="sep"><use href="#i-spark"/></svg></li></ul></div>
   </div>
 </div>
 
