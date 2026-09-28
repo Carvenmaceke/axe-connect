@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Axe Connect | Web Developer · Design · IT Support</title>
-<meta name="description" content="Axe Connect is a Pretoria web developer and designer building modern websites, logos, posters and brand identity — plus IT support and computer repairs for individuals, startups and businesses."/>
-<meta name="keywords" content="web developer Pretoria, web development Pretoria, website design South Africa, IT support Pretoria, PC repairs Pretoria, laptop repairs, logo design, poster design, brand identity, monthly IT support, business IT support"/>
+<meta name="description" content="Axe Connect is a web developer and designer building modern websites, logos, posters and brand identity for clients anywhere, plus IT support and computer repairs in Pretoria."/>
+<meta name="keywords" content="web developer South Africa, remote web developer, website design South Africa, web developer Pretoria, IT support Pretoria, PC repairs Pretoria, laptop repairs, logo design, poster design, brand identity, monthly IT support, business IT support"/>
 <meta name="author" content="Axe Connect"/>
 <meta name="robots" content="index, follow"/>
 <meta name="theme-color" content="#E23524" media="(prefers-color-scheme: light)"/>
@@ -18,7 +18,7 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Axe Connect"/>
 <meta property="og:title" content="Axe Connect | Web Developer · Design · IT Support"/>
-<meta property="og:description" content="Websites, web development, logos, posters and brand design — plus IT support and PC repairs — from one trusted place in Pretoria."/>
+<meta property="og:description" content="Websites, web development, logos, posters and brand design for clients anywhere, plus IT support and PC repairs in Pretoria."/>
 <meta property="og:url" content="https://axeconnect.co.za/"/>
 <!-- Replace og-image.jpg with a real 1200x630px image uploaded alongside index.html -->
 <meta property="og:image" content="https://axeconnect.co.za/og-image.jpg"/>
@@ -29,7 +29,7 @@
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Axe Connect | Web Developer · Design · IT Support"/>
-<meta name="twitter:description" content="Websites, web development, logos, posters and brand design — plus IT support and PC repairs — from one trusted place in Pretoria."/>
+<meta name="twitter:description" content="Websites, web development, logos, posters and brand design for clients anywhere, plus IT support and PC repairs in Pretoria."/>
 <meta name="twitter:image" content="https://axeconnect.co.za/og-image.jpg"/>
 
 <!-- Favicon (inline SVG — the Axe Connect blade mark, no separate file needed) -->
@@ -100,7 +100,7 @@ html.dark,:root[data-theme="dark"]{
 
 /* ── BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{font-family:var(--f-body);font-size:16px;line-height:1.6;background:var(--bg);color:var(--text);padding-top:var(--top);overflow-x:hidden;transition:background-color .25s,color .25s}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -744,7 +744,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="status open"><i></i><span><b>Available 24/7</b> · Pretoria</span></span>
+      <span class="status open"><i></i><span><b>Available 24/7</b><span data-for="web"> · Remote, clients anywhere</span><span data-for="it"> · Pretoria &amp; remote</span></span></span>
 
       <div data-for="web">
         <h1>Websites &amp; design that <em>grow your brand.</em></h1>
@@ -1064,11 +1064,13 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
     <div class="about-copy">
       <span class="eyebrow">About us</span>
       <h2>About <em>Axe</em> Connect</h2>
-      <p>We're a Pretoria-based web and tech studio. We build websites and brand design for individuals, startups, small businesses and companies, and we keep their computers and offices running with practical IT support.</p>
+      <p data-for="web">We're a web and design studio that works fully remotely, so it doesn't matter where you are. We build websites and brand design for individuals, startups, small businesses and companies.</p>
+      <p data-for="it">We're a Pretoria-based tech team. We keep computers, networks and offices running with practical IT support, on-site in Pretoria or remotely wherever you are.</p>
       <p>Whether you need a business website, a new logo, monthly support or a laptop fixed, you deal with one team that gives clear quotes and keeps you updated.</p>
     </div>
     <dl class="facts">
-      <div><dt>Based in</dt><dd>Pretoria, Gauteng</dd></div>
+      <div data-for="web"><dt>Works with</dt><dd>Clients anywhere · fully remote</dd></div>
+      <div data-for="it"><dt>Based in</dt><dd>Pretoria, Gauteng · remote support anywhere</dd></div>
       <div><dt>Available</dt><dd>24/7 · every day</dd></div>
       <div><dt>Phone</dt><dd><a href="tel:0607950837">060 795 0837</a></dd></div>
       <div><dt>Email</dt><dd><a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a></dd></div>
@@ -1109,7 +1111,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
           </svg>
           <span class="logo-word"><span>Axe</span> Connect</span>
         </a>
-        <p>Web development, design and IT support for individuals, startups and businesses in Pretoria.</p>
+        <p>Web development and design for clients anywhere, plus IT support in Pretoria and remotely.</p>
       </div>
       <div class="foot-col">
         <h3>Web &amp; Design</h3>
@@ -1131,7 +1133,8 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
-        <span>Pretoria, Gauteng</span>
+        <span data-for="it">Pretoria, Gauteng</span>
+        <span data-for="web">Remote · clients anywhere</span>
         <span>Available 24/7</span>
       </div>
     </div>
