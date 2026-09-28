@@ -162,7 +162,7 @@ html.dark .theme-toggle .icon-moon{opacity:1;transform:translate(-50%,-50%) rota
 
 /* ── HERO ── */
 .hero{
-  padding:100px 5% 60px;
+  padding:164px 5% 60px;
   display:grid;grid-template-columns:1fr 1fr;
   gap:3rem;align-items:center;
   min-height:100vh;
@@ -704,7 +704,7 @@ footer{background:#111;padding:50px 5% 24px}
 }
 
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding-top:90px}
+  .hero{grid-template-columns:1fr;padding-top:150px}
   .hero-right{display:none}
   .about-sec{grid-template-columns:1fr}
   .about-img{min-height:300px}
@@ -734,11 +734,13 @@ footer{background:#111;padding:50px 5% 24px}
 
 /* ── SERVICE MODE SWITCH (Web Dev / IT Support) ── */
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
-.mode-label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.mode-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--grey);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:1.5rem;box-shadow:0 10px 26px rgba(20,15,8,.06)}
-.mode-thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);background:var(--red);border-radius:10px;box-shadow:0 8px 20px rgba(226,53,36,.3);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:0}
+.mode-bar{position:fixed;top:64px;left:0;right:0;z-index:998;display:flex;align-items:center;justify-content:center;gap:18px;padding:8px 5%;background:var(--surface);box-shadow:0 1px 0 var(--line);transition:background-color .25s ease,box-shadow .2s}
+.mode-label{font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+section[id]{scroll-margin-top:136px}
+.mode-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--grey);border:1px solid var(--line);border-radius:14px;padding:4px}
+.mode-thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--red);border-radius:10px;box-shadow:0 8px 20px rgba(226,53,36,.3);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:0}
 html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
-.mode-btn{position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:11px 20px 11px 16px;background:none;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);text-align:left;color:var(--muted);transition:color .25s}
+.mode-btn{position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:7px 22px 7px 16px;background:none;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);text-align:left;color:var(--muted);transition:color .25s}
 .mode-btn .icon{width:20px;height:20px;flex-shrink:0;color:var(--red);transition:color .25s}
 .mode-btn b{display:block;font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--black);line-height:1.2;transition:color .25s}
 .mode-btn small{display:block;font-size:0.7rem;line-height:1.3;transition:color .25s}
@@ -749,9 +751,13 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
 .mode-swap:hover{color:#fff}
 .mode-swap .icon{width:14px;height:14px}
 @media(max-width:640px){
+  .mode-bar{padding:8px 16px}
+  .mode-label{display:none}
   .mode-switch{display:grid;width:100%}
-  .mode-btn{padding:10px 10px;gap:8px}
+  .mode-btn{padding:9px 10px;gap:8px;justify-content:center}
   .mode-btn small{display:none}
+  .mode-btn b{font-size:0.84rem;white-space:nowrap}
+  .mode-btn .icon{width:18px;height:18px}
   .mode-swap{margin:14px 0 0;display:flex}
 }
 
@@ -1069,6 +1075,20 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
   </button>
 </header>
 
+<!-- SERVICE MODE BAR: first choice on the page, pinned under the header -->
+<div class="mode-bar" id="modeBar">
+  <span class="mode-label" id="modeLabel">What do you need help with?</span>
+  <div class="mode-switch" role="group" aria-labelledby="modeLabel">
+    <span class="mode-thumb" aria-hidden="true"></span>
+    <button type="button" class="mode-btn" data-set-mode="web" aria-pressed="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span><b>Web Dev &amp; Design</b><small>Websites · Logos · Branding</small></span>
+    </button>
+    <button type="button" class="mode-btn" data-set-mode="it" aria-pressed="false">
+      <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span><b>IT Support</b><small>Repairs · Setup · Networks</small></span>
+    </button>
+  </div>
+</div>
+
 <main id="home">
 <section class="hero">
   <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
@@ -1083,16 +1103,6 @@ html[data-mode="it"] .mode-thumb{transform:translateX(100%)}
         <span class="brand-chip-mark">A</span>
         <span class="brand-chip-copy"><small>Your trusted partner</small><strong>Axe Connect</strong></span>
       </div>
-    </div>
-    <span class="mode-label" id="modeLabel">What do you need help with?</span>
-    <div class="mode-switch" role="group" aria-labelledby="modeLabel">
-      <span class="mode-thumb" aria-hidden="true"></span>
-      <button type="button" class="mode-btn" data-set-mode="web" aria-pressed="true">
-        <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span><b>Web Dev &amp; Design</b><small>Websites · Logos · Branding</small></span>
-      </button>
-      <button type="button" class="mode-btn" data-set-mode="it" aria-pressed="false">
-        <svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg><span><b>IT Support</b><small>Repairs · Setup · Networks</small></span>
-      </button>
     </div>
     <div data-for="web">
       <h1>Websites &amp; Design.<br>Built to <span>Grow Your Brand.</span></h1>
@@ -1826,7 +1836,7 @@ nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 // Header shadow on scroll
 const hdr = document.getElementById('hdr');
 window.addEventListener('scroll', () => {
-  hdr.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 var(--line)';
+  document.getElementById('modeBar').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,.12)' : '0 1px 0 var(--line)';
 });
 
 // Active nav
