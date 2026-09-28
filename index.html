@@ -395,6 +395,30 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 @media(max-width:1020px){.rv-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.rv-grid{grid-template-columns:1fr}.rv-top .btn{width:100%}}
 
+/* ── REVIEW MODAL ── */
+.rf-label{font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rf-stars{display:flex;align-items:center;gap:4px;flex-direction:row}
+.rf-stars input[type="radio"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;margin:0;border:0;pointer-events:none}
+.rf-stars label{cursor:pointer;color:var(--line);padding:2px;border-radius:8px;transition:color .15s,transform .15s}
+.rf-stars label .icon{width:34px;height:34px}
+.rf-stars label:hover{transform:scale(1.12)}
+.rf-stars label.on{color:#F5B301}
+.rf-stars input:focus-visible+label{outline:2px solid var(--red);outline-offset:2px}
+.rf-stars.invalid label{color:var(--red-soft)}
+.rf-stars-word{margin-left:10px;font-weight:700;color:var(--muted);font-size:.9rem}
+.rf-check{display:flex;align-items:center;gap:10px;margin:2px 0 16px;font-size:.9rem;color:var(--text);cursor:pointer}
+.rf-check input{width:18px;height:18px;accent-color:var(--red)}
+.rf-step2{text-align:left}
+.rf-step2[hidden]{display:none}
+.rf-step2 .fs-icon{margin:0 0 12px}
+.rf-step2 h3{font-size:1.3rem;margin-bottom:12px}
+.rf-steps{padding-left:1.2rem;display:flex;flex-direction:column;gap:8px;color:var(--text);margin-bottom:16px}
+.rf-steps li::marker{color:var(--red);font-weight:700}
+.rf-copy-label{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+#rf-copy{width:100%;min-height:90px;padding:12px 14px;font:inherit;font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;resize:vertical}
+.rf-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.rf-actions .btn{flex:1}
+
 /* ── NEWSLETTER ── */
 .sr-only,.hp{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .news{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;align-items:center;padding:36px;margin-bottom:56px;background:var(--bg);border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden}
@@ -1518,14 +1542,14 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <strong id="rvAvg">5.0</strong>
         <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
       </div>
-      <a class="btn btn-primary" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Review us on Google</a>
+      <a class="btn btn-primary" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Review us on Google</a>
     </div>
     <div class="rv-grid" id="rvGrid">
       <div class="rv-empty" id="rvEmpty">
         <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
         <h3>Be one of our first reviewers</h3>
         <p>Tell others how your website, software, design work or repair went. It takes less than a minute on Google.</p>
-        <a class="btn btn-ghost" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
     <p class="rv-source" id="rvSource" hidden>Reviews from Google</p>
@@ -1623,7 +1647,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       <div class="foot-col">
         <h3>Contact</h3>
         <a href="#newsletter">Newsletter sign-up</a>
-        <a href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener">Leave a Google review</a>
+        <a href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener" data-review-open>Leave a Google review</a>
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
@@ -1817,6 +1841,74 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
         <h3>Quote Request Sent!</h3>
         <p>Thanks! We'll review your details and contact you shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div class="modal-overlay" id="reviewModal" onclick="closeOnOverlay(event,'reviewModal')">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="modal-head">
+      <button class="modal-close" type="button" onclick="closeModal('reviewModal')" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <h2 id="reviewModalTitle">Write a review</h2>
+      <p>Your review goes on our Google profile, where other people and businesses can see it.</p>
+    </div>
+    <div class="modal-body">
+      <form id="reviewForm" novalidate>
+        <div class="form-alert" id="reviewFormAlert" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span></span></div>
+        <div class="form-group">
+          <span class="rf-label" id="rf-stars-label">Your rating</span>
+          <div class="rf-stars" role="radiogroup" aria-labelledby="rf-stars-label" id="rf-stars">
+            <input type="radio" name="rf-rating" id="rf-r1" value="1"/><label for="rf-r1" title="1 star"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">1 star</span></label>
+            <input type="radio" name="rf-rating" id="rf-r2" value="2"/><label for="rf-r2" title="2 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">2 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r3" value="3"/><label for="rf-r3" title="3 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">3 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r4" value="4"/><label for="rf-r4" title="4 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">4 stars</span></label>
+            <input type="radio" name="rf-rating" id="rf-r5" value="5"/><label for="rf-r5" title="5 stars"><svg class="icon"><use href="#i-star"/></svg><span class="sr-only">5 stars</span></label>
+            <span class="rf-stars-word" id="rf-stars-word" aria-hidden="true">Tap a star</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rf-name">Your name</label>
+            <input type="text" id="rf-name" placeholder="Thandi M." autocomplete="name" required/>
+          </div>
+          <div class="form-group">
+            <label for="rf-service">Service</label>
+            <select id="rf-service">
+              <option value="">Choose (optional)</option>
+              <option>Website</option>
+              <option>Custom software / web app</option>
+              <option>Logo / design</option>
+              <option>IT support</option>
+              <option>Laptop / PC repair</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rf-text">Your review</label>
+          <textarea id="rf-text" placeholder="What did we help you with, and how did it go?" required></textarea>
+        </div>
+        <label class="rf-check"><input type="checkbox" id="rf-show"/> You may also show my review on axeconnect.co.za</label>
+        <button type="submit" class="form-submit" id="reviewSubmitBtn">Post to Google</button>
+        <p class="form-note">Google needs you to be signed in to post. We'll copy your review and open Google's review box so you can paste it in.</p>
+      </form>
+      <div class="rf-step2" id="reviewStep2" hidden>
+        <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
+        <h3>Almost done. Finish in the Google window</h3>
+        <ol class="rf-steps">
+          <li>In the Google window, tap <b id="rf-step-stars">5 stars</b>.</li>
+          <li>Tap the review box and <b>paste</b> (Ctrl+V, or long-press and choose Paste). Your review is already copied.</li>
+          <li>Tap <b>Post</b>.</li>
+        </ol>
+        <label for="rf-copy" class="rf-copy-label">Your review</label>
+        <textarea id="rf-copy" readonly></textarea>
+        <div class="rf-actions">
+          <button type="button" class="btn btn-ghost" id="rfCopyAgain"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg> Copy again</button>
+          <a class="btn btn-primary" id="rfOpenGoogle" href="https://g.page/r/CRoZR2mD81AZEAI/review" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Open Google review</a>
+        </div>
+        <p class="form-note" id="rfCopyNote"></p>
       </div>
     </div>
   </div>
@@ -2194,6 +2286,7 @@ document.addEventListener('keydown', e => {
     closeModal('contactModal');
     closeModal('quoteModal');
     closeModal('callModal');
+    closeModal('reviewModal');
   }
 });
 
@@ -2671,6 +2764,93 @@ if (GOOGLE_MAPS_API_KEY && GOOGLE_PLACE_ID) {
 } else if (REVIEWS.length) {
   renderReviews(REVIEWS);
 }
+
+// ── Review popup: write on our site, then post to Google in a small window ──
+const GOOGLE_REVIEW_URL = 'https://g.page/r/CRoZR2mD81AZEAI/review';
+const STAR_WORDS = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+const reviewForm = document.getElementById('reviewForm');
+const rfStars = document.getElementById('rf-stars');
+function paintStars(n) {
+  rfStars.querySelectorAll('label').forEach((l, i) => l.classList.toggle('on', i < n));
+  document.getElementById('rf-stars-word').textContent = n ? STAR_WORDS[n] : 'Tap a star';
+}
+function currentRating() { const c = rfStars.querySelector('input:checked'); return c ? +c.value : 0; }
+rfStars.querySelectorAll('label').forEach((l, i) => {
+  l.addEventListener('mouseenter', () => paintStars(i + 1));
+});
+rfStars.addEventListener('mouseleave', () => paintStars(currentRating()));
+rfStars.addEventListener('change', () => { rfStars.classList.remove('invalid'); paintStars(currentRating()); });
+function openReviewModal() {
+  reviewForm.hidden = false;
+  document.getElementById('reviewStep2').hidden = true;
+  showFormAlert('reviewFormAlert', '');
+  clearFieldErrors(['rf-name', 'rf-text']);
+  document.getElementById('reviewModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.querySelectorAll('[data-review-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openReviewModal(); }));
+function openGoogleReviewWindow() {
+  const w = 520, h = 720;
+  const left = Math.max(0, (window.screenX || 0) + (window.outerWidth - w) / 2);
+  const top = Math.max(0, (window.screenY || 0) + (window.outerHeight - h) / 2);
+  return window.open(GOOGLE_REVIEW_URL, 'axeGoogleReview', 'popup=yes,width=' + w + ',height=' + h + ',left=' + left + ',top=' + top);
+}
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text).then(() => true, () => false);
+  return Promise.resolve(false);
+}
+reviewForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const rating = currentRating();
+  const name = document.getElementById('rf-name').value.trim();
+  const text = document.getElementById('rf-text').value.trim();
+  const service = document.getElementById('rf-service').value;
+  const show = document.getElementById('rf-show').checked;
+  clearFieldErrors(['rf-name', 'rf-text']);
+  if (!rating || !name || !text) {
+    if (!rating) rfStars.classList.add('invalid');
+    if (!name) fieldError('rf-name', 'Please enter your name.');
+    if (!text) fieldError('rf-text', 'Please write a few words about your experience.');
+    showFormAlert('reviewFormAlert', !rating ? 'Choose a star rating, then fill in the highlighted fields.' : 'Please fill in the highlighted fields.');
+    return;
+  }
+  showFormAlert('reviewFormAlert', '');
+  // Open Google's review box and copy the text inside this click, so browsers allow both
+  const win = openGoogleReviewWindow();
+  const copied = copyText(text);
+  document.getElementById('rf-copy').value = text;
+  document.getElementById('rf-step-stars').textContent = rating + (rating === 1 ? ' star' : ' stars');
+  reviewForm.hidden = true;
+  document.getElementById('reviewStep2').hidden = false;
+  const note = document.getElementById('rfCopyNote');
+  copied.then(ok => {
+    note.textContent = (ok ? 'Review copied. ' : 'Select the text above and copy it. ') + (win ? '' : 'If the Google window did not open, tap "Open Google review".');
+  });
+  // Send ourselves a copy so nothing is lost
+  if (window.emailjs) {
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      subject: 'New review (' + rating + '/5) from ' + name,
+      name: name,
+      phone: 'Not provided',
+      email: 'Not provided',
+      service: 'Review' + (service ? ' - ' + service : ''),
+      msg: 'NEW REVIEW FROM THE WEBSITE\n\nRating: ' + rating + '/5 (' + STAR_WORDS[rating] + ')\nName: ' + name + '\nService: ' + (service || 'Not given') +
+        '\nOK to show on website: ' + (show ? 'YES' : 'no') + '\n\nReview:\n' + text +
+        '\n\nThey were sent to Google to post it. Check your Google Business Profile for it to appear.',
+      to_email: 'carvenmaceke9@gmail.com'
+    }).catch(err => console.error('EmailJS Review Error:', err));
+  }
+});
+document.getElementById('rfCopyAgain').addEventListener('click', () => {
+  const ta = document.getElementById('rf-copy');
+  copyText(ta.value).then(ok => {
+    if (!ok) { ta.focus(); ta.select(); }
+    document.getElementById('rfCopyNote').textContent = ok ? 'Copied again.' : 'Text selected. Press Ctrl+C (or long-press and Copy).';
+  });
+});
+document.getElementById('rfOpenGoogle').addEventListener('click', e => {
+  if (openGoogleReviewWindow()) e.preventDefault();
+});
 
 // Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
 const newsForm = document.getElementById('newsForm');
