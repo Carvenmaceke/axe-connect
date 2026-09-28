@@ -378,6 +378,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rv-card:nth-child(2){animation-delay:.08s}.rv-card:nth-child(3){animation-delay:.16s}.rv-card:nth-child(4){animation-delay:.24s}.rv-card:nth-child(5){animation-delay:.32s}
 .rv-card blockquote{white-space:pre-line;color:var(--text);font-size:.97rem;line-height:1.65;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
 .rv-card.open blockquote{display:block}
+.rv-more[hidden]{display:none}
 .rv-more{align-self:flex-start;background:none;border:none;padding:0;color:var(--red);font-weight:700;font-size:.85rem;cursor:pointer}
 .rv-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
 .rv-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--red-soft);color:var(--red);font-weight:800;overflow:hidden}
@@ -390,6 +391,10 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rv-empty-stars .icon:nth-child(2){animation-delay:.08s}.rv-empty-stars .icon:nth-child(3){animation-delay:.16s}.rv-empty-stars .icon:nth-child(4){animation-delay:.24s}.rv-empty-stars .icon:nth-child(5){animation-delay:.32s}
 .rv-empty h3{font-size:1.4rem}
 .rv-empty p{color:var(--muted);max-width:46ch}
+.rv-extra{display:none}
+.rv-grid.show-all .rv-extra{display:flex}
+.rv-more-wrap{display:flex;justify-content:center;margin-top:22px}
+.rv-more-wrap[hidden]{display:none}
 .rv-source{margin-top:18px;font-size:.8rem;color:var(--muted)}
 .rv-source[hidden]{display:none}
 @media(max-width:1020px){.rv-grid{grid-template-columns:1fr 1fr}}
@@ -1547,6 +1552,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
+    <div class="rv-more-wrap" id="rvMoreWrap" hidden><button type="button" class="btn btn-ghost" id="rvShowAll" aria-expanded="false">Show all reviews</button></div>
   </div>
 </section>
 
@@ -2680,13 +2686,22 @@ function starsHTML(rating) {
   for (let i = 1; i <= 5; i++) out += '<svg class="icon' + (i <= Math.round(rating) ? '' : ' off') + '"><use href="#i-star"/></svg>';
   return out;
 }
+// Show "Read more" only on reviews whose text is actually cut off
+function checkReviewClamp() {
+  document.querySelectorAll('.rv-card').forEach(card => {
+    const q = card.querySelector('blockquote'), more = card.querySelector('.rv-more');
+    if (!q || !more || card.classList.contains('open')) return;
+    more.hidden = !(q.scrollHeight > q.clientHeight + 2);
+  });
+}
+window.addEventListener('resize', () => requestAnimationFrame(checkReviewClamp));
 function renderReviews(list) {
   const grid = document.getElementById('rvGrid');
   if (!grid || !list.length) return;
   grid.innerHTML = '';
-  list.slice(0, 6).forEach(r => {
+  list.forEach((r, idx) => {
     const card = document.createElement('article');
-    card.className = 'rv-card';
+    card.className = 'rv-card' + (idx >= 6 ? ' rv-extra' : '');
     const stars = document.createElement('span');
     stars.className = 'rv-stars'; stars.setAttribute('aria-label', r.rating + ' out of 5 stars'); stars.innerHTML = starsHTML(r.rating);
     const quote = document.createElement('blockquote'); quote.textContent = r.text || '';
@@ -2699,11 +2714,9 @@ function renderReviews(list) {
     const sm = document.createElement('small'); sm.textContent = r.date || '';
     meta.append(b, sm); who.append(av, meta);
     card.append(stars, quote);
-    if ((r.text || '').length > 320) {
-      const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more';
-      more.addEventListener('click', () => { const open = card.classList.toggle('open'); more.textContent = open ? 'Show less' : 'Read more'; });
-      card.append(more);
-    }
+    const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more'; more.hidden = true;
+    more.addEventListener('click', () => { const open = card.classList.toggle('open'); more.textContent = open ? 'Show less' : 'Read more'; });
+    card.append(more);
     card.append(who);
     grid.appendChild(card);
   });
@@ -2713,6 +2726,20 @@ function renderReviews(list) {
   document.getElementById('rvAvgStars').innerHTML = starsHTML(avg);
   document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews');
   document.getElementById('rvSummary').hidden = false;
+  requestAnimationFrame(checkReviewClamp);
+  const moreWrap = document.getElementById('rvMoreWrap');
+  if (list.length > 6) {
+    const btn = document.getElementById('rvShowAll');
+    btn.textContent = 'Show all ' + list.length + ' reviews';
+    moreWrap.hidden = false;
+    btn.onclick = () => {
+      const open = grid.classList.toggle('show-all');
+      btn.textContent = open ? 'Show fewer reviews' : 'Show all ' + list.length + ' reviews';
+      btn.setAttribute('aria-expanded', open);
+      requestAnimationFrame(checkReviewClamp);
+      if (!open) document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
+    };
+  }
 }
 // Approved reviews live in reviews.json (edit it on GitHub to publish a review)
 fetch('reviews.json', { cache: 'no-store' })
