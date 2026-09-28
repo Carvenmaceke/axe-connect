@@ -427,6 +427,9 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .form-submit:hover{background:var(--red-ink)}
 .form-submit:disabled{opacity:.7;cursor:wait}
 .form-note{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:.78rem;color:var(--muted);text-align:center}
+.form-legal{margin-top:6px;font-size:.76rem;color:var(--muted);text-align:center}
+.form-legal a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.form-legal a:hover{color:var(--red)}
 .form-success{display:none;text-align:center;padding:24px 0 8px}
 .fs-icon{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;background:var(--ok-soft);color:var(--ok);display:flex;align-items:center;justify-content:center}
 .fs-icon .icon{width:30px;height:30px}
@@ -1528,7 +1531,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       </div>
     </div>
     <div class="foot-bottom">
-      <p>&#169; <span id="yr"></span> Axe Connect. All rights reserved.</p>
+      <p>&#169; <span id="yr"></span> Axe Connect. All rights reserved. · <a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a></p>
       <p>Designed &amp; built by <a href="https://carven.netlify.app/" target="_blank" rel="noopener">Carven Maceke</a></p>
     </div>
   </div>
@@ -1591,6 +1594,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         </div>
         <button type="button" class="form-submit" onclick="submitContactForm()">Send Message</button>
         <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your message goes directly to carvenmaceke9@gmail.com</p>
+        <p class="form-legal">By sending this you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="fs-icon"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></div>
@@ -1704,6 +1708,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 
         <button type="button" class="form-submit" id="quoteSubmitBtn" onclick="submitQuoteForm()">Send Quote Request</button>
         <p class="form-note"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Your quote request goes directly to carvenmaceke9@gmail.com</p>
+        <p class="form-legal">By sending this you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       </div>
 
       <div class="form-success" id="quoteFormSuccess">
