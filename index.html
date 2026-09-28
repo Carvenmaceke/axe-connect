@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Axe Connect | Web Developer · Design · IT Support</title>
 <meta name="description" content="Axe Connect is a web developer and designer building modern websites, logos, posters and brand identity for clients anywhere, plus IT support and computer repairs in Pretoria."/>
-<meta name="keywords" content="web developer South Africa, remote web developer, website design South Africa, web developer Pretoria, IT support Pretoria, PC repairs Pretoria, laptop repairs, logo design, poster design, brand identity, monthly IT support, business IT support"/>
+<meta name="keywords" content="hire a web developer, hire web developer South Africa, hire a website developer, hire freelance web developer, freelance web developer, freelance web developer South Africa, remote web developer, remote web developer South Africa, hire remote web developer, contract web developer, web developer for hire, website developer for hire, outsource web development, outsourced web development South Africa, web development agency, web development company, web development company South Africa, affordable web developer, affordable website design, cheap website design South Africa, best web developer South Africa, web developer near me, website designer near me, web developer, website developer, web designer, website designer, full stack developer, full stack web developer, front end developer, back end developer, Java developer, Spring Boot developer, JavaScript developer, HTML CSS developer, SQL developer, website design, website development, web development services, custom website design, business website design, small business website, startup website, company website, corporate website design, landing page design, landing page developer, e-commerce website, online store development, ecommerce website developer, portfolio website, personal website, website redesign, website revamp, responsive website design, mobile friendly website, SEO friendly website, fast loading website, website maintenance, website updates, website support, website hosting setup, domain and hosting setup, business email setup, web application development, custom web application, website for restaurants, website for salons, website for churches, website for schools, website for NGOs, website for real estate, website for construction company, website for law firm, website for doctors, website for small business, logo design, logo designer, poster design, flyer design, brand identity design, graphic designer, social media graphics, business card design, web developer Pretoria, web developer Johannesburg, web developer Cape Town, web developer Durban, web developer Centurion, web developer Midrand, web developer Gauteng, website design Pretoria, website design Johannesburg, website design Cape Town, website design Gauteng, website design South Africa, web developer South Africa, IT support Pretoria, PC repairs Pretoria, laptop repairs Pretoria, computer repairs, remote IT support, business IT support, monthly IT support"/>
 <meta name="author" content="Axe Connect"/>
 <meta name="robots" content="index, follow"/>
 <meta name="theme-color" content="#E23524" media="(prefers-color-scheme: light)"/>
@@ -506,6 +506,27 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
   .facts div{grid-template-columns:90px 1fr}
 }
 
+/* ── HIRE / FAQ ── */
+.industries{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:36px}
+.industries .mono{text-transform:uppercase;color:var(--muted)}
+.industries ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.industries li{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:.86rem;font-weight:600;color:var(--ink);transition:border-color .2s,color .2s,transform .2s}
+.industries li:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:18px;transition:border-color .2s,box-shadow .2s}
+.faq-item[open]{border-color:transparent;box-shadow:var(--shadow)}
+.faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;cursor:pointer;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.3}
+.faq-plus{position:relative;width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--surface-2);transition:background-color .2s,transform .35s cubic-bezier(.3,1.4,.5,1)}
+.faq-plus::before,.faq-plus::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--ink);border-radius:2px}
+.faq-plus::after{transform:rotate(90deg)}
+.faq-item[open] .faq-plus{background:var(--red);transform:rotate(135deg)}
+.faq-item[open] .faq-plus::before,.faq-item[open] .faq-plus::after{background:#fff}
+.faq-item p{padding:0 22px 22px;color:var(--muted);font-size:.95rem;max-width:60ch}
+.faq-item[open] p{animation:up .4s cubic-bezier(.2,.7,.2,1) both}
+@media(max-width:900px){.faq-list{grid-template-columns:1fr}}
+
 /* ── MOTION ── */
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes wordUp{from{transform:translateY(105%)}to{transform:none}}
@@ -632,25 +653,270 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": [
+    "ProfessionalService",
+    "LocalBusiness"
+  ],
   "name": "Axe Connect",
-  "description": "Web development, website design, website maintenance, logo design, poster design, brand identity, IT support and PC repair services for individuals, startups, small businesses and companies.",
+  "alternateName": "Axe Connect Web Development",
+  "description": "Freelance and contract web developer and designer. Business websites, e-commerce, landing pages, web applications, website maintenance, logo and brand design for clients anywhere, plus IT support and PC repairs in Pretoria.",
+  "slogan": "Web Developer · Design · IT Support",
   "telephone": "+27607950837",
   "email": "carvenmaceke9@gmail.com",
+  "url": "https://axeconnect.co.za/",
+  "priceRange": "R",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Pretoria",
     "addressRegion": "Gauteng",
     "addressCountry": "ZA"
   },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "South Africa"
+    },
+    {
+      "@type": "Place",
+      "name": "Worldwide (remote)"
+    }
+  ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
     "opens": "00:00",
     "closes": "23:59"
   },
-  "url": "https://axeconnect.co.za/",
-  "priceRange": "R"
+  "knowsAbout": [
+    "Web development",
+    "Website design",
+    "Full-stack development",
+    "Front-end development",
+    "Back-end development",
+    "Java",
+    "Spring Boot",
+    "SQL",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "Responsive design",
+    "SEO",
+    "E-commerce",
+    "Landing pages",
+    "Web applications",
+    "Website maintenance",
+    "Logo design",
+    "Brand identity",
+    "Graphic design",
+    "IT support",
+    "Computer repairs"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website design & development",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Business & company websites",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Startup websites",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Landing pages",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "E-commerce & online stores",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web applications",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website redesigns",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website maintenance & updates",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Domain, hosting & business email setup",
+          "serviceType": "Web development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Logo design",
+          "serviceType": "Graphic design"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Poster & flyer design",
+          "serviceType": "Graphic design"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Brand identity",
+          "serviceType": "Graphic design"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "IT support & troubleshooting",
+          "serviceType": "IT support"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Laptop & computer repairs",
+          "serviceType": "IT support"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Monthly business IT support",
+          "serviceType": "IT support"
+        }
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I hire you as a freelance web developer if I'm not in Pretoria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Web development and design are done fully remotely, so we work with individuals and companies anywhere in South Africa and abroad. We keep in touch by WhatsApp, email, phone or video call."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of websites do you build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Business and company websites, startup websites, landing pages, e-commerce and online stores, portfolio and personal websites, website redesigns and custom web applications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a website cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the number of pages and the features you need. Send a quote request with your budget, anything from under R1,500 to R10,000+, and we'll recommend what fits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to build a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A landing page can be ready quickly, and most small business websites are delivered within a few weeks. You get a clear timeline in your quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my website be mobile-friendly and SEO-ready?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every site is built mobile-first, loads fast and is set up with the SEO basics (page titles, descriptions, headings and structured data) so people can find you on Google."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with companies and agencies on contract?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Companies can outsource web development projects, hire us for ongoing website maintenance and updates, or bring us in on contract for a specific build."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you set up my domain, hosting and business email?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We can register or connect your domain, set up hosting and configure business email so everything works together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you also do logos and branding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Logo design, posters and flyers, social media graphics, business cards and full brand identity packs, so your website and brand match."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -1055,6 +1321,57 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <p>We do the work, keep you updated along the way, and hand over results you can use straight away.</p>
       </li>
     </ol>
+  </div>
+</section>
+
+<!-- HIRE A WEB DEVELOPER (FAQ) -->
+<section id="hire" class="sec hire" data-for="web">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Hire a web developer</span>
+        <h2>Looking for a web developer? Here's how we work.</h2>
+      </div>
+      <p>Freelance and contract web development for individuals, startups, small businesses and companies. Fully remote, anywhere in South Africa or abroad.</p>
+    </div>
+    <div class="industries">
+      <span class="mono">Websites for</span>
+      <ul><li>Small businesses</li><li>Startups</li><li>Companies</li><li>Restaurants &amp; cafés</li><li>Salons &amp; beauty</li><li>Churches</li><li>Schools</li><li>NGOs</li><li>Real estate</li><li>Construction</li><li>Law firms</li><li>Medical practices</li><li>Online stores</li><li>Personal brands</li><li>Creatives &amp; portfolios</li><li>Events</li></ul>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><h3>Can I hire you as a freelance web developer if I'm not in Pretoria?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Yes. Web development and design are done fully remotely, so we work with individuals and companies anywhere in South Africa and abroad. We keep in touch by WhatsApp, email, phone or video call.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>What kind of websites do you build?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Business and company websites, startup websites, landing pages, e-commerce and online stores, portfolio and personal websites, website redesigns and custom web applications.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>How much does a website cost?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>It depends on the number of pages and the features you need. Send a quote request with your budget, anything from under R1,500 to R10,000+, and we'll recommend what fits.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>How long does it take to build a website?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>A landing page can be ready quickly, and most small business websites are delivered within a few weeks. You get a clear timeline in your quote.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Will my website be mobile-friendly and SEO-ready?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Yes. Every site is built mobile-first, loads fast and is set up with the SEO basics (page titles, descriptions, headings and structured data) so people can find you on Google.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Do you work with companies and agencies on contract?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Yes. Companies can outsource web development projects, hire us for ongoing website maintenance and updates, or bring us in on contract for a specific build.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Can you set up my domain, hosting and business email?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Yes. We can register or connect your domain, set up hosting and configure business email so everything works together.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Do you also do logos and branding?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
+        <p>Yes. Logo design, posters and flyers, social media graphics, business cards and full brand identity packs, so your website and brand match.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -1588,6 +1905,7 @@ const revealPlan = [
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
   ['.about-copy', 'left'], ['.facts', 'right'],
+  ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.cta-panel', 'zoom'],
   ['.foot-grid > *', 'up']
 ];
