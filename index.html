@@ -754,6 +754,49 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .btn-primary:hover::after{transform:translateX(120%)}
 .mode-thumb{transition:transform .45s cubic-bezier(.7,-0.3,.3,1.3)}
 
+/* ── SERVICE TABS v2: numbered list with auto-play progress, spotlight panel ── */
+.dept-tabs{grid-template-columns:340px 1fr;border-radius:28px;box-shadow:var(--shadow)}
+.dept-tab-list{counter-reset:dt;padding:14px;gap:6px;background:var(--bg)}
+.dept-tab{counter-increment:dt;overflow:hidden;padding:16px 16px 18px;gap:12px;border-radius:16px}
+.dept-tab::before{content:counter(dt,decimal-leading-zero);font-family:var(--f-mono);font-size:.72rem;font-weight:500;color:var(--muted);min-width:18px;transition:color .25s}
+.dept-tab.active::before{color:var(--red)}
+.dept-tab .icon{transition:color .2s,transform .3s cubic-bezier(.3,1.5,.5,1)}
+.dept-tab:hover .icon{transform:scale(1.15) rotate(-6deg)}
+.dept-tab::after{content:'';position:absolute;left:16px;right:16px;bottom:7px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--red),#FF8A4C);transform:scaleX(0);transform-origin:left;opacity:0}
+.dept-tabs.autoplay .dept-tab.active::after{opacity:1;animation:tabProgress 6s linear forwards}
+.dept-tabs.autoplay.paused .dept-tab.active::after{animation-play-state:paused}
+@keyframes tabProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.dept-tab-indicator{border-radius:16px}
+.dept-tab-indicator::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--red)}
+.dept-tab-panels{position:relative;overflow:hidden;padding:52px 56px}
+.dept-tab-panels::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 55% 65% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(ellipse 55% 65% at 100% 0%,#000,transparent 70%);pointer-events:none}
+.dept-tab-panels::after{content:'';position:absolute;right:-140px;top:-140px;width:400px;height:400px;background:radial-gradient(circle,var(--red-soft),transparent 65%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.dept-panel{position:relative;z-index:1}
+.dept-panel::before{content:attr(data-num);position:absolute;right:-6px;top:-34px;z-index:-1;font-family:var(--f-display);font-weight:800;font-size:clamp(6rem,11vw,10rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--line);pointer-events:none}
+.dept-panel.active::before{animation:numIn .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes numIn{from{opacity:0;transform:translateY(40px) scale(.9)}to{opacity:1;transform:none}}
+.dp-count{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:-6px}
+.dept-panel.active .dp-count{animation:slideL .5s cubic-bezier(.2,.7,.2,1) .1s both}
+.dc-icon{position:relative}
+.dc-icon::after{content:'';position:absolute;inset:-8px;border-radius:22px;border:1.5px dashed rgba(229,55,43,.45);animation:sepSpin 16s linear infinite}
+@keyframes clipIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.dept-panel.active h3{animation:clipIn .8s cubic-bezier(.65,0,.35,1) .12s both}
+.dept-panel.active>p{animation:up .6s cubic-bezier(.2,.7,.2,1) .25s both}
+.dc-list li{background:var(--surface);transition:border-color .2s,transform .2s,box-shadow .2s}
+.dc-list li:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--shadow)}
+.dc-list li::before{content:'\2713';width:22px;height:22px;border-radius:50%;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-size:.72rem;font-weight:800;transform:none}
+.dept-panel-cta::after{content:'\2192';margin-left:2px;transition:transform .2s}
+.dept-panel-cta:hover::after{transform:translateX(4px)}
+@media(max-width:900px){
+  .dept-tabs{grid-template-columns:1fr}
+  .dept-tab{padding:12px 14px 16px}
+  .dept-tab::before{display:none}
+  .dept-tab::after{left:12px;right:12px;bottom:5px}
+  .dept-tab-panels{padding:34px 24px}
+  .dept-panel::before{top:-20px;font-size:6rem}
+}
+@media(prefers-reduced-motion:reduce){.dc-icon::after,.dept-tab-panels::after{animation:none}}
+
 /* ── TOP BAR v2: connected switch + floating menu ── */
 :root{--bar-h:58px;--hdr-h:80px}
 .mode-bar{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;background:
@@ -2291,6 +2334,37 @@ if (heroEl && heroVisual && !reduceMotion && matchMedia('(pointer: fine)').match
   });
   heroEl.addEventListener('pointerleave', () => { heroVisual.style.setProperty('--ry', '0deg'); heroVisual.style.setProperty('--rx', '0deg'); });
 }
+
+// Service tabs: number the panels and auto-play through the services while in view
+document.querySelectorAll('.dept-tabs').forEach(group => {
+  const tabs = Array.from(group.querySelectorAll('.dept-tab'));
+  const total = String(tabs.length).padStart(2, '0');
+  group.querySelectorAll('.dept-panel').forEach(panel => {
+    const i = tabs.findIndex(t => t.getAttribute('aria-controls') === panel.id);
+    panel.dataset.num = String(i + 1).padStart(2, '0');
+    const count = document.createElement('span');
+    count.className = 'dp-count';
+    count.textContent = 'Service ' + panel.dataset.num + ' / ' + total;
+    const h = panel.querySelector('h3');
+    if (h) h.before(count);
+  });
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  let stopped = false;
+  const stop = () => { stopped = true; group.classList.remove('autoplay'); };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', e => { if (e.isTrusted) stop(); });
+    tab.addEventListener('keydown', stop);
+    tab.addEventListener('animationend', e => {
+      if (e.animationName !== 'tabProgress' || stopped) return;
+      tabs[(i + 1) % tabs.length].click();
+    });
+  });
+  group.addEventListener('mouseenter', () => group.classList.add('paused'));
+  group.addEventListener('mouseleave', () => group.classList.remove('paused'));
+  new IntersectionObserver(entries => entries.forEach(en => {
+    if (!stopped) group.classList.toggle('autoplay', en.isIntersecting);
+  }), { threshold: 0.35 }).observe(group);
+});
 
 // Motion: cursor spotlight on service cards
 document.querySelectorAll('.b-card').forEach(card => {
