@@ -645,9 +645,9 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
   },
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "08:30",
-    "closes": "17:00"
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
   },
   "url": "https://axeconnect.co.za/",
   "priceRange": "R"
@@ -744,7 +744,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="status" id="openStatus"><i></i><span><b>Pretoria</b> · Mon–Fri 08:30–17:00</span></span>
+      <span class="status open"><i></i><span><b>Available 24/7</b> · Pretoria</span></span>
 
       <div data-for="web">
         <h1>Websites &amp; design that <em>grow your brand.</em></h1>
@@ -1069,7 +1069,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
     </div>
     <dl class="facts">
       <div><dt>Based in</dt><dd>Pretoria, Gauteng</dd></div>
-      <div><dt>Hours</dt><dd>Mon–Fri · 08:30–17:00</dd></div>
+      <div><dt>Available</dt><dd>24/7 · every day</dd></div>
       <div><dt>Phone</dt><dd><a href="tel:0607950837">060 795 0837</a></dd></div>
       <div><dt>Email</dt><dd><a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a></dd></div>
       <div><dt>We do</dt><dd>Web development · Design · IT support</dd></div>
@@ -1132,7 +1132,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
         <span>Pretoria, Gauteng</span>
-        <span>Mon–Fri · 08:30–17:00</span>
+        <span>Available 24/7</span>
       </div>
     </div>
     <div class="foot-bottom">
@@ -1371,7 +1371,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
     <div class="qh-head">
       <div>
         <strong>Quick Questions</strong>
-        <span>Usually replies within a day</span>
+        <span>Available 24/7</span>
       </div>
       <button type="button" class="qh-close" id="qhClose" aria-label="Close quick questions">
         <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
@@ -1429,28 +1429,6 @@ function updateScrollProgress() {
 }
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 updateScrollProgress();
-
-// Open / closed indicator (Mon–Fri 08:30–17:00, South Africa time)
-(function () {
-  const el = document.getElementById('openStatus');
-  if (!el) return;
-  function update() {
-    let day, mins;
-    try {
-      const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Johannesburg', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
-      const get = t => (parts.find(p => p.type === t) || {}).value;
-      day = get('weekday'); mins = parseInt(get('hour'), 10) * 60 + parseInt(get('minute'), 10);
-    } catch (e) { return; }
-    const weekday = !['Sat', 'Sun'].includes(day);
-    const open = weekday && mins >= 510 && mins < 1020;
-    el.classList.toggle('open', open);
-    el.querySelector('span').innerHTML = open
-      ? '<b>Open now</b> · Pretoria · until 17:00'
-      : '<b>Closed</b> · Pretoria · ' + (weekday && mins < 510 ? 'opens 08:30 today' : 'opens ' + (day === 'Fri' || day === 'Sat' || day === 'Sun' ? 'Mon' : 'tomorrow') + ' 08:30') + ' · quote requests anytime';
-  }
-  update();
-  setInterval(update, 60000);
-})();
 
 // Year
 document.getElementById('yr').textContent = new Date().getFullYear();
