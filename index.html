@@ -556,9 +556,66 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 /* content swapped by the switch eases in */
 .bento[data-for],.dept-section,.sec-head [data-for],.cta-panel [data-for],.ticker-track{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
 
-/* scroll reveal: only applied by script to things below the fold, so the page is complete without it */
-.anim{transition:opacity .8s ease,translate .9s cubic-bezier(.2,.7,.2,1)}
+/* scroll reveal: only applied by script to things below the fold, so the page is complete without it.
+   Each kind of block gets its own entrance (data-anim). */
+.anim{transition:opacity .8s ease,translate .9s cubic-bezier(.2,.7,.2,1),scale .9s cubic-bezier(.2,.7,.2,1),rotate .9s cubic-bezier(.2,.7,.2,1),filter .9s ease,clip-path 1.1s cubic-bezier(.7,0,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.anim[data-anim="pop"]{transition-timing-function:ease,cubic-bezier(.3,1.5,.5,1),cubic-bezier(.3,1.5,.5,1),ease,ease,ease,ease}
+.anim[data-anim="wipe"]{clip-path:inset(0 0 0 0 round 22px)}
 .pre{opacity:0;translate:0 36px}
+.pre[data-anim="left"]{translate:-70px 0}
+.pre[data-anim="right"]{translate:70px 0}
+.pre[data-anim="zoom"]{translate:0 0;scale:.86}
+.pre[data-anim="tilt"]{translate:0 50px;rotate:-4deg;scale:.94}
+.pre[data-anim="blur"]{translate:0 0;scale:1.05;filter:blur(16px)}
+.pre[data-anim="wipe"]{opacity:1;translate:0 0;clip-path:inset(0 100% 0 0 round 22px)}
+.pre[data-anim="flip"]{translate:0 0;transform:perspective(1200px) translateY(50px) rotateX(22deg);transform-origin:50% 0}
+.pre[data-anim="pop"]{translate:0 24px;scale:.6}
+
+/* follow-up details once a block has arrived (.shown) */
+@keyframes slideL{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes spinIn{from{opacity:0;transform:rotate(-200deg) scale(.3)}to{opacity:1;transform:none}}
+@keyframes lineGrow{from{width:0}to{width:18px}}
+@keyframes underline{to{background-size:100% .32em}}
+@keyframes glowIn{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes flipIn{from{opacity:0;transform:perspective(600px) rotateY(-90deg)}to{opacity:1;transform:none}}
+.shown .eyebrow::before{animation:lineGrow .8s cubic-bezier(.2,.7,.2,1) .25s both}
+.b-card.shown .b-tags li{animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
+.b-card.shown .b-tags li:nth-child(1){animation-delay:.55s}.b-card.shown .b-tags li:nth-child(2){animation-delay:.63s}
+.b-card.shown .b-tags li:nth-child(3){animation-delay:.71s}.b-card.shown .b-tags li:nth-child(4){animation-delay:.79s}
+.b-card.shown .b-tags li:nth-child(5){animation-delay:.87s}
+.b-card.shown .b-ico{animation:flipIn .7s cubic-bezier(.2,.7,.2,1) .3s both}
+.step.shown .step-ico{animation:spinIn .9s cubic-bezier(.3,1.4,.5,1) .3s both}
+.step.shown .step-n{animation:slideL .6s ease .15s both}
+.facts.shown div{animation:slideR .6s cubic-bezier(.2,.7,.2,1) both}
+.facts.shown div:nth-child(1){animation-delay:.25s}.facts.shown div:nth-child(2){animation-delay:.35s}
+.facts.shown div:nth-child(3){animation-delay:.45s}.facts.shown div:nth-child(4){animation-delay:.55s}
+.facts.shown div:nth-child(5){animation-delay:.65s}
+.about-copy h2 em{background:linear-gradient(var(--red-soft),var(--red-soft)) no-repeat 0 88%/0 .32em}
+.about-copy.shown h2 em{animation:underline 1s cubic-bezier(.7,0,.2,1) .6s forwards}
+.dept-tabs.shown .dept-tab{animation:slideL .5s cubic-bezier(.2,.7,.2,1) both}
+.dept-tabs.shown .dept-tab:nth-child(2){animation-delay:.35s}.dept-tabs.shown .dept-tab:nth-child(3){animation-delay:.42s}
+.dept-tabs.shown .dept-tab:nth-child(4){animation-delay:.49s}.dept-tabs.shown .dept-tab:nth-child(5){animation-delay:.56s}
+.dept-tabs.shown .dept-tab:nth-child(6){animation-delay:.63s}.dept-tabs.shown .dept-tab:nth-child(7){animation-delay:.7s}
+.cta-panel.shown::before{animation:glowIn 1.6s cubic-bezier(.2,.7,.2,1) .2s both}
+.cta-panel.shown .cta-btns>*{animation:slideR .6s cubic-bezier(.2,.7,.2,1) both}
+.cta-panel.shown .cta-btns>*:nth-child(1){animation-delay:.45s}.cta-panel.shown .cta-btns>*:nth-child(2){animation-delay:.58s}
+
+/* tab panels: icon flips, list items drop in one by one */
+.dept-panel.active .dc-icon{animation:spinIn .7s cubic-bezier(.3,1.4,.5,1) both}
+.dept-panel.active .dc-list li{animation:up .45s cubic-bezier(.2,.7,.2,1) both}
+.dept-panel.active .dc-list li:nth-child(1){animation-delay:.12s}.dept-panel.active .dc-list li:nth-child(2){animation-delay:.2s}
+.dept-panel.active .dc-list li:nth-child(3){animation-delay:.28s}.dept-panel.active .dc-list li:nth-child(4){animation-delay:.36s}
+.dept-panel.active .dept-panel-cta{animation:pop .5s cubic-bezier(.3,1.6,.5,1) .45s both}
+
+/* hero visual tilts toward the cursor */
+.hero-visual{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+
+/* switch swaps: different entrance per block */
+.ticker-track{animation:blurIn .7s ease both}
+@keyframes blurIn{from{opacity:0;filter:blur(10px)}to{opacity:1;filter:none}}
+.cta-panel h2[data-for]{animation:slideL .6s cubic-bezier(.2,.7,.2,1) both}
+.sec-head p[data-for]{animation:slideR .6s cubic-bezier(.2,.7,.2,1) both}
 
 /* spotlight that follows the cursor on service cards */
 .b-card>*{position:relative;z-index:1}
@@ -1542,27 +1599,56 @@ document.querySelectorAll('.hero h1').forEach(h => {
   })(h);
 });
 
-// Motion: reveal sections as they scroll into view (only things that start below the fold)
+// Motion: reveal sections as they scroll into view, each kind with its own entrance
 const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-if ('IntersectionObserver' in window && !reduceMotion) {
-  const revealTargets = document.querySelectorAll('.sec-head, .b-card, .dept-header, .dept-tabs, .step, .about-copy, .facts, .cta-panel, .foot-grid > *');
-  const revealIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
+const revealPlan = [
+  ['.sec-head > div', 'left'], ['.sec-head > p', 'right'],
+  ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
+  ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
+  ['.step', 'pop'],
+  ['.about-copy', 'left'], ['.facts', 'right'],
+  ['.cta-panel', 'zoom'],
+  ['.foot-grid > *', 'up']
+];
+const revealIO = ('IntersectionObserver' in window && !reduceMotion) ? new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    revealIO.unobserve(e.target);
+    (e.target._reveal || []).forEach(el => {
       el.classList.remove('pre');
-      revealIO.unobserve(el);
-      setTimeout(() => { el.classList.remove('anim'); el.style.transitionDelay = ''; }, 1400);
+      el.classList.add('shown');
+      setTimeout(() => { el.classList.remove('anim'); el.style.transitionDelay = ''; }, 1600);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  revealTargets.forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.height === 0 || r.top < window.innerHeight) return;
-    const sibs = Array.from(el.parentElement.children).filter(c => c.classList.contains(el.classList[0]));
-    el.style.transitionDelay = Math.max(0, sibs.indexOf(el)) * 90 + 'ms';
-    el.classList.add('anim', 'pre');
-    revealIO.observe(el);
   });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }) : null;
+revealPlan.forEach(([sel, kind]) => {
+  const group = Array.from(document.querySelectorAll(sel));
+  group.forEach(el => {
+    el.dataset.anim = kind;
+    const r = el.getBoundingClientRect();
+    if (!revealIO || r.height === 0 || r.top < window.innerHeight) { el.classList.add('shown'); return; }
+    const sibs = group.filter(g => g.parentElement === el.parentElement);
+    el.style.transitionDelay = Math.max(0, sibs.indexOf(el)) * 110 + 'ms';
+    el.classList.add('anim', 'pre');
+    // A fully clipped element never counts as visible, so wipe-ins are watched through their parent
+    const watch = kind === 'wipe' ? el.parentElement : el;
+    (watch._reveal = watch._reveal || []).push(el);
+    revealIO.observe(watch);
+  });
+});
+
+// Motion: hero mockup tilts gently toward the cursor
+const heroEl = document.querySelector('.hero');
+const heroVisual = document.querySelector('.hero-visual');
+if (heroEl && heroVisual && !reduceMotion && matchMedia('(pointer: fine)').matches) {
+  heroEl.addEventListener('pointermove', e => {
+    const r = heroVisual.getBoundingClientRect();
+    const x = (e.clientX - (r.left + r.width / 2)) / r.width;
+    const y = (e.clientY - (r.top + r.height / 2)) / r.height;
+    heroVisual.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+    heroVisual.style.setProperty('--rx', (-y * 6).toFixed(2) + 'deg');
+  });
+  heroEl.addEventListener('pointerleave', () => { heroVisual.style.setProperty('--ry', '0deg'); heroVisual.style.setProperty('--rx', '0deg'); });
 }
 
 // Motion: cursor spotlight on service cards
