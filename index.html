@@ -391,10 +391,22 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .rv-empty-stars .icon:nth-child(2){animation-delay:.08s}.rv-empty-stars .icon:nth-child(3){animation-delay:.16s}.rv-empty-stars .icon:nth-child(4){animation-delay:.24s}.rv-empty-stars .icon:nth-child(5){animation-delay:.32s}
 .rv-empty h3{font-size:1.4rem}
 .rv-empty p{color:var(--muted);max-width:46ch}
-.rv-extra{display:none}
-.rv-grid.show-all .rv-extra{display:flex}
-.rv-more-wrap{display:flex;justify-content:center;margin-top:22px}
-.rv-more-wrap[hidden]{display:none}
+.rv-grid.is-carousel{display:block}
+.rv-viewport{overflow:hidden;margin:-14px;padding:14px;touch-action:pan-y}
+.rv-track{display:flex;align-items:stretch;gap:16px;transition:transform .7s cubic-bezier(.65,0,.35,1);will-change:transform}
+.rv-track .rv-card{flex:0 0 calc((100% - 32px) / 3);animation:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.rv-track .rv-card:not(.is-front){opacity:.35;transform:scale(.94)}
+.rv-track .rv-card.is-front{box-shadow:var(--shadow)}
+.rv-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:26px}
+.rv-controls[hidden]{display:none}
+.rv-nav{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background-color .2s,color .2s,transform .2s}
+.rv-nav:hover{background:var(--red);border-color:var(--red);color:#fff;transform:scale(1.06)}
+.rv-nav .icon{width:18px;height:18px}
+.rv-dots{display:flex;gap:8px}
+.rv-dots button{width:9px;height:9px;padding:0;border:none;border-radius:999px;background:var(--line);cursor:pointer;transition:width .35s cubic-bezier(.2,.7,.2,1),background-color .35s}
+.rv-dots button[aria-current="true"]{width:28px;background:var(--red)}
+@media(max-width:1020px){.rv-track .rv-card{flex-basis:calc((100% - 16px) / 2)}}
+@media(max-width:640px){.rv-track .rv-card{flex-basis:100%}.rv-viewport{margin:-10px;padding:10px}}
 .rv-source{margin-top:18px;font-size:.8rem;color:var(--muted)}
 .rv-source[hidden]{display:none}
 @media(max-width:1020px){.rv-grid{grid-template-columns:1fr 1fr}}
@@ -1552,7 +1564,6 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
         <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-    <div class="rv-more-wrap" id="rvMoreWrap" hidden><button type="button" class="btn btn-ghost" id="rvShowAll" aria-expanded="false">Show all reviews</button></div>
   </div>
 </section>
 
@@ -2698,10 +2709,9 @@ window.addEventListener('resize', () => requestAnimationFrame(checkReviewClamp))
 function renderReviews(list) {
   const grid = document.getElementById('rvGrid');
   if (!grid || !list.length) return;
-  grid.innerHTML = '';
-  list.forEach((r, idx) => {
+  const cards = list.map(r => {
     const card = document.createElement('article');
-    card.className = 'rv-card' + (idx >= 6 ? ' rv-extra' : '');
+    card.className = 'rv-card';
     const stars = document.createElement('span');
     stars.className = 'rv-stars'; stars.setAttribute('aria-label', r.rating + ' out of 5 stars'); stars.innerHTML = starsHTML(r.rating);
     const quote = document.createElement('blockquote'); quote.textContent = r.text || '';
@@ -2710,16 +2720,14 @@ function renderReviews(list) {
     if (r.photo) { const img = document.createElement('img'); img.src = r.photo; img.alt = ''; img.referrerPolicy = 'no-referrer'; av.appendChild(img); }
     else av.textContent = (r.name || '?').trim().charAt(0).toUpperCase();
     const meta = document.createElement('div');
-    const b = document.createElement('b'); b.textContent = r.name || 'Google user';
+    const b = document.createElement('b'); b.textContent = r.name || 'Client';
     const sm = document.createElement('small'); sm.textContent = r.date || '';
     meta.append(b, sm); who.append(av, meta);
-    card.append(stars, quote);
     const more = document.createElement('button'); more.type = 'button'; more.className = 'rv-more'; more.textContent = 'Read more'; more.hidden = true;
-    more.addEventListener('click', () => { const open = card.classList.toggle('open'); more.textContent = open ? 'Show less' : 'Read more'; });
-    card.append(more);
-    card.append(who);
-    grid.appendChild(card);
+    card.append(stars, quote, more, who);
+    return card;
   });
+  buildReviewCarousel(grid, cards);
   const avg = list.reduce((a, r) => a + (r.rating || 0), 0) / list.length;
   const count = list.length;
   document.getElementById('rvAvg').textContent = avg.toFixed(1);
@@ -2727,19 +2735,107 @@ function renderReviews(list) {
   document.getElementById('rvCount').textContent = count + (count === 1 ? ' review' : ' reviews');
   document.getElementById('rvSummary').hidden = false;
   requestAnimationFrame(checkReviewClamp);
-  const moreWrap = document.getElementById('rvMoreWrap');
-  if (list.length > 6) {
-    const btn = document.getElementById('rvShowAll');
-    btn.textContent = 'Show all ' + list.length + ' reviews';
-    moreWrap.hidden = false;
-    btn.onclick = () => {
-      const open = grid.classList.toggle('show-all');
-      btn.textContent = open ? 'Show fewer reviews' : 'Show all ' + list.length + ' reviews';
-      btn.setAttribute('aria-expanded', open);
-      requestAnimationFrame(checkReviewClamp);
-      if (!open) document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
-    };
+}
+
+// Reviews slider: one row, moves one review at a time and loops
+function buildReviewCarousel(grid, cards) {
+  const n = cards.length;
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  grid.innerHTML = '';
+  grid.classList.add('is-carousel');
+  const viewport = document.createElement('div'); viewport.className = 'rv-viewport';
+  viewport.setAttribute('role', 'region'); viewport.setAttribute('aria-roledescription', 'carousel'); viewport.setAttribute('aria-label', 'Client reviews');
+  const track = document.createElement('div'); track.className = 'rv-track';
+  cards.forEach((c, i) => { c.setAttribute('aria-roledescription', 'slide'); c.setAttribute('aria-label', (i + 1) + ' of ' + n); track.appendChild(c); });
+  viewport.appendChild(track);
+  const controls = document.createElement('div'); controls.className = 'rv-controls';
+  const prevBtn = document.createElement('button'); prevBtn.type = 'button'; prevBtn.className = 'rv-nav'; prevBtn.setAttribute('aria-label', 'Previous review');
+  prevBtn.innerHTML = '<svg class="icon" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>';
+  const nextBtn = document.createElement('button'); nextBtn.type = 'button'; nextBtn.className = 'rv-nav'; nextBtn.setAttribute('aria-label', 'Next review');
+  nextBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>';
+  const dots = document.createElement('div'); dots.className = 'rv-dots';
+  const dotBtns = cards.map((_, i) => {
+    const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Show review ' + (i + 1));
+    d.addEventListener('click', () => { index = i; go(true); restart(); });
+    dots.appendChild(d); return d;
+  });
+  controls.append(prevBtn, dots, nextBtn);
+  grid.append(viewport, controls);
+
+  let index = 0, clones = [], timer = null, paused = false, busy = false;
+  const perView = () => window.innerWidth <= 640 ? 1 : window.innerWidth <= 1020 ? 2 : 3;
+  const canSlide = () => n > perView();
+  function setupClones() {
+    clones.forEach(c => c.remove()); clones = [];
+    if (!canSlide()) return;
+    for (let i = 0; i < perView(); i++) {
+      const c = cards[i].cloneNode(true);
+      c.classList.add('rv-clone'); c.classList.remove('open'); c.setAttribute('aria-hidden', 'true');
+      c.querySelectorAll('button').forEach(b => { b.tabIndex = -1; });
+      track.appendChild(c); clones.push(c);
+    }
   }
+  function step() {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+  function go(animate) {
+    track.style.transition = animate ? '' : 'none';
+    track.style.transform = 'translateX(' + (-index * step()) + 'px)';
+    const active = index % n;
+    dotBtns.forEach((d, i) => d.setAttribute('aria-current', i === active ? 'true' : 'false'));
+    [...track.children].forEach((c, i) => c.classList.toggle('is-front', i >= index && i < index + perView()));
+    if (!animate) { track.getBoundingClientRect(); track.style.transition = ''; }
+  }
+  function next() {
+    if (!canSlide() || busy) return;
+    index++; busy = true; go(true);
+  }
+  function prev() {
+    if (!canSlide() || busy) return;
+    if (index === 0) { index = n; go(false); }
+    index--; busy = true; go(true);
+  }
+  track.addEventListener('transitionend', e => {
+    if (e.target !== track) return;
+    busy = false;
+    if (index >= n) { index = 0; go(false); }
+  });
+  function stop() { clearInterval(timer); timer = null; }
+  function start() { stop(); if (!reduce && canSlide()) timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4500); }
+  function restart() { start(); }
+  prevBtn.addEventListener('click', () => { prev(); restart(); });
+  nextBtn.addEventListener('click', () => { next(); restart(); });
+  grid.addEventListener('mouseenter', () => { paused = true; });
+  grid.addEventListener('mouseleave', () => { paused = !!track.querySelector('.rv-card.open'); });
+  grid.addEventListener('focusin', () => { paused = true; });
+  grid.addEventListener('focusout', e => { if (!grid.contains(e.relatedTarget)) paused = !!track.querySelector('.rv-card.open'); });
+  // Read more (delegated so clones work too); an open review pauses the slider
+  track.addEventListener('click', e => {
+    const btn = e.target.closest('.rv-more'); if (!btn) return;
+    const card = btn.closest('.rv-card');
+    const open = card.classList.toggle('open');
+    btn.textContent = open ? 'Show less' : 'Read more';
+    paused = !!track.querySelector('.rv-card.open');
+    requestAnimationFrame(checkReviewClamp);
+  });
+  // Swipe on touch screens
+  let sx = null, sy = null;
+  viewport.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') { sx = e.clientX; sy = e.clientY; } });
+  viewport.addEventListener('pointerup', e => {
+    if (sx === null) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prev(); restart(); }
+  });
+  function layout() {
+    setupClones();
+    controls.hidden = !canSlide();
+    if (index >= n) index = 0;
+    busy = false; go(false);
+    requestAnimationFrame(checkReviewClamp);
+  }
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); start(); }, 150); });
+  layout(); start();
 }
 // Approved reviews live in reviews.json (edit it on GitHub to publish a review)
 fetch('reviews.json', { cache: 'no-store' })
