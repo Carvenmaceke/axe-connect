@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "name": "Ndhavuko Previllage",
+    "rating": 5,
+    "service": "Logo design & IT support",
+    "date": "June 2026",
+    "text": "I have used Axe Connect for a variety of services, including logo design, laptop and computer repairs, IT support and troubleshooting, software installation, and virus removal and performance optimisation.\n\nMy experience has consistently been positive. Their service is timely, professional, and affordable, and they communicate clearly throughout the process. The logo design work met my expectations, and the technical support provided for my computer-related issues was efficient and effective.\n\nWhat stands out most is their reliability. Because of the quality of service I received, I have continued to return to Axe Connect for all my IT-related needs. I would confidently recommend Axe Connect to individuals, startups, and businesses looking for dependable technical support, computer repairs, web services, or design solutions."
+  },
+  {
+    "name": "Hillary Kuhlula",
+    "rating": 5,
+    "service": "",
+    "date": "September 2026",
+    "text": "Excellent service from Axe Connect! Very professional, helpful and reliable. I’m really happy with the service I received and would definitely recommend them."
+  },
+  {
+    "name": "Natalie F",
+    "rating": 5,
+    "service": "Laptop repair",
+    "date": "September 2026",
+    "text": "I had a great experience with AXE Connect. I took my laptop to them for repairs, and they did an excellent job."
+  },
+  {
+    "name": "Blessing Makhavhu",
+    "rating": 5,
+    "service": "PC repair",
+    "date": "June 2026",
+    "text": "Great service. I’ve used his services 3 times and he’s been very great."
+  },
+  {
+    "name": "Shalati Msimeki",
+    "rating": 5,
+    "service": "Website",
+    "date": "June 2026",
+    "text": "I was helped with school projects and also how to create a functional website."
+  },
+  {
+    "name": "Lulamo Advice Mathebula",
+    "rating": 5,
+    "service": "Laptop repair",
+    "date": "June 2026",
+    "text": "My laptop was fixed on time."
+  }
+]
