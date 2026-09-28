@@ -101,7 +101,7 @@ html.dark,:root[data-theme="dark"]{
 /* ── BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
-body{font-family:var(--f-body);font-size:16px;line-height:1.6;background:var(--bg);color:var(--text);padding-top:var(--top);overflow-x:hidden;transition:background-color .25s,color .25s}
+body{font-family:var(--f-body);font-size:16px;line-height:1.6;background:var(--bg);color:var(--text);padding-top:var(--top);transition:background-color .25s,color .25s}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 button{font:inherit;color:inherit}
@@ -110,6 +110,7 @@ em{font-style:normal;color:var(--red)}
 .icon{width:1em;height:1em;display:inline-block;flex-shrink:0;vertical-align:-.15em}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
 section[id]{scroll-margin-top:calc(var(--top) + 12px)}
+main,footer{overflow-x:clip}
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
 .mono{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em}
@@ -361,6 +362,26 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
 .foot-bottom a{color:var(--ink);font-weight:600}
 .foot-bottom a:hover{color:var(--red)}
+
+/* ── NEWSLETTER ── */
+.sr-only,.hp{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.news{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;align-items:center;padding:36px;margin-bottom:56px;background:var(--bg);border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden}
+.news::after{content:'';position:absolute;right:-120px;top:-140px;width:360px;height:360px;background:radial-gradient(circle,var(--red-soft),transparent 65%);pointer-events:none}
+.news>*{position:relative;z-index:1}
+.news-copy{display:flex;flex-direction:column;gap:10px}
+.news-copy h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800}
+.news-copy p{color:var(--muted);max-width:46ch}
+.news-row{display:flex;gap:10px}
+.news-row input{flex:1;min-width:0;padding:14px 16px;font:inherit;font-size:.98rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;outline:none;transition:border-color .2s,box-shadow .2s}
+.news-row input:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
+.news-row input.invalid{border-color:var(--red)}
+.news-msg{min-height:1.4em;margin-top:10px;font-size:.88rem;font-weight:600;color:var(--muted)}
+.news-msg.ok{color:var(--ok)}.news-msg.err{color:var(--red)}
+.news-legal{font-size:.78rem;color:var(--muted)}
+.news-legal a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.news.done .news-row{display:none}
+@media(max-width:900px){.news{grid-template-columns:1fr;padding:28px 22px}}
+@media(max-width:480px){.news-row{flex-direction:column}.news-row .btn{width:100%}}
 
 /* ── MOBILE ACTION BAR ── */
 .mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;grid-template-columns:1fr 1fr 1fr;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -1492,6 +1513,24 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
+    <!-- NEWSLETTER -->
+    <div class="news" id="newsletter">
+      <div class="news-copy">
+        <span class="eyebrow">Newsletter</span>
+        <h2>Hear about deals first.</h2>
+        <p>Sales, special prices on websites and repairs, and new services. Only occasional emails, and you can unsubscribe any time.</p>
+      </div>
+      <form class="news-form" id="newsForm" novalidate>
+        <label class="sr-only" for="nl-email">Email address</label>
+        <div class="news-row">
+          <input type="email" id="nl-email" name="email" placeholder="you@example.com" autocomplete="email" required/>
+          <button type="submit" class="btn btn-primary" id="nlSubmit">Subscribe</button>
+        </div>
+        <input type="text" id="nl-company" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+        <p class="news-msg" id="nlMsg" role="status" aria-live="polite"></p>
+        <p class="news-legal">By subscribing you agree to receive occasional emails from Axe Connect. See our <a href="privacy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
     <div class="foot-grid">
       <div class="foot-about">
         <a class="logo" href="#home" aria-label="Axe Connect home">
@@ -1522,6 +1561,7 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
       </div>
       <div class="foot-col">
         <h3>Contact</h3>
+        <a href="#newsletter">Newsletter sign-up</a>
         <a href="tel:0607950837">060 795 0837</a>
         <a href="mailto:carvenmaceke9@gmail.com">carvenmaceke9@gmail.com</a>
         <a href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp us</a>
@@ -1985,6 +2025,7 @@ const revealPlan = [
   ['.about-copy', 'left'], ['.facts', 'right'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.cta-panel', 'zoom'],
+  ['.news', 'zoom'],
   ['.foot-grid > *', 'up']
 ];
 const revealIO = ('IntersectionObserver' in window && !reduceMotion) ? new IntersectionObserver(entries => {
@@ -2487,6 +2528,48 @@ function submitQuoteForm() {
         submitBtn.innerText = originalBtnText;
       }
     });
+}
+
+// Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
+const newsForm = document.getElementById('newsForm');
+if (newsForm) {
+  newsForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const input = document.getElementById('nl-email');
+    const msg = document.getElementById('nlMsg');
+    const btn = document.getElementById('nlSubmit');
+    const email = input.value.trim();
+    const setMsg = (text, kind) => { msg.textContent = text; msg.className = 'news-msg' + (kind ? ' ' + kind : ''); };
+    if (document.getElementById('nl-company').value) return; // bot filled the hidden field
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      input.classList.add('invalid');
+      setMsg('Enter a valid email address, like you@example.com.', 'err');
+      input.focus();
+      return;
+    }
+    input.classList.remove('invalid');
+    if (!window.emailjs) { setMsg('Sign-up is unavailable right now. Please refresh the page and try again.', 'err'); return; }
+    btn.disabled = true; btn.textContent = 'Subscribing...'; setMsg('');
+    const when = new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' });
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      subject: 'New newsletter subscriber: ' + email,
+      name: 'Newsletter subscriber',
+      phone: 'Not provided',
+      email: email,
+      service: 'Newsletter sign-up',
+      msg: 'NEW NEWSLETTER SUBSCRIBER\n\nEmail: ' + email + '\nSigned up: ' + when + ' (SAST)\nPage: ' + location.href + '\n\nAdd this address to your newsletter list.',
+      to_email: 'carvenmaceke9@gmail.com'
+    }).then(function () {
+      newsForm.closest('.news').classList.add('done');
+      setMsg("You're subscribed. We'll email " + email + ' when there is a deal.', 'ok');
+      newsForm.reset();
+    }).catch(function (error) {
+      console.error('EmailJS Newsletter Error:', error);
+      setMsg('Sign-up failed to send. Please try again, or WhatsApp us on 060 795 0837.', 'err');
+    }).finally(function () {
+      btn.disabled = false; btn.textContent = 'Subscribe';
+    });
+  });
 }
 
 // Backwards compatibility if any old button still calls the old function name
