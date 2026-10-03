@@ -1,10 +1,12 @@
-# Uploads the website to Host Africa (cPanel) by FTP whenever main changes.
+# Uploads the website to Host Africa (DirectAdmin) by FTP whenever main changes.
 # One-time setup: add these repository secrets in GitHub
 # (Settings -> Secrets and variables -> Actions -> New repository secret):
-#   FTP_SERVER    e.g. ftp.axeconnect.co.za
-#   FTP_USERNAME  your cPanel FTP username
+#   FTP_SERVER    da31.host-ww.net (matches the server's SSL certificate)
+#   FTP_USERNAME  e.g. deploy@axeconnect.co.za
 #   FTP_PASSWORD  that FTP account's password
-#   FTP_DIR       optional; folder on the server, defaults to public_html/
+#   FTP_DIR       optional. Leave unset for an FTP account whose folder is the
+#                 site's public_html. For the main DirectAdmin login, set it to
+#                 domains/axeconnect.co.za/public_html/
 name: Deploy to Host Africa
 
 on:
@@ -39,7 +41,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          server-dir: ${{ secrets.FTP_DIR || 'public_html/' }}
+          server-dir: ${{ secrets.FTP_DIR || './' }}
           exclude: |
             **/.git*
             **/.git*/**
