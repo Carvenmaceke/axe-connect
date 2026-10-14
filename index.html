@@ -543,6 +543,31 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .co-text b{display:block;color:var(--ink);font-size:.97rem}
 .co-text small{color:var(--muted);font-size:.8rem}
 .co-teams{display:none}
+/* ── about: built by people, not prompts ── */
+.craft{margin-top:56px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:28px;background:radial-gradient(120% 90% at 0% 0%,rgba(229,57,53,.14),transparent 60%),var(--surface)}
+.craft-head{max-width:760px}
+.craft-head h3{font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.1;margin:12px 0 14px;color:var(--ink)}
+.craft-head h3 em{font-style:normal;color:var(--red)}
+.craft-head p{color:var(--muted);font-size:1.05rem;line-height:1.65}
+.craft-vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0}
+.cv-col{border-radius:20px;padding:20px 22px;border:1px solid var(--line)}
+.cv-col b{display:block;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.cv-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cv-col li{position:relative;padding-left:26px;line-height:1.45}
+.cv-them{background:rgba(255,255,255,.02)}.cv-them b{color:var(--muted)}.cv-them li{color:var(--muted)}
+.cv-them li::before{content:"\00d7";position:absolute;left:4px;top:-1px;font-weight:700;opacity:.6}
+.cv-us{border-color:rgba(229,57,53,.45);background:rgba(229,57,53,.07)}.cv-us b{color:var(--red)}.cv-us li{color:var(--ink)}
+.cv-us li::before{content:"\2713";position:absolute;left:3px;top:0;color:var(--red);font-weight:700}
+.craft-pts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.craft-pts li{display:flex;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
+.craft-pts li:hover{transform:translateY(-4px);border-color:rgba(229,57,53,.5)}
+.craft-pts .icon{flex:none;width:20px;height:20px;color:var(--red);margin-top:2px}
+.craft-pts h4{margin:0 0 6px;font-size:1rem;color:var(--ink)}
+.craft-pts p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}
+.craft.shown .craft-pts li{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.craft.shown .craft-pts li:nth-child(2){animation-delay:.1s}.craft.shown .craft-pts li:nth-child(3){animation-delay:.2s}.craft.shown .craft-pts li:nth-child(4){animation-delay:.3s}
+@media(max-width:1020px){.craft-pts{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.craft-vs,.craft-pts{grid-template-columns:1fr}.craft{margin-top:40px}}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1020px){
@@ -1102,6 +1127,42 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .foot-gbp,.gbp-link{display:inline-flex !important;align-items:center;gap:8px}
 .gbp-link .gmark{width:16px;height:16px}
 @media(max-width:640px){.rv-actions{width:100%}.rv-actions .btn{flex:1}}
+
+/* ── wider layout: less empty space on big screens ── */
+:root:root{--wrap:1760px;--gut:clamp(20px,5vw,96px)}
+.wrap,.dept-section{padding-inline:var(--gut)}
+.hdr{padding-inline:max(16px,calc(var(--gut) - 16px))}
+.hdr-in{max-width:calc(var(--wrap) - 2 * var(--gut) + 32px)}
+.mode-bar{padding-inline:var(--gut)}
+@media(min-width:1021px){
+  .hero-grid{grid-template-columns:1fr 1.05fr;gap:clamp(40px,5vw,96px)}
+  .duo{width:min(100%,620px);height:480px}
+  .duo-phone{width:196px;height:392px}
+  .duo-dash{width:390px;height:320px}
+  .duo-wire{left:165px;width:270px}
+}
+@media(min-width:1600px){
+  html{font-size:17px}
+  .hero h1{font-size:clamp(4rem,4.8vw,6rem)}
+  .duo{width:min(100%,700px);height:520px}
+  .duo-phone{width:212px;height:420px}
+  .duo-dash{width:450px;height:350px}
+  .duo-wire{left:175px;width:330px}
+}
+/* ── page-style transition when switching Web Dev / IT Support ── */
+.curtain{position:fixed;inset:0;z-index:5000;pointer-events:none;visibility:hidden}
+.curtain.on{visibility:visible;pointer-events:auto}
+.cur-panel{position:absolute;inset:-2px 0;background:radial-gradient(800px 500px at 50% 60%,rgba(229,55,43,.25),transparent 70%),#08080A;border-top:4px solid var(--red);border-bottom:4px solid var(--red);display:grid;place-items:center;transform:translateY(102%);will-change:transform}
+.curtain.cover .cur-panel{transform:translateY(0);transition:transform .55s cubic-bezier(.76,0,.24,1)}
+.curtain.reveal .cur-panel{transform:translateY(-102%);transition:transform .65s cubic-bezier(.76,0,.24,1)}
+.cur-in{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .4s}
+.curtain.cover .cur-in{opacity:1;transform:none;transition-delay:.25s}
+.cur-logo{width:56px;height:66px;filter:drop-shadow(0 0 24px rgba(229,55,43,.6))}
+.cur-k{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cur-t{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3.6rem);letter-spacing:-.03em;color:#fff}
+.cur-bar{display:block;width:160px;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.cur-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#E5372B,#FF7A5C);transform:translateX(-100%)}
+.curtain.cover .cur-bar::after{transform:none;transition:transform .55s .3s cubic-bezier(.65,0,.35,1)}
 </style>
 <script type="application/ld+json">
 {
@@ -2169,6 +2230,25 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <div><dt>We do</dt><dd>Websites · Business systems · IT support</dd></div>
     </dl>
   </div>
+  <div class="wrap" data-for="web">
+    <div class="craft">
+      <div class="craft-head">
+        <span class="eyebrow">Built by people, not prompts</span>
+        <h3>Anyone can make a website today. <em>We make yours work.</em></h3>
+        <p>With all the website builders and AI tools out there, anyone can put a website online in an afternoon. We don't type a prompt and hand you whatever comes out. We study your business and build a website that matches your brand, speaks to your customers and actually brings you work.</p>
+      </div>
+      <div class="craft-vs" aria-label="Template sites compared with Axe Connect">
+        <div class="cv-col cv-them"><b>A quick template or AI site</b><ul><li>Generic layout anyone could have</li><li>Stock words that could be about any business</li><li>Colours picked by default</li><li>You see it only when it's &ldquo;done&rdquo;</li></ul></div>
+        <div class="cv-col cv-us"><b>An Axe Connect website</b><ul><li>Designed around your brand and goals</li><li>Words written for your clients</li><li>Colours that reflect your business</li><li>You're kept in the loop at every step</li></ul></div>
+      </div>
+      <ol class="craft-pts">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Aligned with your brand</h4><p>Your logo, your tone and your personality carried through every page.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Talks to your clients</h4><p>Clear wording and layouts that guide visitors to call, book or buy.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Colours that fit</h4><p>A palette chosen to reflect your business, not a theme's default.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Real work, kept in the loop</h4><p>We put in the hours and share progress as we build, so you can give input before anything goes live.</p></div></li>
+      </ol>
+    </div>
+  </div>
 </section>
 
 <!-- CTA -->
@@ -2263,6 +2343,18 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
   </div>
 </footer>
 
+
+<!-- PAGE TRANSITION CURTAIN (Web Dev <-> IT Support) -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="cur-panel">
+    <div class="cur-in">
+      <svg class="cur-logo" viewBox="-2 4 48 54"><path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E5372B"/><path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E5372B"/><path d="M30 8 L44 8 L30 56 L23 56 Z" fill="#fff"/><path d="M13 37 L31 37 L33 43 L11 43 Z" fill="#E5372B"/></svg>
+      <span class="cur-k">Axe Connect</span>
+      <b class="cur-t" id="curTitle">IT Support</b>
+      <i class="cur-bar"></i>
+    </div>
+  </div>
+</div>
 
 <!-- CONTACT FORM MODAL -->
 <div class="modal-overlay" id="contactModal" onclick="closeOnOverlay(event,'contactModal')">
@@ -2684,14 +2776,50 @@ function setMode(mode) {
   requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
 }
 setMode(document.documentElement.getAttribute('data-mode'));
+// Switching sides plays like opening a new page: a curtain covers the screen, the other side loads
+// behind it, the page returns to the top (or the requested section) and everything animates in again.
+let switching = false;
+function switchMode(mode, target) {
+  mode = mode === 'it' ? 'it' : 'web';
+  const current = document.documentElement.getAttribute('data-mode');
+  const go = () => {
+    setMode(mode);
+    const el = target && document.querySelector(target);
+    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    else window.scrollTo({ top: 0, behavior: 'instant' });
+    if (typeof rearmReveal === 'function') rearmReveal();
+  };
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const curtain = document.getElementById('curtain');
+  if (mode === current || reduce || !curtain) {
+    if (mode !== current) go();
+    else if (target) { const el = document.querySelector(target); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+    return;
+  }
+  if (switching) return;
+  switching = true;
+  document.getElementById('curTitle').textContent = mode === 'it' ? 'IT Support' : 'Web Dev & Design';
+  curtain.classList.remove('reveal');
+  curtain.classList.add('on');
+  requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('cover')));
+  setTimeout(() => {
+    go();
+    setTimeout(() => {
+      curtain.classList.add('reveal');
+      curtain.classList.remove('cover');
+      setTimeout(() => { curtain.classList.remove('on', 'reveal'); switching = false; }, 700);
+    }, 260);
+  }, 820);
+}
 document.querySelectorAll('[data-set-mode]').forEach(btn => btn.addEventListener('click', () => {
-  setMode(btn.dataset.setMode);
-  const target = btn.dataset.scroll && document.querySelector(btn.dataset.scroll);
-  if (target) target.scrollIntoView({ behavior: 'smooth' });
+  switchMode(btn.dataset.setMode, btn.dataset.scroll);
 }));
-// Any link to a service section switches to that mode first, so the section is visible before the jump
-document.querySelectorAll('a[href="#web-dev"], a[href="#it-support"]').forEach(a => a.addEventListener('click', () => {
-  setMode(a.getAttribute('href') === '#it-support' ? 'it' : 'web');
+// Any link to a service section switches to that side first, then lands on the section
+document.querySelectorAll('a[href="#web-dev"], a[href="#it-support"]').forEach(a => a.addEventListener('click', e => {
+  const mode = a.getAttribute('href') === '#it-support' ? 'it' : 'web';
+  if (mode === document.documentElement.getAttribute('data-mode')) return;
+  e.preventDefault();
+  switchMode(mode, a.getAttribute('href'));
 }));
 
 // Interactive department tabs (IT Support / Web & Design)
@@ -2754,7 +2882,7 @@ const revealPlan = [
   ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
-  ['.about-copy', 'left'], ['.facts', 'right'],
+  ['.about-copy', 'left'], ['.facts', 'right'], ['.craft', 'blur'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.sys-col.c-side', 'left'], ['.sys-col.y-side', 'right'], ['.sys-core', 'zoom'], ['.sys-head', 'blur'],
   ['.pres-top > div', 'left'], ['.pres-top > p', 'right'], ['.pres-hub', 'zoom'], ['.pr-item', 'tilt'],
@@ -2790,6 +2918,21 @@ revealPlan.forEach(([sel, kind]) => {
     revealIO.observe(watch);
   });
 });
+
+// After switching sides, re-arm the scroll animations so the new side animates in like a fresh page
+function rearmReveal() {
+  document.querySelectorAll('[data-anim]').forEach(el => {
+    if (el.offsetParent === null) return;
+    el.classList.remove('shown');
+    const r = el.getBoundingClientRect();
+    if (!revealIO || r.top < window.innerHeight * 0.9) { requestAnimationFrame(() => el.classList.add('shown')); return; }
+    el.classList.add('anim', 'pre');
+    const watch = el.dataset.anim === 'wipe' ? el.parentElement : el;
+    watch._reveal = watch._reveal || [];
+    if (!watch._reveal.includes(el)) watch._reveal.push(el);
+    revealIO.observe(watch);
+  });
+}
 
 // Motion: hero mockup tilts gently toward the cursor
 const heroEl = document.querySelector('.hero');
