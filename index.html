@@ -543,6 +543,31 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding-block:
 .co-text b{display:block;color:var(--ink);font-size:.97rem}
 .co-text small{color:var(--muted);font-size:.8rem}
 .co-teams{display:none}
+/* ── about: built by people, not prompts ── */
+.craft{margin-top:56px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:28px;background:radial-gradient(120% 90% at 0% 0%,rgba(229,57,53,.14),transparent 60%),var(--surface)}
+.craft-head{max-width:760px}
+.craft-head h3{font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.1;margin:12px 0 14px;color:var(--ink)}
+.craft-head h3 em{font-style:normal;color:var(--red)}
+.craft-head p{color:var(--muted);font-size:1.05rem;line-height:1.65}
+.craft-vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0}
+.cv-col{border-radius:20px;padding:20px 22px;border:1px solid var(--line)}
+.cv-col b{display:block;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.cv-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cv-col li{position:relative;padding-left:26px;line-height:1.45}
+.cv-them{background:rgba(255,255,255,.02)}.cv-them b{color:var(--muted)}.cv-them li{color:var(--muted)}
+.cv-them li::before{content:"\00d7";position:absolute;left:4px;top:-1px;font-weight:700;opacity:.6}
+.cv-us{border-color:rgba(229,57,53,.45);background:rgba(229,57,53,.07)}.cv-us b{color:var(--red)}.cv-us li{color:var(--ink)}
+.cv-us li::before{content:"\2713";position:absolute;left:3px;top:0;color:var(--red);font-weight:700}
+.craft-pts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.craft-pts li{display:flex;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
+.craft-pts li:hover{transform:translateY(-4px);border-color:rgba(229,57,53,.5)}
+.craft-pts .icon{flex:none;width:20px;height:20px;color:var(--red);margin-top:2px}
+.craft-pts h4{margin:0 0 6px;font-size:1rem;color:var(--ink)}
+.craft-pts p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}
+.craft.shown .craft-pts li{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.craft.shown .craft-pts li:nth-child(2){animation-delay:.1s}.craft.shown .craft-pts li:nth-child(3){animation-delay:.2s}.craft.shown .craft-pts li:nth-child(4){animation-delay:.3s}
+@media(max-width:1020px){.craft-pts{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.craft-vs,.craft-pts{grid-template-columns:1fr}.craft{margin-top:40px}}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1020px){
@@ -2205,6 +2230,25 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       <div><dt>We do</dt><dd>Websites · Business systems · IT support</dd></div>
     </dl>
   </div>
+  <div class="wrap" data-for="web">
+    <div class="craft">
+      <div class="craft-head">
+        <span class="eyebrow">Built by people, not prompts</span>
+        <h3>Anyone can make a website today. <em>We make yours work.</em></h3>
+        <p>With all the website builders and AI tools out there, anyone can put a website online in an afternoon. We don't type a prompt and hand you whatever comes out. We study your business and build a website that matches your brand, speaks to your customers and actually brings you work.</p>
+      </div>
+      <div class="craft-vs" aria-label="Template sites compared with Axe Connect">
+        <div class="cv-col cv-them"><b>A quick template or AI site</b><ul><li>Generic layout anyone could have</li><li>Stock words that could be about any business</li><li>Colours picked by default</li><li>You see it only when it's &ldquo;done&rdquo;</li></ul></div>
+        <div class="cv-col cv-us"><b>An Axe Connect website</b><ul><li>Designed around your brand and goals</li><li>Words written for your clients</li><li>Colours that reflect your business</li><li>You're kept in the loop at every step</li></ul></div>
+      </div>
+      <ol class="craft-pts">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Aligned with your brand</h4><p>Your logo, your tone and your personality carried through every page.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Talks to your clients</h4><p>Clear wording and layouts that guide visitors to call, book or buy.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Colours that fit</h4><p>A palette chosen to reflect your business, not a theme's default.</p></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><div><h4>Real work, kept in the loop</h4><p>We put in the hours and share progress as we build, so you can give input before anything goes live.</p></div></li>
+      </ol>
+    </div>
+  </div>
 </section>
 
 <!-- CTA -->
@@ -2838,7 +2882,7 @@ const revealPlan = [
   ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
-  ['.about-copy', 'left'], ['.facts', 'right'],
+  ['.about-copy', 'left'], ['.facts', 'right'], ['.craft', 'blur'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.sys-col.c-side', 'left'], ['.sys-col.y-side', 'right'], ['.sys-core', 'zoom'], ['.sys-head', 'blur'],
   ['.pres-top > div', 'left'], ['.pres-top > p', 'right'], ['.pres-hub', 'zoom'], ['.pr-item', 'tilt'],
