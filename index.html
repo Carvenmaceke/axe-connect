@@ -1088,6 +1088,13 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .pres-wrap{align-items:start}
 .pres-hub{position:sticky;top:calc(var(--top) + 24px);padding:30px 26px}
 @media(max-width:1020px){.pres-hub{position:relative;top:auto}}
+.foot-callout{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,rgba(229,55,43,.16),rgba(229,55,43,.04));border:1px solid rgba(229,55,43,.3);font-size:.88rem;color:var(--text);max-width:380px}
+.foot-callout .icon{width:20px;height:20px;color:var(--red-ink);flex-shrink:0;margin-top:2px}
+.foot-callout b{color:#fff}
+.foot-callout a{display:inline-block;margin-top:6px;color:var(--red-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.foot-callout a:hover{color:#fff}
+.foot-social{display:inline-flex !important;align-items:center;gap:8px}
+.foot-social span{white-space:nowrap;flex-shrink:0;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--red);padding:2px 7px;border-radius:999px}
 </style>
 <script type="application/ld+json">
 {
@@ -2177,6 +2184,10 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
           <span class="logo-word"><span>Axe</span> Connect</span>
         </a>
         <p>Web development and design for clients anywhere, plus IT support in Pretoria and remotely.</p>
+        <div class="foot-callout">
+          <svg class="icon" aria-hidden="true"><use href="#i-message-circle"/></svg>
+          <div><b>We also manage social media.</b> Posts, content and growing your pages, done for you. <a href="#contact" onclick="openSocialEnquiry(event)">Contact us to find out more</a></div>
+        </div>
       </div>
       <div class="foot-col">
         <h3>Web &amp; Design</h3>
@@ -2185,6 +2196,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <a href="#web-dev">Logo design</a>
         <a href="#web-dev">Posters &amp; flyers</a>
         <a href="#web-dev">Brand identity</a>
+        <a href="#contact" class="foot-social" onclick="openSocialEnquiry(event)">Social media management <span>Ask us</span></a>
       </div>
       <div class="foot-col">
         <h3>IT Support</h3>
@@ -2259,6 +2271,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
               <option value="Logo Design">Logo Design</option>
               <option value="Poster & Flyer Design">Poster &amp; Flyer Design</option>
               <option value="Brand Identity Package">Brand Identity Package</option>
+              <option value="Social Media Management">Social Media Management</option>
             </optgroup>
             <option value="Other / General Enquiry">Other / General Enquiry</option>
           </select>
@@ -3519,6 +3532,14 @@ reviewForm.addEventListener('submit', e => {
     showFormAlert('reviewFormAlert', 'Your review failed to send. Please try again, or WhatsApp it to us on 060 795 0837.');
   }).finally(() => { btn.disabled = false; btn.textContent = 'Submit review'; });
 });
+
+// Social media management enquiries open the contact form with the service chosen
+function openSocialEnquiry(e) {
+  if (e) e.preventDefault();
+  openContactModal();
+  const sel = document.getElementById('cf-service');
+  if (sel) sel.value = 'Social Media Management';
+}
 
 // Newsletter sign-up: sends the subscriber to our inbox through the same EmailJS template
 const newsForm = document.getElementById('newsForm');
