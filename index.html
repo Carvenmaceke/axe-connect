@@ -1109,11 +1109,13 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .hdr{padding-inline:max(16px,calc(var(--gut) - 16px))}
 .hdr-in{max-width:calc(var(--wrap) - 2 * var(--gut) + 32px)}
 .mode-bar{padding-inline:var(--gut)}
-.hero-grid{grid-template-columns:1fr 1.05fr;gap:clamp(40px,5vw,96px)}
-.duo{width:min(100%,620px);height:480px}
-.duo-phone{width:196px;height:392px}
-.duo-dash{width:390px;height:320px}
-.duo-wire{left:165px;width:270px}
+@media(min-width:1021px){
+  .hero-grid{grid-template-columns:1fr 1.05fr;gap:clamp(40px,5vw,96px)}
+  .duo{width:min(100%,620px);height:480px}
+  .duo-phone{width:196px;height:392px}
+  .duo-dash{width:390px;height:320px}
+  .duo-wire{left:165px;width:270px}
+}
 @media(min-width:1600px){
   html{font-size:17px}
   .hero h1{font-size:clamp(4rem,4.8vw,6rem)}
@@ -1122,7 +1124,20 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
   .duo-dash{width:450px;height:350px}
   .duo-wire{left:175px;width:330px}
 }
-@media(max-width:1020px){.duo{width:min(100%,540px);height:440px}.duo-phone{width:178px;height:360px}.duo-dash{width:340px;height:300px}.duo-wire{left:150px;width:230px}}
+/* ── page-style transition when switching Web Dev / IT Support ── */
+.curtain{position:fixed;inset:0;z-index:5000;pointer-events:none;visibility:hidden}
+.curtain.on{visibility:visible;pointer-events:auto}
+.cur-panel{position:absolute;inset:-2px 0;background:radial-gradient(800px 500px at 50% 60%,rgba(229,55,43,.25),transparent 70%),#08080A;border-top:4px solid var(--red);border-bottom:4px solid var(--red);display:grid;place-items:center;transform:translateY(102%);will-change:transform}
+.curtain.cover .cur-panel{transform:translateY(0);transition:transform .55s cubic-bezier(.76,0,.24,1)}
+.curtain.reveal .cur-panel{transform:translateY(-102%);transition:transform .65s cubic-bezier(.76,0,.24,1)}
+.cur-in{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .4s}
+.curtain.cover .cur-in{opacity:1;transform:none;transition-delay:.25s}
+.cur-logo{width:56px;height:66px;filter:drop-shadow(0 0 24px rgba(229,55,43,.6))}
+.cur-k{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cur-t{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3.6rem);letter-spacing:-.03em;color:#fff}
+.cur-bar{display:block;width:160px;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.cur-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#E5372B,#FF7A5C);transform:translateX(-100%)}
+.curtain.cover .cur-bar::after{transform:none;transition:transform .55s .3s cubic-bezier(.65,0,.35,1)}
 </style>
 <script type="application/ld+json">
 {
@@ -2285,6 +2300,18 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 </footer>
 
 
+<!-- PAGE TRANSITION CURTAIN (Web Dev <-> IT Support) -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="cur-panel">
+    <div class="cur-in">
+      <svg class="cur-logo" viewBox="-2 4 48 54"><path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E5372B"/><path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E5372B"/><path d="M30 8 L44 8 L30 56 L23 56 Z" fill="#fff"/><path d="M13 37 L31 37 L33 43 L11 43 Z" fill="#E5372B"/></svg>
+      <span class="cur-k">Axe Connect</span>
+      <b class="cur-t" id="curTitle">IT Support</b>
+      <i class="cur-bar"></i>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT FORM MODAL -->
 <div class="modal-overlay" id="contactModal" onclick="closeOnOverlay(event,'contactModal')">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
@@ -2705,14 +2732,50 @@ function setMode(mode) {
   requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
 }
 setMode(document.documentElement.getAttribute('data-mode'));
+// Switching sides plays like opening a new page: a curtain covers the screen, the other side loads
+// behind it, the page returns to the top (or the requested section) and everything animates in again.
+let switching = false;
+function switchMode(mode, target) {
+  mode = mode === 'it' ? 'it' : 'web';
+  const current = document.documentElement.getAttribute('data-mode');
+  const go = () => {
+    setMode(mode);
+    const el = target && document.querySelector(target);
+    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    else window.scrollTo({ top: 0, behavior: 'instant' });
+    if (typeof rearmReveal === 'function') rearmReveal();
+  };
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const curtain = document.getElementById('curtain');
+  if (mode === current || reduce || !curtain) {
+    if (mode !== current) go();
+    else if (target) { const el = document.querySelector(target); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+    return;
+  }
+  if (switching) return;
+  switching = true;
+  document.getElementById('curTitle').textContent = mode === 'it' ? 'IT Support' : 'Web Dev & Design';
+  curtain.classList.remove('reveal');
+  curtain.classList.add('on');
+  requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('cover')));
+  setTimeout(() => {
+    go();
+    setTimeout(() => {
+      curtain.classList.add('reveal');
+      curtain.classList.remove('cover');
+      setTimeout(() => { curtain.classList.remove('on', 'reveal'); switching = false; }, 700);
+    }, 260);
+  }, 820);
+}
 document.querySelectorAll('[data-set-mode]').forEach(btn => btn.addEventListener('click', () => {
-  setMode(btn.dataset.setMode);
-  const target = btn.dataset.scroll && document.querySelector(btn.dataset.scroll);
-  if (target) target.scrollIntoView({ behavior: 'smooth' });
+  switchMode(btn.dataset.setMode, btn.dataset.scroll);
 }));
-// Any link to a service section switches to that mode first, so the section is visible before the jump
-document.querySelectorAll('a[href="#web-dev"], a[href="#it-support"]').forEach(a => a.addEventListener('click', () => {
-  setMode(a.getAttribute('href') === '#it-support' ? 'it' : 'web');
+// Any link to a service section switches to that side first, then lands on the section
+document.querySelectorAll('a[href="#web-dev"], a[href="#it-support"]').forEach(a => a.addEventListener('click', e => {
+  const mode = a.getAttribute('href') === '#it-support' ? 'it' : 'web';
+  if (mode === document.documentElement.getAttribute('data-mode')) return;
+  e.preventDefault();
+  switchMode(mode, a.getAttribute('href'));
 }));
 
 // Interactive department tabs (IT Support / Web & Design)
@@ -2811,6 +2874,21 @@ revealPlan.forEach(([sel, kind]) => {
     revealIO.observe(watch);
   });
 });
+
+// After switching sides, re-arm the scroll animations so the new side animates in like a fresh page
+function rearmReveal() {
+  document.querySelectorAll('[data-anim]').forEach(el => {
+    if (el.offsetParent === null) return;
+    el.classList.remove('shown');
+    const r = el.getBoundingClientRect();
+    if (!revealIO || r.top < window.innerHeight * 0.9) { requestAnimationFrame(() => el.classList.add('shown')); return; }
+    el.classList.add('anim', 'pre');
+    const watch = el.dataset.anim === 'wipe' ? el.parentElement : el;
+    watch._reveal = watch._reveal || [];
+    if (!watch._reveal.includes(el)) watch._reveal.push(el);
+    revealIO.observe(watch);
+  });
+}
 
 // Motion: hero mockup tilts gently toward the cursor
 const heroEl = document.querySelector('.hero');
