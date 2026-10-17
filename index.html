@@ -40,7 +40,9 @@
 // Service mode (web / it): URL hash wins, then saved choice, else web
 (function(){var m='web';try{m=localStorage.getItem('axeconnect-mode')||m}catch(e){}
 if(location.hash==='#it-support')m='it';else if(location.hash==='#web-dev')m='web';
+var fx=document.documentElement.getAttribute('data-page-mode');if(fx)m=fx;
 document.documentElement.setAttribute('data-mode',m==='it'?'it':'web');
+try{if(sessionStorage.getItem('axe-curtain'))document.documentElement.classList.add('cur-arrive')}catch(e){}
 document.documentElement.classList.add('dark');})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1163,6 +1165,62 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .cur-bar{display:block;width:160px;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
 .cur-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#E5372B,#FF7A5C);transform:translateX(-100%)}
 .curtain.cover .cur-bar::after{transform:none;transition:transform .55s .3s cubic-bezier(.65,0,.35,1)}
+
+/* ── separate pages: page hero, breadcrumbs, contact cards, social media ── */
+.cur-arrive .curtain{visibility:visible}
+.cur-arrive .cur-panel{transform:none}
+.cur-arrive .cur-in{opacity:1;transform:none}
+.phero{position:relative;overflow:hidden;padding-block:64px 72px;border-bottom:1px solid var(--line);background:radial-gradient(900px 420px at 85% -10%,rgba(229,55,43,.22),transparent 70%),radial-gradient(700px 380px at -10% 110%,rgba(229,55,43,.1),transparent 70%)}
+.phero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 70% 0%,#000,transparent 75%);pointer-events:none}
+.phero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.phero h1{font-size:clamp(2.3rem,5vw,4.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.02;max-width:20ch}
+.phero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.phero h1 .w>span{display:inline-block;animation:wordUp .85s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 65ms + .08s)}
+.phero h1 em{font-style:normal;color:var(--red-ink)}
+.phero h1 em .w>span{background:linear-gradient(90deg,#FF6A5C,#E5372B);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.phero-lead{font-size:1.12rem;color:var(--muted);max-width:60ch;line-height:1.65}
+.phero .eyebrow,.phero-lead,.phero .hero-btns,.phero .hero-checks,.crumbs{animation:up .7s cubic-bezier(.2,.7,.2,1) both}
+.phero-lead{animation-delay:.3s}.phero .hero-btns{animation-delay:.42s}.phero .hero-checks{animation-delay:.55s}
+.phero-card{display:none}
+@media(min-width:1021px){
+  .phero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 360px;column-gap:clamp(40px,6vw,120px);row-gap:22px;justify-items:start}
+  .phero .wrap>*:not(.phero-card){grid-column:1}
+  .phero-card{display:flex;flex-direction:column;gap:6px;grid-column:2;grid-row:1 / span 6;align-self:center;justify-self:stretch;padding:24px;border:1px solid var(--line);border-radius:24px;background:rgba(14,14,17,.75);backdrop-filter:blur(10px);box-shadow:var(--shadow-lg);animation:winIn .8s .3s cubic-bezier(.2,.7,.2,1) both}
+}
+.pc-k{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ok)}
+.pc-k i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite;box-shadow:0 0 0 0 rgba(43,196,138,.5)}
+.pc-t{font-family:var(--f-display);font-size:1.3rem;color:var(--ink);margin:4px 0 8px}
+.phero-card a{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:14px;border:1px solid transparent;transition:background .2s,border-color .2s}
+.phero-card a:hover{background:var(--surface-2);border-color:var(--line)}
+.phero-card .icon{width:20px;height:20px;color:var(--red);flex:none}
+.phero-card a span{display:flex;flex-direction:column;gap:2px;line-height:1.3;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.phero-card small{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.crumbs{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.04em;color:var(--muted)}
+.crumbs a:hover{color:var(--red)}
+.crumbs .icon{width:12px;height:12px;opacity:.6}
+.crumbs [aria-current]{color:var(--ink)}
+.ccard .gmark{width:26px;height:26px}
+.foot-h2{margin-top:18px}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ccard{display:flex;flex-direction:column;gap:10px;padding:26px;border:1px solid var(--line);border-radius:22px;background:var(--surface);transition:transform .3s,border-color .3s}
+a.ccard:hover,button.ccard:hover{transform:translateY(-4px);border-color:rgba(229,55,43,.5)}
+button.ccard{text-align:left;font:inherit;color:inherit;cursor:pointer}
+.ccard .icon{width:26px;height:26px;color:var(--red)}
+.ccard small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ccard b{font-size:1.15rem;color:var(--ink);overflow-wrap:anywhere}
+.ccard span{color:var(--muted);font-size:.92rem;line-height:1.5}
+.smm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.smm-card{padding:26px;border:1px solid var(--line);border-radius:22px;background:var(--surface);transition:transform .3s,border-color .3s}
+.smm-card:hover{transform:translateY(-4px);border-color:rgba(229,55,43,.5)}
+.smm-card .icon{width:26px;height:26px;color:var(--red);margin-bottom:14px}
+.smm-card h3{font-size:1.15rem;margin-bottom:8px}
+.smm-card p{color:var(--muted);font-size:.95rem;line-height:1.55}
+.see-also{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.see-also a{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-weight:600;font-size:.92rem;transition:border-color .2s,color .2s}
+.see-also a:hover{border-color:var(--red);color:var(--red)}
+.see-also .icon{width:14px;height:14px}
+@media(max-width:1020px){.cgrid,.smm-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.cgrid,.smm-grid{grid-template-columns:1fr}.phero{padding-block:44px 52px}}
 </style>
 <script type="application/ld+json">
 {
@@ -1171,6 +1229,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     "ProfessionalService",
     "LocalBusiness"
   ],
+  "@id": "https://axeconnect.co.za/#business",
   "name": "Axe Connect",
   "alternateName": "Axe Connect Software & Web Development",
   "description": "Websites and complete business systems: a customer website plus an admin dashboard for bookings, orders, clients, stock, invoices and reports. Also domain registration, branding, Google Business Profile setup, business email and SEO, plus IT support in Pretoria, plus social media management.",
@@ -1611,7 +1670,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 <!-- HEADER -->
 <header class="hdr" id="hdr">
   <div class="hdr-in">
-    <a class="logo" href="#home" aria-label="Axe Connect home">
+    <a class="logo" href="./" aria-label="Axe Connect home">
       <svg viewBox="-2 4 48 54" aria-hidden="true">
         <path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E5372B"/>
         <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E5372B"/>
@@ -1622,14 +1681,14 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     </a>
     <nav class="hdr-nav" id="mainNav" aria-label="Main">
       <span class="nav-indicator" aria-hidden="true"></span>
-      <a href="#home" class="active">Home</a>
-      <a href="#system" data-for="web">System</a>
-      <a href="#presence" data-for="web">Presence</a>
-      <a href="#outsourcing">Services</a>
-      <a href="#web-dev" data-for="web">Web &amp; Design</a>
-      <a href="#it-support" data-for="it">IT Support</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="./" class="active">Home</a>
+      <a href="business-systems.html" data-for="web">Systems</a>
+      <a href="online-presence.html" data-for="web">Presence</a>
+      <a href="services.html">Services</a>
+      <a href="web-development.html" data-for="web">Web &amp; Design</a>
+      <a href="it-support.html" data-for="it">IT Support</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <div class="hdr-actions">
       <button type="button" class="btn btn-primary hdr-cta" data-for="web" onclick="openQuoteModal('Web Development')">Get a quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -1865,43 +1924,43 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     </div>
 
     <div class="bento sysgrid" data-for="web">
-      <a href="#web-dev" class="b-card big">
+      <a href="business-systems.html" class="b-card big">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></div>
         <h3>Complete business systems</h3>
         <p>Your customer website and your admin dashboard, built together and connected. Bookings, orders, clients, stock, invoices and reports in one place.</p><ul class="b-tags"><li>Customer website</li><li>Admin dashboard</li><li>Logins &amp; roles</li><li>Reports</li></ul>
         <span class="b-more">Explore systems <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
         <h3>Business websites</h3>
         <p>Fast, mobile-first websites that win customers.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg></div>
         <h3>Online stores</h3>
         <p>Sell online with payments and live stock.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg></div>
         <h3>Booking systems</h3>
         <p>Online bookings with a calendar that never clashes.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></div>
         <h3>Client portals</h3>
         <p>Customers log in to track orders and documents.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
         <h3>Dashboards &amp; reports</h3>
         <p>See sales, bookings and trends at a glance.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#web-dev" class="b-card">
+      <a href="web-development.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div>
         <h3>Invoicing &amp; stock</h3>
         <p>Quotes, invoices and inventory, automated.</p>
@@ -1910,20 +1969,20 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     </div>
 
     <div class="bento" data-for="it">
-      <a href="#it-support" class="b-card big">
+      <a href="it-support.html" class="b-card big">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></div>
         <h3>IT support &amp; PC repairs</h3>
         <p>Laptop and desktop repairs, slow PCs, software problems, email setup, printers and everyday tech support for individuals and businesses.</p>
         <ul class="b-tags"><li>Screen replacements</li><li>Hardware repairs</li><li>Troubleshooting</li><li>Email &amp; printers</li><li>Data recovery</li></ul>
         <span class="b-more">Explore IT services <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#it-support" class="b-card">
+      <a href="it-support.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg></div>
         <h3>Business &amp; office support</h3>
         <p>Outsourced support for staff devices, office networks, email systems and ongoing maintenance.</p>
         <span class="b-more">Learn more <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a href="#it-support" class="b-card">
+      <a href="it-support.html" class="b-card">
         <div class="b-ico"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
         <h3>Software, security &amp; speed</h3>
         <p>OS installs, driver updates, antivirus setup, malware removal and performance tune-ups.</p>
@@ -2292,7 +2351,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
     </div>
     <div class="foot-grid">
       <div class="foot-about">
-        <a class="logo" href="#home" aria-label="Axe Connect home">
+        <a class="logo" href="./" aria-label="Axe Connect home">
           <svg viewBox="-2 4 48 54" aria-hidden="true">
             <path d="M8 56 L24 8 L30 8 L16 56 Z" fill="#E5372B"/>
             <path d="M8 32 Q-2 20 0 6 Q12 14 20 28 Z" fill="#E5372B"/>
@@ -2304,24 +2363,27 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
         <p>Web development and design for clients anywhere, plus IT support in Pretoria and remotely.</p>
         <div class="foot-callout">
           <svg class="icon" aria-hidden="true"><use href="#i-message-circle"/></svg>
-          <div><b>We also manage social media.</b> Posts, content and growing your pages, done for you. <a href="#contact" onclick="openSocialEnquiry(event)">Contact us to find out more</a></div>
+          <div><b>We also manage social media.</b> Posts, content and growing your pages, done for you. <a href="social-media-management.html">Find out more</a></div>
         </div>
       </div>
       <div class="foot-col">
         <h3>Web &amp; Design</h3>
-        <a href="#web-dev">Website design &amp; development</a>
-        <a href="#web-dev">Website maintenance</a>
-        <a href="#web-dev">Logo design</a>
-        <a href="#web-dev">Posters &amp; flyers</a>
-        <a href="#web-dev">Brand identity</a>
-        <a href="#contact" class="foot-social" onclick="openSocialEnquiry(event)">Social media management <span>Ask us</span></a>
+        <a href="web-development.html">Website design &amp; development</a>
+        <a href="business-systems.html">Business systems &amp; dashboards</a>
+        <a href="online-presence.html">Domains, branding &amp; Google profile</a>
+        <a href="web-development.html">Logo design &amp; brand identity</a>
+        <a href="social-media-management.html" class="foot-social">Social media management <span>New</span></a>
       </div>
       <div class="foot-col">
         <h3>IT Support</h3>
-        <a href="#it-support">Laptop &amp; PC repairs</a>
-        <a href="#it-support">Troubleshooting</a>
-        <a href="#it-support">Software installation</a>
-        <a href="#it-support">Virus &amp; performance fixes</a>
+        <a href="it-support.html">Laptop &amp; PC repairs</a>
+        <a href="it-support.html">Troubleshooting</a>
+        <a href="it-support.html">Software installation</a>
+        <a href="it-support.html">Virus &amp; performance fixes</a>
+        <h3 class="foot-h2">Company</h3>
+        <a href="about.html">About us</a>
+        <a href="services.html">All services</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="foot-col">
         <h3>Contact</h3>
@@ -2727,6 +2789,7 @@ function moveNavIndicator(link) {
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
+      if (![...links].some(l => l.getAttribute('href') === '#'+e.target.id)) return;
       links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id));
       moveNavIndicator(document.querySelector('.hdr-nav a.active'));
     }
@@ -2791,6 +2854,9 @@ function switchMode(mode, target) {
   };
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const curtain = document.getElementById('curtain');
+  if (document.documentElement.getAttribute('data-page-mode') && mode !== current && (reduce || !curtain)) {
+    location.href = mode === 'it' ? 'it-support.html' : 'web-development.html'; return;
+  }
   if (mode === current || reduce || !curtain) {
     if (mode !== current) go();
     else if (target) { const el = document.querySelector(target); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
@@ -2798,7 +2864,15 @@ function switchMode(mode, target) {
   }
   if (switching) return;
   switching = true;
-  document.getElementById('curTitle').textContent = mode === 'it' ? 'IT Support' : 'Web Dev & Design';
+  const title = mode === 'it' ? 'IT Support' : 'Web Dev & Design';
+  document.getElementById('curTitle').textContent = title;
+  if (document.documentElement.getAttribute('data-page-mode')) {
+    curtain.classList.add('on');
+    requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('cover')));
+    try { localStorage.setItem('axeconnect-mode', mode); sessionStorage.setItem('axe-curtain', title); } catch (e) {}
+    setTimeout(() => { location.href = mode === 'it' ? 'it-support.html' : 'web-development.html'; }, 760);
+    return;
+  }
   curtain.classList.remove('reveal');
   curtain.classList.add('on');
   requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add('cover')));
@@ -2810,6 +2884,18 @@ function switchMode(mode, target) {
       setTimeout(() => { curtain.classList.remove('on', 'reveal'); switching = false; }, 700);
     }, 260);
   }, 820);
+}
+// Arriving from another page through the curtain: lift it off this page
+if (document.documentElement.classList.contains('cur-arrive')) {
+  const curtain = document.getElementById('curtain');
+  let t = ''; try { t = sessionStorage.getItem('axe-curtain') || ''; sessionStorage.removeItem('axe-curtain'); } catch (e) {}
+  document.getElementById('curTitle').textContent = t;
+  curtain.classList.add('on', 'cover');
+  setTimeout(() => {
+    document.documentElement.classList.remove('cur-arrive');
+    curtain.classList.add('reveal'); curtain.classList.remove('cover');
+    setTimeout(() => curtain.classList.remove('on', 'reveal'), 700);
+  }, 250);
 }
 document.querySelectorAll('[data-set-mode]').forEach(btn => btn.addEventListener('click', () => {
   switchMode(btn.dataset.setMode, btn.dataset.scroll);
@@ -2856,7 +2942,7 @@ document.querySelectorAll('.dept-tabs').forEach(group => {
 });
 
 // Motion: split hero headlines into words so they rise in one by one
-document.querySelectorAll('.hero h1').forEach(h => {
+document.querySelectorAll('.hero h1, .phero h1').forEach(h => {
   let i = 0;
   (function walk(node) {
     Array.from(node.childNodes).forEach(n => {
