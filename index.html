@@ -1221,6 +1221,36 @@ button.ccard{text-align:left;font:inherit;color:inherit;cursor:pointer}
 .see-also .icon{width:14px;height:14px}
 @media(max-width:1020px){.cgrid,.smm-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.cgrid,.smm-grid{grid-template-columns:1fr}.phero{padding-block:44px 52px}}
+
+/* ── portfolio ── */
+.case{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,4vw,64px);align-items:start;padding:clamp(20px,3vw,40px);border:1px solid var(--line);border-radius:30px;background:radial-gradient(90% 80% at 0% 100%,rgba(229,55,43,.12),transparent 60%),var(--surface)}
+.case-shots{position:relative;padding:0 0 9% 0}
+@media(min-width:1021px){.case-shots{position:sticky;top:150px}}
+.case-browser{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#111;box-shadow:var(--shadow-lg);transform:perspective(1400px) rotateY(6deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.case:hover .case-browser{transform:none}
+.cb-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#1a1a1e;border-bottom:1px solid var(--line)}
+.cb-bar i{width:9px;height:9px;border-radius:50%;background:#3a3a40}
+.cb-bar i:first-child{background:#E5372B}
+.cb-bar span{margin-left:10px;padding:3px 12px;border-radius:999px;background:#0e0e11;font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+.case-browser img,.case-phone img,.case-more img{display:block;width:100%;height:auto}
+.case-phone{position:absolute;right:-2%;bottom:0;width:24%;margin:0;border-radius:22px;overflow:hidden;border:5px solid #1c1c20;box-shadow:0 30px 60px rgba(0,0,0,.6);animation:floatY 6s ease-in-out infinite}
+.case-info{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.case-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.case-tag .icon{width:14px;height:14px}
+.case-info h3{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.03em}
+.case-info>p{color:var(--muted);line-height:1.65}
+.case-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%}
+.case-cols b{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--ink)}
+.case-cols b .icon{width:18px;height:18px;color:var(--red)}
+.case-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.case-cols li{position:relative;padding-left:18px;color:var(--muted);font-size:.92rem;line-height:1.45}
+.case-cols li::before{content:'';position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:2px;background:var(--red);transform:rotate(45deg)}
+.case-more{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.case-more figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.case-more figcaption{padding:12px 16px;font-size:.88rem;color:var(--muted)}
+.case-more figcaption b{color:var(--ink)}
+@media(max-width:1020px){.case{grid-template-columns:1fr}.case-shots{max-width:720px}}
+@media(max-width:640px){.case-cols,.case-more{grid-template-columns:1fr}.case-phone{width:30%;border-width:3px;border-radius:14px}.case-browser{transform:none}}
 </style>
 <script type="application/ld+json">
 {
@@ -1686,6 +1716,7 @@ button.ccard{text-align:left;font:inherit;color:inherit;cursor:pointer}
       <a href="online-presence.html" data-for="web">Presence</a>
       <a href="services.html">Services</a>
       <a href="web-development.html" data-for="web">Web &amp; Design</a>
+      <a href="portfolio.html" data-for="web">Portfolio</a>
       <a href="it-support.html" data-for="it">IT Support</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -1907,6 +1938,61 @@ button.ccard{text-align:left;font:inherit;color:inherit;cursor:pointer}
         <li><span>04</span><div><b>Grows with your business</b><small>Add bookings, stock or staff tools any time.</small></div></li>
       </ol>
     </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="work" class="sec work" data-for="web">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Portfolio</span>
+        <h2>Real work, <em>live and working.</em></h2>
+      </div>
+      <p>Websites and systems we've built for South African businesses. Not mock-ups: real sites with real customers booking, buying and enquiring every day.</p>
+    </div>
+    <article class="case">
+      <div class="case-shots">
+        <figure class="case-browser">
+          <div class="cb-bar" aria-hidden="true"><i></i><i></i><i></i><span>jmasochaphoto.co.za</span></div>
+          <img src="portfolio/jmasocha-home.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography homepage: a photo carousel above the headline Moments, beautifully kept">
+        </figure>
+        <figure class="case-phone">
+          <img src="portfolio/jmasocha-mobile.jpg" width="780" height="1560" loading="lazy" decoding="async" alt="J Masocha Photography website on a phone">
+        </figure>
+      </div>
+      <div class="case-info">
+        <span class="case-tag"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Photography studio · Pretoria Central</span>
+        <h3>J Masocha Photography</h3>
+        <p>A complete website and booking system for a photography, videography and printing studio that has been capturing Pretoria's milestones since 2010. Clients browse the work and book a shoot online; the studio runs its gallery, calendar and promotions from its own website manager.</p>
+        <div class="case-cols">
+          <div>
+            <b><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>What clients see</b>
+            <ul>
+              <li>Gallery sorted by backdrop, with filters and a full-screen viewer</li>
+              <li>Online booking: choose a session, an open date and a time</li>
+              <li>Deposit paid online or on WhatsApp, with a booking code by email</li>
+              <li>Packages, current specials, print orders and Google reviews</li>
+            </ul>
+          </div>
+          <div>
+            <b><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg>What the owner runs</b>
+            <ul>
+              <li>Website manager to add, caption and reorder gallery photos</li>
+              <li>Bookings calendar: opening hours, walk-ins and deposits</li>
+              <li>Specials and posters that hide themselves when they end</li>
+              <li>Newsletter subscribers and promotion emails</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="b-tags"><li>Website</li><li>Online booking</li><li>Admin dashboard</li><li>Online payments</li><li>SEO</li></ul>
+        <div class="hero-btns">
+          <a class="btn btn-primary" href="https://www.jmasochaphoto.co.za/" target="_blank" rel="noopener">Visit the live site <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <button type="button" class="btn btn-ghost" onclick="openQuoteModal('Web Development')">Get a site like this</button>
+        </div>
+      </div>
+    </article>
+    <!--more-shots-->
   </div>
 </section>
 
@@ -2382,6 +2468,7 @@ button.ccard{text-align:left;font:inherit;color:inherit;cursor:pointer}
         <a href="it-support.html">Virus &amp; performance fixes</a>
         <h3 class="foot-h2">Company</h3>
         <a href="about.html">About us</a>
+        <a href="portfolio.html">Portfolio</a>
         <a href="services.html">All services</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -2968,7 +3055,7 @@ const revealPlan = [
   ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
-  ['.about-copy', 'left'], ['.facts', 'right'], ['.craft', 'blur'],
+  ['.about-copy', 'left'], ['.facts', 'right'], ['.case-shots', 'zoom'], ['.case-info', 'right'], ['.case-more figure', 'pop'], ['.craft', 'blur'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.sys-col.c-side', 'left'], ['.sys-col.y-side', 'right'], ['.sys-core', 'zoom'], ['.sys-head', 'blur'],
   ['.pres-top > div', 'left'], ['.pres-top > p', 'right'], ['.pres-hub', 'zoom'], ['.pr-item', 'tilt'],

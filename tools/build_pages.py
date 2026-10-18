@@ -111,6 +111,12 @@ CONTACT = f'''<section class="sec contact-ways">
   </div>
 </section>'''
 
+MORE_SHOTS = '''<div class="case-more">
+      <figure><img src="portfolio/jmasocha-gallery.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography gallery, grouped by backdrop colour with a timeline"><figcaption><b>Gallery.</b> Photos grouped by backdrop, with filters and a full-screen viewer.</figcaption></figure>
+      <figure><img src="portfolio/jmasocha-booking.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography online booking: choose a session, date and time"><figcaption><b>Online booking.</b> Four steps: session, date and time, details, deposit.</figcaption></figure>
+    </div>'''
+WORK = section('id="work"').replace('<!--more-shots-->', MORE_SHOTS)
+
 PAGES = [
     dict(
         file='web-development.html', crumb='Web Development', nav='web-development.html', mode='web',
@@ -198,6 +204,18 @@ PAGES = [
             ('Do I need to send you photos?', 'Photos of your products, team or work help a lot. Send what you have and we design the rest.'),
             ('Can you manage my social media and build my website?', 'Yes. Doing both means your website, pages and graphics all match your brand.'),
         ]),
+    ),
+    dict(
+        file='portfolio.html', crumb='Portfolio', nav='portfolio.html', mode='web',
+        title='Portfolio | Websites &amp; Booking Systems We Built | Axe Connect',
+        desc='See websites and business systems built by Axe Connect, including J Masocha Photography in Pretoria: a photography website with online booking, deposits and an admin website manager.',
+        service=None,
+        eyebrow='Portfolio',
+        h1='Websites that work <em>for real businesses.</em>',
+        lead='Every project here is live and in use. We build the website customers see and the tools the owner runs it with, so the business can take bookings, sell and grow online.',
+        cta="openQuoteModal('Web Development')", cta_label='Start your project',
+        checks=['Live sites', 'Websites &amp; systems', 'Built for SA businesses'],
+        body=[WORK, 'class="sec process"', 'id="reviews"'],
     ),
     dict(
         file='services.html', crumb='Services', nav='services.html', mode=None,
