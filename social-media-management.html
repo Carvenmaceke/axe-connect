@@ -2039,6 +2039,23 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 updateScrollProgress();
 
+// Google Ads conversions. Each action's label comes from Google Ads:
+// Goals > Conversions > (action) > Tag setup > event snippet, the part after "AW-18427746133/".
+const ADS_ID = 'AW-18427746133';
+const ADS_LABELS = {
+  call: 'CVN4CIHNiKIdENWuhNNE', // Click to call: any tap on a phone number
+  quote: '',                    // Request quote: quote form sent
+  lead: ''                      // Submit lead form: contact form sent / WhatsApp tap
+};
+function trackConversion(kind) {
+  const label = ADS_LABELS[kind];
+  if (!label || typeof gtag !== 'function') return;
+  gtag('event', 'conversion', { send_to: ADS_ID + '/' + label, value: 1.0, currency: 'ZAR', transport_type: 'beacon' });
+}
+document.addEventListener('click', e => {
+  if (e.target.closest && e.target.closest('a[href^="tel:"]')) trackConversion('call');
+}, true);
+
 // Year
 document.getElementById('yr').textContent = new Date().getFullYear();
 
