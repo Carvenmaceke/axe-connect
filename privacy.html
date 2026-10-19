@@ -154,5 +154,12 @@ footer a{margin:0 8px}
 </main>
 <footer>&#169; <span id="yr">2026</span> Axe Connect · <a href="terms.html">Terms &amp; Conditions</a><a href="privacy.html">Privacy Policy</a><a href="/">Home</a></footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// Google Ads "Click to call" conversion for phone links on this page
+document.addEventListener('click', function (e) {
+  if (e.target.closest && e.target.closest('a[href^="tel:"]') && typeof gtag === 'function')
+    gtag('event', 'conversion', { send_to: 'AW-18427746133/CVN4CIHNiKIdENWuhNNE', value: 1.0, currency: 'ZAR', transport_type: 'beacon' });
+}, true);
+</script>
 </body>
 </html>
