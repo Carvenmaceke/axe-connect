@@ -42,7 +42,8 @@ if(location.hash==='#it-support')m='it';else if(location.hash==='#web-dev')m='we
 var fx=document.documentElement.getAttribute('data-page-mode');if(fx)m=fx;
 document.documentElement.setAttribute('data-mode',m==='it'?'it':'web');
 try{if(sessionStorage.getItem('axe-curtain'))document.documentElement.classList.add('cur-arrive')}catch(e){}
-try{if(!sessionStorage.getItem('axe-intro')&&!sessionStorage.getItem('axe-curtain')&&!/bot|crawl|spider|slurp|lighthouse|headless|mediapartners|facebookexternalhit|whatsapp|bingpreview|pagespeed/i.test(navigator.userAgent))document.documentElement.classList.add('intro-on')}catch(e){}
+var seen=false;try{seen=!!(sessionStorage.getItem('axe-intro')||sessionStorage.getItem('axe-curtain'))}catch(e){}
+if(!seen&&!/bot|crawl|spider|slurp|lighthouse|headless|mediapartners|facebookexternalhit|whatsapp|bingpreview|pagespeed/i.test(navigator.userAgent))document.documentElement.classList.add('intro-on');
 document.documentElement.classList.add('dark');})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
