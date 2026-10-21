@@ -23,7 +23,7 @@ from pathlib import Path
 
 # ---- AdSense settings ---------------------------------------------------------------------------
 # Your publisher ID from AdSense, e.g. 'ca-pub-1234567890123456'. Leave '' until you are approved.
-ADSENSE_CLIENT = ''
+ADSENSE_CLIENT = 'ca-pub-7742482253849013'
 # Optional: the data-ad-slot number of a display ad unit you created in AdSense (Ads -> By ad unit).
 # Leave '' to rely on Auto ads only. When set, an ad unit is placed at every <!--ad--> marker in a post.
 AD_SLOT = ''
