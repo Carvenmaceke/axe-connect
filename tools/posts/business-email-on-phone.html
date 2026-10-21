@@ -1,0 +1,62 @@
+<!--
+title: How to set up your business email (info@yourbusiness.co.za) on your phone
+description: Step-by-step setup for a business email address from your web host on Android and iPhone, using IMAP so your mail stays in sync with your computer.
+date: 2026-10-21
+category: Business email
+cta: web
+-->
+<p class="lead">A professional address like info@yourbusiness.co.za looks far more trustworthy than a free Gmail address, but it is only useful if you can read and reply to it on your phone. If your email comes with your web hosting, setup takes about ten minutes. You need three things from your hosting company before you start.</p>
+
+<h2>What you need first</h2>
+<ul>
+  <li><strong>Your full email address</strong>, for example info@yourbusiness.co.za</li>
+  <li><strong>The password</strong> for that mailbox</li>
+  <li><strong>The mail server name.</strong> With most South African hosts this is <strong>mail.yourbusiness.co.za</strong>, but check your host's welcome email or help pages, as some use a different server name.</li>
+</ul>
+
+<h2>The settings most hosts use</h2>
+<p>These are the standard secure settings for hosting packages using cPanel or DirectAdmin. Your host's help pages will confirm them.</p>
+<ul>
+  <li><strong>Account type:</strong> IMAP</li>
+  <li><strong>Incoming server:</strong> mail.yourbusiness.co.za, port <strong>993</strong>, security SSL/TLS</li>
+  <li><strong>Outgoing (SMTP) server:</strong> mail.yourbusiness.co.za, port <strong>465</strong>, security SSL/TLS (or port 587 with STARTTLS)</li>
+  <li><strong>Username:</strong> your full email address, not just "info"</li>
+</ul>
+<div class="tip">Choose <strong>IMAP</strong>, not POP3. IMAP keeps your mail on the server, so the phone, laptop and webmail all show the same inbox. With POP3, an email read on your phone can disappear from your computer.</div>
+
+<!--ad-->
+
+<h2>On Android (Gmail app)</h2>
+<ol>
+  <li>Open the <strong>Gmail</strong> app, tap your profile picture and choose <strong>Add another account</strong>.</li>
+  <li>Choose <strong>Other</strong>, enter your email address and tap <strong>Manual setup</strong>.</li>
+  <li>Choose <strong>Personal (IMAP)</strong> and enter your password.</li>
+  <li>For incoming settings, enter your full email address as the username and the incoming server, port and security from above.</li>
+  <li>For outgoing settings, enter the outgoing server, port and security, and leave "Require sign-in" switched on.</li>
+  <li>Choose how often to sync, then give the account a name such as your business name.</li>
+</ol>
+
+<h2>On iPhone (Mail app)</h2>
+<ol>
+  <li>Open <strong>Settings → Mail → Accounts → Add Account</strong>, then tap <strong>Other → Add Mail Account</strong>.</li>
+  <li>Enter your name as you want customers to see it, your email address, password and a description.</li>
+  <li>Tap <strong>IMAP</strong> at the top of the next screen.</li>
+  <li>Under Incoming Mail Server and Outgoing Mail Server, enter the server name, your full email address as the username, and your password for both.</li>
+  <li>Tap <strong>Next</strong>. If it is not detected automatically, open the account again under <strong>Advanced</strong> and check the ports and SSL settings from above.</li>
+</ol>
+
+<h2>Using the Outlook app instead</h2>
+<p>The Outlook app works on both Android and iPhone. Add an account, enter your email address, and if it asks for the account type choose <strong>IMAP</strong>, then enter the same server details. Outlook is a good choice if you also use Outlook on your work computer.</p>
+
+<!--ad-->
+
+<h2>If it does not work</h2>
+<ul>
+  <li><strong>"Cannot connect to server" or "authentication failed":</strong> check that the username is your <em>full</em> email address and the password is correct. Log in to your host's webmail with the same details to test them.</li>
+  <li><strong>You can receive but not send:</strong> the outgoing settings are wrong. Check the port and that sign-in is required for the outgoing server.</li>
+  <li><strong>Certificate warning:</strong> the server name does not match your host's certificate. Use the exact server name from your hosting company.</li>
+  <li><strong>Emails you send land in spam:</strong> your domain may be missing SPF, DKIM or DMARC records. These are set in your domain's DNS settings and are worth asking your host or developer to check.</li>
+</ul>
+
+<h2>Add a signature while you are there</h2>
+<p>Finish by adding an email signature with your name, business name, phone number, WhatsApp and website. Every email you send then works as a small advert for the business.</p>
