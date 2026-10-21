@@ -340,6 +340,10 @@ def build(p):
 def sitemap():
     rows = [(SITE, 'monthly', '1.0')] + [(SITE + p['file'], 'monthly', '0.9' if p['service'] else '0.7') for p in PAGES] \
         + [(SITE + 'terms.html', 'yearly', '0.3'), (SITE + 'privacy.html', 'yearly', '0.3')]
+    blog = ROOT / 'blog'  # built by tools/build_blog.py
+    if (blog / 'index.html').exists():
+        rows.append((SITE + 'blog/', 'weekly', '0.6'))
+        rows += [(SITE + 'blog/' + f.name, 'monthly', '0.6') for f in sorted(blog.glob('*.html')) if f.name != 'index.html']
     body = ''.join(f'  <url>\n    <loc>{u}</loc>\n    <changefreq>{c}</changefreq>\n    <priority>{pr}</priority>\n  </url>\n' for u, c, pr in rows)
     (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + '</urlset>\n', encoding='utf-8')
 
