@@ -117,18 +117,39 @@ MORE_SHOTS = '''<div class="case-more">
     </div>'''
 WORK = section('id="work"').replace('<!--more-shots-->', MORE_SHOTS)
 
+AREAS = ['Pretoria', 'Centurion', 'Midrand', 'Johannesburg', 'Soshanguve', 'Mabopane', 'Ga-Rankuwa', 'Hammanskraal', 'Akasia', 'Pretoria East', 'Mamelodi', 'Atteridgeville']
+AREAS_BLOCK = """<section class="sec areas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Areas we serve</span>
+        <h2>A web designer <em>near you.</em></h2>
+      </div>
+      <p>We're based in Pretoria and design websites for businesses all over Gauteng. Not nearby? We work remotely with clients anywhere in South Africa.</p>
+    </div>
+    <ul class="b-tags area-tags">""" + ''.join(f'<li>Web design {a}</li>' for a in AREAS) + """<li>Web design Gauteng</li><li>Web design South Africa</li></ul>
+  </div>
+</section>"""
+
 PAGES = [
     dict(
         file='web-development.html', crumb='Web Development', nav='web-development.html', mode='web',
-        title='Web Developer South Africa | Website Design &amp; Development | Axe Connect',
-        desc='Hire a web developer in South Africa. Axe Connect designs and builds fast, mobile-friendly business websites, online stores and web apps that match your brand. Affordable and fully remote.',
-        service='Website design and development',
-        eyebrow='Web development &amp; design',
-        h1='Website design &amp; development <em>that fits your brand.</em>',
-        lead='We design and build business websites, online stores, landing pages and web applications for individuals, startups and companies across South Africa. Every site is built around your brand, your clients and your goals, never a generic template.',
+        title='Website Designer Pretoria | Web Design &amp; Development South Africa | Axe Connect',
+        desc='Looking for a web designer near you? Axe Connect is a website designer in Pretoria building affordable, mobile-friendly business websites, online stores and web apps for Pretoria, Centurion, Johannesburg and all of South Africa.',
+        service='Website design and development', areas=AREAS,
+        eyebrow='Website designer in Pretoria',
+        h1='Web design in Pretoria, <em>built around your brand.</em>',
+        lead='We design and build business websites, online stores, landing pages and web applications for individuals, startups and companies in Pretoria, Centurion, Johannesburg and across South Africa. Every site is built around your brand, your clients and your goals, never a generic template.',
         cta="openQuoteModal('Web Development')", cta_label='Get a website quote',
-        checks=['Mobile-first', 'SEO-ready', 'Fully remote, anywhere in SA'],
-        body=['id="web-dev"', 'class="sec process"', 'id="hire"', 'id="reviews"'],
+        checks=['Pretoria-based', 'Mobile-first &amp; SEO-ready', 'Clients across SA'],
+        body=['id="web-dev"', AREAS_BLOCK, 'class="sec process"', 'id="hire"', 'id="reviews"'],
+        faq=('Web design near you', 'Website design in Pretoria: common questions', [
+            ('Are you a web designer near me in Pretoria?', 'Yes. Axe Connect is based in Pretoria, Gauteng. We design websites for businesses in Pretoria, Centurion, Midrand, Soshanguve, Mabopane and Johannesburg, and work remotely with clients anywhere in South Africa.'),
+            ('Can we meet in person to plan my website?', 'Yes, if you are in or near Pretoria we can meet. Many clients prefer WhatsApp, phone or a video call, and we keep you updated at every step either way.'),
+            ('Do you build websites for small businesses?', 'Yes. Most of our clients are small businesses, startups and individuals: salons, restaurants, photographers, churches, construction companies, shops and more.'),
+            ('Do you design online stores and booking websites?', 'Yes. We build e-commerce websites, booking systems with online deposits, and websites with an admin dashboard so you can manage everything yourself.'),
+            ('Can you redesign my old website?', 'Yes. We can modernise an existing website so it looks professional, loads fast, works on phones and is easier to find on Google.'),
+        ]),
     ),
     dict(
         file='it-support.html', crumb='IT Support', nav='it-support.html', mode='it',
@@ -281,7 +302,8 @@ def jsonld(p, url, main):
             'description': plain(p['desc']),
             'provider': {'@type': 'ProfessionalService', '@id': SITE + '#business', 'name': 'Axe Connect',
                          'url': SITE, 'telephone': '+27607950837', 'email': 'info@axeconnect.co.za'},
-            'areaServed': ({'@type': 'City', 'name': 'Pretoria'} if p.get('area') else {'@type': 'Country', 'name': 'South Africa'}),
+            'areaServed': ([{'@type': 'City', 'name': a} for a in p['areas']] + [{'@type': 'Country', 'name': 'South Africa'}] if p.get('areas')
+                           else {'@type': 'City', 'name': 'Pretoria'} if p.get('area') else {'@type': 'Country', 'name': 'South Africa'}),
         })
     faqs = faqs_in(main)
     if faqs:
