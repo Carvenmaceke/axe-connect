@@ -1310,6 +1310,48 @@ html.intro-on .intro{display:block}
 @keyframes inGrow{from{transform:scaleX(0)}to{transform:none}}
 @keyframes inUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.intro *{animation-duration:.01s!important;animation-delay:0s!important}}
+
+/* ── portfolio cards ── */
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.work .proj:nth-child(n+4){display:none}
+html[data-page="portfolio"] .work .proj{display:flex}
+html[data-page="portfolio"] .work-all{display:none}
+.work-all{display:flex;justify-content:center;margin-top:28px}
+.proj{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.proj:hover{transform:translateY(-4px);border-color:rgba(229,55,43,.5);box-shadow:0 24px 50px -24px rgba(229,55,43,.45)}
+.proj-media{position:relative;background:#0E0E11;border-bottom:1px solid var(--line)}
+.pm-bar{display:flex;align-items:center;gap:5px;padding:8px 12px;background:#1A1A1E}
+.pm-bar i{width:7px;height:7px;border-radius:50%;background:#3A3A40}.pm-bar i:first-child{background:#E5372B}
+.pm-bar span{margin-left:8px;padding:2px 10px;border-radius:999px;background:#0E0E11;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;aspect-ratio:16/10;outline:none}
+.pm-track::-webkit-scrollbar{display:none}
+.pm-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:top;scroll-snap-align:start;display:block}
+.pm-nav{position:absolute;top:calc(50% + 14px);transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(10,10,12,.6);color:#fff;cursor:pointer;opacity:0;transition:opacity .25s,background .2s;backdrop-filter:blur(6px)}
+.pm-nav svg{width:16px;height:16px}
+.pm-prev{left:10px}.pm-next{right:10px}
+.proj-media:hover .pm-nav,.pm-nav:focus-visible{opacity:1}
+.pm-nav:hover{background:#E5372B}
+.pm-dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px;padding:5px 8px;border-radius:999px;background:rgba(10,10,12,.55)}
+.pm-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);transition:width .25s,background .25s}
+.pm-dots i.on{width:18px;border-radius:4px;background:#E5372B}
+.proj-body{display:flex;flex-direction:column;gap:10px;padding:20px 20px 18px;flex:1}
+.proj-tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.proj-body h3{font-size:1.25rem;letter-spacing:-.02em;line-height:1.2}
+.proj-desc{color:var(--muted);font-size:.93rem;line-height:1.55}
+.proj-more ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.proj-more li{position:relative;padding-left:16px;color:var(--muted);font-size:.88rem;line-height:1.45}
+.proj-more li::before{content:'';position:absolute;left:1px;top:.5em;width:6px;height:6px;border-radius:2px;background:var(--red);transform:rotate(45deg)}
+.proj-more:not([hidden]){animation:up .35s cubic-bezier(.2,.7,.2,1) both}
+.proj-chips{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.proj-chips li{font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink)}
+.proj-actions{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.proj-rm{background:none;border:0;padding:0;font:inherit;font-weight:600;font-size:.9rem;color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(229,55,43,.6)}
+.proj-rm:hover{color:var(--red)}
+.proj-visit{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#E5372B;color:#fff;font-weight:700;font-size:.88rem;transition:transform .2s,background .2s}
+.proj-visit:hover{background:var(--red-ink);transform:translateY(-2px)}
+.proj-visit .icon{width:15px;height:15px}
+@media(max-width:1020px){.proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work .proj:nth-child(n+3){display:none}html[data-page="portfolio"] .work .proj{display:flex}}
+@media(max-width:640px){.proj-grid{grid-template-columns:1fr}.work .proj:nth-child(n+3){display:flex}.work .proj:nth-child(n+4){display:none}html[data-page="portfolio"] .work .proj{display:flex}.pm-nav{opacity:1;width:30px;height:30px}}
 </style>
 <script type="application/ld+json">
 {
@@ -1518,53 +1560,151 @@ html.intro-on .intro{display:block}
         <span class="eyebrow">Portfolio</span>
         <h2>Real work, <em>live and working.</em></h2>
       </div>
-      <p>Websites and systems we've built for South African businesses. Not mock-ups: real sites with real customers booking, buying and enquiring every day.</p>
+      <p>Websites and systems we've built for South African businesses. Swipe through each project, read what we built, or visit the live site.</p>
     </div>
-    <article class="case">
-      <div class="case-shots">
-        <figure class="case-browser">
-          <div class="cb-bar" aria-hidden="true"><i></i><i></i><i></i><span>jmasochaphoto.co.za</span></div>
-          <img src="portfolio/jmasocha-home.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography homepage: a photo carousel above the headline Moments, beautifully kept">
-        </figure>
-        <figure class="case-phone">
-          <img src="portfolio/jmasocha-mobile.jpg" width="780" height="1560" loading="lazy" decoding="async" alt="J Masocha Photography website on a phone">
-        </figure>
-      </div>
-      <div class="case-info">
-        <span class="case-tag"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Photography studio · Pretoria Central</span>
-        <h3>J Masocha Photography</h3>
-        <p>A complete website and booking system for a photography, videography and printing studio that has been capturing Pretoria's milestones since 2010. Clients browse the work and book a shoot online; the studio runs its gallery, calendar and promotions from its own website manager.</p>
-        <div class="case-cols">
-          <div>
-            <b><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>What clients see</b>
-            <ul>
-              <li>Gallery sorted by backdrop, with filters and a full-screen viewer</li>
-              <li>Online booking: choose a session, an open date and a time</li>
-              <li>Deposit paid online or on WhatsApp, with a booking code by email</li>
-              <li>Packages, current specials, print orders and Google reviews</li>
-            </ul>
-          </div>
-          <div>
-            <b><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg>What the owner runs</b>
-            <ul>
-              <li>Website manager to add, caption and reorder gallery photos</li>
-              <li>Bookings calendar: opening hours, walk-ins and deposits</li>
-              <li>Specials and posters that hide themselves when they end</li>
-              <li>Newsletter subscribers and promotion emails</li>
-            </ul>
+    <div class="proj-grid">
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>jmasochaphoto.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the J Masocha Photography website, swipe to see more"><img src="portfolio/jmasocha-home.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography website: Homepage"><img src="portfolio/jmasocha-gallery.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography website: Gallery"><img src="portfolio/jmasocha-booking.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography website: Online booking"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Photography studio · Pretoria Central</span>
+          <h3>J Masocha Photography</h3>
+          <p class="proj-desc">Website and online booking system for a photography, videography and printing studio, with a website manager the owner runs.</p>
+          <div class="proj-more" id="pm-more-0" hidden><ul><li>Gallery sorted by backdrop, with filters and a full-screen viewer</li><li>Online booking with open dates, times and deposits</li><li>Website manager for photos, bookings and specials</li><li>Newsletter sign-ups and promotion emails</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Booking system</li><li>Admin dashboard</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-0">Read more</button>
+            <a class="proj-visit" href="https://www.jmasochaphoto.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
-        <ul class="b-tags"><li>Website</li><li>Online booking</li><li>Admin dashboard</li><li>Online payments</li><li>SEO</li></ul>
-        <div class="hero-btns">
-          <a class="btn btn-primary" href="https://www.jmasochaphoto.co.za/" target="_blank" rel="noopener">Visit the live site <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <button type="button" class="btn btn-ghost" onclick="openQuoteModal('Web Development')">Get a site like this</button>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>pogidja.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the POG Advisory &amp; Chartered Accountants website, swipe to see more"><img src="portfolio/pogidja-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="POG Advisory &amp; Chartered Accountants website: Homepage"><img src="portfolio/pogidja-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="POG Advisory &amp; Chartered Accountants website: Services"><img src="portfolio/pogidja-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="POG Advisory &amp; Chartered Accountants website: About"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
         </div>
-      </div>
-    </article>
-    <div class="case-more">
-      <figure><img src="portfolio/jmasocha-gallery.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography gallery, grouped by backdrop colour with a timeline"><figcaption><b>Gallery.</b> Photos grouped by backdrop, with filters and a full-screen viewer.</figcaption></figure>
-      <figure><img src="portfolio/jmasocha-booking.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="J Masocha Photography online booking: choose a session, date and time"><figcaption><b>Online booking.</b> Four steps: session, date and time, details, deposit.</figcaption></figure>
+        <div class="proj-body">
+          <span class="proj-tag">Accounting firm · Gauteng &amp; Limpopo</span>
+          <h3>POG Advisory &amp; Chartered Accountants</h3>
+          <p class="proj-desc">A modern, professional website for a SAICA-registered accounting, tax and business advisory firm.</p>
+          <div class="proj-more" id="pm-more-1" hidden><ul><li>Service pages for accounting, tax and advisory</li><li>Link to the POG Advisory client portal</li><li>WhatsApp contact button</li><li>Financial insights and tax deadline posts</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Blog</li><li>Client portal link</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-1">Read more</button>
+            <a class="proj-visit" href="https://pogidja.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>doxabeachhotel.com</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the Doxa Beach Hotel website, swipe to see more"><img src="portfolio/doxa-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Doxa Beach Hotel website: Homepage and booking"><img src="portfolio/doxa-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Doxa Beach Hotel website: Rooms"><img src="portfolio/doxa-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Doxa Beach Hotel website: Gallery"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Beach hotel · Zavora Bay, Mozambique</span>
+          <h3>Doxa Beach Hotel</h3>
+          <p class="proj-desc">Hotel website with an online room booking form, a rooms showcase and a gallery of the beach and activities.</p>
+          <div class="proj-more" id="pm-more-2" hidden><ul><li>Book-a-room form: dates, room type, guests and requests</li><li>Rooms showcase with photos</li><li>Gallery of activities and the bay</li><li>Contact details and newsletter sign-up</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Booking form</li><li>Gallery</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-2">Read more</button>
+            <a class="proj-visit" href="https://doxabeachhotel.com/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>sagislogistics.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the SAGIS Logistics website, swipe to see more"><img src="portfolio/sagis-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="SAGIS Logistics website: Homepage"><img src="portfolio/sagis-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="SAGIS Logistics website: Company overview"><img src="portfolio/sagis-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="SAGIS Logistics website: Pick-up points and car search"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Car rental · Pretoria East</span>
+          <h3>SAGIS Logistics</h3>
+          <p class="proj-desc">Car rental website for a company running since 1997, with a car search and its national pick-up points.</p>
+          <div class="proj-more" id="pm-more-3" hidden><ul><li>Find-your-car search by pick-up and return location</li><li>Services, fleet and company overview</li><li>National list of airport and city pick-up points</li><li>Downloadable company info and FAQ</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Car search</li><li>Downloads</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-3">Read more</button>
+            <a class="proj-visit" href="https://sagislogistics.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>tshakafaattorneys.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the TP Tshakafa Attorneys website, swipe to see more"><img src="portfolio/tshakafa-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="TP Tshakafa Attorneys website: Homepage"><img src="portfolio/tshakafa-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="TP Tshakafa Attorneys website: Services"><img src="portfolio/tshakafa-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="TP Tshakafa Attorneys website: About"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Law firm · Roodepoort</span>
+          <h3>TP Tshakafa Attorneys</h3>
+          <p class="proj-desc">Professional website for a law firm, presenting its legal services and making it easy for clients to get in touch.</p>
+          <div class="proj-more" id="pm-more-4" hidden><ul><li>Homepage slider with clear call to action</li><li>Services page listing the legal services</li><li>About page with the firm's mission</li><li>Contact page with address, phone and email</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Multi-page</li><li>Contact</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-4">Read more</button>
+            <a class="proj-visit" href="https://tshakafaattorneys.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>m4foundation.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the M4 Foundation website, swipe to see more"><img src="portfolio/m4-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="M4 Foundation website: Homepage"><img src="portfolio/m4-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="M4 Foundation website: About"><img src="portfolio/m4-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="M4 Foundation website: Services"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Non-profit · Limpopo &amp; Gauteng</span>
+          <h3>M4 Foundation</h3>
+          <p class="proj-desc">Website for a registered NPO that develops mining communities and offers work experience to trainees.</p>
+          <div class="proj-more" id="pm-more-5" hidden><ul><li>About, services, team and contact pages</li><li>Homepage slider of the foundation's work</li><li>WhatsApp contact button</li><li>Blog section for news</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>NPO</li><li>Multi-page</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-5">Read more</button>
+            <a class="proj-visit" href="https://www.m4foundation.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-media">
+          <div class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><span>miningcsi.co.za</span></div>
+          <div class="pm-track" tabindex="0" aria-label="Screenshots of the Mining CSI website, swipe to see more"><img src="portfolio/miningcsi-1.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Mining CSI website: Homepage"><img src="portfolio/miningcsi-2.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Mining CSI website: About"><img src="portfolio/miningcsi-3.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="Mining CSI website: Magazine advertising"></div>
+          <button type="button" class="pm-nav pm-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pm-nav pm-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="pm-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">Mining magazine · South Africa</span>
+          <h3>Mining CSI</h3>
+          <p class="proj-desc">Website for Mining CSI, a magazine on local economic development by South African mines.</p>
+          <div class="proj-more" id="pm-more-6" hidden><ul><li>Partner logos from major mining companies</li><li>Magazine advertising rates and specifications</li><li>Archive of past issues</li><li>About and contact pages</li></ul></div>
+          <ul class="proj-chips"><li>Website</li><li>Magazine</li><li>Archives</li></ul>
+          <div class="proj-actions">
+            <button type="button" class="proj-rm" aria-expanded="false" aria-controls="pm-more-6">Read more</button>
+            <a class="proj-visit" href="https://www.miningcsi.co.za/" target="_blank" rel="noopener">Visit website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
     </div>
+    <div class="work-all"><a class="btn btn-ghost" href="portfolio.html">View all 7 projects <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
   </div>
 </section>
 
@@ -2114,6 +2254,28 @@ updateScrollProgress();
   document.getElementById('introSkip').addEventListener('click', finish);
 })();
 
+// Portfolio cards: swipeable screenshots with dots and arrows, and Read more
+document.querySelectorAll('.proj').forEach(card => {
+  const track = card.querySelector('.pm-track'), dots = [...card.querySelectorAll('.pm-dots i')];
+  if (track) {
+    const go = dir => track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    card.querySelector('.pm-prev').addEventListener('click', () => go(-1));
+    card.querySelector('.pm-next').addEventListener('click', () => go(1));
+    track.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+    track.addEventListener('scroll', () => {
+      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((d, j) => d.classList.toggle('on', j === i));
+    }, { passive: true });
+  }
+  const rm = card.querySelector('.proj-rm'), more = card.querySelector('.proj-more');
+  if (rm && more) rm.addEventListener('click', () => {
+    const open = more.hidden;
+    more.hidden = !open;
+    rm.setAttribute('aria-expanded', open);
+    rm.textContent = open ? 'Read less' : 'Read more';
+  });
+});
+
 // Google Ads conversions. Each action's label comes from Google Ads:
 // Goals > Conversions > (action) > Tag setup > event snippet, the part after "AW-18427746133/".
 const ADS_ID = 'AW-18427746133';
@@ -2345,7 +2507,7 @@ const revealPlan = [
   ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
-  ['.about-copy', 'left'], ['.facts', 'right'], ['.case-shots', 'zoom'], ['.case-info', 'right'], ['.case-more figure', 'pop'], ['.craft', 'blur'],
+  ['.about-copy', 'left'], ['.facts', 'right'], ['.proj', 'tilt'], ['.craft', 'blur'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.sys-col.c-side', 'left'], ['.sys-col.y-side', 'right'], ['.sys-core', 'zoom'], ['.sys-head', 'blur'],
   ['.pres-top > div', 'left'], ['.pres-top > p', 'right'], ['.pres-hub', 'zoom'], ['.pr-item', 'tilt'],

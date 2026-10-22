@@ -1310,6 +1310,48 @@ html.intro-on .intro{display:block}
 @keyframes inGrow{from{transform:scaleX(0)}to{transform:none}}
 @keyframes inUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.intro *{animation-duration:.01s!important;animation-delay:0s!important}}
+
+/* ── portfolio cards ── */
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.work .proj:nth-child(n+4){display:none}
+html[data-page="portfolio"] .work .proj{display:flex}
+html[data-page="portfolio"] .work-all{display:none}
+.work-all{display:flex;justify-content:center;margin-top:28px}
+.proj{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.proj:hover{transform:translateY(-4px);border-color:rgba(229,55,43,.5);box-shadow:0 24px 50px -24px rgba(229,55,43,.45)}
+.proj-media{position:relative;background:#0E0E11;border-bottom:1px solid var(--line)}
+.pm-bar{display:flex;align-items:center;gap:5px;padding:8px 12px;background:#1A1A1E}
+.pm-bar i{width:7px;height:7px;border-radius:50%;background:#3A3A40}.pm-bar i:first-child{background:#E5372B}
+.pm-bar span{margin-left:8px;padding:2px 10px;border-radius:999px;background:#0E0E11;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;aspect-ratio:16/10;outline:none}
+.pm-track::-webkit-scrollbar{display:none}
+.pm-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:top;scroll-snap-align:start;display:block}
+.pm-nav{position:absolute;top:calc(50% + 14px);transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(10,10,12,.6);color:#fff;cursor:pointer;opacity:0;transition:opacity .25s,background .2s;backdrop-filter:blur(6px)}
+.pm-nav svg{width:16px;height:16px}
+.pm-prev{left:10px}.pm-next{right:10px}
+.proj-media:hover .pm-nav,.pm-nav:focus-visible{opacity:1}
+.pm-nav:hover{background:#E5372B}
+.pm-dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px;padding:5px 8px;border-radius:999px;background:rgba(10,10,12,.55)}
+.pm-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);transition:width .25s,background .25s}
+.pm-dots i.on{width:18px;border-radius:4px;background:#E5372B}
+.proj-body{display:flex;flex-direction:column;gap:10px;padding:20px 20px 18px;flex:1}
+.proj-tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.proj-body h3{font-size:1.25rem;letter-spacing:-.02em;line-height:1.2}
+.proj-desc{color:var(--muted);font-size:.93rem;line-height:1.55}
+.proj-more ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.proj-more li{position:relative;padding-left:16px;color:var(--muted);font-size:.88rem;line-height:1.45}
+.proj-more li::before{content:'';position:absolute;left:1px;top:.5em;width:6px;height:6px;border-radius:2px;background:var(--red);transform:rotate(45deg)}
+.proj-more:not([hidden]){animation:up .35s cubic-bezier(.2,.7,.2,1) both}
+.proj-chips{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.proj-chips li{font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink)}
+.proj-actions{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.proj-rm{background:none;border:0;padding:0;font:inherit;font-weight:600;font-size:.9rem;color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(229,55,43,.6)}
+.proj-rm:hover{color:var(--red)}
+.proj-visit{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#E5372B;color:#fff;font-weight:700;font-size:.88rem;transition:transform .2s,background .2s}
+.proj-visit:hover{background:var(--red-ink);transform:translateY(-2px)}
+.proj-visit .icon{width:15px;height:15px}
+@media(max-width:1020px){.proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work .proj:nth-child(n+3){display:none}html[data-page="portfolio"] .work .proj{display:flex}}
+@media(max-width:640px){.proj-grid{grid-template-columns:1fr}.work .proj:nth-child(n+3){display:flex}.work .proj:nth-child(n+4){display:none}html[data-page="portfolio"] .work .proj{display:flex}.pm-nav{opacity:1;width:30px;height:30px}}
 </style>
 <script type="application/ld+json">
 {
@@ -2162,6 +2204,28 @@ updateScrollProgress();
   document.getElementById('introSkip').addEventListener('click', finish);
 })();
 
+// Portfolio cards: swipeable screenshots with dots and arrows, and Read more
+document.querySelectorAll('.proj').forEach(card => {
+  const track = card.querySelector('.pm-track'), dots = [...card.querySelectorAll('.pm-dots i')];
+  if (track) {
+    const go = dir => track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    card.querySelector('.pm-prev').addEventListener('click', () => go(-1));
+    card.querySelector('.pm-next').addEventListener('click', () => go(1));
+    track.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+    track.addEventListener('scroll', () => {
+      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((d, j) => d.classList.toggle('on', j === i));
+    }, { passive: true });
+  }
+  const rm = card.querySelector('.proj-rm'), more = card.querySelector('.proj-more');
+  if (rm && more) rm.addEventListener('click', () => {
+    const open = more.hidden;
+    more.hidden = !open;
+    rm.setAttribute('aria-expanded', open);
+    rm.textContent = open ? 'Read less' : 'Read more';
+  });
+});
+
 // Google Ads conversions. Each action's label comes from Google Ads:
 // Goals > Conversions > (action) > Tag setup > event snippet, the part after "AW-18427746133/".
 const ADS_ID = 'AW-18427746133';
@@ -2393,7 +2457,7 @@ const revealPlan = [
   ['.b-card.big', 'wipe'], ['.b-card:not(.big)', 'tilt'],
   ['.dept-header', 'blur'], ['.dept-tabs', 'flip'],
   ['.step', 'pop'],
-  ['.about-copy', 'left'], ['.facts', 'right'], ['.case-shots', 'zoom'], ['.case-info', 'right'], ['.case-more figure', 'pop'], ['.craft', 'blur'],
+  ['.about-copy', 'left'], ['.facts', 'right'], ['.proj', 'tilt'], ['.craft', 'blur'],
   ['.industries', 'blur'], ['.faq-item', 'tilt'],
   ['.sys-col.c-side', 'left'], ['.sys-col.y-side', 'right'], ['.sys-core', 'zoom'], ['.sys-head', 'blur'],
   ['.pres-top > div', 'left'], ['.pres-top > p', 'right'], ['.pres-hub', 'zoom'], ['.pr-item', 'tilt'],
