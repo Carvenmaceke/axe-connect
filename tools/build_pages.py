@@ -229,7 +229,7 @@ PAGES = [
     dict(
         file='portfolio.html', crumb='Portfolio', nav='portfolio.html', mode='web',
         title='Portfolio | Websites &amp; Booking Systems We Built | Axe Connect',
-        desc='See websites and business systems built by Axe Connect, including J Masocha Photography in Pretoria: a photography website with online booking, deposits and an admin website manager.',
+        desc='See websites built by Axe Connect: Zicco Plumbers, J Masocha Photography, POG Advisory, Doxa Beach Hotel, SAGIS Logistics, TP Tshakafa Attorneys, M4 Foundation and Mining CSI. Live sites for real South African businesses.',
         service=None,
         eyebrow='Portfolio',
         h1='Websites that work <em>for real businesses.</em>',
