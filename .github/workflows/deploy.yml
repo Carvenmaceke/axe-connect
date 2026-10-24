@@ -55,6 +55,8 @@ jobs:
   # Personal portfolio (github.com/Carvenmaceke/CarvenMaceke) on the subdomain carven.axeconnect.co.za.
   # In DirectAdmin the subdomain's folder is public_html/carven, so the files go there.
   portfolio:
+    # After the main site, so only one FTP connection is open at a time
+    needs: deploy
     runs-on: ubuntu-latest
     env:
       FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -77,6 +79,7 @@ jobs:
           port: 21
           local-dir: ./portfolio-site/
           server-dir: ${{ secrets.FTP_DIR || './' }}carven/
+          timeout: 600000
           exclude: |
             **/.git*
             **/.git*/**
