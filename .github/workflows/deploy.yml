@@ -13,6 +13,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily run picks up changes to the personal portfolio repo (carven.axeconnect.co.za)
+  schedule:
+    - cron: '0 4 * * *'
 
 concurrency:
   group: deploy-hostafrica
@@ -48,3 +51,33 @@ jobs:
             .github/**
             tools/**
             CNAME
+
+  # Personal portfolio (github.com/Carvenmaceke/CarvenMaceke) on the subdomain carven.axeconnect.co.za.
+  # In DirectAdmin the subdomain's folder is public_html/carven, so the files go there.
+  portfolio:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Get the portfolio files
+        if: env.FTP_SERVER != ''
+        uses: actions/checkout@v4
+        with:
+          repository: Carvenmaceke/CarvenMaceke
+          path: portfolio-site
+
+      - name: Upload to carven.axeconnect.co.za
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./portfolio-site/
+          server-dir: ${{ secrets.FTP_DIR || './' }}carven/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .vscode/**
