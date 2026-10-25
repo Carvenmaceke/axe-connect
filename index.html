@@ -116,6 +116,8 @@ em{font-style:normal;color:var(--red)}
 section[id]{scroll-margin-top:calc(var(--top) + 12px)}
 main,footer{overflow-x:clip}
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
+/* homepage is a short overview; the detailed sections live on their own pages */
+html:not([data-page]) [data-home="off"]{display:none !important}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
 .mono{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
@@ -1419,6 +1421,25 @@ html[data-page="portfolio"] .work-all{display:none}
 .qd-terms ul{margin:6px 0 0;padding-left:18px;color:#3c3f46;font-size:.8rem;line-height:1.5}
 @media(max-width:900px){.qb-wrap{grid-template-columns:1fr}.qb-doc{position:static;order:2}}
 @media(max-width:560px){.qb-opts,.qb-small{grid-template-columns:1fr 1fr}.qb-steps li{padding-right:8px}.qb-nav .btn-ghost{padding-inline:14px}}
+
+/* ── tighter phone layout: less scrolling, same content ── */
+@media(max-width:640px){
+  html:not([data-page]) .work .proj:nth-child(n+3){display:none}
+  .bento{grid-template-columns:1fr 1fr;gap:12px}
+  .b-card.big,.sysgrid .b-card.big{grid-column:1 / -1;grid-row:auto}
+  .sysgrid{grid-template-columns:1fr 1fr}
+  .b-card:not(.big){padding:18px;gap:8px}
+  .b-card:not(.big) h3{font-size:1.05rem}
+  .b-card:not(.big) p{font-size:.84rem}
+  .b-card:not(.big) .b-ico{width:38px;height:38px;border-radius:11px}
+  .steps{gap:10px}
+  .step{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:4px;padding:18px}
+  .step-n{grid-column:1 / -1}
+  .step-ico{width:38px;height:38px;border-radius:11px;grid-row:2 / span 2}
+  .step h3{font-size:1.08rem;align-self:center}
+  .step p{grid-column:2;font-size:.9rem}
+  .craft-pts{display:none}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -1993,7 +2014,7 @@ html[data-page="portfolio"] .work-all{display:none}
         <p class="hero-sub">Your customers book, buy and enquire online. Your team runs orders, clients, stock and invoices from one dashboard. One connected system that saves hours every week, at a price small businesses can afford.</p>
         <div class="hero-btns">
           <button type="button" class="btn btn-primary" onclick="openQuoteModal('Web Development')">Get an affordable quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <a class="btn btn-ghost" href="#system">See how it works</a>
+          <a class="btn btn-ghost" href="#work">See our work</a>
         </div>
         <ul class="hero-checks">
           <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Customer website</li>
@@ -2085,7 +2106,7 @@ html[data-page="portfolio"] .work-all{display:none}
 </div>
 
 <!-- SYSTEM: two sides, one system -->
-<section id="system" class="sec sys" data-for="web">
+<section id="system" class="sec sys" data-for="web" data-home="off">
   <div class="wrap">
     <div class="sys-head">
       <span class="eyebrow">Not just a website</span>
@@ -2112,7 +2133,7 @@ html[data-page="portfolio"] .work-all{display:none}
 </section>
 
 <!-- ONLINE PRESENCE -->
-<section id="presence" class="sec pres" data-for="web">
+<section id="presence" class="sec pres" data-for="web" data-home="off">
   <div class="wrap">
     <div class="pres-top">
       <div>
@@ -2144,7 +2165,7 @@ html[data-page="portfolio"] .work-all{display:none}
 </section>
 
 <!-- PRODUCTIVITY: before / after slider -->
-<section class="sec ba" data-for="web">
+<section class="sec ba" data-for="web" data-home="off">
   <div class="wrap ba-grid">
     <div class="ba-copy">
       <span class="eyebrow">Productivity</span>
@@ -2173,7 +2194,7 @@ html[data-page="portfolio"] .work-all{display:none}
 </section>
 
 <!-- AFFORDABLE -->
-<section class="aff" data-for="web">
+<section class="aff" data-for="web" data-home="off">
   <div class="wrap">
     <div class="aff-panel">
       <div class="aff-copy">
@@ -2511,7 +2532,7 @@ html[data-page="portfolio"] .work-all{display:none}
 </section>
 
 <!-- WEB DEVELOPMENT & DESIGN -->
-<section id="web-dev" class="dept-section" data-for="web">
+<section id="web-dev" class="dept-section" data-for="web" data-home="off">
   <div class="dept-header web-dept">
     <div class="dept-header-inner">
       <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg> Software, Web Development &amp; Design</div>
@@ -2678,17 +2699,49 @@ html[data-page="portfolio"] .work-all{display:none}
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section id="reviews" class="sec reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2>What clients say.</h2>
+      </div>
+      <p>Worked with Axe Connect on a website, software, design or a repair? Leave a quick review right here. It helps other people and businesses choose us.</p>
+    </div>
+    <div class="rv-top">
+      <div class="rv-summary" id="rvSummary" hidden>
+        <strong id="rvAvg">5.0</strong>
+        <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
+      </div>
+      <div class="rv-actions">
+        <a class="btn btn-ghost gbp-btn" href="https://g.page/r/CRoZR2mD81AZEAI" target="_blank" rel="noopener"><svg class="gmark" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.2a6.6 6.6 0 0 1 0-4.3V7.1H2.1a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg> View us on Google</a>
+        <a class="btn btn-primary" href="#reviews" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Write a review</a>
+      </div>
+    </div>
+    <p class="rv-gnote" id="rvGoogleNote" hidden>Includes reviews from our <a href="https://g.page/r/CRoZR2mD81AZEAI" target="_blank" rel="noopener">Google Business Profile</a>, updated daily.</p>
+    <div class="rv-grid" id="rvGrid">
+      <div class="rv-empty" id="rvEmpty">
+        <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
+        <h3>Be one of our first reviewers</h3>
+        <p>Tell others how your website, software, design work or repair went. It takes less than a minute.</p>
+        <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HIRE A SOFTWARE / WEB DEVELOPER (FAQ) -->
 <section id="hire" class="sec hire" data-for="web">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">Hire a software developer</span>
-        <h2>Looking for a software or web developer? Here's how we work.</h2>
+        <span class="eyebrow">Questions</span>
+        <h2>Good questions, straight answers.</h2>
       </div>
-      <p>Freelance and contract software and web development for individuals, startups, small businesses and companies. Fully remote, anywhere in South Africa or abroad.</p>
+      <p>What clients usually ask before we start: prices, timelines, what you need to provide and who owns the website. Fully remote, anywhere in South Africa or abroad.</p>
     </div>
-    <div class="industries">
+    <div class="industries" data-home="off">
       <span class="mono">Software &amp; websites for</span>
       <ul><li>Small businesses</li><li>Startups</li><li>Companies</li><li>Restaurants &amp; cafés</li><li>Salons &amp; beauty</li><li>Churches</li><li>Schools</li><li>NGOs</li><li>Real estate</li><li>Construction</li><li>Law firms</li><li>Medical practices</li><li>Online stores</li><li>Personal brands</li><li>Creatives &amp; portfolios</li><li>Events</li></ul>
     </div>
@@ -2749,38 +2802,6 @@ html[data-page="portfolio"] .work-all{display:none}
         <summary><h3>Do you also do logos and branding?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
         <p>Yes. Logo design, posters and flyers, social media graphics, business cards and full brand identity packs, so your website and brand match.</p>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews" class="sec reviews">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Reviews</span>
-        <h2>What clients say.</h2>
-      </div>
-      <p>Worked with Axe Connect on a website, software, design or a repair? Leave a quick review right here. It helps other people and businesses choose us.</p>
-    </div>
-    <div class="rv-top">
-      <div class="rv-summary" id="rvSummary" hidden>
-        <strong id="rvAvg">5.0</strong>
-        <div><span class="rv-stars" id="rvAvgStars" aria-hidden="true"></span><span id="rvCount">Google reviews</span></div>
-      </div>
-      <div class="rv-actions">
-        <a class="btn btn-ghost gbp-btn" href="https://g.page/r/CRoZR2mD81AZEAI" target="_blank" rel="noopener"><svg class="gmark" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.2a6.6 6.6 0 0 1 0-4.3V7.1H2.1a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg> View us on Google</a>
-        <a class="btn btn-primary" href="#reviews" data-review-open><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Write a review</a>
-      </div>
-    </div>
-    <p class="rv-gnote" id="rvGoogleNote" hidden>Includes reviews from our <a href="https://g.page/r/CRoZR2mD81AZEAI" target="_blank" rel="noopener">Google Business Profile</a>, updated daily.</p>
-    <div class="rv-grid" id="rvGrid">
-      <div class="rv-empty" id="rvEmpty">
-        <div class="rv-empty-stars" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
-        <h3>Be one of our first reviewers</h3>
-        <p>Tell others how your website, software, design work or repair went. It takes less than a minute.</p>
-        <a class="btn btn-ghost" href="#reviews" data-review-open>Write a review <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
     </div>
   </div>
 </section>
