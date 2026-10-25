@@ -2696,6 +2696,22 @@ if (window.emailjs) {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
+// Forms go to the Google Sheet web app in tools/forms-sheet (saved + emailed + auto-reply).
+// Leave empty to use EmailJS only. If the Sheet can't be reached, EmailJS is used as a backup.
+const FORMS_URL = 'https://script.google.com/macros/s/AKfycbwRhZLJe_6ukXY8d7W2JzkNIWExeVAmwFoyM7liYm6WSNW-OR8cL7UI2_-1y-zHjThNTw/exec';
+function sendForm(kind, params, fields) {
+  const viaEmailJS = () => window.emailjs
+    ? emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+    : Promise.reject(new Error('Email service failed to load'));
+  if (!FORMS_URL) return viaEmailJS();
+  const body = JSON.stringify({ kind: kind, subject: params.subject, msg: params.msg, fields: fields || {} });
+  return fetch(FORMS_URL, { method: 'POST', body: body })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+    .then(res => { if (!res || !res.ok) throw new Error((res && res.error) || 'Not saved'); return res; })
+    .catch(err => { console.warn('Forms sheet unavailable, using EmailJS:', err); return viaEmailJS(); });
+}
+const formsReady = () => !!(FORMS_URL || window.emailjs);
+
 // Quote form: category -> specific service cascading
 const QUOTE_SERVICE_MAP = {
   'Web Development': [
@@ -2860,7 +2876,7 @@ function submitContactForm() {
     return;
   }
 
-  if (!window.emailjs) {
+  if (!formsReady()) {
     showFormAlert('contactFormAlert', 'Email service failed to load. Please refresh the page and try again.');
     return;
   }
@@ -2883,7 +2899,7 @@ function submitContactForm() {
     to_email: 'carvenmaceke9@gmail.com'
   };
 
-  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+  sendForm('contact', templateParams, { name: name, phone: phone, email: email, service: service, msg: msg })
     .then(function () {
       document.getElementById('contactFormWrap').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
@@ -3013,7 +3029,11 @@ function submitQuoteForm() {
     to_email: 'carvenmaceke9@gmail.com'
   };
 
-  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+  sendForm('quote', templateParams, {
+    name: name, phone: phone, email: email, service: serviceCategory + ' - ' + serviceNeeded,
+    business: business, websiteType: websiteType, pages: pages, features: features,
+    budget: budget, deadline: deadline, extra: extraMsg
+  })
     .then(function () {
       document.getElementById('quoteFormWrap').style.display = 'none';
       document.getElementById('quoteFormSuccess').style.display = 'block';
@@ -3294,13 +3314,13 @@ reviewForm.addEventListener('submit', e => {
     return;
   }
   showFormAlert('reviewFormAlert', '');
-  if (!window.emailjs) { showFormAlert('reviewFormAlert', 'Reviews could not be sent right now. Please refresh the page and try again.'); return; }
+  if (!formsReady()) { showFormAlert('reviewFormAlert', 'Reviews could not be sent right now. Please refresh the page and try again.'); return; }
   const btn = document.getElementById('reviewSubmitBtn');
   btn.disabled = true; btn.textContent = 'Sending...';
   const date = new Date().toLocaleDateString('en-ZA', { month: 'long', year: 'numeric', timeZone: 'Africa/Johannesburg' });
   const entry = { name: name, rating: rating, service: service, text: text, date: date };
   const snippet = JSON.stringify(entry, null, 2);
-  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+  sendForm('review', {
     subject: 'New review (' + rating + '/5) from ' + name + ': approve to publish',
     name: name,
     phone: 'Not provided',
@@ -3314,7 +3334,7 @@ reviewForm.addEventListener('submit', e => {
       '3. Click "Commit changes". It shows on the site within a few minutes.\n\n' +
       snippet + '\n----------------------------------------\nTo reject it, just ignore this email.',
     to_email: 'carvenmaceke9@gmail.com'
-  }).then(() => {
+  }, { name: name, rating: rating, service: service, text: text, snippet: snippet }).then(() => {
     reviewForm.hidden = true;
     document.getElementById('reviewStep2').hidden = false;
     reviewForm.reset(); paintStars(0);
@@ -3350,10 +3370,10 @@ if (newsForm) {
       return;
     }
     input.classList.remove('invalid');
-    if (!window.emailjs) { setMsg('Sign-up is unavailable right now. Please refresh the page and try again.', 'err'); return; }
+    if (!formsReady()) { setMsg('Sign-up is unavailable right now. Please refresh the page and try again.', 'err'); return; }
     btn.disabled = true; btn.textContent = 'Subscribing...'; setMsg('');
     const when = new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' });
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    sendForm('newsletter', {
       subject: 'New newsletter subscriber: ' + email,
       name: 'Newsletter subscriber',
       phone: 'Not provided',
@@ -3361,7 +3381,7 @@ if (newsForm) {
       service: 'Newsletter sign-up',
       msg: 'NEW NEWSLETTER SUBSCRIBER\n\nEmail: ' + email + '\nSigned up: ' + when + ' (SAST)\nPage: ' + location.href + '\n\nAdd this address to your newsletter list.',
       to_email: 'carvenmaceke9@gmail.com'
-    }).then(function () {
+    }, { email: email, page: location.href }).then(function () {
       newsForm.closest('.news').classList.add('done');
       setMsg("You're subscribed. We'll email " + email + ' when there is a deal.', 'ok');
       newsForm.reset();
