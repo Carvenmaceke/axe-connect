@@ -2698,7 +2698,7 @@ if (window.emailjs) {
 
 // Forms go to the Google Sheet web app in tools/forms-sheet (saved + emailed + auto-reply).
 // Leave empty to use EmailJS only. If the Sheet can't be reached, EmailJS is used as a backup.
-const FORMS_URL = '';
+const FORMS_URL = 'https://script.google.com/macros/s/AKfycbwRhZLJe_6ukXY8d7W2JzkNIWExeVAmwFoyM7liYm6WSNW-OR8cL7UI2_-1y-zHjThNTw/exec';
 function sendForm(kind, params, fields) {
   const viaEmailJS = () => window.emailjs
     ? emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
