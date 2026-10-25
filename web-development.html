@@ -115,6 +115,8 @@ em{font-style:normal;color:var(--red)}
 section[id]{scroll-margin-top:calc(var(--top) + 12px)}
 main,footer{overflow-x:clip}
 html[data-mode="web"] [data-for="it"],html[data-mode="it"] [data-for="web"]{display:none !important}
+/* homepage is a short overview; the detailed sections live on their own pages */
+html:not([data-page]) [data-home="off"]{display:none !important}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
 .mono{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
@@ -1418,6 +1420,25 @@ html[data-page="portfolio"] .work-all{display:none}
 .qd-terms ul{margin:6px 0 0;padding-left:18px;color:#3c3f46;font-size:.8rem;line-height:1.5}
 @media(max-width:900px){.qb-wrap{grid-template-columns:1fr}.qb-doc{position:static;order:2}}
 @media(max-width:560px){.qb-opts,.qb-small{grid-template-columns:1fr 1fr}.qb-steps li{padding-right:8px}.qb-nav .btn-ghost{padding-inline:14px}}
+
+/* ── tighter phone layout: less scrolling, same content ── */
+@media(max-width:640px){
+  html:not([data-page]) .work .proj:nth-child(n+3){display:none}
+  .bento{grid-template-columns:1fr 1fr;gap:12px}
+  .b-card.big,.sysgrid .b-card.big{grid-column:1 / -1;grid-row:auto}
+  .sysgrid{grid-template-columns:1fr 1fr}
+  .b-card:not(.big){padding:18px;gap:8px}
+  .b-card:not(.big) h3{font-size:1.05rem}
+  .b-card:not(.big) p{font-size:.84rem}
+  .b-card:not(.big) .b-ico{width:38px;height:38px;border-radius:11px}
+  .steps{gap:10px}
+  .step{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:4px;padding:18px}
+  .step-n{grid-column:1 / -1}
+  .step-ico{width:38px;height:38px;border-radius:11px;grid-row:2 / span 2}
+  .step h3{font-size:1.08rem;align-self:center}
+  .step p{grid-column:2;font-size:.9rem}
+  .craft-pts{display:none}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -1845,7 +1866,7 @@ html[data-page="portfolio"] .work-all{display:none}
   </div>
 </section>
 
-<section id="web-dev" class="dept-section" data-for="web">
+<section id="web-dev" class="dept-section" data-for="web" data-home="off">
   <div class="dept-header web-dept">
     <div class="dept-header-inner">
       <div class="dept-tag"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg> Software, Web Development &amp; Design</div>
@@ -2028,12 +2049,12 @@ html[data-page="portfolio"] .work-all{display:none}
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">Hire a software developer</span>
-        <h2>Looking for a software or web developer? Here's how we work.</h2>
+        <span class="eyebrow">Questions</span>
+        <h2>Good questions, straight answers.</h2>
       </div>
-      <p>Freelance and contract software and web development for individuals, startups, small businesses and companies. Fully remote, anywhere in South Africa or abroad.</p>
+      <p>What clients usually ask before we start: prices, timelines, what you need to provide and who owns the website. Fully remote, anywhere in South Africa or abroad.</p>
     </div>
-    <div class="industries">
+    <div class="industries" data-home="off">
       <span class="mono">Software &amp; websites for</span>
       <ul><li>Small businesses</li><li>Startups</li><li>Companies</li><li>Restaurants &amp; cafés</li><li>Salons &amp; beauty</li><li>Churches</li><li>Schools</li><li>NGOs</li><li>Real estate</li><li>Construction</li><li>Law firms</li><li>Medical practices</li><li>Online stores</li><li>Personal brands</li><li>Creatives &amp; portfolios</li><li>Events</li></ul>
     </div>
