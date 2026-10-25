@@ -133,7 +133,7 @@ AREAS_BLOCK = """<section class="sec areas">
 
 PAGES = [
     dict(
-        file='web-development.html', crumb='Web Development', nav='web-development.html', mode='web',
+        file='web-development.html', crumb='Web Development', nav='services.html', mode='web',
         title='Website Designer Pretoria | Web Design &amp; Development South Africa | Axe Connect',
         desc='Looking for a web designer near you? Axe Connect is a website designer in Pretoria building affordable, mobile-friendly business websites, online stores and web apps for Pretoria, Centurion, Johannesburg and all of South Africa.',
         service='Website design and development', areas=AREAS,
@@ -172,7 +172,7 @@ PAGES = [
         ]),
     ),
     dict(
-        file='business-systems.html', crumb='Business Systems', nav='business-systems.html', mode='web',
+        file='business-systems.html', crumb='Business Systems', nav='services.html', mode='web',
         title='Business Management Systems &amp; Admin Dashboards South Africa | Axe Connect',
         desc='Custom business systems for South African businesses: a customer website plus an admin dashboard for bookings, orders, clients, stock, invoices and reports. One connected, affordable system.',
         service='Custom business management systems',
@@ -190,7 +190,7 @@ PAGES = [
         ]),
     ),
     dict(
-        file='online-presence.html', crumb='Online Presence', nav='online-presence.html', mode='web',
+        file='online-presence.html', crumb='Online Presence', nav='services.html', mode='web',
         title='Domain Registration, Branding &amp; Google Business Profile Setup | Axe Connect',
         desc='Get your business found online: .co.za domain registration at the best price, logo and branding, Google Business Profile setup, business email and SEO. Done for you by Axe Connect.',
         service='Online presence: domains, branding, Google Business Profile, business email and SEO',
@@ -209,7 +209,7 @@ PAGES = [
         ]),
     ),
     dict(
-        file='social-media-management.html', crumb='Social Media Management', nav='', mode='web',
+        file='social-media-management.html', crumb='Social Media Management', nav='services.html', mode='web',
         title='Social Media Manager South Africa | Social Media Management for Business | Axe Connect',
         desc='Hire a social media manager in South Africa. Axe Connect plans and creates posts, designs graphics and grows your Facebook and Instagram pages so your business stays active online.',
         service='Social media management',
@@ -335,7 +335,7 @@ def build(p):
     head = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', head, flags=re.S)
 
     top = SRC[head_end:SRC.index('<main id="home">')]
-    top = top.replace('<a href="./" class="active">Home</a>', '<a href="./">Home</a>', 1)
+    top = top.replace('<a href="./" class="active" data-sec="top">Home</a>', '<a href="./" data-sec="top">Home</a>', 1)
     if p['nav']:
         top = top.replace(f'<a href="{p["nav"]}"', f'<a href="{p["nav"]}" class="active" aria-current="page"', 1)
 

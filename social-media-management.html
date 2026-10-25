@@ -1655,15 +1655,14 @@ html[data-page="portfolio"] .work-all{display:none}
     </a>
     <nav class="hdr-nav" id="mainNav" aria-label="Main">
       <span class="nav-indicator" aria-hidden="true"></span>
-      <a href="./">Home</a>
-      <a href="business-systems.html" data-for="web">Systems</a>
-      <a href="online-presence.html" data-for="web">Presence</a>
-      <a href="services.html">Services</a>
-      <a href="web-development.html" data-for="web">Web &amp; Design</a>
-      <a href="portfolio.html" data-for="web">Portfolio</a>
-      <a href="it-support.html" data-for="it">IT Support</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="./" data-sec="top">Home</a>
+      <a href="portfolio.html" data-for="web" data-sec="work">Portfolio</a>
+      <a href="services.html" class="active" aria-current="page" data-sec="outsourcing">Services</a>
+      <a href="it-support.html" data-for="it" data-sec="it-support">IT Support</a>
+      <a href="./#how" data-sec="how">How we work</a>
+      <a href="./#reviews" data-sec="reviews">Reviews</a>
+      <a href="about.html" data-sec="about">About</a>
+      <a href="contact.html" data-sec="contact">Contact</a>
     </nav>
     <div class="hdr-actions">
       <button type="button" class="btn btn-primary hdr-cta" data-for="web" onclick="openQuoteModal('Web Development')">Get a quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -1716,7 +1715,7 @@ html[data-page="portfolio"] .work-all{display:none}
   </div>
 </section>
 
-<section class="sec process">
+<section class="sec process" id="how">
   <div class="wrap">
     <div class="sec-head" data-for="web">
       <div>
@@ -2458,16 +2457,29 @@ function moveNavIndicator(link) {
   navIndicator.style.width = link.offsetWidth + 'px';
   navIndicator.style.height = link.offsetHeight + 'px';
 }
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      if (![...links].some(l => l.getAttribute('href') === '#'+e.target.id)) return;
-      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+e.target.id));
-      moveNavIndicator(document.querySelector('.hdr-nav a.active'));
-    }
-  });
-}, { threshold: 0.3 });
-secs.forEach(s => io.observe(s));
+// Homepage: the menu follows the page, in the same order as the sections
+const isHome = !document.documentElement.hasAttribute('data-page');
+const secLink = id => document.querySelector('.hdr-nav a[data-sec="' + id + '"]');
+if (isHome) {
+  links.forEach(l => l.addEventListener('click', e => {
+    const t = l.dataset.sec && document.getElementById(l.dataset.sec);
+    if (!t || !t.offsetHeight) return;
+    e.preventDefault();
+    if (l.dataset.sec === 'top') window.scrollTo({ top: 0, behavior: 'smooth' });
+    else t.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', l.dataset.sec === 'top' ? './' : '#' + l.dataset.sec);
+  }));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const l = secLink(e.target.id);
+      if (!l) return;
+      links.forEach(x => x.classList.toggle('active', x === l));
+      moveNavIndicator(l);
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => io.observe(s));
+}
 links.forEach(l => l.addEventListener('click', () => moveNavIndicator(l)));
 window.addEventListener('resize', () => moveNavIndicator(document.querySelector('.hdr-nav a.active')));
 window.addEventListener('load', () => moveNavIndicator(document.querySelector('.hdr-nav a.active')));
