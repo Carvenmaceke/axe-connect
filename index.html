@@ -1440,6 +1440,21 @@ html[data-page="portfolio"] .work-all{display:none}
   .step p{grid-column:2;font-size:.9rem}
   .craft-pts{display:none}
 }
+
+/* ── 3D: hero scene, tilting cards, 3D reveals ── */
+.hero3d{display:none;position:relative;width:100%;height:500px}
+.hero3d canvas{position:absolute;inset:0;width:100%;height:100%;animation:blurIn .9s ease both}
+.hero-visual.is-3d{transform:none!important;min-height:0}
+.hero-visual.is-3d .hero3d{display:block}
+.hero-visual.is-3d>[data-for]{display:none!important}
+@media(max-width:1020px){.hero3d{height:440px}}
+@media(max-width:640px){.hero3d{height:330px}.hero-visual.is-3d{padding-inline:0}}
+.tilt3d{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,border-color .25s;will-change:transform}
+.tilt3d:hover{box-shadow:var(--shadow-lg)}
+.tilt3d-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s ease;z-index:3;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.35),rgba(255,255,255,0) 55%);mix-blend-mode:soft-light}
+.tilt3d:hover .tilt3d-glare{opacity:1}
+.step.tilt3d,.pr-item.tilt3d{position:relative}
+.pre[data-anim="tilt"]{translate:0 60px;rotate:1 0 0 24deg;scale:.96;transform-origin:50% 100%}
 </style>
 <script type="application/ld+json">
 {
@@ -1876,6 +1891,7 @@ html[data-page="portfolio"] .work-all{display:none}
     'phone_conversion_number': '060 795 0837'
   });
 </script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
 <!-- INTRO: plays on the first page of each visit (skipped for search engine bots) -->
@@ -2038,6 +2054,7 @@ html[data-page="portfolio"] .work-all{display:none}
     </div>
 
     <div class="hero-visual" aria-hidden="true">
+      <div class="hero3d" id="hero3d"><canvas></canvas></div>
       <div data-for="web">
         <div class="duo">
           <span class="duo-tag t-c"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Customer side</span>
@@ -4450,5 +4467,7 @@ function submitWebsiteQuoteForm() {
 }
 
 </script>
+<script src="assets/depth3d.js?v=1" defer></script>
+<script>if (document.getElementById('hero3d')) { var h3 = document.createElement('script'); h3.type = 'module'; h3.src = 'assets/hero3d.js?v=1'; document.body.appendChild(h3); }</script>
 </body>
 </html>
