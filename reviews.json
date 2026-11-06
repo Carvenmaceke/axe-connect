@@ -1,71 +1,106 @@
 [
   {
+    "name": "Tivani Mabasa",
+    "rating": 5,
+    "service": "Business website",
+    "date": "November 2026",
+    "category": "web",
+    "text": "Consulted AXE Connect regarding my business website, and they assisted me in creating it. The website is running perfectly, all thanks to them. Keep up the good work!"
+  },
+  {
+    "name": "Ntsikelelo Mpayipeli",
+    "rating": 5,
+    "service": "Website & job system – Zicco Plumbers",
+    "date": "October 2026",
+    "category": "web",
+    "text": "Axe Connect designed and built the new Zicco Plumbers website, www.ziccoplumbers.co.za, and it has made a real difference to how we work.\n\nCustomers can now see all our services, request a quote online with a photo of the problem, and get a ticket number to track their job. On our side, we have a simple dashboard where we update jobs, book visits and send quotes and invoices by email straight from the system.\n\nThe website was set up on our own domain and hosting, connected to Google so new requests come straight to our email, and made ready for Google searches. Carven was easy to work with, explained everything in plain language and made changes quickly whenever we asked.\n\nWe'd recommend Axe Connect to any business that wants a professional website that actually brings in work."
+  },
+  {
+    "name": "Tiyani Sydney",
+    "rating": 5,
+    "service": "Website design",
+    "date": "October 2026",
+    "category": "web",
+    "text": "My experience with Axe connect was exceptional. I love their design."
+  },
+  {
     "name": "Ndhavuko Previllage",
     "rating": 5,
     "service": "Logo design & IT support",
     "date": "June 2026",
-    "text": "I have used Axe Connect for a variety of services, including logo design, laptop and computer repairs, IT support and troubleshooting, software installation, and virus removal and performance optimisation.\n\nMy experience has consistently been positive. Their service is timely, professional, and affordable, and they communicate clearly throughout the process. The logo design work met my expectations, and the technical support provided for my computer-related issues was efficient and effective.\n\nWhat stands out most is their reliability. Because of the quality of service I received, I have continued to return to Axe Connect for all my IT-related needs. I would confidently recommend Axe Connect to individuals, startups, and businesses looking for dependable technical support, computer repairs, web services, or design solutions."
+    "text": "I have used Axe Connect for a variety of services, including logo design, laptop and computer repairs, IT support and troubleshooting, software installation, and virus removal and performance optimisation.\n\nMy experience has consistently been positive. Their service is timely, professional, and affordable, and they communicate clearly throughout the process. The logo design work met my expectations, and the technical support provided for my computer-related issues was efficient and effective.\n\nWhat stands out most is their reliability. Because of the quality of service I received, I have continued to return to Axe Connect for all my IT-related needs. I would confidently recommend Axe Connect to individuals, startups, and businesses looking for dependable technical support, computer repairs, web services, or design solutions.",
+    "category": "it"
   },
   {
     "name": "Natalie F",
     "rating": 5,
     "service": "Laptop repair",
     "date": "September 2026",
-    "text": "I had a great experience with AXE Connect. I took my laptop to them for repairs, and they did an excellent job. My laptop was fixed properly and is working perfectly again. The service was professional, efficient and reliable. I’m really happy with the results and would definitely recommend AXE Connect!"
+    "text": "I had a great experience with AXE Connect. I took my laptop to them for repairs, and they did an excellent job. My laptop was fixed properly and is working perfectly again. The service was professional, efficient and reliable. I’m really happy with the results and would definitely recommend AXE Connect!",
+    "category": "it"
   },
   {
     "name": "Jessica Lekgoathi",
     "rating": 5,
     "service": "Laptop repair",
     "date": "June 2026",
-    "text": "My laptop suddenly stopped charging and would switch off after a few minutes of use, which was very frustrating they managed to identify the issue quickly and repaired it professionally. The service was excellent, communication was clear, and the turnaround time was impressive. Since the repair, my laptop has been working perfectly without any problems."
+    "text": "My laptop suddenly stopped charging and would switch off after a few minutes of use, which was very frustrating they managed to identify the issue quickly and repaired it professionally. The service was excellent, communication was clear, and the turnaround time was impressive. Since the repair, my laptop has been working perfectly without any problems.",
+    "category": "it"
   },
   {
     "name": "Blessing Makhavhu",
     "rating": 5,
     "service": "PC support",
     "date": "June 2026",
-    "text": "Great service. I’ve used his services 3 times and he’s been very great. First my PC was very slow and i couldn’t install apps and run updates and he diagnosed the issue and got everything working smoothly. The second time I forgot my PC password and he quickly reset it and set a new one. What I appreciate is that he’s very reliable and fast I’ll definitely use his services again. HIGHLY RECOMMEND!!"
+    "text": "Great service. I’ve used his services 3 times and he’s been very great. First my PC was very slow and i couldn’t install apps and run updates and he diagnosed the issue and got everything working smoothly. The second time I forgot my PC password and he quickly reset it and set a new one. What I appreciate is that he’s very reliable and fast I’ll definitely use his services again. HIGHLY RECOMMEND!!",
+    "category": "it"
   },
   {
     "name": "Hillary Kuhlula",
     "rating": 5,
     "service": "",
     "date": "September 2026",
-    "text": "Excellent service from Axe Connect! Very professional, helpful and reliable. I’m really happy with the service I received and would definitely recommend them."
+    "text": "Excellent service from Axe Connect! Very professional, helpful and reliable. I’m really happy with the service I received and would definitely recommend them.",
+    "category": "general"
   },
   {
     "name": "Lisakhanya Mahlangu",
     "rating": 5,
     "service": "IT support & website updates",
     "date": "June 2026",
-    "text": "I have known him personally before he launched his company, as we worked together. Even back then, he was always the person people trusted when they had issues with laptops, emails, website updates, or general IT support. He would even assist with personal laptops, not only work devices, and he always handled everything with patience and professionalism.\n\nHe is reliable, knowledgeable, and always willing to help. I have seen his skills first-hand, and I fully recommend his services to anyone who needs laptop repairs, email support, website updates, or IT assistance"
+    "text": "I have known him personally before he launched his company, as we worked together. Even back then, he was always the person people trusted when they had issues with laptops, emails, website updates, or general IT support. He would even assist with personal laptops, not only work devices, and he always handled everything with patience and professionalism.\n\nHe is reliable, knowledgeable, and always willing to help. I have seen his skills first-hand, and I fully recommend his services to anyone who needs laptop repairs, email support, website updates, or IT assistance",
+    "category": "it"
   },
   {
     "name": "Shalati Msimeki",
     "rating": 5,
     "service": "Website",
     "date": "June 2026",
-    "text": "I was helped with school projects and also how to create a functional website."
+    "text": "I was helped with school projects and also how to create a functional website.",
+    "category": "web"
   },
   {
     "name": "Lulamo Advice Mathebula",
     "rating": 5,
     "service": "Laptop repair",
     "date": "June 2026",
-    "text": "My laptop was fixed on time."
-  }
+    "text": "My laptop was fixed on time.",
+    "category": "it"
+  },
   {
-   "name": "Mbali",
-   "rating": 5,
-   "service": "Logo / design",
-   "text": "I needed a new logo for my business and l had the best 
-experience working with axe connect. They did an excellent job bringing the 
-design ideas to life and creating a logo that looks professional, creative 
-and attractive. I really appreciate the attention to detail, patience and 
-effort put into the work. They were creative, understanding and delivered a 
-design that met my expectations. I am very happy with the final result and 
-would definitely recommend their services to others.",
-   "date": "November 2026"
-}
+    "name": "Mbali",
+    "rating": 5,
+    "service": "Logo / design",
+    "text": "I needed a new logo for my business and l had the best experience working with axe connect. They did an excellent job bringing the design ideas to life and creating a logo that looks professional, creative and attractive. I really appreciate the attention to detail, patience and effort put into the work. They were creative, understanding and delivered a design that met my expectations. I am very happy with the final result and would definitely recommend their services to others.",
+    "date": "November 2026",
+    "category": "web"
+  },
+  {
+    "name": "Vusimuzi Nation Ramakgasha",
+    "rating": 5,
+    "service": "",
+    "date": "June 2026",
+    "category": "general",
+    "text": "Top-notch service💯"
+  }
 ]
