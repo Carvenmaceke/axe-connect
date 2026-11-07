@@ -3,6 +3,7 @@
 
 Write posts in tools/posts/<slug>.html (see the comment block at the top of an existing post),
 then run:   python3 tools/build_blog.py
+A post dated in the future is held back until that day; the daily deploy rebuilds the blog and publishes it.
 It also re-runs tools/build_pages.py so the sitemap includes the blog.
 
 AdSense is OFF until you paste your publisher ID below. While it is off, no ad code is added anywhere.
@@ -91,6 +92,12 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,5vw,3rem);l
 .card p{color:var(--muted);font-size:.97rem}
 .card .meta{margin-top:10px}
 .intro{font-size:1.1rem;color:var(--muted);max-width:60ch}
+.author{display:flex;gap:16px;align-items:flex-start;margin-top:44px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.author .av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.2rem}
+.author b{display:block;color:var(--ink)}.author p{font-size:.95rem;color:var(--muted);margin-top:4px}
+.related{margin-top:40px}.related h2{font-family:var(--f-display);font-size:1.25rem;color:var(--ink);margin-bottom:12px}
+.related .list{margin-top:0}.related .card h3{font-family:var(--f-display);font-size:1.08rem;color:var(--ink);margin:4px 0}
+.cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.cats a{font-size:.85rem;font-weight:700;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
 footer{border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:.85rem;color:var(--muted)}
 footer a{margin:0 8px}
 @media(prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
@@ -185,6 +192,29 @@ def read_post(path):
     return meta
 
 
+def faq_items(body):
+    """Question/answer pairs from a post's "Common questions" section."""
+    i = body.find('<h2>Common questions</h2>')
+    if i < 0:
+        return []
+    return re.findall(r'<h3>(.*?)</h3>\s*<p>(.*?)</p>', body[i:], re.S)
+
+
+def related_html(p):
+    """Three other guides, same category first."""
+    others = [q for q in posts if q['slug'] != p['slug']]
+    picks = ([q for q in others if q['category'] == p['category']] + [q for q in others if q['category'] != p['category']])[:3]
+    if not picks:
+        return ''
+    cards = '\n'.join(f'''      <a class="card" href="/blog/{q["slug"]}.html"><span class="eyebrow">{q["category"]}</span><h3>{q["title"]}</h3><p class="meta">{q["minutes"]} min read</p></a>''' for q in picks)
+    return f'''  <section class="related" aria-label="Related guides">
+    <h2>Keep reading</h2>
+    <div class="list">
+{cards}
+    </div>
+  </section>'''
+
+
 def build_post(p):
     url = f'{SITE}/blog/{p["slug"]}.html'
     eyebrow, h, text, link, label = CTAS[p['cta']]
@@ -197,6 +227,11 @@ def build_post(p):
   <article class="post">
 {p["body"].replace("<!--ad-->", ad_block())}
   </article>
+  <aside class="author" aria-label="About the author">
+    <div class="av" aria-hidden="true">CM</div>
+    <div><b>Written by Carven Maceke</b>
+    <p>Carven is the founder of Axe Connect in Pretoria and a junior software engineer working with Java, Spring Boot and SQL. He builds websites and business systems for South African small businesses and fixes computers, networks and email for homes and offices. <a href="https://carven.axeconnect.co.za/">More about Carven</a>.</p></div>
+  </aside>
   <aside class="cta">
     <span class="eyebrow">{eyebrow}</span>
     <h2>{h}</h2>
@@ -206,7 +241,9 @@ def build_post(p):
       <a class="btn" href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp 060 795 0837</a>
     </div>
   </aside>
+{related_html(p)}
 </main>'''
+    faq = faq_items(p['body'])
     ld = {'@context': 'https://schema.org', '@graph': [
         {'@type': 'BlogPosting', 'headline': plain(p['title']), 'description': plain(p['description']),
          'datePublished': p['date'], 'url': url, 'image': f'{SITE}/og-image.jpg',
@@ -216,24 +253,37 @@ def build_post(p):
             {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE + '/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Tips & guides', 'item': SITE + '/blog/'},
             {'@type': 'ListItem', 'position': 3, 'name': plain(p['title']), 'item': url}]}]}
+    if faq:
+        ld['@graph'].append({'@type': 'FAQPage', 'mainEntity': [
+            {'@type': 'Question', 'name': plain(q), 'acceptedAnswer': {'@type': 'Answer', 'text': plain(a)}} for q, a in faq]})
     (OUT / f'{p["slug"]}.html').write_text(
         page(f'{p["title"]} | Axe Connect', p['description'], url, body, ld, 'article'), encoding='utf-8')
 
 
 def build_index(posts):
     url = f'{SITE}/blog/'
+    first = {}
+    for p in posts:
+        first.setdefault(p['category'], p['slug'])
+    anchor = lambda p: f' id="{re.sub(r"[^a-z]+", "-", p["category"].lower()).strip("-")}"' if first[p['category']] == p['slug'] else ''
     cards = '\n'.join(
-        f'''    <a class="card" href="/blog/{p["slug"]}.html">
+        f'''    <a class="card"{anchor(p)} href="/blog/{p["slug"]}.html">
       <span class="eyebrow">{p["category"]}</span>
       <h2>{p["title"]}</h2>
       <p>{p["description"]}</p>
       <p class="meta">{p["nice_date"]} · {p["minutes"]} min read</p>
     </a>''' for p in posts)
+    seen = []
+    for p in posts:
+        if p['category'] not in seen:
+            seen.append(p['category'])
+    cats = ''.join(f'<a href="#{re.sub(r"[^a-z]+", "-", c.lower()).strip("-")}">{c} ({sum(1 for p in posts if p["category"] == c)})</a>' for c in seen)
     body = f'''<main class="page">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Tips &amp; guides</nav>
   <span class="eyebrow">Tips &amp; guides</span>
   <h1>Practical tech help for South African homes and businesses.</h1>
-  <p class="intro">Plain-language guides on fixing common computer problems and getting your business online, from the team at Axe Connect.</p>
+  <p class="intro">Plain-language guides on fixing common computer problems, staying safe online and getting your business online, written by Carven Maceke from real jobs at Axe Connect. New guides are added every week.</p>
+  <nav class="cats" aria-label="Categories">{cats}</nav>
   <div class="list">
 {cards}
   </div>
@@ -255,7 +305,11 @@ def ads_txt():
         f.unlink()
 
 
-posts = sorted((read_post(f) for f in POSTS_DIR.glob('*.html')), key=lambda p: p['date'], reverse=True)
+from datetime import datetime, timedelta, timezone
+TODAY = (datetime.now(timezone.utc) + timedelta(hours=2)).date().isoformat()  # South African time
+all_posts = [read_post(f) for f in POSTS_DIR.glob('*.html')]
+posts = sorted((p for p in all_posts if p['date'] <= TODAY), key=lambda p: p['date'], reverse=True)
+scheduled = sorted(p['date'] + ' ' + p['slug'] for p in all_posts if p['date'] > TODAY)
 OUT.mkdir(exist_ok=True)
 for old in OUT.glob('*.html'):
     old.unlink()
@@ -264,5 +318,7 @@ for p in posts:
 build_index(posts)
 ads_txt()
 state = 'PREVIEW boxes' if PREVIEW else (f'AdSense ON ({ADSENSE_CLIENT})' if ADSENSE_CLIENT else 'AdSense off')
-print(f'blog: {len(posts)} posts, {state}')
+print(f'blog: {len(posts)} posts published, {len(scheduled)} scheduled, {state}')
+for item in scheduled:
+    print('  scheduled:', item)
 runpy.run_path(str(ROOT / 'tools' / 'build_pages.py'))  # rebuilds pages + sitemap (includes the blog)

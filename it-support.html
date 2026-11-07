@@ -1694,6 +1694,7 @@ html[data-page="portfolio"] .work-all{display:none}
       <a href="./#how" data-sec="how">How we work</a>
       <a href="./#reviews" data-sec="reviews">Reviews</a>
       <a href="about.html" data-sec="about">About</a>
+      <a href="blog/">Guides</a>
       <a href="contact.html" data-sec="contact">Contact</a>
     </nav>
     <div class="hdr-actions">
@@ -1867,8 +1868,8 @@ html[data-page="portfolio"] .work-all{display:none}
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">IT support reviews</span>
-        <h2>What our IT support clients say.</h2>
+        <span class="eyebrow">Reviews</span>
+        <h2>What clients say.</h2>
       </div>
       <p>Worked with Axe Connect on a website, software, design or a repair? Leave a quick review right here. It helps other people and businesses choose us.</p>
     </div>
@@ -3259,12 +3260,9 @@ function loadGoogleReviews() {
   });
 }
 // Approved website reviews live in reviews.json (edit it on GitHub to publish a review)
-// This page only shows reviews whose "category" is 'it' (web = websites/design, it = IT support & repairs)
-const PAGE_REVIEW_CATEGORY = 'it';
 const siteReviews = fetch('reviews.json', { cache: 'no-store' })
   .then(r => r.ok ? r.json() : [])
   .then(list => (Array.isArray(list) ? list : []).filter(r => r && r.name && r.text && r.rating >= 1 && r.rating <= 5)
-    .filter(r => !PAGE_REVIEW_CATEGORY || [].concat(r.category || []).includes(PAGE_REVIEW_CATEGORY))
     .map(r => ({ ...r, date: [r.service, r.date].filter(Boolean).join(' · ') })))
   .catch(() => []);
 Promise.all([loadGoogleReviews(), siteReviews]).then(([google, site]) => {

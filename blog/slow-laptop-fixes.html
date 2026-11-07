@@ -65,6 +65,12 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,5vw,3rem);l
 .card p{color:var(--muted);font-size:.97rem}
 .card .meta{margin-top:10px}
 .intro{font-size:1.1rem;color:var(--muted);max-width:60ch}
+.author{display:flex;gap:16px;align-items:flex-start;margin-top:44px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.author .av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.2rem}
+.author b{display:block;color:var(--ink)}.author p{font-size:.95rem;color:var(--muted);margin-top:4px}
+.related{margin-top:40px}.related h2{font-family:var(--f-display);font-size:1.25rem;color:var(--ink);margin-bottom:12px}
+.related .list{margin-top:0}.related .card h3{font-family:var(--f-display);font-size:1.08rem;color:var(--ink);margin:4px 0}
+.cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.cats a{font-size:.85rem;font-weight:700;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
 footer{border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:.85rem;color:var(--muted)}
 footer a{margin:0 8px}
 @media(prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
@@ -111,6 +117,35 @@ footer a{margin:0 8px}
           "position": 3,
           "name": "Why is my laptop so slow? 8 fixes to try before you pay for a repair",
           "item": "https://axeconnect.co.za/blog/slow-laptop-fixes.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will more RAM make my laptop faster?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If the laptop has 4GB of RAM and runs modern Windows, upgrading to 8GB or more usually makes a big difference, if the laptop allows it. Check Task Manager: if memory use is often near 100%, more RAM will help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is an SSD upgrade worth it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your laptop still has a traditional spinning hard drive, replacing it with an SSD is often the single best speed upgrade. Start-up and program loading can go from minutes to seconds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is it time to replace a laptop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When it is more than about six or seven years old, cannot run a supported version of Windows, or needs repairs costing a large part of a new laptop's price, replacing it is usually better value."
+          }
         }
       ]
     }
@@ -193,7 +228,20 @@ footer a{margin:0 8px}
   <li><strong>Overheating.</strong> If the fan is loud and the bottom is hot, dust may be blocking the vents, and the processor slows itself down to cool off. Use it on a hard surface, not a bed or a blanket.</li>
 </ul>
 <p>An SSD or a RAM upgrade usually costs far less than a new laptop and can give an older machine a few more good years.</p>
+
+<h2>Common questions</h2>
+<h3>Will more RAM make my laptop faster?</h3>
+<p>If the laptop has 4GB of RAM and runs modern Windows, upgrading to 8GB or more usually makes a big difference, if the laptop allows it. Check Task Manager: if memory use is often near 100%, more RAM will help.</p>
+<h3>Is an SSD upgrade worth it?</h3>
+<p>If your laptop still has a traditional spinning hard drive, replacing it with an SSD is often the single best speed upgrade. Start-up and program loading can go from minutes to seconds.</p>
+<h3>When is it time to replace a laptop?</h3>
+<p>When it is more than about six or seven years old, cannot run a supported version of Windows, or needs repairs costing a large part of a new laptop's price, replacing it is usually better value.</p>
   </article>
+  <aside class="author" aria-label="About the author">
+    <div class="av" aria-hidden="true">CM</div>
+    <div><b>Written by Carven Maceke</b>
+    <p>Carven is the founder of Axe Connect in Pretoria and a junior software engineer working with Java, Spring Boot and SQL. He builds websites and business systems for South African small businesses and fixes computers, networks and email for homes and offices. <a href="https://carven.axeconnect.co.za/">More about Carven</a>.</p></div>
+  </aside>
   <aside class="cta">
     <span class="eyebrow">Still need help?</span>
     <h2>Let us fix it for you.</h2>
@@ -203,6 +251,14 @@ footer a{margin:0 8px}
       <a class="btn" href="https://wa.me/27607950837" target="_blank" rel="noopener">WhatsApp 060 795 0837</a>
     </div>
   </aside>
+  <section class="related" aria-label="Related guides">
+    <h2>Keep reading</h2>
+    <div class="list">
+      <a class="card" href="/blog/back-up-business-files.html"><span class="eyebrow">IT support</span><h3>How to back up your business files properly (the 3-2-1 rule, made simple)</h3><p class="meta">4 min read</p></a>
+      <a class="card" href="/blog/remove-virus-from-laptop.html"><span class="eyebrow">IT support</span><h3>Pop-ups, strange tabs and a slow laptop: how to remove a virus from Windows</h3><p class="meta">4 min read</p></a>
+      <a class="card" href="/blog/laptop-not-charging.html"><span class="eyebrow">IT support</span><h3>Laptop not charging? 7 checks before you buy a new charger or battery</h3><p class="meta">4 min read</p></a>
+    </div>
+  </section>
 </main>
 <footer>&#169; <span id="yr">2026</span> Axe Connect · <a href="/blog/">Tips &amp; guides</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/">Home</a></footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>

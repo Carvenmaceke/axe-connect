@@ -66,7 +66,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://axeconnect.co.za/blog/back-up-business-files.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://axeconnect.co.za/blog/business-email-on-phone.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://axeconnect.co.za/blog/choose-domain-name-south-africa.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -77,6 +87,11 @@
   </url>
   <url>
     <loc>https://axeconnect.co.za/blog/laptop-not-charging.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://axeconnect.co.za/blog/questions-before-hiring-web-developer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
